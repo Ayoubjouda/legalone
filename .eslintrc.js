@@ -24,5 +24,12 @@ module.exports = {
     'prettier/prettier': 'error',
     '@typescript-eslint/no-empty-function': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/no-unescaped-entities': 'off',
+    'react/prop-types': [
+      2,
+      {
+        ignore: ['className'],
+      },
+    ],
   },
 };
