@@ -13,11 +13,13 @@ import { useForm } from 'react-hook-form';
 import Image from 'next/image';
 import { ChevronLeft } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useLogin } from '@/hooks/useLogin';
 import {
   loginSchemaValidator,
   LoginSchemaType,
 } from '@/lib/validators/formValidators';
 export default function LoginPage() {
+  const { LoginMutation } = useLogin();
   const form = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchemaValidator),
     defaultValues: {
@@ -29,6 +31,7 @@ export default function LoginPage() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+    LoginMutation(values);
   };
   return (
     <main className="max-w-screen mx-8 flex h-full    md:justify-center  lg:h-screen ">

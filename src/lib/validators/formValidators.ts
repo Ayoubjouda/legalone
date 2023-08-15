@@ -2,8 +2,12 @@ import { z } from 'zod';
 
 export const RegisterSchema = z
   .object({
-    username: z.string().min(4).max(10),
+    firstName: z.string().min(2).max(15),
+    lastName: z.string().min(2).max(15),
     email: z.string().email(),
+    age: z.date({
+      required_error: 'A date of birth is required.',
+    }),
     password: z
       .string()
       .regex(
@@ -36,9 +40,6 @@ export const RegisterSchema = z
         'Must have at least one special character'
       )
       .min(8, 'Must be at least 8 characters in length'),
-    policy: z.literal(true, {
-      errorMap: () => ({ message: 'You must accept the terms and conditions' }),
-    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ['confirmPassword'],
