@@ -43,6 +43,8 @@ export default function LoginPage() {
           width={0}
           height={0}
           sizes="100vw"
+          placeholder="blur"
+          blurDataURL="https://ik.imagekit.io/zb5z1u26qn/LegalOne/legaloneSigninPic.jpeg?updatedAt=1692030316256"
         />
       </div>
       <div className="mt-10 flex-col justify-center  md:mx-10 lg:mt-32 lg:w-1/2 lg:items-center">
@@ -61,6 +63,8 @@ export default function LoginPage() {
           width={0}
           height={0}
           sizes="100vw"
+          placeholder="blur"
+          blurDataURL="https://ik.imagekit.io/zb5z1u26qn/LegalOne/angela-bailey-GfUk_pFtjz0-unsplash%202.png?updatedAt=1692030421176"
         />
         <h1 className="mt-5">
           Legal<span className="font-bold">Center</span>

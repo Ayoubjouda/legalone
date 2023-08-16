@@ -1,6 +1,7 @@
 'use client';
 import { FC, ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ChakraProvider } from '@chakra-ui/react';
 interface ProvidersProps {
   children: ReactNode;
 }
@@ -10,7 +11,9 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <ChakraProvider>{children}</ChakraProvider>
+      </QueryClientProvider>
     </>
   );
 };
