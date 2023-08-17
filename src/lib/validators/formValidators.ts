@@ -46,8 +46,8 @@ export const RegisterSchema = z
     message: 'Passwords do not match',
   });
 export const loginSchemaValidator = z.object({
-  username: z.string().min(3, { message: 'Must have at Least 3 characters' }),
-  password: z.string().min(8, 'Must be at least 8 characters in length'),
+  email: z.string().email({ message: 'Must have at Least 3 characters' }),
+  password: z.string().min(3, 'Must be at least 3 characters in length'),
 });
 
 export type RegisterSchemaType = z.infer<typeof RegisterSchema>;

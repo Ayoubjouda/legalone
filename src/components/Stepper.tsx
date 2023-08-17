@@ -14,7 +14,14 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { Button } from './ui/button';
-import { FormOne, FormTwo, FormThree, FormFour } from '@/components/Forms';
+import {
+  FormOne,
+  FormTwo,
+  FormThree,
+  FormFour,
+  FormFive,
+  FormSix,
+} from '@/components/Forms';
 
 interface StepperProps {}
 const steps = [
@@ -37,12 +44,16 @@ const Stepper: FC<StepperProps> = () => {
         return <FormTwo />;
       case 2:
         return <FormThree />;
-      default:
+      case 3:
         return <FormFour />;
+      case 4:
+        return <FormThree />;
+      default:
+        return <FormSix />;
     }
   }
   return (
-    <div className="flex  flex-col gap-10">
+    <div className="flex  w-full flex-col items-center justify-center gap-10">
       <ChakraStepper
         index={activeStep}
         colorScheme={'orange'}
@@ -77,7 +88,7 @@ const Stepper: FC<StepperProps> = () => {
       <div className="flex items-center justify-center">
         {getStepContent(activeStep)}
       </div>
-      <div className="flex justify-end gap-4 ">
+      <div className="flex w-full max-w-[700px] justify-between gap-4">
         {activeStep !== 0 && (
           <Button
             className="font-semibold"

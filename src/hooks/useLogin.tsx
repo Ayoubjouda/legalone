@@ -1,36 +1,44 @@
 import { useMutation } from 'react-query';
 import api from '@/lib/axiosConfig';
 import { useToast } from '@/components/ui/use-toast';
-
-async function Login(
-  username: string,
-  password: string
-): Promise<LoginResponse> {
+import useAppStore from '@/zustand/store';
+async function Login(email: string, password: string): Promise<LoginResponse> {
   const { data } = await api.post(
-    'auth/signin',
-    { username, password },
+    'users/login',
+    { email: email, password: password },
     { timeout: 4000 }
   );
-
   return data;
 }
 
 interface LoginResponse {
-  access_token: string;
+  accessToken: string;
+  refreshToken: string;
+  user: currentUser;
 }
 
 export function useLogin() {
   const { toast } = useToast();
+  const { setToken, setCurrentUser, setRefreshToken } = useAppStore();
   const { mutate: LoginMutation, isLoading } = useMutation<
     LoginResponse,
     unknown,
-    { username: string; password: string },
+    { email: string; password: string },
     unknown
-  >(({ username, password }) => Login(username, password), {
-    onError() {
+  >(({ email, password }) => Login(email, password), {
+    onSuccess(data) {
+      setCurrentUser(data.user);
+      setToken(data.accessToken);
+      setRefreshToken(data.refreshToken);
+      toast({
+        title: 'Login Success',
+        description: `Welcome ${data.user.firstName}`,
+      });
+    },
+    onError(err) {
       toast({
         title: 'Login Error',
-        description: 'Network Error',
+        description: `${err}`,
       });
     },
   });

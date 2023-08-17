@@ -23,21 +23,18 @@ export default function LoginPage() {
   const form = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchemaValidator),
     defaultValues: {
-      username: '',
+      email: '',
       password: '',
     },
   });
   const onSubmit = (values: LoginSchemaType) => {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
     LoginMutation(values);
   };
   return (
-    <main className="max-w-screen mx-8 flex h-full    md:justify-center  lg:h-screen ">
+    <main className="max-w-screen mx-8 flex h-full    md:justify-center   ">
       <div className="hidden h-full w-1/2 items-center py-5  lg:flex">
         <Image
-          className="my-2 h-full max-h-[797px] w-full max-w-[633px]  rounded-2xl "
+          className="my-2 h-full max-h-[750px] w-full max-w-[633px]  rounded-2xl "
           src="https://ik.imagekit.io/zb5z1u26qn/LegalOne/legaloneSigninPic.jpeg?updatedAt=1692030316256"
           alt=""
           width={0}
@@ -79,10 +76,10 @@ export default function LoginPage() {
 
               <FormField
                 control={form.control}
-                name="username"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Idantifiant</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="shadcn"

@@ -13,6 +13,7 @@ import { Button } from './ui/button';
 import IconBox from './IconBox';
 import { cn } from '@/lib/utils';
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
+import Pack from './Pack';
 export const FormOne = () => {
   const { watch, register, control } = useFormContext();
 
@@ -263,6 +264,7 @@ export const FormFour = () => {
   const { watch, register, control } = useFormContext();
 
   const watchAllFields = watch();
+  console.log(watchAllFields);
   return (
     <form className="w-full max-w-[650px]">
       <div className="my-5 flex flex-col gap-4">
@@ -323,7 +325,7 @@ export const FormFour = () => {
           )}
         />
         <FormField
-          name="Phone number"
+          name="shareCapital"
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -347,11 +349,10 @@ export const FormFour = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                siège social{' '}
+                siège social
                 <span className="text-sm font-medium leading-tight text-slate-900 text-opacity-50">
-                  {' '}
                   (L’adresse de votre société)
-                </span>{' '}
+                </span>
               </FormLabel>
               <FormControl>
                 <Input
@@ -365,6 +366,91 @@ export const FormFour = () => {
           )}
         />
       </div>
+    </form>
+  );
+};
+
+export const FormFive = () => {
+  const { watch, register, control } = useFormContext();
+
+  const watchAllFields = watch();
+  return (
+    <form className="w-full ">
+      <div className="flex w-full gap-10 ">
+        {[1, 2, 3].map((item, idx) => (
+          <Pack key={idx} />
+        ))}
+      </div>
+    </form>
+  );
+};
+export const FormSix = () => {
+  const { watch, register, control } = useFormContext();
+
+  const watchAllFields = watch();
+  return (
+    <form className="flex w-full gap-3 ">
+      <div className="flex flex-col ">
+        <h3 className="text-lg font-semibold leading-none text-black">
+          Details
+        </h3>
+        <div className="mt-4 flex gap-3 rounded-sm bg-gray-100">
+          <div className="flex flex-col gap-3 p-2">
+            {[1, 2, 3, 4, 5].map((item, idx) => (
+              <div
+                key={idx}
+                className="flex min-w-[300px] items-center justify-between"
+              >
+                <p className="text-base font-semibold leading-none text-black">
+                  Prenom
+                </p>
+                <p className="text-base font-normal leading-none text-zinc-600">
+                  Jessica
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col ">
+            <div className="flex flex-col gap-3 p-2">
+              {[1, 2, 3, 4, 5].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="flex min-w-[300px] items-center justify-between"
+                >
+                  <p className="text-base font-semibold leading-none text-black">
+                    Prenom
+                  </p>
+                  <p className="text-base font-normal leading-none text-zinc-600">
+                    Jessica
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <h3 className="mt-3 text-lg font-semibold leading-none text-black">
+          Pricing Details
+        </h3>
+        <div className="mt-4 flex w-fit gap-3 rounded-sm bg-gray-100">
+          <div className="flex flex-col gap-3 p-2">
+            {[1, 2, 3].map((item, idx) => (
+              <div
+                key={idx}
+                className="flex min-w-[300px] items-center justify-between"
+              >
+                <p className="text-base font-semibold leading-none text-black">
+                  Subtotal
+                </p>
+                <p className="text-base font-normal leading-none text-zinc-600">
+                  88 $
+                </p>
+              </div>
+            ))}
+            <Button> Payer en toute Securité</Button>
+          </div>
+        </div>
+      </div>
+      <Pack />
     </form>
   );
 };
