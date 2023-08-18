@@ -26,14 +26,19 @@ import {
 import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
+import { useSignUp } from '@/hooks/useSignUp';
 export default function SignupPage() {
   const form = useForm<RegisterSchemaType>({
     resolver: zodResolver(RegisterSchema),
   });
+  const { signUpMutation } = useSignUp();
   const onSubmit = (values: RegisterSchemaType) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
+    signUpMutation({
+      ...values,
+      birthDate: format(values.birthDate, 'yyyy-dd-MM').toString(),
+    });
   };
   return (
     <main className="max-w-screen mx-8 flex h-full    md:justify-center   ">
@@ -132,7 +137,7 @@ export default function SignupPage() {
               />
               <FormField
                 control={form.control}
-                name="age"
+                name="birthDate"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
                     <FormLabel>Date de Naissance</FormLabel>

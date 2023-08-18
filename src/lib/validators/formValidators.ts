@@ -5,7 +5,7 @@ export const RegisterSchema = z
     firstName: z.string().min(2).max(15),
     lastName: z.string().min(2).max(15),
     email: z.string().email(),
-    age: z.date({
+    birthDate: z.date({
       required_error: 'A date of birth is required.',
     }),
     password: z

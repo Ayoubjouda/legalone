@@ -1,41 +1,84 @@
 import { useMutation } from 'react-query';
 import api from '@/lib/axiosConfig';
 import { useToast } from '@/components/ui/use-toast';
+import useAppStore from '@/zustand/store';
+
+interface SignUpCredentials {
+  user: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    birthDate: string;
+    password: string;
+  };
+}
 
 async function signUp(
-  username: string,
-  email: string,
-  password: string
+  signUpcredentials: SignUpCredentials
 ): Promise<SignUpResponse> {
-  const { data } = await api.post(
-    'auth/signup',
-    { username, email, password },
-    { timeout: 4000 }
-  );
+  console.log(signUpcredentials);
+  const { data } = await api
+    .post('users/register', signUpcredentials, {
+      timeout: 4000,
+    })
+    .then((res) => res.data);
 
   return data;
 }
 
 interface SignUpResponse {
-  access_token: string;
+  token: string;
+  refreshToken: string;
+  User: currentUser;
 }
 
 export function useSignUp() {
   const { toast } = useToast();
+  const { setToken, setCurrentUser, setRefreshToken } = useAppStore();
 
   const { mutate: signUpMutation, isLoading } = useMutation<
     SignUpResponse,
     unknown,
-    { email: string; password: string; username: string },
+    {
+      firstName: string;
+      lastName: string;
+      email: string;
+      birthDate: string;
+      password: string;
+      confirmPassword: string;
+    },
     unknown
-  >(({ username, email, password }) => signUp(username, email, password), {
-    onError() {
-      toast({
-        title: 'Login Error',
-        description: 'Network Error',
+  >(
+    ({ firstName, lastName, email, birthDate, password }) => {
+      return signUp({
+        user: {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          birthDate: birthDate,
+          password: password,
+        },
       });
     },
-  });
+
+    {
+      onSuccess(data) {
+        setCurrentUser(data.User);
+        setToken(data.token);
+        setRefreshToken(data.refreshToken);
+        toast({
+          title: 'SignUp Success',
+          description: `Welcome ${data.User.firstName}`,
+        });
+      },
+      onError() {
+        toast({
+          title: 'Login Error',
+          description: 'Network Error',
+        });
+      },
+    }
+  );
 
   return { signUpMutation, isLoading };
 }

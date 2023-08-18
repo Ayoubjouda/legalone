@@ -14,6 +14,20 @@ import IconBox from './IconBox';
 import { cn } from '@/lib/utils';
 import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import Pack from './Pack';
+import { useQuery } from 'react-query';
+import api from '@/lib/axiosConfig';
+
+const DetailItem = ({ title, value }: { title: string; value: string }) => {
+  return (
+    <div className="flex min-w-[300px] items-center justify-between">
+      <p className="text-base font-semibold leading-none text-black">{title}</p>
+      <p className="text-base font-normal leading-none text-zinc-600">
+        {value}
+      </p>
+    </div>
+  );
+};
+
 export const FormOne = () => {
   const { watch, register, control } = useFormContext();
 
@@ -65,7 +79,7 @@ export const FormOne = () => {
           />
         </div>
         <FormField
-          name="Email"
+          name="email"
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -83,7 +97,7 @@ export const FormOne = () => {
           )}
         />
         <FormField
-          name="Phone number"
+          name="PhoneNumber"
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -101,7 +115,7 @@ export const FormOne = () => {
           )}
         />
         <FormField
-          name="Nom de la Societé"
+          name="NameSociete"
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -127,14 +141,14 @@ export const FormTwo = () => {
   const { setValue, watch, control } = useFormContext();
   const [selected, setselected] = useState<number | null>(null);
   const handleSetValue = (newValue: string) => {
-    setValue('tv', newValue);
+    setValue('creationDelay', newValue);
   };
 
   return (
     <form className="flex gap-10">
       <div className="hidden">
         <Controller
-          name="tv"
+          name="creationDelay"
           control={control}
           defaultValue=""
           render={({ field }) => <input {...field} />}
@@ -181,6 +195,12 @@ export const FormThree = () => {
   const [selectedPresident, setselectedPresident] = useState<number | null>(
     null
   );
+  const { data } = useQuery('packs', async () => {
+    const data = (await api
+      .get('activity')
+      .then((res) => res.data)) as Activity[];
+    return data;
+  });
   const watchAllFields = watch();
   console.log(watchAllFields);
   const handleSetValue = (newValue: string) => {
@@ -203,7 +223,7 @@ export const FormThree = () => {
         </p>
 
         <div className="flex  flex-wrap gap-10">
-          {[1, 2, 3, 4, 5, 5, 5].map((item, idx) => (
+          {data?.map((item: Activity, idx: number) => (
             <Button
               variant={'ghost'}
               className={cn(
@@ -217,7 +237,7 @@ export const FormThree = () => {
                 setselectedDomain(idx);
               }}
             >
-              consultant
+              {item.name}
             </Button>
           ))}
         </div>
@@ -273,7 +293,7 @@ export const FormFour = () => {
         </p>
 
         <FormField
-          name="Email"
+          name="associerNumber"
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -293,7 +313,7 @@ export const FormFour = () => {
         <FormField
           name="fondateur"
           control={control}
-          defaultValue={''}
+          defaultValue={'non'}
           render={({ field }) => (
             <FormItem className="flex items-center gap-3 space-y-0 ">
               <FormLabel>
@@ -325,7 +345,7 @@ export const FormFour = () => {
           )}
         />
         <FormField
-          name="shareCapital"
+          name="capital"
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -343,7 +363,7 @@ export const FormFour = () => {
           )}
         />
         <FormField
-          name="Nom de la Societé"
+          name="SiegeSocial"
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -372,22 +392,34 @@ export const FormFour = () => {
 
 export const FormFive = () => {
   const { watch, register, control } = useFormContext();
-
+  const { data } = useQuery('packs', async () => {
+    const data = await api.get('package/getAllPackage').then((res) => res.data);
+    return data;
+  });
   const watchAllFields = watch();
   return (
     <form className="w-full ">
       <div className="flex w-full gap-10 ">
-        {[1, 2, 3].map((item, idx) => (
-          <Pack key={idx} />
+        {data?.map((item, idx) => (
+          <Pack
+            key={idx}
+            description={item.description}
+            name={item.name}
+            price={item.price}
+            elements={item.elements}
+            type={item.type}
+          />
         ))}
       </div>
     </form>
   );
 };
 export const FormSix = () => {
-  const { watch, register, control } = useFormContext();
+  const { watch, register, control, getValues } = useFormContext();
 
-  const watchAllFields = watch();
+  // const watchAllFields = watch();
+  const values = getValues();
+  console.log(values);
   return (
     <form className="flex w-full gap-3 ">
       <div className="flex flex-col ">
@@ -396,35 +428,53 @@ export const FormSix = () => {
         </h3>
         <div className="mt-4 flex gap-3 rounded-sm bg-gray-100">
           <div className="flex flex-col gap-3 p-2">
-            {[1, 2, 3, 4, 5].map((item, idx) => (
-              <div
-                key={idx}
-                className="flex min-w-[300px] items-center justify-between"
-              >
-                <p className="text-base font-semibold leading-none text-black">
-                  Prenom
-                </p>
-                <p className="text-base font-normal leading-none text-zinc-600">
-                  Jessica
-                </p>
-              </div>
-            ))}
+            <DetailItem
+              title={'Prenom'}
+              value={values.firstName}
+            />
+            <DetailItem
+              title={'Email'}
+              value={values.email}
+            />
+            <DetailItem
+              title={'Nom Société'}
+              value={values.NameSociete}
+            />
+            <DetailItem
+              title={'Délai de Creation'}
+              value={values.creationDelay}
+            />
+            <DetailItem
+              title={'Nombre D’associer'}
+              value={values.associerNumber}
+            />
+            <DetailItem
+              title={'Siege Social'}
+              value={values.SiegeSocial}
+            />
           </div>
           <div className="flex flex-col ">
             <div className="flex flex-col gap-3 p-2">
-              {[1, 2, 3, 4, 5].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="flex min-w-[300px] items-center justify-between"
-                >
-                  <p className="text-base font-semibold leading-none text-black">
-                    Prenom
-                  </p>
-                  <p className="text-base font-normal leading-none text-zinc-600">
-                    Jessica
-                  </p>
-                </div>
-              ))}
+              <DetailItem
+                title={'Nom'}
+                value={values.firstName}
+              />
+              <DetailItem
+                title={'Tel'}
+                value={values.PhoneNumber}
+              />
+              <DetailItem
+                title={'Status'}
+                value={values.Status}
+              />
+              <DetailItem
+                title={'domaine'}
+                value={values.firstName}
+              />
+              <DetailItem
+                title={'capital'}
+                value={values.firstName}
+              />
             </div>
           </div>
         </div>

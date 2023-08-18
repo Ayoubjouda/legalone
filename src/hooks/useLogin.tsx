@@ -14,7 +14,7 @@ async function Login(email: string, password: string): Promise<LoginResponse> {
 interface LoginResponse {
   accessToken: string;
   refreshToken: string;
-  user: currentUser;
+  User: currentUser;
 }
 
 export function useLogin() {
@@ -27,12 +27,12 @@ export function useLogin() {
     unknown
   >(({ email, password }) => Login(email, password), {
     onSuccess(data) {
-      setCurrentUser(data.user);
+      setCurrentUser(data.User);
       setToken(data.accessToken);
       setRefreshToken(data.refreshToken);
       toast({
         title: 'Login Success',
-        description: `Welcome ${data.user.firstName}`,
+        description: `Welcome ${data.User.firstName}`,
       });
     },
     onError(err) {

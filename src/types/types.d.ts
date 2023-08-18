@@ -5,5 +5,8 @@ interface currentUser {
   birthDate: string;
   role: string;
   email: string;
-  password: string;
+}
+interface Activity {
+  id: number;
+  name: string;
 }

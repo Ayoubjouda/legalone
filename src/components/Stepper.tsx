@@ -22,7 +22,7 @@ import {
   FormFive,
   FormSix,
 } from '@/components/Forms';
-
+import { ChevronLeft } from 'lucide-react';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
@@ -47,13 +47,25 @@ const Stepper: FC<StepperProps> = () => {
       case 3:
         return <FormFour />;
       case 4:
-        return <FormThree />;
+        return <FormFive />;
       default:
         return <FormSix />;
     }
   }
   return (
     <div className="flex  w-full flex-col items-center justify-center gap-10">
+      {activeStep !== 0 && (
+        <div className="ml-32 flex w-full">
+          <Button
+            className="px-0 text-black hover:no-underline"
+            variant={'link'}
+            onClick={goToPrevious}
+          >
+            <ChevronLeft size={24} />
+            Retour
+          </Button>
+        </div>
+      )}
       <ChakraStepper
         index={activeStep}
         colorScheme={'orange'}
@@ -89,14 +101,6 @@ const Stepper: FC<StepperProps> = () => {
         {getStepContent(activeStep)}
       </div>
       <div className="flex w-full max-w-[700px] justify-between gap-4">
-        {activeStep !== 0 && (
-          <Button
-            className="font-semibold"
-            onClick={goToPrevious}
-          >
-            previous
-          </Button>
-        )}
         <Button
           className="font-semibold"
           onClick={goToNext}
