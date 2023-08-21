@@ -2,17 +2,13 @@ import { FC } from 'react';
 import Image from 'next/image';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
-type elements = {
-  text: string;
-  isBold: boolean;
-};
+
 interface PackProps {
-  premium?: boolean;
   name: string;
   type: string;
   description: string;
-  price: number;
-  elements: elements[];
+  price: string;
+  elements: packElement[];
 }
 interface PercksProps {
   text: string;

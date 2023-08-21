@@ -393,14 +393,16 @@ export const FormFour = () => {
 export const FormFive = () => {
   const { watch, register, control } = useFormContext();
   const { data } = useQuery('packs', async () => {
-    const data = await api.get('package/getAllPackage').then((res) => res.data);
+    const data = (await api
+      .get('package/getAllPackage')
+      .then((res) => res.data)) as Package[];
     return data;
   });
   const watchAllFields = watch();
   return (
     <form className="w-full ">
       <div className="flex w-full gap-10 ">
-        {data?.map((item, idx) => (
+        {data?.map((item: Package, idx: number) => (
           <Pack
             key={idx}
             description={item.description}
@@ -500,7 +502,7 @@ export const FormSix = () => {
           </div>
         </div>
       </div>
-      <Pack />
+      {/* <Pack /> */}
     </form>
   );
 };

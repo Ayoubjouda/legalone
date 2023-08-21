@@ -2,6 +2,7 @@ import { useMutation } from 'react-query';
 import api from '@/lib/axiosConfig';
 import { useToast } from '@/components/ui/use-toast';
 import useAppStore from '@/zustand/store';
+import { AxiosError, isAxiosError } from 'axios';
 async function Login(email: string, password: string): Promise<LoginResponse> {
   const { data } = await api.post(
     'users/login',
@@ -22,7 +23,7 @@ export function useLogin() {
   const { setToken, setCurrentUser, setRefreshToken } = useAppStore();
   const { mutate: LoginMutation, isLoading } = useMutation<
     LoginResponse,
-    unknown,
+    AxiosError,
     { email: string; password: string },
     unknown
   >(({ email, password }) => Login(email, password), {
@@ -35,11 +36,18 @@ export function useLogin() {
         description: `Welcome ${data.User.firstName}`,
       });
     },
-    onError(err) {
-      toast({
-        title: 'Login Error',
-        description: `${err}`,
-      });
+    onError(err: Error | AxiosError) {
+      if (isAxiosError(err)) {
+        toast({
+          title: 'Login Error',
+          description: `${err.response?.data?.message}`,
+        });
+      } else {
+        toast({
+          title: 'Unkown Error',
+          description: `${err.message}`,
+        });
+      }
     },
   });
 

@@ -2,6 +2,7 @@ import { useMutation } from 'react-query';
 import api from '@/lib/axiosConfig';
 import { useToast } from '@/components/ui/use-toast';
 import useAppStore from '@/zustand/store';
+import { AxiosError, isAxiosError } from 'axios';
 
 interface SignUpCredentials {
   user: {
@@ -16,13 +17,9 @@ interface SignUpCredentials {
 async function signUp(
   signUpcredentials: SignUpCredentials
 ): Promise<SignUpResponse> {
-  console.log(signUpcredentials);
-  const { data } = await api
-    .post('users/register', signUpcredentials, {
-      timeout: 4000,
-    })
-    .then((res) => res.data);
-
+  const { data } = await api.post('users/register', signUpcredentials, {
+    timeout: 4000,
+  });
   return data;
 }
 
@@ -38,7 +35,7 @@ export function useSignUp() {
 
   const { mutate: signUpMutation, isLoading } = useMutation<
     SignUpResponse,
-    unknown,
+    AxiosError,
     {
       firstName: string;
       lastName: string;
@@ -62,7 +59,7 @@ export function useSignUp() {
     },
 
     {
-      onSuccess(data) {
+      onSuccess(data: SignUpResponse) {
         setCurrentUser(data.User);
         setToken(data.token);
         setRefreshToken(data.refreshToken);
@@ -71,11 +68,19 @@ export function useSignUp() {
           description: `Welcome ${data.User.firstName}`,
         });
       },
-      onError() {
-        toast({
-          title: 'Login Error',
-          description: 'Network Error',
-        });
+      onError(err: Error | AxiosError) {
+        console.log(err);
+        if (isAxiosError(err)) {
+          toast({
+            title: 'Login Error',
+            description: `${err.response?.data?.message}`,
+          });
+        } else {
+          toast({
+            title: 'Unkown Error',
+            description: `${err.message}`,
+          });
+        }
       },
     }
   );
