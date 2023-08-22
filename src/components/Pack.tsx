@@ -9,6 +9,7 @@ interface PackProps {
   description: string;
   price: string;
   elements: packElement[];
+  onButtonClick?: () => void;
 }
 interface PercksProps {
   text: string;
@@ -29,7 +30,14 @@ const Percks = ({ text }: PercksProps) => {
   );
 };
 
-const Pack: FC<PackProps> = ({ name, price, description, elements, type }) => {
+const Pack: FC<PackProps> = ({
+  name,
+  price,
+  description,
+  elements,
+  type,
+  onButtonClick,
+}) => {
   return (
     <div
       className={cn(
@@ -63,6 +71,8 @@ const Pack: FC<PackProps> = ({ name, price, description, elements, type }) => {
         <Button
           variant={'outline'}
           className="border-black px-12 font-semibold"
+          onClick={onButtonClick}
+          type="button"
         >
           Choisir
         </Button>

@@ -16,6 +16,7 @@ import { RadioGroup, RadioGroupItem } from './ui/radio-group';
 import Pack from './Pack';
 import { useQuery } from 'react-query';
 import api from '@/lib/axiosConfig';
+import { Spinner } from '@chakra-ui/react';
 
 const DetailItem = ({ title, value }: { title: string; value: string }) => {
   return (
@@ -29,9 +30,8 @@ const DetailItem = ({ title, value }: { title: string; value: string }) => {
 };
 
 export const FormOne = () => {
-  const { watch, register, control } = useFormContext();
+  const { control } = useFormContext();
 
-  const watchAllFields = watch();
   return (
     <form className="max-w-[650px]">
       <div className="my-5 flex flex-col gap-4">
@@ -97,15 +97,15 @@ export const FormOne = () => {
           )}
         />
         <FormField
-          name="PhoneNumber"
+          name="phoneNumber"
           control={control}
-          defaultValue={''}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Phone number</FormLabel>
               <FormControl>
                 <Input
                   placeholder="shadcn"
+                  type="number"
                   {...field}
                 />
               </FormControl>
@@ -115,7 +115,7 @@ export const FormOne = () => {
           )}
         />
         <FormField
-          name="NameSociete"
+          name="companyName"
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -138,7 +138,7 @@ export const FormOne = () => {
 };
 
 export const FormTwo = () => {
-  const { setValue, watch, control } = useFormContext();
+  const { setValue, control } = useFormContext();
   const [selected, setselected] = useState<number | null>(null);
   const handleSetValue = (newValue: string) => {
     setValue('creationDelay', newValue);
@@ -190,22 +190,22 @@ export const FormTwo = () => {
 };
 
 export const FormThree = () => {
-  const { setValue, watch, control } = useFormContext();
+  const { setValue, control } = useFormContext();
   const [selectedDomain, setselectedDomain] = useState<number | null>(null);
-  const [selectedPresident, setselectedPresident] = useState<number | null>(
+  const [selectedPresident, setselectedPresident] = useState<string | null>(
     null
   );
-  const { data } = useQuery('packs', async () => {
+  const { isLoading, data } = useQuery('packs', async () => {
     const data = (await api
       .get('activity')
       .then((res) => res.data)) as Activity[];
     return data;
   });
-  const watchAllFields = watch();
-  console.log(watchAllFields);
+
   const handleSetValue = (newValue: string) => {
     setValue('domaine', newValue);
   };
+  if (isLoading) return <Spinner color="orange.500" />;
   return (
     <form className="flex max-w-[850px] flex-col gap-10">
       <div className="flex flex-col gap-10">
@@ -223,23 +223,27 @@ export const FormThree = () => {
         </p>
 
         <div className="flex  flex-wrap gap-10">
-          {data?.map((item: Activity, idx: number) => (
-            <Button
-              variant={'ghost'}
-              className={cn(
-                { 'bg-orange-200': idx == selectedDomain },
-                'border  text-xl font-semibold'
-              )}
-              key={idx}
-              type="button"
-              onClick={() => {
-                handleSetValue('consultant');
-                setselectedDomain(idx);
-              }}
-            >
-              {item.name}
-            </Button>
-          ))}
+          {data ? (
+            data?.map((item: Activity, idx: number) => (
+              <Button
+                variant={'ghost'}
+                className={cn(
+                  { 'bg-orange-200': idx == selectedDomain },
+                  'border  text-xl font-semibold'
+                )}
+                key={idx}
+                type="button"
+                onClick={() => {
+                  handleSetValue('consultant');
+                  setselectedDomain(idx);
+                }}
+              >
+                {item.name}
+              </Button>
+            ))
+          ) : (
+            <p>No Data Found Please Refresh the page</p>
+          )}
         </div>
       </div>
       <div className="flex flex-col gap-10">
@@ -257,23 +261,34 @@ export const FormThree = () => {
         </p>
 
         <div className="flex gap-x-10">
-          {[1, 2].map((item, idx) => (
-            <Button
-              variant={'ghost'}
-              className={cn(
-                { 'bg-orange-200': idx == selectedPresident },
-                'border  text-xl font-semibold'
-              )}
-              key={idx}
-              type="button"
-              onClick={() => {
-                handleSetValue('president');
-                setselectedPresident(idx);
-              }}
-            >
-              Moi
-            </Button>
-          ))}
+          <Button
+            variant={'ghost'}
+            className={cn(
+              { 'bg-orange-200': 'moi' == selectedPresident },
+              'border  text-xl font-semibold'
+            )}
+            type="button"
+            onClick={() => {
+              handleSetValue('moi');
+              setselectedPresident('moi');
+            }}
+          >
+            Moi
+          </Button>
+          <Button
+            variant={'ghost'}
+            className={cn(
+              { 'bg-orange-200': 'president' == selectedPresident },
+              'border  text-xl font-semibold'
+            )}
+            type="button"
+            onClick={() => {
+              handleSetValue('president');
+              setselectedPresident('president');
+            }}
+          >
+            president
+          </Button>
         </div>
       </div>
     </form>
@@ -281,10 +296,7 @@ export const FormThree = () => {
 };
 
 export const FormFour = () => {
-  const { watch, register, control } = useFormContext();
-
-  const watchAllFields = watch();
-  console.log(watchAllFields);
+  const { control } = useFormContext();
   return (
     <form className="w-full max-w-[650px]">
       <div className="my-5 flex flex-col gap-4">
@@ -363,7 +375,7 @@ export const FormFour = () => {
           )}
         />
         <FormField
-          name="SiegeSocial"
+          name="siegeSocial"
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -391,16 +403,31 @@ export const FormFour = () => {
 };
 
 export const FormFive = () => {
-  const { watch, register, control } = useFormContext();
-  const { data } = useQuery('packs', async () => {
+  const { watch, register, control, setValue } = useFormContext();
+
+  const { isLoading, data } = useQuery('packs', async () => {
     const data = (await api
       .get('package/getAllPackage')
       .then((res) => res.data)) as Package[];
     return data;
   });
+
   const watchAllFields = watch();
+  const handleSetValue = (newValue: Package) => {
+    setValue('pack', newValue);
+  };
+  if (isLoading) return <Spinner color="orange.500" />;
   return (
     <form className="w-full ">
+      <div className="hidden">
+        <Controller
+          name="pack"
+          control={control}
+          defaultValue=""
+          render={({ field }) => <input {...field} />}
+          rules={{ required: true }}
+        />
+      </div>
       <div className="flex w-full gap-10 ">
         {data?.map((item: Package, idx: number) => (
           <Pack
@@ -410,6 +437,7 @@ export const FormFive = () => {
             price={item.price}
             elements={item.elements}
             type={item.type}
+            onButtonClick={() => handleSetValue(item)}
           />
         ))}
       </div>
@@ -421,7 +449,7 @@ export const FormSix = () => {
 
   // const watchAllFields = watch();
   const values = getValues();
-  console.log(values);
+
   return (
     <form className="flex w-full gap-3 ">
       <div className="flex flex-col ">
@@ -502,7 +530,7 @@ export const FormSix = () => {
           </div>
         </div>
       </div>
-      {/* <Pack /> */}
+      <Pack {...values.pack} />
     </form>
   );
 };

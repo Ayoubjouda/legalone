@@ -24,7 +24,7 @@ const useAppStore = create<AppState>()(
         set(() => ({ refreshToken: refreshToken })),
     }),
     {
-      name: 'defaultstorage', // unique name
+      name: 'localStorage', // unique name
       // (optional) by default, 'localStorage' is used
     }
   )

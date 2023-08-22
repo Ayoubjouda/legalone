@@ -23,6 +23,7 @@ import {
   FormSix,
 } from '@/components/Forms';
 import { ChevronLeft } from 'lucide-react';
+import { useFormContext } from 'react-hook-form';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
@@ -36,6 +37,8 @@ const Stepper: FC<StepperProps> = () => {
     index: 0,
     count: steps.length,
   });
+  const { trigger } = useFormContext();
+
   function getStepContent(step: number) {
     switch (step) {
       case 0:
@@ -53,7 +56,7 @@ const Stepper: FC<StepperProps> = () => {
     }
   }
   return (
-    <div className="flex  w-full flex-col items-center justify-center gap-10">
+    <div className="max-w-screen flex  w-full flex-col items-center justify-center gap-10">
       {activeStep !== 0 && (
         <div className="ml-32 flex w-full">
           <Button
@@ -103,7 +106,19 @@ const Stepper: FC<StepperProps> = () => {
       <div className="flex w-full max-w-[700px] justify-between gap-4">
         <Button
           className="font-semibold"
-          onClick={goToNext}
+          onClick={async () => {
+            const isValid = await trigger([
+              'firstName',
+              'lastName',
+              'email',
+              'phoneNumber',
+              'companyName',
+            ]);
+            console.log(isValid);
+            if (isValid) {
+              goToNext();
+            }
+          }}
         >
           next
         </Button>
