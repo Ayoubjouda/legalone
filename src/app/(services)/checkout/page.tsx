@@ -42,7 +42,7 @@ export default function Checkout() {
   };
 
   return (
-    <div className="App">
+    <div>
       {orderData ? (
         <Elements
           options={options}

@@ -4,44 +4,60 @@ import React from 'react';
 import Stepper from '@/components/Stepper';
 import type { NextPage } from 'next';
 import { useCallback } from 'react';
+import Image from 'next/image';
 
 export default function Home() {
   const onNosServicesTextClick = useCallback(() => {
     // Please sync "Services" to the project
   }, []);
-
+  {/* prettier-ignore */}
   return (
     <div className="text-29xl font-headers-h2 relative box-border flex w-full flex-col items-center justify-start gap-[219px] overflow-hidden bg-gray-100 px-0 py-[46px] text-left text-gray-300">
-      {/* <img
+      <Image
         className="absolute left-[1244px] top-[430px] z-[0] mx-[!important] my-0 h-6 w-6"
         alt=""
         src="/union.svg"
+        width={0}
+        height={0}
+        sizes="100vw"
       />
-      <img
+      <Image
         className="absolute left-[161px] top-[312px] z-[1] mx-[!important] my-0 h-6 w-6"
         alt=""
         src="/union1.svg"
+        width={0}
+        height={0}
+        sizes="100vw"
       />
-      <div className="font-button-main-button absolute left-[calc(50%_-_477px)] top-[9px] z-[2] mx-[!important] my-0 text-base text-black">
+      <div className="font-button-nav absolute left-[calc(50%_-_477px)] top-[9px] z-[2] mx-[!important] my-0 text-base text-black">
         Bonjour, vous êtes parrainé ! Vous débloquez 2 mois offerts,
         sécurisez-les en commençant votre essai gratuit de Dougs.
       </div>
-      <img
+      <Image
         className="absolute left-[1384px] top-[11px] z-[3] mx-[!important] my-0 h-5 w-5 shrink-0 overflow-hidden"
         alt=""
         src="/close.svg"
+        width={0}
+        height={0}
+        sizes="100vw"
       />
-      <img
+      <Image
         className="absolute left-[1087px] top-[138px] z-[4] mx-[!important] my-0 h-[29.88px] w-6"
         alt=""
         src="/subtract.svg"
+        width={0}
+        height={0}
+        sizes="100vw"
       />
-      <img
+      <Image
         className="absolute left-[1277px] top-[201px] z-[5] mx-[!important] my-0 h-[24.18px] w-6"
         alt=""
         src="/union2.svg"
+        width={0}
+        height={0}
+        sizes="100vw"
       />
-      <div className="bg-sandybrown-200 absolute left-[0px] top-[0px] z-[6] mx-[!important] my-0 h-[42px] w-[1440px]" />
+      <div className="bg-sandybrown-200 absolute left-[0px] top-[0px] z-[6] mx-[!important] my-0 h-[42px] w-full" />
       <div className="font-satoshi z-[7] flex flex-col items-center justify-start gap-[28px] self-stretch text-center text-base">
         <div className="font-plus-jakarta-sans flex flex-row items-center justify-between self-stretch border-b-[1px] border-solid border-gray-600 px-[88px] py-[7px] text-xl text-black">
           <div className="flex w-[129.82px] flex-col items-center justify-center">
@@ -50,7 +66,7 @@ export default function Home() {
               <b>Center</b>
             </div>
           </div>
-          <div className="font-button-main-button flex flex-row items-start justify-start gap-[13px] text-left text-base text-gray-400">
+          <div className="font-button-nav flex flex-row items-start justify-start gap-[13px] text-left text-base text-gray-400">
             <div className="flex flex-col items-start justify-start p-2.5">
               <div className="flex flex-row items-center justify-center gap-[28px]">
                 <div className="flex h-6 w-[253.48px] flex-row items-center justify-start gap-[28px]">
@@ -72,7 +88,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="font-headers-h2 relative inline-block w-[869px] text-[64px] font-semibold tracking-[-0.04em]">
+        <div className="text-45xl font-headers-h2 relative inline-block w-[869px] font-semibold tracking-[-0.04em]">
           <p className="m-0">Une Entreprise sur mesure,</p>
           <p className="m-0">
             <span>{` un soutien `}</span>
@@ -93,20 +109,26 @@ export default function Home() {
         <div className="flex h-[148px] w-[980px] flex-row items-end justify-center text-lg">
           <div className="relative h-[142px] w-[336px]">
             <div className="border-sandybrown-100 absolute bottom-[0%] left-[14.45%] right-[14.45%] top-[38.03%] box-border flex h-[61.97%] w-[71.1%] flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
-              <img
+              <Image
                 className="relative h-6 w-6 shrink-0 overflow-hidden"
-                alt=""
-                src="/icons8company-12.svg"
+                alt="rrs"
+                src="/icons8company-1.svg"
+                width={32}
+                height={32}
+                sizes="100vw"
               />
               <div className="flex flex-row items-center justify-center">
                 <div className="flex flex-row items-center justify-center gap-[6px]">
-                  <b className="relative inline-block w-[180px] shrink-0">
+                  <b className="relative inline-block shrink-0">
                     Créer mon entreprise
                   </b>
-                  <img
+                  <Image
                     className="relative hidden h-6 w-6 shrink-0 overflow-hidden"
-                    alt=""
-                    src="/frame1.svg"
+                    alt="rr"
+                    src="/frame.svg"
+                    width={32}
+                    height={32}
+                    sizes="100vw"
                   />
                 </div>
               </div>
@@ -125,10 +147,13 @@ export default function Home() {
           </div>
           <div className="flex flex-row items-end justify-center gap-[48px]">
             <div className="border-sandybrown-100 box-border flex h-[88px] flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
-              <img
+              <Image
                 className="relative h-[30px] w-[30px] shrink-0 overflow-hidden"
                 alt=""
-                src="/icons8settings-1-1.svg"
+                src="/icons8settings-1-11.svg"
+                width={0}
+                height={0}
+                sizes="100vw"
               />
               <div className="flex flex-row items-center justify-center">
                 <div className="flex flex-row items-center justify-center">
@@ -138,15 +163,18 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="border-sandybrown-100 box-border flex h-[88px] flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5 text-[17px]">
-              <img
-                className="relative h-[35px] w-[35px]"
+            <div className="text-mid border-sandybrown-100 box-border flex flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
+              <Image
+                className="relative "
                 alt=""
-                src="/vector.svg"
+                src="/vector1.svg"
+                width={32}
+                height={32}
+                sizes="100vw"
               />
               <div className="flex flex-row items-center justify-center">
                 <div className="flex flex-row items-center justify-center">
-                  <b className="relative inline-block w-[180px] shrink-0">
+                  <b className="relative inline-block  shrink-0">
                     Fin de Mon Entreprise
                   </b>
                 </div>
@@ -154,7 +182,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="font-button-main-button flex flex-col items-start justify-start gap-[17px] self-stretch px-0 py-[47px] text-left">
+        <div className="font-button-nav flex flex-col items-start justify-start gap-[17px] self-stretch px-0 py-[47px] text-left">
           <div className="flex flex-row items-center justify-center gap-[34px]">
             <div className="border-darkgray relative box-border h-px w-[653px] border-t-[1px] border-solid" />
             <div className="flex flex-row items-center justify-center">
@@ -165,35 +193,46 @@ export default function Home() {
             <div className="border-darkgray relative box-border h-px w-[653px] border-t-[1px] border-solid" />
           </div>
           <div className="box-border flex w-[1438px] flex-row items-end justify-center gap-[78px] px-[72px] py-6">
-            <img
+            <Image
               className="relative h-[41px] w-10"
               alt=""
-              src="/poli.svg"
+              src="/poli1.svg"
+              width={0}
+              height={0}
+              sizes="100vw"
             />
-            <img
+            <Image
               className="relative h-[35.56px] w-[120px]"
               alt=""
-              src="/cubbies.svg"
+              src="/cubbies1.svg"
+              width={0}
+              height={0}
+              sizes="100vw"
             />
-            <img
+            <Image
               className="relative h-[38px] w-[141px] shrink-0 overflow-hidden"
               alt=""
-              src="/epoptique.svg"
+              src="/epoptique1.svg"
+              width={0}
+              height={0}
+              sizes="100vw"
             />
-            <img
+            <Image
               className="relative h-[38px] w-[108.23px]"
               alt=""
-              src="/sinta.svg"
+              src="/sinta1.svg"
+              width={0}
+              height={0}
+              sizes="100vw"
             />
-            <img
-              className="relative h-[127.93px] w-[179.34px]"
-              alt=""
-              src="/pharmalik.svg"
-            />
-            <img
+
+            <Image
               className="relative h-[35.56px] w-[120px]"
               alt=""
-              src="/cubbies.svg"
+              src="/cubbies1.svg"
+              width={0}
+              height={0}
+              sizes="100vw"
             />
           </div>
         </div>
@@ -211,30 +250,39 @@ export default function Home() {
           </div>
           <div className="flex flex-col items-start justify-start gap-[18px]">
             <div className="flex flex-row items-center justify-center gap-[14px]">
-              <img
+              <Image
                 className="relative h-[34px] w-[34px]"
                 alt=""
                 src="/group-6.svg"
+                width={0}
+                height={0}
+                sizes="100vw"
               />
               <div className="relative leading-[30px]">
                 Accompagnement personnalisé
               </div>
             </div>
             <div className="flex flex-row items-center justify-center gap-[14px]">
-              <img
+              <Image
                 className="relative h-[34px] w-[34px]"
                 alt=""
                 src="/group-7.svg"
+                width={0}
+                height={0}
+                sizes="100vw"
               />
               <div className="relative leading-[30px]">
                 Vos données sont en sécurité
               </div>
             </div>
             <div className="flex flex-row items-center justify-center gap-[14px]">
-              <img
+              <Image
                 className="relative h-[34px] w-[34px]"
                 alt=""
-                src="/group-8.svg"
+                src="/group-81.svg"
+                width={0}
+                height={0}
+                sizes="100vw"
               />
               <div className="relative leading-[30px]">
                 Expertise Juridique à la Demande
@@ -242,7 +290,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="font-button-main-button relative h-[504px] w-[555px] text-center text-xs">
+        <div className="font-button-nav relative h-[504px] w-[555px] text-center text-xs">
           <div className="absolute right-[72px] top-[calc(50%_-_252px)] flex h-[476px] w-[483px] flex-col items-start justify-end">
             <div className="flex h-[479px] w-[423px] flex-col items-start justify-start">
               <div className="relative h-[138.39px] w-[140px] mix-blend-normal">
@@ -347,17 +395,23 @@ export default function Home() {
                 <div className="bg-soft-purple absolute left-[calc(50%_+_66.22px)] top-[calc(50%_+_50.81px)] h-[3.78px] w-[3.78px] rounded" />
                 <div className="bg-soft-purple absolute left-[calc(50%_+_66.22px)] top-[calc(50%_+_65.41px)] h-[3.78px] w-[3.78px] rounded" />
               </div>
-              <img
-                className="relative mt-[-106px] h-[447px] w-[423px] rounded-[40px] object-cover"
+              <Image
+                className="rounded-21xl relative mt-[-106px] h-[447px] w-[423px] object-cover"
                 alt=""
                 src="/pexelsphoto3205567-1@2x.png"
+                width={0}
+                height={0}
+                sizes="100vw"
               />
             </div>
           </div>
-          <img
+          <Image
             className="absolute left-[518px] top-[317px] h-[23.46px] w-6"
             alt=""
             src="/group-13.svg"
+            width={0}
+            height={0}
+            sizes="100vw"
           />
           <div className="border-soft-purple absolute right-[0px] top-[calc(50%_+_105px)] box-border h-[147px] w-[305px] rounded border-[0.5px] border-solid bg-white shadow-[18px_23px_22px_rgba(57,_36,_124,_0.05)]">
             <div className="border-soft-purple absolute right-[8px] top-[calc(50%_-_20.5px)] box-border h-[41px] w-[289px] rounded border-[0.5px] border-solid" />
@@ -380,7 +434,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="z-[9] flex flex-col items-start justify-start gap-[10px] text-[40px]">
+      <div className="text-21xl z-[9] flex flex-col items-start justify-start gap-[10px]">
         <div className="flex h-[258px] w-[367px] flex-col items-start justify-start gap-[19px]">
           <div className="flex h-48 w-[367px] shrink-0 flex-col items-start justify-start gap-[6px] overflow-hidden">
             <div className="relative font-medium leading-[48px] tracking-[-0.03em]">
@@ -400,10 +454,13 @@ export default function Home() {
           </div>
         </div>
         <div className="text-185xl font-gilroy relative h-[602px] w-[1207.5px] text-black">
-          <img
+          <Image
             className="absolute left-[0px] top-[0px] h-[437.46px] w-[1017px] overflow-hidden"
             alt=""
             src="/frame2.svg"
+            width={0}
+            height={0}
+            sizes="100vw"
           />
           <div className="absolute left-[124.5px] top-[0px] flex h-[602px] w-[280px] flex-col items-center justify-end overflow-hidden">
             <div className="relative h-[222px] w-[280px]">
@@ -707,10 +764,13 @@ export default function Home() {
                   suit your needs.
                 </div>
               </div>
-              <img
+              <Image
                 className="relative h-6 w-6 shrink-0 overflow-hidden"
                 alt=""
-                src="/iconchevronup.svg"
+                src="/iconchevronup1.svg"
+                width={0}
+                height={0}
+                sizes="100vw"
               />
             </div>
             <div className="border-gainsboro relative box-border h-px self-stretch border-t-[1px] border-solid" />
@@ -718,10 +778,13 @@ export default function Home() {
               <div className="relative leading-[24px] tracking-[0.01em]">
                 Can I take multiple supplements together?
               </div>
-              <img
+              <Image
                 className="relative h-6 w-6 shrink-0 overflow-hidden"
                 alt=""
-                src="/iconchevrondown.svg"
+                src="/iconchevrondown1.svg"
+                width={0}
+                height={0}
+                sizes="100vw"
               />
             </div>
             <div className="border-gainsboro relative box-border h-px self-stretch border-t-[1px] border-solid" />
@@ -729,10 +792,13 @@ export default function Home() {
               <div className="relative leading-[24px] tracking-[0.01em]">
                 Are your supplements suitable for vegetarians/vegans?
               </div>
-              <img
+              <Image
                 className="relative h-6 w-6 shrink-0 overflow-hidden"
                 alt=""
-                src="/iconchevrondown.svg"
+                src="/iconchevrondown1.svg"
+                width={0}
+                height={0}
+                sizes="100vw"
               />
             </div>
             <div className="border-gainsboro relative box-border h-px self-stretch border-t-[1px] border-solid" />
@@ -752,7 +818,7 @@ export default function Home() {
                 notre application. Inscrivez-vous dès aujourd'hui pour commencer
                 gratuitement !
               </div>
-              <div className="text-chocolate font-button-main-button box-border flex w-[184px] flex-row items-center justify-center overflow-hidden rounded-md bg-white px-[18px] py-2.5 text-base">
+              <div className="text-chocolate font-button-nav box-border flex w-[184px] flex-row items-center justify-center overflow-hidden rounded-md bg-white px-[18px] py-2.5 text-base">
                 <div className="relative font-semibold">Commencez</div>
               </div>
             </div>
@@ -817,7 +883,7 @@ export default function Home() {
               </div>
             </div>
             <div className="relative box-border h-[0.6px] w-[1290.6px] border-t-[0.6px] border-solid border-white" />
-            <div className="text-dimgray font-button-main-button flex h-6 w-[1290px] flex-row items-center justify-start gap-[860px] text-left text-base">
+            <div className="text-dimgray font-button-nav flex h-6 w-[1290px] flex-row items-center justify-start gap-[860px] text-left text-base">
               <div className="relative">
                 © 2023 OrderEase. All rights reserved.
               </div>
@@ -829,7 +895,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="absolute left-[0px] top-[3993px] z-[13] mx-[!important] my-0 h-[542px] w-[1440px]" /> */}
+      <div className="absolute left-[0px] top-[3993px] z-[13] mx-[!important] my-0 h-[542px] w-[1440px]" />
     </div>
   );
 }

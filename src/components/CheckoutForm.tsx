@@ -10,6 +10,7 @@ import {
   StripeLinkAuthenticationElementChangeEvent,
   StripePaymentElementOptions,
 } from '@stripe/stripe-js';
+import { Button } from './ui/button';
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -75,11 +76,11 @@ export default function CheckoutForm() {
   };
 
   return (
-    <div className="flex h-full w-full items-center justify-center">
+    <div className="flex h-screen w-screen items-center justify-center">
       <form
         id="payment-form"
         onSubmit={handleSubmit}
-        className="max-w-sm"
+        className="w-full max-w-[550px] "
       >
         <LinkAuthenticationElement
           id="link-authentication-element"
@@ -91,7 +92,7 @@ export default function CheckoutForm() {
           id="payment-element"
           options={paymentElementOptions}
         />
-        <button
+        <Button
           disabled={isLoading || !stripe || !elements}
           id="submit"
         >
@@ -105,7 +106,7 @@ export default function CheckoutForm() {
               'Pay now'
             )}
           </span>
-        </button>
+        </Button>
         {/* Show any error or success messages */}
         {message && <div id="payment-message">{message}</div>}
       </form>
