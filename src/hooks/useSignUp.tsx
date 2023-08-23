@@ -18,7 +18,7 @@ async function signUp(
   signUpcredentials: SignUpCredentials
 ): Promise<SignUpResponse> {
   const { data } = await api.post('users/register', signUpcredentials, {
-    timeout: 4000,
+    timeout: 10000,
   });
   return data;
 }

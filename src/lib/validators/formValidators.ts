@@ -1,13 +1,18 @@
 import { z } from 'zod';
+import { isOlderThan18 } from '@/lib/utils';
 
 export const RegisterSchema = z
   .object({
     firstName: z.string().min(2).max(15),
     lastName: z.string().min(2).max(15),
     email: z.string().email(),
-    birthDate: z.date({
-      required_error: 'A date of birth is required.',
-    }),
+    birthDate: z
+      .date({
+        required_error: 'A date of birth is required.',
+      })
+      .refine((data) => isOlderThan18(data), {
+        message: 'Age is below 18 years old',
+      }),
     password: z
       .string()
       .regex(

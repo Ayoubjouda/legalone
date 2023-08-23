@@ -7,7 +7,7 @@ async function Login(email: string, password: string): Promise<LoginResponse> {
   const { data } = await api.post(
     'users/login',
     { email: email, password: password },
-    { timeout: 4000 }
+    { timeout: 10000 }
   );
   return data;
 }

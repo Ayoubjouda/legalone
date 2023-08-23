@@ -173,7 +173,7 @@ export default function SignupPage() {
                           }
                           initialFocus
                           captionLayout="dropdown-buttons"
-                          fromYear={1900}
+                          fromYear={1901}
                           toYear={new Date().getFullYear()}
                           classNames={{
                             caption:
