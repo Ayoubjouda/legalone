@@ -63,7 +63,15 @@ export default function CheckoutForm() {
   };
 
   const paymentElementOptions: StripePaymentElementOptions = {
-    layout: 'tabs',
+    layout: {
+      type: 'accordion',
+      defaultCollapsed: false,
+      radios: true,
+      spacedAccordionItems: false,
+    },
+    business: {
+      name: 'LegalCenter',
+    },
   };
 
   return (

@@ -1,80 +1,56 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
+import React, { useState, useEffect, useCallback } from 'react';
+import {
+  StripeElementsOptionsClientSecret,
+  loadStripe,
+} from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '@/components/CheckoutForm';
-import api from '@/lib/axiosConfig';
-import useAppStore from '@/zustand/store';
-interface pageProps {}
+import { useStripe } from '@/hooks/useStripe';
+import { Spinner } from '@chakra-ui/react';
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );
 
 export default function Checkout() {
-  const [clientSecret, setClientSecret] = useState('');
-  const { accessToken } = useAppStore();
+  const { createOrderMutation, isLoading, orderData, isError } = useStripe();
 
-  useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    api
-      .post(
-        'order/create-order',
+  const runCreateOrderOnLoad = useCallback(() => {
+    createOrderMutation();
+  }, [createOrderMutation]);
 
-        {
-          companyData: {
-            creationDelay: 'WEEKLY',
-            activityField: 2,
-            companyName: 'STATEDIGIT',
-            selectedManagerType: 'PersonalManager',
-            firstName: 'John',
-            lastName: 'Doe',
-            sex: 'Male',
-            associer: 'Associer Name',
-            nonAssociateManager: true,
-            shareCapital: 10000,
-            companyLocation: 'New York, USA',
-            companyType: 'SARL',
-            accountingExpert: true,
-            email: 'statedigit@gmail.com',
-            phone: '123-456-7890',
-          },
-          paymentData: {
-            currency: 'USD',
-            description: 'Order payment',
-          },
-          packageField: 1,
-          description: 'Order payment',
-          companyType: 'SARL',
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      )
-      .then((data) =>
-        console.log(setClientSecret(data.data.paymentResult.clientSecret))
-      )
-      .catch((err) => console.log(err));
-  }, []);
+  useEffect(() => runCreateOrderOnLoad(), [runCreateOrderOnLoad]);
 
-  //   const appearance = {
-  //     theme: 'stripe',
-  //   };
-  const options = {
-    clientSecret,
+  if (isLoading)
+    return (
+      <div className="flex h-screen w-screen items-center justify-center">
+        <Spinner
+          size={'xl'}
+          color="orange.500"
+        />
+      </div>
+    );
+
+  if (isError || !orderData?.paymentResult?.clientSecret)
+    return <div>Error...</div>;
+
+  const options: StripeElementsOptionsClientSecret = {
+    clientSecret: orderData.paymentResult.clientSecret,
+    appearance: {
+      theme: 'stripe',
+    },
   };
 
   return (
     <div className="App">
-      {clientSecret && (
+      {orderData ? (
         <Elements
           options={options}
           stripe={stripePromise}
         >
           <CheckoutForm />
         </Elements>
-      )}
+      ) : null}
     </div>
   );
 }

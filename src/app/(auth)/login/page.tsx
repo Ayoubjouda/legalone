@@ -14,12 +14,13 @@ import Image from 'next/image';
 import { ChevronLeft } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLogin } from '@/hooks/useLogin';
+import { Spinner } from '@chakra-ui/react';
 import {
   loginSchemaValidator,
   LoginSchemaType,
 } from '@/lib/validators/formValidators';
 export default function LoginPage() {
-  const { LoginMutation } = useLogin();
+  const { isLoading, LoginMutation } = useLogin();
   const form = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchemaValidator),
     defaultValues: {
@@ -83,6 +84,8 @@ export default function LoginPage() {
                     <FormControl>
                       <Input
                         placeholder="shadcn"
+                        type="email"
+                        autoComplete="email"
                         {...field}
                       />
                     </FormControl>
@@ -99,6 +102,8 @@ export default function LoginPage() {
                     <FormControl>
                       <Input
                         placeholder="shadcn"
+                        type="password"
+                        autoComplete="current-password"
                         {...field}
                       />
                     </FormControl>
@@ -119,7 +124,12 @@ export default function LoginPage() {
               >
                 Vous n'avez pas de compte ? S'inscrire
               </a>
-              <Button type="submit">Se connecter</Button>
+              <Button
+                type="submit"
+                disabled={isLoading}
+              >
+                {isLoading ? <Spinner /> : 'Se connecter'}
+              </Button>
             </div>
           </form>
         </Form>
