@@ -5,6 +5,7 @@ import Stepper from '@/components/Stepper';
 import type { NextPage } from 'next';
 import { useCallback } from 'react';
 import Image from 'next/image';
+import { Menu } from 'lucide-react';
 
 export default function Home() {
   const onNosServicesTextClick = useCallback(() => {
@@ -12,7 +13,7 @@ export default function Home() {
   }, []);
   {/* prettier-ignore */}
   return (
-    <div className="text-29xl font-headers-h2 relative box-border flex w-full flex-col items-center justify-start gap-[219px] overflow-hidden bg-gray-100 px-0 py-[46px] text-left text-gray-300">
+    <div className="text-29xl font-headers-h2 relative box-border flex max-w-screen w-full flex-col items-center justify-start gap-[219px] overflow-hidden bg-gray-100 px-0 py-[46px] text-left text-gray-300 ">
       <Image
         className="absolute left-[1244px] top-[430px] z-[0] mx-[!important] my-0 h-6 w-6"
         alt=""
@@ -29,7 +30,7 @@ export default function Home() {
         height={0}
         sizes="100vw"
       />
-      <div className="font-button-nav absolute left-[calc(50%_-_477px)] top-[9px] z-[2] mx-[!important] my-0 text-base text-black">
+      <div className="font-button-nav absolute left-[calc(50%_-_477px)] top-[9px] z-[2] mx-[!important] my-0 lg:text-base text-sm  text-black">
         Bonjour, vous êtes parrainé ! Vous débloquez 2 mois offerts,
         sécurisez-les en commençant votre essai gratuit de Dougs.
       </div>
@@ -58,15 +59,18 @@ export default function Home() {
         sizes="100vw"
       />
       <div className="bg-sandybrown-200 absolute left-[0px] top-[0px] z-[6] mx-[!important] my-0 h-[42px] w-full" />
-      <div className="font-satoshi z-[7] flex flex-col items-center justify-start gap-[28px] self-stretch text-center text-base">
-        <div className="font-plus-jakarta-sans flex flex-row items-center justify-between self-stretch border-b-[1px] border-solid border-gray-600 px-[88px] py-[7px] text-xl text-black">
+      <div className="font-satoshi z-[7] flex flex-col items-center justify-start gap-[45px] md:gap-[28px] self-stretch text-center text-base">
+        <div className="font-plus-jakarta-sans flex flex-row items-center justify-between self-stretch border-b-[1px] border-solid border-gray-600 px-8 md:px-[88px] py-[7px] text-xl text-black">
           <div className="flex w-[129.82px] flex-col items-center justify-center">
             <div className="relative inline-block w-[129.82px]">
               <span>Legal</span>
               <b>Center</b>
             </div>
           </div>
-          <div className="font-button-nav flex flex-row items-start justify-start gap-[13px] text-left text-base text-gray-400">
+          <div className="lg:hidden">
+            <Menu />
+          </div>
+          <div className="font-button-nav hidden  lg:flex flex-row items-start justify-start gap-[13px] text-left text-base text-gray-400">
             <div className="flex flex-col items-start justify-start p-2.5">
               <div className="flex flex-row items-center justify-center gap-[28px]">
                 <div className="flex h-6 w-[253.48px] flex-row items-center justify-start gap-[28px]">
@@ -88,64 +92,40 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="text-45xl font-headers-h2 relative inline-block w-[869px] font-semibold tracking-[-0.04em]">
+        <div className=" text-[45px] lg:text-45xl font-headers-h2 relative inline-block max-w-[869px] font-semibold tracking-[-0.04em] ">
           <p className="m-0">Une Entreprise sur mesure,</p>
           <p className="m-0">
             <span>{` un soutien `}</span>
             <span className="text-sandybrown-100">Inégalé.</span>
           </p>
         </div>
-        <div className="relative inline-block w-[771px] leading-[20.5px] text-gray-700">
+        <div className="relative inline-block max-w-[771px] leading-[20.5px] text-gray-700 px-8">
           <p className="m-0">
             Lancez-vous dès aujourd'hui et faites évoluer votre entreprise en un
-            rien de temps ! et faites
-          </p>
-          <p className="m-0">
-            {' '}
-            dès aujourd'hui et faites évoluer votre entreprise enLancez-vous dès
-            aujourd'hui et faites évoluer votre entreprise en un rien.
+            rien de temps ! et faites dès aujourd'hui et faites évoluer votre
+            entreprise enLancez-vous dès aujourd'hui et faites évoluer votre
+            entreprise en un rien.
           </p>
         </div>
-        <div className="flex h-[148px] w-[980px] flex-row items-end justify-center text-lg">
-          <div className="relative h-[142px] w-[336px]">
-            <div className="border-sandybrown-100 absolute bottom-[0%] left-[14.45%] right-[14.45%] top-[38.03%] box-border flex h-[61.97%] w-[71.1%] flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
+        <div className="flex  max-w-[980px] flex-row items-end justify-center text-lg">
+          <div className="flex flex-col md:flex-row items-end justify-center gap-[48px]">
+            <div className="border-sandybrown-100 box-border flex h-[88px] flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
               <Image
-                className="relative h-6 w-6 shrink-0 overflow-hidden"
-                alt="rrs"
+                className="relative h-[30px] w-[30px] shrink-0 overflow-hidden"
+                alt=""
                 src="/icons8company-1.svg"
-                width={32}
-                height={32}
+                width={0}
+                height={0}
                 sizes="100vw"
               />
               <div className="flex flex-row items-center justify-center">
-                <div className="flex flex-row items-center justify-center gap-[6px]">
-                  <b className="relative inline-block shrink-0">
+                <div className="flex flex-row items-center justify-center">
+                  <b className="relative inline-block w-[190px] shrink-0">
                     Créer mon entreprise
                   </b>
-                  <Image
-                    className="relative hidden h-6 w-6 shrink-0 overflow-hidden"
-                    alt="rr"
-                    src="/frame.svg"
-                    width={32}
-                    height={32}
-                    sizes="100vw"
-                  />
                 </div>
               </div>
             </div>
-            <div className="font-headers-h2 absolute bottom-[51.41%] left-[0%] right-[0%] top-[0%] hidden h-[48.59%] w-full flex-col items-start justify-start text-sm text-black">
-              <div className="flex flex-col items-start justify-center gap-[9px] overflow-hidden rounded-md border-[1px] border-solid border-black bg-white px-[11px] py-[13px]">
-                <div className="flex flex-row items-center justify-center gap-[10px]">
-                  <div className="relative">-Transfert Siege social</div>
-                  <div className="relative">-Nomination du dirigeant</div>
-                </div>
-                <div className="flex flex-row items-center justify-center">
-                  <div className="relative">-Cession parts sociales</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-row items-end justify-center gap-[48px]">
             <div className="border-sandybrown-100 box-border flex h-[88px] flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
               <Image
                 className="relative h-[30px] w-[30px] shrink-0 overflow-hidden"
@@ -157,7 +137,7 @@ export default function Home() {
               />
               <div className="flex flex-row items-center justify-center">
                 <div className="flex flex-row items-center justify-center">
-                  <b className="relative inline-block w-[180px] shrink-0">
+                  <b className="relative inline-block w-[190px] shrink-0">
                     Modifier mes Status
                   </b>
                 </div>
@@ -174,7 +154,7 @@ export default function Home() {
               />
               <div className="flex flex-row items-center justify-center">
                 <div className="flex flex-row items-center justify-center">
-                  <b className="relative inline-block  shrink-0">
+                  <b className="relative inline-block   w-[190px] shrink-0">
                     Fin de Mon Entreprise
                   </b>
                 </div>
@@ -182,17 +162,19 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="font-button-nav flex flex-col items-start justify-start gap-[17px] self-stretch px-0 py-[47px] text-left">
-          <div className="flex flex-row items-center justify-center gap-[34px]">
-            <div className="border-darkgray relative box-border h-px w-[653px] border-t-[1px] border-solid" />
-            <div className="flex flex-row items-center justify-center">
+        <div className="font-button-nav flex flex-col items-center justify-center gap-[17px] self-stretch px-0 md:py-[47px] ">
+          <div className="flex flex-row items-center justify-center gap-[34px] w-full">
+            <div className="border-darkgray relative box-border h-px max-w-[653px] w-full border-t-[1px] border-solid" />
+            <div className="flex flex-row items-center justify-center w-full">
               <div className="flex flex-row items-center justify-start">
-                <div className="relative font-semibold">{`TRUSTED BY `}</div>
+                <div className="relative font-semibold text-[16px] ">
+                  TRUSTED BY{' '}
+                </div>
               </div>
             </div>
-            <div className="border-darkgray relative box-border h-px w-[653px] border-t-[1px] border-solid" />
+            <div className="border-darkgray relative box-border h-px max-w-[653px] w-full border-t-[1px] border-solid" />
           </div>
-          <div className="box-border flex w-[1438px] flex-row items-end justify-center gap-[78px] px-[72px] py-6">
+          <div className="box-border flex max-w-[1438px] w-full flex-col md:flex-row items-center justify-center gap-[78px] md:px-[72px] py-6">
             <Image
               className="relative h-[41px] w-10"
               alt=""
@@ -237,12 +219,12 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="font-satoshi z-[8] flex flex-row items-center justify-start gap-[94px] text-xl text-black">
-        <div className="flex flex-col items-start justify-center gap-[25px]">
-          <div className="text-29xl font-headers-h2 relative inline-block w-[549px] font-medium">
+      <div className="font-satoshi z-[8] w-full flex flex-col md:flex-row items-center justify-center gap-[94px] text-base lg:text-xl text-black ">
+        <div className="flex flex-col items-start justify-center gap-[25px] px-4 w-full">
+          <div className="text-[45px] lg:text-29xl font-headers-h2 relative inline-block max-w-[549px] font-medium">
             Gagnez du temps précieux
           </div>
-          <div className="text-grey relative inline-block w-[548px] leading-[30px]">
+          <div className="text-grey relative inline-block max-w-[548px] leading-[30px] text-base">
             Dites adieu aux longues démarches administratives. Notre application
             simplifie chaque étape du processus de création d'entreprise, vous
             permettant de vous concentrer sur votre projet plutôt que sur les
@@ -290,8 +272,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="font-button-nav relative h-[504px] w-[555px] text-center text-xs">
-          <div className="absolute right-[72px] top-[calc(50%_-_252px)] flex h-[476px] w-[483px] flex-col items-start justify-end">
+        <div className="font-button-nav relative h-[504px]  w-full text-center text-xs">
+          <div className="absolute right-[72px] top-[calc(50%_-_252px)] flex max-h-[476px] max-w-[483px] flex-col items-start justify-end">
             <div className="flex h-[479px] w-[423px] flex-col items-start justify-start">
               <div className="relative h-[138.39px] w-[140px] mix-blend-normal">
                 <div className="bg-soft-purple absolute left-[calc(50%_-_70px)] top-[calc(50%_-_69.19px)] h-[3.78px] w-[3.78px] rounded" />
@@ -434,14 +416,14 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="text-21xl z-[9] flex flex-col items-start justify-start gap-[10px]">
-        <div className="flex h-[258px] w-[367px] flex-col items-start justify-start gap-[19px]">
-          <div className="flex h-48 w-[367px] shrink-0 flex-col items-start justify-start gap-[6px] overflow-hidden">
+      <div className="text-21xl z-[9] flex flex-col items-start justify-start gap-[10px] w-full px-8">
+        <div className="flex  max-w-[367px] flex-col items-start justify-start gap-[19px]">
+          <div className="flex  max-w-[367px] shrink-0 flex-col items-start justify-start gap-[6px] overflow-hidden">
             <div className="relative font-medium leading-[48px] tracking-[-0.03em]">
               <p className="m-0">We have best team</p>
               <p className="m-0">and best process</p>
             </div>
-            <div className="font-satoshi text-slategray relative inline-block w-[367px] text-base font-medium leading-[30px] tracking-[-0.02em]">
+            <div className="font-satoshi text-slategray relative inline-block max-w-[367px] text-base font-medium leading-[30px] tracking-[-0.02em]">
               Yet bed any for travelling assistance indulgence unpleasing. Not
               thoughts all exercise blessing. Indulgence way everything joy.
             </div>
@@ -453,16 +435,18 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* //!Keep This one for last} */}
         <div className="text-185xl font-gilroy relative h-[602px] w-[1207.5px] text-black">
           <Image
-            className="absolute left-[0px] top-[0px] h-[437.46px] w-[1017px] overflow-hidden"
+            className="absolute left-[0px] top-[0px] h-[437.46px] w-[1017px]"
             alt=""
             src="/frame2.svg"
             width={0}
             height={0}
             sizes="100vw"
           />
-          <div className="absolute left-[124.5px] top-[0px] flex h-[602px] w-[280px] flex-col items-center justify-end overflow-hidden">
+          <div className="absolute left-[124.5px] top-[0px] flex h-[602px] w-[280px] flex-col items-center justify-end ">
             <div className="relative h-[222px] w-[280px]">
               <div className="absolute left-[170px] top-[0px] font-black leading-[204px] tracking-[-0.02em] opacity-[0.05]">
                 1
@@ -478,7 +462,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="absolute left-[591.5px] top-[0px] flex h-[470px] w-[280px] flex-col items-center justify-end overflow-hidden">
+          <div className="absolute left-[591.5px] top-[0px] flex h-[470px] w-[280px] flex-col items-center justify-end ">
             <div className="relative h-[222px] w-[280px]">
               <div className="absolute left-[170px] top-[0px] font-black leading-[204px] tracking-[-0.02em] opacity-[0.05]">
                 2
@@ -517,21 +501,21 @@ export default function Home() {
         </div>
       </div>
       <div className="z-[10] flex flex-col items-center justify-start gap-[54px] text-center">
-        <div className="flex h-[227.89px] w-[771px] flex-col items-center justify-start gap-[94px]">
-          <div className="relative inline-block h-[58.51px] w-[752px] shrink-0 font-medium">
+        <div className="flex  max-w-[771px] flex-col items-center justify-start gap-[94px]">
+          <div className="relative inline-block  max-w-[752px] shrink-0 font-medium">
             <span className="tracking-[-1px]">Rejoignez des mil</span>l
             <span className="tracking-[-1px]">
               iers de clients satisfaits !
             </span>
           </div>
-          <div className="font-satoshi text-darkslategray-200 relative inline-block h-[74.89px] w-[771px] shrink-0 text-lg leading-[32px] tracking-[-0.5px]">
+          <div className="font-satoshi text-darkslategray-200 relative inline-block max-w-[771px] shrink-0 text-lg leading-[32px] tracking-[-0.5px]">
             Don't just take our word for it. Hear what our customers have to say
             about their experience with TechVantage.
           </div>
         </div>
-        <div className="font-satoshi flex h-[607.3px] w-[1180px] flex-row flex-wrap items-start justify-start gap-[30px] text-left text-lg text-black">
-          <div className="flex w-[373.33px] flex-row items-start justify-start shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)]">
-            <div className="rounded-3xs flex flex-1 flex-col items-start justify-start overflow-hidden bg-white p-5">
+        <div className="font-satoshi flex  max-w-[1180px] flex-row flex-wrap items-center justify-center gap-[30px] text-left text-lg text-black">
+          <div className="flex w-[373.33px] flex-row items-start justify-start shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg">
+            <div className="rounded-3xs flex flex-1 flex-col items-start justify-start overflow-hidden bg-white p-5 rounded-lg">
               <div className="flex flex-col items-start justify-start self-stretch">
                 <div className="flex flex-row items-start justify-start self-stretch px-0 pb-4 pt-0">
                   <div className="relative flex-1 leading-[140%]">
@@ -573,8 +557,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex w-[373.33px] flex-row items-start justify-start text-sm shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)]">
-            <div className="rounded-3xs flex flex-1 flex-row items-start justify-start overflow-hidden bg-white p-5">
+          <div className="flex  w-[373.33px] flex-row items-start justify-start text-sm  shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg ">
+            <div className=" flex flex-1 flex-row items-start justify-start overflow-hidden bg-white p-5 rounded-lg">
               <div className="flex flex-1 flex-col items-start justify-start">
                 <div className="flex flex-row items-start justify-start self-stretch px-0 pb-4 pt-0 text-lg">
                   <div className="relative flex-1 leading-[140%]">{`Volutpat nec, dictumst adipiscing mauris molestie a. Proin sit libero tristique suspendisse. `}</div>
@@ -614,8 +598,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="rounded-3xs flex flex-1 flex-col items-start justify-start overflow-hidden bg-white p-5 shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)]">
-            <div className="flex flex-col items-start justify-start self-stretch">
+          <div className="rounded-3xs flex  w-[373.33px]  flex-col items-start justify-start overflow-hidden bg-white p-5 shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg">
+            <div className="flex flex-col items-start justify-start self-stretch rounded-lg">
               <div className="flex flex-row items-start justify-start self-stretch px-0 pb-4 pt-0">
                 <div className="relative flex-1 leading-[140%]">
                   Nisl, eget imperdiet pharetra consectetur.
@@ -642,8 +626,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex h-[262px] w-[373px] flex-row items-start justify-start text-sm shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)]">
-            <div className="rounded-3xs flex flex-1 flex-row items-start justify-start overflow-hidden bg-white p-5">
+          <div className="flex  w-[373.33px] flex-row items-start justify-start text-sm shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg">
+            <div className="rounded-3xs flex  flex-row items-start justify-start overflow-hidden bg-white p-5 rounded-lg">
               <div className="flex flex-1 flex-col items-start justify-start">
                 <div className="flex flex-row items-start justify-start self-stretch px-0 pb-4 pt-0 text-lg">
                   <div className="relative flex-1 leading-[140%]">{`There’s no other program that walks you through exactly what you need to know to start an online store fast, written by someone who has built several 7-figure ecommerce businesses from scratch. `}</div>
@@ -683,8 +667,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="rounded-3xs flex flex-1 flex-row items-start justify-start overflow-hidden bg-white p-5 shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)]">
-            <div className="flex flex-1 flex-col items-start justify-start">
+          <div className="rounded-3xs flex   w-[373.33px] flex-row items-start justify-start overflow-hidden bg-white p-5 shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg">
+            <div className="flex flex-1 flex-col items-start justify-start rounded-lg">
               <div className="flex flex-row items-start justify-start self-stretch px-0 pb-4 pt-0">
                 <div className="relative flex-1 leading-[140%]">
                   Montes, ornare purus vestibulum, eget nec sem velit. Pharetra
@@ -714,8 +698,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="rounded-3xs flex flex-1 flex-row items-start justify-start overflow-hidden bg-white p-5 shadow-[0px_0px_25px_1px_rgba(0,_0,_0,_0.1)]">
-            <div className="flex flex-1 flex-col items-start justify-start">
+          <div className="rounded-3xs flex  flex-row w-[373.33px] items-start justify-start overflow-hidden bg-white p-5 shadow-[0px_0px_25px_1px_rgba(0,_0,_0,_0.1)] rounded-lg">
+            <div className="flex flex-1 flex-col items-start justify-start rounded-lg">
               <div className="flex flex-row items-start justify-start self-stretch px-0 pb-4 pt-0">
                 <div className="relative flex-1 leading-[140%]">
                   What’s more, everything has been broken down in step-by-step
@@ -806,19 +790,19 @@ export default function Home() {
           <div />
         </div>
       </div>
-      <div className="z-[12] flex flex-col items-start justify-start p-2.5 text-white">
-        <div className="flex flex-col items-center justify-start gap-[36px]">
-          <div className="bg-sandybrown-100 flex h-[412px] w-[1368px] flex-row items-center justify-center rounded-xl">
-            <div className="flex flex-col items-center justify-center gap-[33px]">
+      <div className="z-[12] flex flex-col items-start justify-start p-2.5  text-white">
+        <div className="flex flex-col items-center justify-start max-w-[1368px]  gap-[36px] ">
+          <div className="bg-sandybrown-100 flex py-12  max-w-screen w-full mx-10 flex-row items-center   justify-center rounded-xl ">
+            <div className="flex flex-col items-center justify-center  gap-[33px] ">
               <div className="relative font-semibold">
                 Prêt à Lancer Votre Entreprise ?
               </div>
-              <div className="font-satoshi relative inline-block w-[825px] text-center text-xl leading-[30px]">
+              <div className="font-satoshi relative inline-block max-w-[825px] text-center text-xl leading-[30px]">
                 Rejoignez des milliers d'entrepreneurs qui ont déjà bénéficié de
                 notre application. Inscrivez-vous dès aujourd'hui pour commencer
                 gratuitement !
               </div>
-              <div className="text-chocolate font-button-nav box-border flex w-[184px] flex-row items-center justify-center overflow-hidden rounded-md bg-white px-[18px] py-2.5 text-base">
+              <div className="text-chocolate font-button-nav box-border flex max-w-[184px] flex-row items-center justify-center overflow-hidden rounded-md bg-white px-[18px] py-2.5 text-base">
                 <div className="relative font-semibold">Commencez</div>
               </div>
             </div>
