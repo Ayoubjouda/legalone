@@ -23,7 +23,6 @@ import {
   FormSix,
 } from '@/components/Forms';
 import { ChevronLeft } from 'lucide-react';
-import { useFormContext } from 'react-hook-form';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
@@ -37,22 +36,51 @@ const Stepper: FC<StepperProps> = () => {
     index: 0,
     count: steps.length,
   });
-  const { trigger } = useFormContext();
 
   function getStepContent(step: number) {
     switch (step) {
       case 0:
-        return <FormOne />;
+        return (
+          <FormOne
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
       case 1:
-        return <FormTwo />;
+        return (
+          <FormTwo
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
       case 2:
-        return <FormThree />;
+        return (
+          <FormThree
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
       case 3:
-        return <FormFour />;
+        return (
+          <FormFour
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
       case 4:
-        return <FormFive />;
+        return (
+          <FormFive
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
       default:
-        return <FormSix />;
+        return (
+          <FormSix
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
     }
   }
   return (
@@ -102,26 +130,6 @@ const Stepper: FC<StepperProps> = () => {
       </ChakraStepper>
       <div className="flex items-center justify-center">
         {getStepContent(activeStep)}
-      </div>
-      <div className="flex w-full max-w-[700px] justify-between gap-4">
-        <Button
-          className="font-semibold"
-          onClick={async () => {
-            const isValid = await trigger([
-              'firstName',
-              'lastName',
-              'email',
-              'phoneNumber',
-              'companyName',
-            ]);
-            console.log(isValid);
-            if (isValid) {
-              goToNext();
-            }
-          }}
-        >
-          next
-        </Button>
       </div>
     </div>
   );

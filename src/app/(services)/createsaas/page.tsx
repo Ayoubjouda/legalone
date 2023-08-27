@@ -21,7 +21,7 @@ export default function CreateSaas() {
     mode: 'onBlur',
   });
   return (
-    <div className="max-w-screen flex w-full flex-col items-center justify-center overflow-hidden">
+    <div className="max-w-screen flex  flex-col items-center justify-center overflow-hidden my-12">
       <FormProvider {...methods}>
         <Stepper />
       </FormProvider>

@@ -8,6 +8,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '@/components/CheckoutForm';
 import { useStripe } from '@/hooks/useStripe';
 import { Spinner } from '@chakra-ui/react';
+import { useFormContext } from 'react-hook-form';
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );
@@ -23,7 +24,7 @@ export default function Checkout() {
 
   if (isLoading)
     return (
-      <div className="flex h-screen w-screen items-center justify-center">
+      <div className="flex  w-full items-center justify-center">
         <Spinner
           size={'xl'}
           color="orange.500"

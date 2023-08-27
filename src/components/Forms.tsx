@@ -17,6 +17,13 @@ import Pack from './Pack';
 import { useQuery } from 'react-query';
 import api from '@/lib/axiosConfig';
 import { Spinner } from '@chakra-ui/react';
+import CheckoutForm from './CheckoutForm';
+import Checkout from './Checkout';
+
+interface FormProps {
+  goToNext: () => void;
+  goToPrevious: () => void;
+}
 
 const DetailItem = ({ title, value }: { title: string; value: string }) => {
   return (
@@ -29,8 +36,8 @@ const DetailItem = ({ title, value }: { title: string; value: string }) => {
   );
 };
 
-export const FormOne = () => {
-  const { control } = useFormContext();
+export const FormOne = ({ goToNext, goToPrevious }: FormProps) => {
+  const { control, trigger } = useFormContext();
 
   return (
     <form className="max-w-[650px]">
@@ -97,7 +104,7 @@ export const FormOne = () => {
           )}
         />
         <FormField
-          name="phoneNumber"
+          name="phone"
           control={control}
           render={({ field }) => (
             <FormItem>
@@ -132,36 +139,59 @@ export const FormOne = () => {
             </FormItem>
           )}
         />
+        <Button
+          className="font-semibold"
+          type="button"
+          onClick={async () => {
+            const isValid = await trigger([
+              'firstName',
+              'lastName',
+              'email',
+              'phoneNumber',
+              'companyName',
+            ]);
+            if (isValid) {
+              goToNext();
+            }
+          }}
+        >
+          next
+        </Button>
       </div>
     </form>
   );
 };
 
-export const FormTwo = () => {
-  const { setValue, control } = useFormContext();
+export const FormTwo = ({ goToNext, goToPrevious }: FormProps) => {
+  const { setValue, control, trigger } = useFormContext();
   const [selected, setselected] = useState<number | null>(null);
   const handleSetValue = (newValue: string) => {
     setValue('creationDelay', newValue);
   };
 
   return (
-    <form className="flex gap-10">
-      <div className="hidden">
+    <form className="flex flex-col gap-10">
+      <div>
         <Controller
           name="creationDelay"
           control={control}
           defaultValue=""
-          render={({ field }) => <input {...field} />}
+          render={({ field }) => (
+            <input
+              className="hidden"
+              {...field}
+            />
+          )}
           rules={{ required: true }}
         />
       </div>
 
-      <>
+      <div className=" flex flex-row  gap-10">
         <IconBox
           title="Dans un mois"
           image={'/fast.svg'}
           onClick={() => {
-            handleSetValue('Dans un mois');
+            handleSetValue('WEEKLY');
             setselected(1);
           }}
           className={cn({ 'border-orange-500': selected === 1 })}
@@ -170,7 +200,7 @@ export const FormTwo = () => {
           title="Dans la Semaine"
           image={'/calander.svg'}
           onClick={() => {
-            handleSetValue('Dans un b');
+            handleSetValue('MONTHLY');
             setselected(2);
           }}
           className={cn({ 'border-orange-500': selected === 2 })}
@@ -184,13 +214,26 @@ export const FormTwo = () => {
           }}
           className={cn({ 'border-orange-500': selected === 3 })}
         />
-      </>
+      </div>
+      <Button
+        className="font-semibold"
+        type="button"
+        onClick={async () => {
+          const isValid = await trigger(['creationDelay']);
+          console.log(isValid);
+          if (isValid) {
+            goToNext();
+          }
+        }}
+      >
+        next
+      </Button>
     </form>
   );
 };
 
-export const FormThree = () => {
-  const { setValue, control } = useFormContext();
+export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
+  const { setValue, control, trigger } = useFormContext();
   const [selectedDomain, setselectedDomain] = useState<number | null>(null);
   const [selectedPresident, setselectedPresident] = useState<string | null>(
     null
@@ -202,8 +245,8 @@ export const FormThree = () => {
     return data;
   });
 
-  const handleSetValue = (newValue: string) => {
-    setValue('domaine', newValue);
+  const handleSetValue = (key: string, newValue: string | Activity) => {
+    setValue(key, newValue);
   };
   if (isLoading) return <Spinner color="orange.500" />;
   return (
@@ -211,7 +254,7 @@ export const FormThree = () => {
       <div className="flex flex-col gap-10">
         <div className="hidden">
           <Controller
-            name="domaine"
+            name="activityField"
             control={control}
             defaultValue=""
             render={({ field }) => <input {...field} />}
@@ -234,7 +277,7 @@ export const FormThree = () => {
                 key={idx}
                 type="button"
                 onClick={() => {
-                  handleSetValue('consultant');
+                  handleSetValue('activityField', item);
                   setselectedDomain(idx);
                 }}
               >
@@ -249,7 +292,7 @@ export const FormThree = () => {
       <div className="flex flex-col gap-10">
         <div className="hidden">
           <Controller
-            name="president"
+            name="selectedManagerType"
             control={control}
             defaultValue=""
             render={({ field }) => <input {...field} />}
@@ -264,13 +307,13 @@ export const FormThree = () => {
           <Button
             variant={'ghost'}
             className={cn(
-              { 'bg-orange-200': 'moi' == selectedPresident },
+              { 'bg-orange-200': 'PersonalManager' == selectedPresident },
               'border  text-xl font-semibold'
             )}
             type="button"
             onClick={() => {
-              handleSetValue('moi');
-              setselectedPresident('moi');
+              handleSetValue('selectedManagerType', 'PersonalManager');
+              setselectedPresident('PersonalManager');
             }}
           >
             Moi
@@ -283,20 +326,36 @@ export const FormThree = () => {
             )}
             type="button"
             onClick={() => {
-              handleSetValue('president');
+              handleSetValue('selectedManagerType', 'president');
               setselectedPresident('president');
             }}
           >
             president
           </Button>
         </div>
+        <Button
+          className="font-semibold"
+          type="button"
+          onClick={async () => {
+            const isValid = await trigger([
+              'activityField',
+              'selectedManagerType',
+            ]);
+            console.log(isValid);
+            if (isValid) {
+              goToNext();
+            }
+          }}
+        >
+          next
+        </Button>
       </div>
     </form>
   );
 };
 
-export const FormFour = () => {
-  const { control } = useFormContext();
+export const FormFour = ({ goToNext, goToPrevious }: FormProps) => {
+  const { control, trigger } = useFormContext();
   return (
     <form className="w-full max-w-[650px]">
       <div className="my-5 flex flex-col gap-4">
@@ -323,7 +382,7 @@ export const FormFour = () => {
           )}
         />
         <FormField
-          name="fondateur"
+          name="nonAssociateManager"
           control={control}
           defaultValue={'non'}
           render={({ field }) => (
@@ -335,7 +394,7 @@ export const FormFour = () => {
                 <RadioGroup
                   onValueChange={field.onChange}
                   defaultValue={field.value}
-                  className="flex  "
+                  className="flex"
                 >
                   <FormItem className="flex items-center space-x-3 space-y-0">
                     <FormControl>
@@ -357,7 +416,7 @@ export const FormFour = () => {
           )}
         />
         <FormField
-          name="capital"
+          name="shareCapital"
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -375,7 +434,7 @@ export const FormFour = () => {
           )}
         />
         <FormField
-          name="siegeSocial"
+          name="companyLocation"
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -398,12 +457,30 @@ export const FormFour = () => {
           )}
         />
       </div>
+      <Button
+        className="font-semibold"
+        type="button"
+        onClick={async () => {
+          const isValid = await trigger([
+            'associerNumber',
+            'shareCapital',
+            'companyLocation',
+            'nonAssociateManager',
+          ]);
+          console.log(isValid);
+          if (isValid) {
+            goToNext();
+          }
+        }}
+      >
+        next
+      </Button>
     </form>
   );
 };
 
-export const FormFive = () => {
-  const { watch, register, control, setValue } = useFormContext();
+export const FormFive = ({ goToNext, goToPrevious }: FormProps) => {
+  const { watch, register, control, setValue, trigger } = useFormContext();
 
   const { isLoading, data } = useQuery('packs', async () => {
     const data = (await api
@@ -419,6 +496,14 @@ export const FormFive = () => {
   if (isLoading) return <Spinner color="orange.500" />;
   return (
     <form className="w-full ">
+      <div className="hidden">
+        <Controller
+          name="companyType"
+          control={control}
+          defaultValue="SARL"
+          render={({ field }) => <input {...field} />}
+        />
+      </div>
       <div className="hidden">
         <Controller
           name="pack"
@@ -441,17 +526,30 @@ export const FormFive = () => {
           />
         ))}
       </div>
+      <Button
+        className="font-semibold"
+        type="button"
+        onClick={async () => {
+          const isValid = await trigger(['pack']);
+          console.log(isValid);
+          if (isValid) {
+            goToNext();
+          }
+        }}
+      >
+        next
+      </Button>
     </form>
   );
 };
-export const FormSix = () => {
+export const FormSix = ({ goToNext, goToPrevious }: FormProps) => {
   const { watch, register, control, getValues } = useFormContext();
 
   // const watchAllFields = watch();
   const values = getValues();
 
   return (
-    <form className="flex w-full gap-3 ">
+    <div className="flex w-full gap-3">
       <div className="flex flex-col ">
         <h3 className="text-lg font-semibold leading-none text-black">
           Details
@@ -468,7 +566,7 @@ export const FormSix = () => {
             />
             <DetailItem
               title={'Nom Société'}
-              value={values.NameSociete}
+              value={values.companyName}
             />
             <DetailItem
               title={'Délai de Creation'}
@@ -480,7 +578,7 @@ export const FormSix = () => {
             />
             <DetailItem
               title={'Siege Social'}
-              value={values.SiegeSocial}
+              value={values.companyLocation}
             />
           </div>
           <div className="flex flex-col ">
@@ -491,19 +589,23 @@ export const FormSix = () => {
               />
               <DetailItem
                 title={'Tel'}
-                value={values.PhoneNumber}
+                value={values.phone}
               />
               <DetailItem
                 title={'Status'}
-                value={values.Status}
+                value={values.companyType}
               />
               <DetailItem
-                title={'domaine'}
-                value={values.firstName}
+                title={'Domaine'}
+                value={values.activityField?.name}
               />
               <DetailItem
-                title={'capital'}
-                value={values.firstName}
+                title={'Capital'}
+                value={values.shareCapital}
+              />
+              <DetailItem
+                title={'Pack'}
+                value={values.pack?.name}
               />
             </div>
           </div>
@@ -513,24 +615,34 @@ export const FormSix = () => {
         </h3>
         <div className="mt-4 flex w-fit gap-3 rounded-sm bg-gray-100">
           <div className="flex flex-col gap-3 p-2">
-            {[1, 2, 3].map((item, idx) => (
-              <div
-                key={idx}
-                className="flex min-w-[300px] items-center justify-between"
-              >
-                <p className="text-base font-semibold leading-none text-black">
-                  Subtotal
-                </p>
-                <p className="text-base font-normal leading-none text-zinc-600">
-                  88 $
-                </p>
-              </div>
-            ))}
-            <Button> Payer en toute Securité</Button>
+            <div className="flex min-w-[300px] items-center justify-between">
+              <p className="text-base font-semibold leading-none text-black">
+                Subtotal
+              </p>
+              <p className="text-base font-normal leading-none text-zinc-600">
+                {values.pack?.price} $
+              </p>
+            </div>
+            <div className="flex min-w-[300px] items-center justify-between">
+              <p className="text-base font-semibold leading-none text-black">
+                Tax
+              </p>
+              <p className="text-base font-normal leading-none text-zinc-600">
+                {values.pack?.price * 0.2} $
+              </p>
+            </div>
+            <div className="flex min-w-[300px] items-center justify-between">
+              <p className="text-base font-semibold leading-none text-black">
+                Total
+              </p>
+              <p className="text-base font-normal leading-none text-zinc-600">
+                {values.pack?.price * 1.2} $
+              </p>
+            </div>
           </div>
         </div>
       </div>
-      <Pack {...values.pack} />
-    </form>
+      <Checkout />
+    </div>
   );
 };

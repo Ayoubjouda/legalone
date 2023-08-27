@@ -1,4 +1,4 @@
-import React, { FormEvent, FormEventHandler, useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import {
   PaymentElement,
   LinkAuthenticationElement,
@@ -6,11 +6,11 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 import {
-  StripeError,
   StripeLinkAuthenticationElementChangeEvent,
   StripePaymentElementOptions,
 } from '@stripe/stripe-js';
 import { Button } from './ui/button';
+import { Spinner } from '@chakra-ui/react';
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -76,39 +76,43 @@ export default function CheckoutForm() {
   };
 
   return (
-    <div className="flex h-screen w-screen items-center justify-center">
+    <div className="flex  ">
       <form
         id="payment-form"
         onSubmit={handleSubmit}
-        className="w-full max-w-[550px] "
+        className="w-full max-w-[550px] flex flex-col gap-2 items-center justify-center "
       >
-        <LinkAuthenticationElement
-          id="link-authentication-element"
-          onChange={(e: StripeLinkAuthenticationElementChangeEvent) =>
-            setEmail(e.value)
-          }
-        />
-        <PaymentElement
-          id="payment-element"
-          options={paymentElementOptions}
-        />
+        <div>
+          <LinkAuthenticationElement
+            id="link-authentication-element"
+            onChange={(e: StripeLinkAuthenticationElementChangeEvent) =>
+              setEmail(e.value)
+            }
+          />
+          <PaymentElement
+            id="payment-element"
+            options={paymentElementOptions}
+          />
+        </div>
+
         <Button
           disabled={isLoading || !stripe || !elements}
           id="submit"
+          className="w-full"
         >
           <span id="button-text">
-            {isLoading ? (
-              <div
-                className="spinner"
-                id="spinner"
-              ></div>
-            ) : (
-              'Pay now'
-            )}
+            {isLoading ? <Spinner /> : 'Payer en toute Securité'}
           </span>
         </Button>
         {/* Show any error or success messages */}
-        {message && <div id="payment-message">{message}</div>}
+        {message && (
+          <div
+            id="payment-message"
+            className="text-semibold text-red-500"
+          >
+            {message}
+          </div>
+        )}
       </form>
     </div>
   );

@@ -1,5 +1,6 @@
-import { z } from 'zod';
+import { number, z } from 'zod';
 import { isOlderThan18 } from '@/lib/utils';
+import { Activity } from 'lucide-react';
 
 export const RegisterSchema = z
   .object({
@@ -56,18 +57,35 @@ export const loginSchemaValidator = z.object({
 });
 
 export const saasFormSchema = z.object({
-  firstName: z.string().min(2).max(15),
-  lastName: z.string().min(2).max(15),
-  email: z.string().email(),
-  phoneNumber: z.string(),
-  companyName: z.string().min(2).max(15),
+  firstName: z
+    .string()
+    .min(2, { message: 'Must have at Least 2 characters' })
+    .max(15, { message: 'Must have at max 15 characters' }),
+  lastName: z
+    .string()
+    .min(2, { message: 'Must have at Least 2 characters' })
+    .max(15, { message: 'Must have at max 15 characters' }),
+  email: z.string().email({ message: 'Must be an Email' }),
+  phone: z.string().min(2, { message: 'Must have at Least 2 characters' }),
+  companyName: z
+    .string()
+    .min(2, { message: 'Must have at Least 2 characters' })
+    .max(15, { message: 'Must have at max 15 characters' }),
+  companyType: z
+    .string()
+    .min(2, { message: 'Must have at Least 2 characters' }),
   creationDelay: z.string().min(2),
-  domaine: z.string().min(2),
+  activityField: z.object({
+    id: z.number(),
+    name: z.string().min(2),
+  }),
+
   president: z.string().min(2),
-  associerNumber: z.number().min(2),
-  fondateur: z.string().min(2),
-  capital: z.number().min(2),
-  siegeSocial: z.string().min(2),
+  associerNumber: z.string().min(2),
+  selectedManagerType: z.string().min(2),
+  shareCapital: z.string().min(2),
+  companyLocation: z.string().min(2),
+  pack: z.custom<Package>(),
 });
 export type SaasSchemaType = z.infer<typeof saasFormSchema>;
 

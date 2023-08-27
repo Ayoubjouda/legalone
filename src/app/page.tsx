@@ -1,17 +1,13 @@
-'use client';
-import { useForm, FormProvider, useFormContext } from 'react-hook-form';
 import React from 'react';
-import Stepper from '@/components/Stepper';
-import type { NextPage } from 'next';
-import { useCallback } from 'react';
 import Image from 'next/image';
-import { Menu } from 'lucide-react';
 
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from '@/components/ui/hover-card';
+import Link from 'next/link';
 export default function Home() {
-  const onNosServicesTextClick = useCallback(() => {
-    // Please sync "Services" to the project
-  }, []);
-  {/* prettier-ignore */}
   return (
     <div className="text-29xl font-headers-h2 relative box-border flex max-w-screen w-full flex-col items-center justify-start gap-[219px] overflow-hidden bg-gray-100 px-0 py-[46px] text-left text-gray-300 ">
       <Image
@@ -30,18 +26,18 @@ export default function Home() {
         height={0}
         sizes="100vw"
       />
-      <div className="font-button-nav absolute left-[calc(50%_-_477px)] top-[9px] z-[2] mx-[!important] my-0 lg:text-base text-sm  text-black">
+      {/* <div className="font-button-nav absolute left-[calc(50%_-_477px)] top-[9px] z-[2] mx-[!important] my-0 lg:text-base text-sm  text-black">
         Bonjour, vous êtes parrainé ! Vous débloquez 2 mois offerts,
         sécurisez-les en commençant votre essai gratuit de Dougs.
-      </div>
-      <Image
+      </div> */}
+      {/* <Image
         className="absolute left-[1384px] top-[11px] z-[3] mx-[!important] my-0 h-5 w-5 shrink-0 overflow-hidden"
         alt=""
         src="/close.svg"
         width={0}
         height={0}
         sizes="100vw"
-      />
+      /> */}
       <Image
         className="absolute left-[1087px] top-[138px] z-[4] mx-[!important] my-0 h-[29.88px] w-6"
         alt=""
@@ -58,40 +54,8 @@ export default function Home() {
         height={0}
         sizes="100vw"
       />
-      <div className="bg-sandybrown-200 absolute left-[0px] top-[0px] z-[6] mx-[!important] my-0 h-[42px] w-full" />
+      {/* <div className="bg-sandybrown-200 absolute left-[0px] top-[0px] z-[6] mx-[!important] my-0 h-[42px] w-full" /> */}
       <div className="font-satoshi z-[7] flex flex-col items-center justify-start gap-[45px] md:gap-[28px] self-stretch text-center text-base">
-        <div className="font-plus-jakarta-sans flex flex-row items-center justify-between self-stretch border-b-[1px] border-solid border-gray-600 px-8 md:px-[88px] py-[7px] text-xl text-black">
-          <div className="flex w-[129.82px] flex-col items-center justify-center">
-            <div className="relative inline-block w-[129.82px]">
-              <span>Legal</span>
-              <b>Center</b>
-            </div>
-          </div>
-          <div className="lg:hidden">
-            <Menu />
-          </div>
-          <div className="font-button-nav hidden  lg:flex flex-row items-start justify-start gap-[13px] text-left text-base text-gray-400">
-            <div className="flex flex-col items-start justify-start p-2.5">
-              <div className="flex flex-row items-center justify-center gap-[28px]">
-                <div className="flex h-6 w-[253.48px] flex-row items-center justify-start gap-[28px]">
-                  <div
-                    className="relative cursor-pointer"
-                    onClick={onNosServicesTextClick}
-                  >
-                    Nos Services
-                  </div>
-                  <div className="text-grey relative">Outils et guides</div>
-                </div>
-                <div className="text-grey relative">Se Connecter</div>
-              </div>
-            </div>
-            <div className="text-sandybrown-100 flex flex-row items-start justify-start">
-              <div className="border-sandybrown-100 flex flex-row items-start justify-start overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
-                <div className="relative font-semibold">07 76 67 87 67</div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div className=" text-[45px] lg:text-45xl font-headers-h2 relative inline-block max-w-[869px] font-semibold tracking-[-0.04em] ">
           <p className="m-0">Une Entreprise sur mesure,</p>
           <p className="m-0">
@@ -109,23 +73,36 @@ export default function Home() {
         </div>
         <div className="flex  max-w-[980px] flex-row items-end justify-center text-lg">
           <div className="flex flex-col md:flex-row items-end justify-center gap-[48px]">
-            <div className="border-sandybrown-100 box-border flex h-[88px] flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
-              <Image
-                className="relative h-[30px] w-[30px] shrink-0 overflow-hidden"
-                alt=""
-                src="/icons8company-1.svg"
-                width={0}
-                height={0}
-                sizes="100vw"
-              />
-              <div className="flex flex-row items-center justify-center">
-                <div className="flex flex-row items-center justify-center">
-                  <b className="relative inline-block w-[190px] shrink-0">
-                    Créer mon entreprise
-                  </b>
+            <HoverCard openDelay={300}>
+              <HoverCardTrigger>
+                <div className="border-sandybrown-100 box-border flex h-[88px] flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5 cursor-pointer">
+                  <Image
+                    className="relative h-[30px] w-[30px] shrink-0 overflow-hidden"
+                    alt=""
+                    src="/icons8company-1.svg"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                  />
+                  <div className="flex flex-row items-center justify-center">
+                    <div className="flex flex-row items-center justify-center">
+                      <b className="relative inline-block w-[190px] shrink-0">
+                        Créer mon entreprise
+                      </b>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </HoverCardTrigger>
+              <HoverCardContent>
+                <Link
+                  href="/createsaas"
+                  className="underline"
+                >
+                  Create sass
+                </Link>
+              </HoverCardContent>
+            </HoverCard>
+
             <div className="border-sandybrown-100 box-border flex h-[88px] flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
               <Image
                 className="relative h-[30px] w-[30px] shrink-0 overflow-hidden"
@@ -219,7 +196,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="font-satoshi z-[8] w-full flex flex-col md:flex-row items-center justify-center gap-[94px] text-base lg:text-xl text-black ">
+      <div className="font-satoshi z-[8] w-full  max-w-screen-xl flex flex-col md:flex-row items-center justify-center gap-[94px] text-base lg:text-xl text-black ">
         <div className="flex flex-col items-start justify-center gap-[25px] px-4 w-full">
           <div className="text-[45px] lg:text-29xl font-headers-h2 relative inline-block max-w-[549px] font-medium">
             Gagnez du temps précieux
@@ -416,7 +393,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="text-21xl z-[9] flex flex-col items-start justify-start gap-[10px] w-full px-8">
+      <div className="text-21xl z-[9] flex flex-col items-start justify-start gap-[10px] w-full px-8 max-w-screen-xl">
         <div className="flex  max-w-[367px] flex-col items-start justify-start gap-[19px]">
           <div className="flex  max-w-[367px] shrink-0 flex-col items-start justify-start gap-[6px] overflow-hidden">
             <div className="relative font-medium leading-[48px] tracking-[-0.03em]">
@@ -500,7 +477,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="z-[10] flex flex-col items-center justify-start gap-[54px] text-center">
+      <div className="z-[10] flex flex-col items-center justify-start gap-[54px] text-center max-w-screen-xl">
         <div className="flex  max-w-[771px] flex-col items-center justify-start gap-[94px]">
           <div className="relative inline-block  max-w-[752px] shrink-0 font-medium">
             <span className="tracking-[-1px]">Rejoignez des mil</span>l
@@ -729,7 +706,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="z-[11] flex flex-col items-center justify-start gap-[60px] self-stretch px-[60px] py-[120px] text-center">
+      <div className="z-[11] flex flex-col max-w-screen-xl items-center w-full justify-center gap-[60px]   py-[120px] text-center">
         <div className="flex flex-col items-center justify-start">
           <div className="relative font-medium">We know you are curious!</div>
         </div>
@@ -790,7 +767,7 @@ export default function Home() {
           <div />
         </div>
       </div>
-      <div className="z-[12] flex flex-col items-start justify-start p-2.5  text-white">
+      <div className="z-[12] flex flex-col items-start justify-start p-2.5  text-white max-w-screen-xl">
         <div className="flex flex-col items-center justify-start max-w-[1368px]  gap-[36px] ">
           <div className="bg-sandybrown-100 flex py-12  max-w-screen w-full mx-10 flex-row items-center   justify-center rounded-xl ">
             <div className="flex flex-col items-center justify-center  gap-[33px] ">
