@@ -9,7 +9,7 @@ import {
 import Link from 'next/link';
 export default function Home() {
   return (
-    <div className="text-29xl font-headers-h2 relative box-border flex max-w-screen w-full flex-col items-center justify-start gap-[219px] overflow-hidden bg-gray-100 px-0 py-[46px] text-left text-gray-300 ">
+    <div className="text-29xl font-headers-h2 relative  flex max-w-screen w-full flex-col items-center justify-start gap-[219px] overflow-hidden bg-gray-100 px-0 py-[46px] text-left text-gray-300 ">
       <Image
         className="absolute left-[1244px] top-[430px] z-[0] mx-[!important] my-0 h-6 w-6"
         alt=""
@@ -55,8 +55,8 @@ export default function Home() {
         sizes="100vw"
       />
       {/* <div className="bg-sandybrown-200 absolute left-[0px] top-[0px] z-[6] mx-[!important] my-0 h-[42px] w-full" /> */}
-      <div className="font-satoshi z-[7] flex flex-col items-center justify-start gap-[45px] md:gap-[28px] self-stretch text-center text-base">
-        <div className=" text-[45px] lg:text-45xl font-headers-h2 relative inline-block max-w-[869px] font-semibold tracking-[-0.04em] ">
+      <div className="font-satoshi z-[7] flex flex-col items-center justify-start gap-[45px] md:gap-[28px] self-stretch text-center text-base mx-2">
+        <div className=" text-[45px] lg:text-45xl font-headers-h2 relative inline-block max-w-[869px] font-semibold tracking-[-0.04em] leading-[45px] md:leading-[80px] ">
           <p className="m-0">Une Entreprise sur mesure,</p>
           <p className="m-0">
             <span>{` un soutien `}</span>
@@ -249,9 +249,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="font-button-nav relative h-[504px]  w-full text-center text-xs">
-          <div className="absolute right-[72px] top-[calc(50%_-_252px)] flex max-h-[476px] max-w-[483px] flex-col items-start justify-end">
-            <div className="flex h-[479px] w-[423px] flex-col items-start justify-start">
+        <div className="font-button-nav relative  h-[504px]   w-full text-center text-xs ">
+          <div className="absolute right-[72px] top-[calc(50%_-_252px)] flex max-h-[476px] w-full  max-w-[483px] flex-col items-start justify-end">
+            <div className="flex h-[479px]  lg:w-[423px] flex-col items-start justify-start">
               <div className="relative h-[138.39px] w-[140px] mix-blend-normal">
                 <div className="bg-soft-purple absolute left-[calc(50%_-_70px)] top-[calc(50%_-_69.19px)] h-[3.78px] w-[3.78px] rounded" />
                 <div className="bg-soft-purple absolute left-[calc(50%_-_54.86px)] top-[calc(50%_-_69.19px)] h-[3.78px] w-[3.78px] rounded" />
@@ -355,7 +355,7 @@ export default function Home() {
                 <div className="bg-soft-purple absolute left-[calc(50%_+_66.22px)] top-[calc(50%_+_65.41px)] h-[3.78px] w-[3.78px] rounded" />
               </div>
               <Image
-                className="rounded-21xl relative mt-[-106px] h-[447px] w-[423px] object-cover"
+                className="rounded-21xl relative mt-[-106px] max-h-[447px] h-full w-full max-w-[423px] mx-3 object-cover"
                 alt=""
                 src="/pexelsphoto3205567-1@2x.png"
                 width={0}
@@ -393,9 +393,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="text-21xl z-[9] flex flex-col items-start justify-start gap-[10px] w-full px-8 max-w-screen-xl">
-        <div className="flex  max-w-[367px] flex-col items-start justify-start gap-[19px]">
-          <div className="flex  max-w-[367px] shrink-0 flex-col items-start justify-start gap-[6px] overflow-hidden">
+      <div className="text-21xl z-[9] flex  flex-col items-start justify-start gap-[10px] w-full px-8 max-w-screen-xl">
+        <div className="flex  w-[367px] flex-col items-start justify-start gap-[19px]">
+          <div className="flex  w-[367px] shrink-0 flex-col items-start justify-start gap-[6px] overflow-hidden">
             <div className="relative font-medium leading-[48px] tracking-[-0.03em]">
               <p className="m-0">We have best team</p>
               <p className="m-0">and best process</p>
@@ -414,16 +414,16 @@ export default function Home() {
         </div>
 
         {/* //!Keep This one for last} */}
-        <div className="text-185xl font-gilroy relative h-[602px] w-[1207.5px] text-black">
+        <div className="text-185xl font-gilroy relative  w-full max-w-[1207.5px] flex flex-col md:flex-row justify-center items-center text-black">
           <Image
-            className="absolute left-[0px] top-[0px] h-[437.46px] w-[1017px]"
+            className="hidden md:absolute left-[0px] top-[0px] h-[437.46px] w-[1017px]"
             alt=""
             src="/frame2.svg"
             width={0}
             height={0}
             sizes="100vw"
           />
-          <div className="absolute left-[124.5px] top-[0px] flex h-[602px] w-[280px] flex-col items-center justify-end ">
+          <div className="md:absolute md:left-[124.5px] top-[0px] flex h-[602px] w-[280px]  flex-col items-center justify-end ">
             <div className="relative h-[222px] w-[280px]">
               <div className="absolute left-[170px] top-[0px] font-black leading-[204px] tracking-[-0.02em] opacity-[0.05]">
                 1
@@ -439,7 +439,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="absolute left-[591.5px] top-[0px] flex h-[470px] w-[280px] flex-col items-center justify-end ">
+          <div className="md:absolute left-[591.5px] top-[0px] flex h-[470px] w-[280px] flex-col items-center justify-end ">
             <div className="relative h-[222px] w-[280px]">
               <div className="absolute left-[170px] top-[0px] font-black leading-[204px] tracking-[-0.02em] opacity-[0.05]">
                 2
@@ -458,7 +458,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="absolute left-[927.5px] top-[0px] h-[222px] w-[280px]">
+          <div className="md:absolute left-[927.5px] top-[0px] h-[222px] w-[280px]">
             <div className="absolute left-[159px] top-[0px] font-black leading-[204px] tracking-[-0.02em] opacity-[0.05]">
               3
             </div>
@@ -491,7 +491,7 @@ export default function Home() {
           </div>
         </div>
         <div className="font-satoshi flex  max-w-[1180px] flex-row flex-wrap items-center justify-center gap-[30px] text-left text-lg text-black">
-          <div className="flex w-[373.33px] flex-row items-start justify-start shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg">
+          <div className="flex w-[340.33px] flex-row items-start justify-start shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg">
             <div className="rounded-3xs flex flex-1 flex-col items-start justify-start overflow-hidden bg-white p-5 rounded-lg">
               <div className="flex flex-col items-start justify-start self-stretch">
                 <div className="flex flex-row items-start justify-start self-stretch px-0 pb-4 pt-0">
@@ -534,7 +534,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex  w-[373.33px] flex-row items-start justify-start text-sm  shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg ">
+          <div className="flex  w-[340.33px] flex-row items-start justify-start text-sm  shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg ">
             <div className=" flex flex-1 flex-row items-start justify-start overflow-hidden bg-white p-5 rounded-lg">
               <div className="flex flex-1 flex-col items-start justify-start">
                 <div className="flex flex-row items-start justify-start self-stretch px-0 pb-4 pt-0 text-lg">
@@ -575,7 +575,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="rounded-3xs flex  w-[373.33px]  flex-col items-start justify-start overflow-hidden bg-white p-5 shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg">
+          <div className="rounded-3xs flex  w-[340.33px]  flex-col items-start justify-start overflow-hidden bg-white p-5 shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg">
             <div className="flex flex-col items-start justify-start self-stretch rounded-lg">
               <div className="flex flex-row items-start justify-start self-stretch px-0 pb-4 pt-0">
                 <div className="relative flex-1 leading-[140%]">
@@ -603,7 +603,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex  w-[373.33px] flex-row items-start justify-start text-sm shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg">
+          <div className="flex  w-[340.33px] flex-row items-start justify-start text-sm shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg">
             <div className="rounded-3xs flex  flex-row items-start justify-start overflow-hidden bg-white p-5 rounded-lg">
               <div className="flex flex-1 flex-col items-start justify-start">
                 <div className="flex flex-row items-start justify-start self-stretch px-0 pb-4 pt-0 text-lg">
@@ -644,7 +644,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="rounded-3xs flex   w-[373.33px] flex-row items-start justify-start overflow-hidden bg-white p-5 shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg">
+          <div className="rounded-3xs flex   w-[340.33px] flex-row items-start justify-start overflow-hidden bg-white p-5 shadow-[0px_0px_25px_rgba(0,_0,_0,_0.1)] rounded-lg">
             <div className="flex flex-1 flex-col items-start justify-start rounded-lg">
               <div className="flex flex-row items-start justify-start self-stretch px-0 pb-4 pt-0">
                 <div className="relative flex-1 leading-[140%]">
@@ -675,7 +675,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="rounded-3xs flex  flex-row w-[373.33px] items-start justify-start overflow-hidden bg-white p-5 shadow-[0px_0px_25px_1px_rgba(0,_0,_0,_0.1)] rounded-lg">
+          <div className="rounded-3xs flex  flex-row w-[340.33px] items-start justify-start overflow-hidden bg-white p-5 shadow-[0px_0px_25px_1px_rgba(0,_0,_0,_0.1)] rounded-lg">
             <div className="flex flex-1 flex-col items-start justify-start rounded-lg">
               <div className="flex flex-row items-start justify-start self-stretch px-0 pb-4 pt-0">
                 <div className="relative flex-1 leading-[140%]">
@@ -767,19 +767,19 @@ export default function Home() {
           <div />
         </div>
       </div>
-      <div className="z-[12] flex flex-col items-start justify-start p-2.5  text-white max-w-screen-xl">
-        <div className="flex flex-col items-center justify-start max-w-[1368px]  gap-[36px] ">
-          <div className="bg-sandybrown-100 flex py-12  max-w-screen w-full mx-10 flex-row items-center   justify-center rounded-xl ">
-            <div className="flex flex-col items-center justify-center  gap-[33px] ">
-              <div className="relative font-semibold">
+      <div className="z-[12] flex flex-col items-start justify-start p-2.5 w-full   text-white max-w-screen-xl ">
+        <div className="flex flex-col items-center justify-start w-full max-w-screen-xl  gap-[36px] ">
+          <div className="bg-sandybrown-100 flex py-12  w-full   flex-row items-center mx-[100px]   justify-center rounded-xl ">
+            <div className="flex flex-col items-center  justify-center  gap-[33px] ">
+              <div className="relative font-semibold text-4xl lg:text-6xl text-center">
                 Prêt à Lancer Votre Entreprise ?
               </div>
-              <div className="font-satoshi relative inline-block max-w-[825px] text-center text-xl leading-[30px]">
+              <div className="font-satoshi relative  max-w-[825px] text-center text-base md:text-xl leading-[30px]">
                 Rejoignez des milliers d'entrepreneurs qui ont déjà bénéficié de
                 notre application. Inscrivez-vous dès aujourd'hui pour commencer
                 gratuitement !
               </div>
-              <div className="text-chocolate font-button-nav box-border flex max-w-[184px] flex-row items-center justify-center overflow-hidden rounded-md bg-white px-[18px] py-2.5 text-base">
+              <div className="text-chocolate font-button-nav  flex max-w-[184px] flex-row items-center justify-center overflow-hidden rounded-md bg-white px-[18px] py-2.5 text-base">
                 <div className="relative font-semibold">Commencez</div>
               </div>
             </div>
@@ -791,7 +791,7 @@ export default function Home() {
                   <span>Legal</span>
                   <b>Center</b>
                 </div>
-                <div className="font-satoshi text-dimgray relative inline-block w-[285px] text-left text-base leading-[30px]">
+                <div className="font-satoshi text-dimgray relative inline-block max-w-[285px] text-left text-base leading-[30px]">
                   Streamline inventory management and order fulfillment.
                 </div>
               </div>

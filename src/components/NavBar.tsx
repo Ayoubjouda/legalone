@@ -4,6 +4,14 @@ import { Menu } from 'lucide-react';
 import Link from 'next/link';
 import useAppStore from '@/zustand/store';
 import { UserNav } from './user-nav';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 
 interface NavBarProps {}
 
@@ -22,7 +30,20 @@ const NavBar: FC<NavBarProps> = () => {
         </Link>
       </div>
       <div className="lg:hidden">
-        <Menu />
+        <Sheet>
+          <SheetTrigger>
+            <Menu />
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Are you sure absolutely sure?</SheetTitle>
+              <SheetDescription>
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+              </SheetDescription>
+            </SheetHeader>
+          </SheetContent>
+        </Sheet>
       </div>
       <div className="font-button-nav hidden  lg:flex flex-row items-start justify-start gap-[13px] text-left text-base text-gray-400">
         <div className="flex flex-col items-start justify-start p-2.5">
