@@ -1,17 +1,24 @@
 import React from 'react';
 import Image from 'next/image';
-
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from '@/components/ui/hover-card';
+import ServiceCard from '@/components/ui/ServiceCard';
 import Link from 'next/link';
 export default function Home() {
   return (
     <div className="text-29xl font-headers-h2 relative  flex max-w-screen w-full flex-col items-center justify-start gap-[219px] overflow-hidden bg-gray-100 px-0 py-[46px] text-left text-gray-300 ">
       <Image
-        className="absolute left-[1244px] top-[430px] z-[0] mx-[!important] my-0 h-6 w-6"
+        className="absolute right-[1244px] top-[430px] z-[0] mx-[!important] my-0 h-6 w-6"
         alt=""
         src="/union.svg"
         width={0}
@@ -19,7 +26,7 @@ export default function Home() {
         sizes="100vw"
       />
       <Image
-        className="absolute left-[161px] top-[312px] z-[1] mx-[!important] my-0 h-6 w-6"
+        className="absolute right-[161px] top-[312px] z-[1] mx-[!important] my-0 h-6 w-6"
         alt=""
         src="/union1.svg"
         width={0}
@@ -39,7 +46,7 @@ export default function Home() {
         sizes="100vw"
       /> */}
       <Image
-        className="absolute left-[1087px] top-[138px] z-[4] mx-[!important] my-0 h-[29.88px] w-6"
+        className="absolute right-[108px] top-[138px] z-[4] mx-[!important] my-0 h-[29.88px] w-6"
         alt=""
         src="/subtract.svg"
         width={0}
@@ -47,7 +54,7 @@ export default function Home() {
         sizes="100vw"
       />
       <Image
-        className="absolute left-[1277px] top-[201px] z-[5] mx-[!important] my-0 h-[24.18px] w-6"
+        className="absolute right-[1277px] top-[201px] z-[5] mx-[!important] my-0 h-[24.18px] w-6"
         alt=""
         src="/union2.svg"
         width={0}
@@ -73,70 +80,18 @@ export default function Home() {
         </div>
         <div className="flex  max-w-[980px] flex-row items-end justify-center text-lg">
           <div className="flex flex-col md:flex-row items-end justify-center gap-[48px]">
-            <HoverCard openDelay={300}>
-              <HoverCardTrigger>
-                <div className="border-sandybrown-100 box-border flex h-[88px] flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5 cursor-pointer">
-                  <Image
-                    className="relative h-[30px] w-[30px] shrink-0 overflow-hidden"
-                    alt=""
-                    src="/icons8company-1.svg"
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                  />
-                  <div className="flex flex-row items-center justify-center">
-                    <div className="flex flex-row items-center justify-center">
-                      <b className="relative inline-block w-[190px] shrink-0">
-                        Créer mon entreprise
-                      </b>
-                    </div>
-                  </div>
-                </div>
-              </HoverCardTrigger>
-              <HoverCardContent>
-                <Link
-                  href="/createsaas"
-                  className="underline"
-                >
-                  Create sass
-                </Link>
-              </HoverCardContent>
-            </HoverCard>
-
-            <div className="border-sandybrown-100 box-border flex h-[88px] flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
-              <Image
-                className="relative h-[30px] w-[30px] shrink-0 overflow-hidden"
-                alt=""
-                src="/icons8settings-1-11.svg"
-                width={0}
-                height={0}
-                sizes="100vw"
-              />
-              <div className="flex flex-row items-center justify-center">
-                <div className="flex flex-row items-center justify-center">
-                  <b className="relative inline-block w-[190px] shrink-0">
-                    Modifier mes Status
-                  </b>
-                </div>
-              </div>
-            </div>
-            <div className="text-mid border-sandybrown-100 box-border flex flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
-              <Image
-                className="relative "
-                alt=""
-                src="/vector1.svg"
-                width={32}
-                height={32}
-                sizes="100vw"
-              />
-              <div className="flex flex-row items-center justify-center">
-                <div className="flex flex-row items-center justify-center">
-                  <b className="relative inline-block   w-[190px] shrink-0">
-                    Fin de Mon Entreprise
-                  </b>
-                </div>
-              </div>
-            </div>
+            <ServiceCard
+              title="Créer mon entreprise"
+              image="/icons8company-1.svg"
+            />
+            <ServiceCard
+              title="Modifier mes Status"
+              image="/icons8settings-1-11.svg"
+            />
+            <ServiceCard
+              title="Fin de Mon Entreprise"
+              image="/vector1.svg"
+            />
           </div>
         </div>
         <div className="font-button-nav flex flex-col items-center justify-center gap-[17px] self-stretch px-0 md:py-[47px] ">
@@ -393,7 +348,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="text-21xl z-[9] flex  flex-col items-start justify-start gap-[10px] w-full px-8 max-w-screen-xl">
+      <div className="text-21xl z-[9] flex  flex-col items-start justify-start gap-[10px]  w-full px-8 max-w-screen-xl">
         <div className="flex  w-[367px] flex-col items-start justify-start gap-[19px]">
           <div className="flex  w-[367px] shrink-0 flex-col items-start justify-start gap-[6px] overflow-hidden">
             <div className="relative font-medium leading-[48px] tracking-[-0.03em]">
@@ -412,18 +367,16 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* //!Keep This one for last} */}
-        <div className="text-185xl font-gilroy relative  w-full max-w-[1207.5px] flex flex-col md:flex-row justify-center items-center text-black">
+        <div className="text-185xl font-gilroy relative md:h-[600px] flex gap-8   w-full max-w-[1207.5px] flex-col  md:flex-row justify-center items-center text-black">
           <Image
-            className="hidden md:absolute left-[0px] top-[0px] h-[437.46px] w-[1017px]"
+            className="hidden md:absolute md:block left-[0px] top-[0px] h-[437.46px] w-[1017px]"
             alt=""
             src="/frame2.svg"
             width={0}
             height={0}
             sizes="100vw"
           />
-          <div className="md:absolute md:left-[124.5px] top-[0px] flex h-[602px] w-[280px]  flex-col items-center justify-end ">
+          <div className=" md:absolute md:left-[124.5px] md:top-[0px]  md:h-[602px] w-[280px]  items-center justify-end ">
             <div className="relative h-[222px] w-[280px]">
               <div className="absolute left-[170px] top-[0px] font-black leading-[204px] tracking-[-0.02em] opacity-[0.05]">
                 1
@@ -439,7 +392,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="md:absolute left-[591.5px] top-[0px] flex h-[470px] w-[280px] flex-col items-center justify-end ">
+
+          <div className="md:absolute left-[591.5px] top-[0px] flex md:h-[470px] w-[280px] flex-col items-center justify-end ">
             <div className="relative h-[222px] w-[280px]">
               <div className="absolute left-[170px] top-[0px] font-black leading-[204px] tracking-[-0.02em] opacity-[0.05]">
                 2
@@ -458,7 +412,26 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="md:absolute left-[927.5px] top-[0px] h-[222px] w-[280px]">
+          <div className="md:absolute md:left-[927.5px] flex top-[0px] md:h-[222px] w-[280px]   flex-col items-center justify-end ">
+            <div className="relative h-[222px] w-[280px]">
+              <div className="absolute left-[170px] top-[0px] font-black leading-[204px] tracking-[-0.02em] opacity-[0.05]">
+                3
+              </div>
+              <div className="text-sandybrown-100 font-satoshi absolute left-[1px] top-[101px] flex h-[121px] w-[279px] flex-col items-start justify-start gap-[7px] text-lg">
+                <div className="relative font-medium capitalize">
+                  Inscrivez-vous
+                </div>
+                <div className="text-slategray relative inline-block w-[279px] text-base leading-[30px] tracking-[-0.02em]">
+                  His defective nor convinced residence own. Connection has put
+                  impossible own apartments boisterous.
+                </div>
+              </div>
+              <div className="absolute left-[0px] top-[13px] box-border flex h-16 w-16 flex-col items-start justify-start rounded-xl bg-white p-5">
+                <div className="rounded-3xs bg-silver relative h-[23px] w-[23px]" />
+              </div>
+            </div>
+          </div>
+          {/* <div className="md:absolute md:left-[927.5px] flex top-[0px] md:h-[222px] w-[280px]">
             <div className="absolute left-[159px] top-[0px] font-black leading-[204px] tracking-[-0.02em] opacity-[0.05]">
               3
             </div>
@@ -474,10 +447,12 @@ export default function Home() {
             <div className="absolute left-[0px] top-[13px] box-border flex h-16 w-16 flex-col items-start justify-start rounded-xl bg-white p-5">
               <div className="rounded-3xs bg-silver relative h-[23px] w-[23px]" />
             </div>
-          </div>
+          </div> */}
         </div>
+
+        {/* //!Keep This one for last} */}
       </div>
-      <div className="z-[10] flex flex-col items-center justify-start gap-[54px] text-center max-w-screen-xl">
+      <div className="z-1 flex flex-col items-center justify-start gap-[54px] text-center max-w-screen-xl">
         <div className="flex  max-w-[771px] flex-col items-center justify-start gap-[94px]">
           <div className="relative inline-block  max-w-[752px] shrink-0 font-medium">
             <span className="tracking-[-1px]">Rejoignez des mil</span>l
@@ -499,26 +474,11 @@ export default function Home() {
                     Faucibus eu condimentum maecenas sollicitudin vitae.
                   </div>
                 </div>
-                <div className="text-text-txt-tertiary font-headers-h2 hidden flex-row items-end justify-between self-stretch text-center text-sm">
-                  <div className="flex flex-col items-start justify-start">
-                    <div className="flex flex-col items-start justify-start">
-                      <div className="relative leading-[140%]">
-                        Show original
-                      </div>
-                      <div className="border-gray-3-level relative box-border h-px self-stretch border-t-[1px] border-solid" />
-                    </div>
-                  </div>
-                  <div className="flex flex-row items-start justify-start">
-                    <div className="relative leading-[140%]">22.03.2021</div>
-                  </div>
-                </div>
               </div>
               <div className="flex flex-row items-center justify-start gap-[10px] self-stretch px-0 pb-4 pt-0 text-sm">
-                <div className="flex flex-row items-start justify-start">
-                  <div className="rounded-29xl flex flex-col items-start justify-start overflow-hidden bg-[url('/-image@3x.png')] bg-cover bg-[top] bg-no-repeat">
-                    <div className="h-10 w-10" />
-                  </div>
-                </div>
+                <Avatar>
+                  <AvatarFallback>SC</AvatarFallback>
+                </Avatar>
                 <div className="flex flex-1 flex-col items-start justify-start">
                   <div className="flex flex-row items-start justify-start self-stretch">
                     <div className="relative flex-1 font-medium leading-[140%]">
@@ -541,11 +501,9 @@ export default function Home() {
                   <div className="relative flex-1 leading-[140%]">{`Volutpat nec, dictumst adipiscing mauris molestie a. Proin sit libero tristique suspendisse. `}</div>
                 </div>
                 <div className="flex flex-row items-center justify-start gap-[10px] self-stretch px-0 pb-4 pt-0">
-                  <div className="flex flex-row items-start justify-start">
-                    <div className="rounded-29xl flex flex-col items-start justify-start overflow-hidden bg-[url('/-image1@3x.png')] bg-cover bg-[top] bg-no-repeat">
-                      <div className="h-10 w-10" />
-                    </div>
-                  </div>
+                  <Avatar>
+                    <AvatarFallback>SC</AvatarFallback>
+                  </Avatar>
                   <div className="flex flex-1 flex-col items-start justify-start">
                     <div className="flex flex-row items-start justify-start self-stretch">
                       <div className="relative flex-1 font-medium leading-[140%]">
@@ -584,11 +542,9 @@ export default function Home() {
               </div>
             </div>
             <div className="flex flex-row items-center justify-start gap-[10px] self-stretch px-0 pb-4 pt-0 text-sm">
-              <div className="flex flex-row items-start justify-start">
-                <div className="rounded-29xl flex flex-col items-start justify-start overflow-hidden bg-[url('/-image2@3x.png')] bg-cover bg-[top] bg-no-repeat">
-                  <div className="h-10 w-10" />
-                </div>
-              </div>
+              <Avatar>
+                <AvatarFallback>SC</AvatarFallback>
+              </Avatar>
               <div className="flex flex-1 flex-col items-start justify-start">
                 <div className="flex flex-row items-start justify-start self-stretch">
                   <div className="relative flex-1 font-medium leading-[140%]">
@@ -610,11 +566,9 @@ export default function Home() {
                   <div className="relative flex-1 leading-[140%]">{`There’s no other program that walks you through exactly what you need to know to start an online store fast, written by someone who has built several 7-figure ecommerce businesses from scratch. `}</div>
                 </div>
                 <div className="flex flex-row items-center justify-start gap-[10px] self-stretch px-0 pb-4 pt-0">
-                  <div className="flex flex-row items-start justify-start">
-                    <div className="rounded-29xl flex flex-col items-start justify-start overflow-hidden bg-[url('/-image3@3x.png')] bg-cover bg-[top] bg-no-repeat">
-                      <div className="h-10 w-10" />
-                    </div>
-                  </div>
+                  <Avatar>
+                    <AvatarFallback>SC</AvatarFallback>
+                  </Avatar>
                   <div className="flex flex-1 flex-col items-start justify-start">
                     <div className="flex flex-row items-start justify-start self-stretch">
                       <div className="relative flex-1 font-medium leading-[140%]">
@@ -654,11 +608,9 @@ export default function Home() {
               </div>
               <div className="flex flex-col items-start justify-start self-stretch text-sm">
                 <div className="flex flex-row items-center justify-start gap-[10px] self-stretch px-0 pb-4 pt-0">
-                  <div className="flex flex-row items-start justify-start">
-                    <div className="rounded-29xl flex flex-col items-start justify-start overflow-hidden bg-[url('/-image4@3x.png')] bg-cover bg-[top] bg-no-repeat">
-                      <div className="h-10 w-10" />
-                    </div>
-                  </div>
+                  <Avatar>
+                    <AvatarFallback>SC</AvatarFallback>
+                  </Avatar>
                   <div className="flex flex-1 flex-col items-start justify-start">
                     <div className="flex flex-row items-start justify-start self-stretch">
                       <div className="relative flex-1 font-medium leading-[140%]">
@@ -684,11 +636,9 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex flex-row items-center justify-start gap-[10px] self-stretch px-0 pb-4 pt-0 text-sm">
-                <div className="flex flex-row items-start justify-start">
-                  <div className="rounded-29xl flex flex-col items-start justify-start overflow-hidden bg-[url('/-image5@3x.png')] bg-cover bg-[top] bg-no-repeat">
-                    <div className="h-10 w-10" />
-                  </div>
-                </div>
+                <Avatar>
+                  <AvatarFallback>SC</AvatarFallback>
+                </Avatar>
                 <div className="flex flex-1 flex-col items-start justify-start">
                   <div className="flex flex-row items-start justify-start self-stretch">
                     <div className="relative flex-1 font-medium leading-[140%]">
@@ -710,61 +660,31 @@ export default function Home() {
         <div className="flex flex-col items-center justify-start">
           <div className="relative font-medium">We know you are curious!</div>
         </div>
-        <div className="flex w-[1040px] flex-col items-start justify-start gap-[26px] text-left text-xl text-gray-500">
-          <div className="flex flex-col items-start justify-start gap-[30px] self-stretch">
-            <div className="flex flex-row items-center justify-between self-stretch">
-              <div className="flex flex-col items-start justify-start gap-[12px]">
-                <div className="relative leading-[24px] tracking-[0.01em]">
-                  How do I choose the right supplement for my needs?
-                </div>
-                <div className="relative inline-block w-[939px] text-lg leading-[22px] tracking-[0.5px] text-gray-800">
-                  We offer a personalized quiz that takes into account your
-                  specific health goals, dietary preferences, and lifestyle
-                  factors. Based on your responses, we provide tailored
-                  recommendations to help you find the supplements that best
-                  suit your needs.
-                </div>
-              </div>
-              <Image
-                className="relative h-6 w-6 shrink-0 overflow-hidden"
-                alt=""
-                src="/iconchevronup1.svg"
-                width={0}
-                height={0}
-                sizes="100vw"
-              />
-            </div>
-            <div className="border-gainsboro relative box-border h-px self-stretch border-t-[1px] border-solid" />
-            <div className="flex flex-row items-center justify-between self-stretch">
-              <div className="relative leading-[24px] tracking-[0.01em]">
-                Can I take multiple supplements together?
-              </div>
-              <Image
-                className="relative h-6 w-6 shrink-0 overflow-hidden"
-                alt=""
-                src="/iconchevrondown1.svg"
-                width={0}
-                height={0}
-                sizes="100vw"
-              />
-            </div>
-            <div className="border-gainsboro relative box-border h-px self-stretch border-t-[1px] border-solid" />
-            <div className="flex flex-row items-center justify-between self-stretch">
-              <div className="relative leading-[24px] tracking-[0.01em]">
-                Are your supplements suitable for vegetarians/vegans?
-              </div>
-              <Image
-                className="relative h-6 w-6 shrink-0 overflow-hidden"
-                alt=""
-                src="/iconchevrondown1.svg"
-                width={0}
-                height={0}
-                sizes="100vw"
-              />
-            </div>
-            <div className="border-gainsboro relative box-border h-px self-stretch border-t-[1px] border-solid" />
-          </div>
-          <div />
+        <div className="w-full text-base max-w-screen-sm">
+          <Accordion
+            type="single"
+            collapsible
+            className="cursor-pointer  py-2  font-Syne font-[400] tracking-tight  text-lg text-black bg-white px-3 rounded-md"
+          >
+            <AccordionItem value="item-1">
+              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionContent className=" flex items-start">
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionContent className=" flex items-start">
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionContent className=" flex items-start">
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </div>
       <div className="z-[12] flex flex-col items-start justify-start p-2.5 w-full   text-white max-w-screen-xl ">
@@ -784,7 +704,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="font-plus-jakarta-sans flex flex-col items-start justify-start gap-[32px] px-0 pb-0 pt-[31px] text-center text-xl text-black">
+          <div className="font-plus-jakarta-sans flex flex-col w-full items-start justify-start gap-[32px] px-0 pb-0 pt-[31px] text-center text-xl text-black">
             <div className="flex flex-row items-start justify-start gap-[291px]">
               <div className="flex flex-col items-start justify-start gap-[14px]">
                 <div className="relative">
@@ -795,7 +715,7 @@ export default function Home() {
                   Streamline inventory management and order fulfillment.
                 </div>
               </div>
-              <div className="font-headers-h2 flex flex-row items-start justify-center gap-[90px] text-left">
+              <div className="font-headers-h2 flex flex-col md:flex-row items-start justify-center gap-[90px] text-left">
                 <div className="flex flex-col items-start justify-start gap-[12px]">
                   <div className="relative font-medium leading-[30px]">
                     Product

@@ -19,7 +19,7 @@ const NavBar: FC<NavBarProps> = () => {
   const { currentUser } = useAppStore();
 
   return (
-    <nav className="font-plus-jakarta-sans flex flex-row items-center justify-between self-stretch border-b-[1px] border-solid border-gray-600 px-8 md:px-[88px] py-[7px] text-xl text-black">
+    <nav className="font-plus-jakarta-sans flex flex-row sticky inset-0 bg-white  z-10 items-center justify-between self-stretch border-b-[1px] border-solid border-gray-600 px-8 md:px-[88px] py-[7px] text-xl text-black">
       <div className="flex w-[129.82px] flex-col items-center justify-center">
         <Link
           href={'/'}
