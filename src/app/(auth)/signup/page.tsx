@@ -27,6 +27,7 @@ import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { useSignUp } from '@/hooks/useSignUp';
+import Link from 'next/link';
 export default function SignupPage() {
   const form = useForm<RegisterSchemaType>({
     resolver: zodResolver(RegisterSchema),
@@ -41,27 +42,28 @@ export default function SignupPage() {
     });
   };
   return (
-    <main className="max-w-screen mx-8 flex h-full    md:justify-center   ">
-      <div className="hidden h-full w-1/2 items-center py-5  lg:flex">
-        <Image
-          className="my-2 h-full max-h-[750px] w-full max-w-[633px]  rounded-2xl "
-          src="https://ik.imagekit.io/zb5z1u26qn/LegalOne/legaloneSigninPic.jpeg?updatedAt=1692030316256"
-          alt=""
-          width={0}
-          height={0}
-          sizes="100vw"
-          placeholder="blur"
-          blurDataURL="https://ik.imagekit.io/zb5z1u26qn/LegalOne/legaloneSigninPic.jpeg?updatedAt=1692030316256"
-        />
-      </div>
-      <div className="flex-col justify-center py-10  md:mx-10 lg:w-1/2 lg:items-center lg:py-10 ">
-        <Button
-          className="px-0 text-black hover:no-underline"
-          variant={'link'}
-        >
-          <ChevronLeft size={24} />
-          Retour
-        </Button>
+    <main className="max-w-screen mx-8 flex h-full  relative  md:justify-center   ">
+      <Image
+        className="my-2 h-full hidden  inset-0  lg:fixed lg:block lg:w-1/2 "
+        src="https://ik.imagekit.io/zb5z1u26qn/LegalOne/legaloneSigninPic.jpeg?updatedAt=1692030316256"
+        alt=""
+        width={0}
+        height={0}
+        sizes="100vw"
+        placeholder="blur"
+        blurDataURL="https://ik.imagekit.io/zb5z1u26qn/LegalOne/legaloneSigninPic.jpeg?updatedAt=1692030316256"
+      />
+
+      <div className="flex-col justify-center py-10  md:mx-10  lg:absolute lg:inset-x-2/4 overflow-y-auto   lg:mx-10  lg:w-[calc(50%-100px)] lg:items-center lg:py-10 ">
+        <Link href="/">
+          <Button
+            className="px-0 text-black hover:no-underline"
+            variant={'link'}
+          >
+            <ChevronLeft size={24} />
+            Retour
+          </Button>
+        </Link>
 
         <Image
           className="my-2 h-36 w-full rounded-2xl md:hidden"
@@ -78,7 +80,7 @@ export default function SignupPage() {
         </h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="my-5 flex flex-col gap-4">
+            <div className="my-5 flex flex-col gap-4 mx-2">
               <p className="text-sm font-normal leading-tight text-slate-500">
                 Accédez à votre espace personnel en toute sécurité,
                 Connectez-vous maintenant !
