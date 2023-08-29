@@ -1,26 +1,32 @@
 import { FC } from 'react';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from './hover-card';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hover-card';
 import Link from 'next/link';
 import Image from 'next/image';
 interface ServiceCardProps {
   title: string;
   image: string;
+  links: Links[];
 }
 interface ServicesContentProps {
-  Links: number[];
+  Links: Links[];
+}
+interface Links {
+  id: number;
+  title: string;
+  url: string;
 }
 
 const ServicesContent = ({ Links }: ServicesContentProps) => {
   return (
     <div className="max-w-md w-full flex flex-wrap">
       {Links.length > 0
-        ? Links?.map((link: number, idx: number) => (
+        ? Links?.map((link: Links, idx: number) => (
             <Link
               key={idx}
-              href={''}
-              className="w-1/2 text-sm font-semibold hover:bg-slate-100 py-2 rounded"
+              href={link.url}
+              className="w-1/2 text-sm font-semibold hover:bg-slate-100 p-2 rounded text-start"
             >
-              Create sass
+              {link.title}
             </Link>
           ))
         : null}
@@ -31,6 +37,7 @@ const ServicesContent = ({ Links }: ServicesContentProps) => {
 const ServiceCard: FC<ServiceCardProps> = ({
   title,
   image,
+  links,
 }: ServiceCardProps) => {
   return (
     <HoverCard openDelay={100}>
@@ -57,7 +64,7 @@ const ServiceCard: FC<ServiceCardProps> = ({
         side="top"
         className="max-w-md w-full"
       >
-        <ServicesContent Links={[1, 2, 3, 4]} />
+        <ServicesContent Links={links} />
       </HoverCardContent>
     </HoverCard>
   );

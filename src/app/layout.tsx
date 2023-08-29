@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google';
 import Providers from './Providers';
 import { Toaster } from '@/components/ui/toaster';
 import NavBar from '@/components/NavBar';
+import NextTopLoader from 'nextjs-toploader';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -21,6 +23,12 @@ export default function RootLayout({
       <body className={`${inter.className} debug-screens`}>
         <Providers>
           <NavBar />
+
+          <NextTopLoader
+            showSpinner={false}
+            easing="ease-in-out"
+            color="#e48634"
+          />
           {children}
         </Providers>
         <Toaster />

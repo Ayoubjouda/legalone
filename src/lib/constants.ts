@@ -7,7 +7,7 @@ export const LINKS_DATA = [
   {
     id: 2,
     title: 'Créer ma SAS',
-    url: '/creer-ma-sas',
+    url: '/createsaas',
   },
   {
     id: 3,

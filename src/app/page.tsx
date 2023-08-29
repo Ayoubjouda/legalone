@@ -7,16 +7,13 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from '@/components/ui/hover-card';
-import ServiceCard from '@/components/ui/ServiceCard';
+
+import ServiceCard from '@/components/ServiceCard';
 import Link from 'next/link';
+import { LINKS_DATA } from '@/lib/constants';
 export default function Home() {
   return (
-    <div className="text-29xl font-headers-h2 relative  flex max-w-screen w-full flex-col items-center justify-start gap-[219px] overflow-hidden bg-gray-100 px-0 py-[46px] text-left text-gray-300 ">
+    <div className="text-29xl z-0 font-headers-h2 relative  flex max-w-screen w-full flex-col items-center justify-start gap-[219px] overflow-hidden bg-gray-100 px-0 py-[46px] text-left text-gray-300 ">
       <Image
         className="absolute right-[1244px] top-[430px] z-[0] mx-[!important] my-0 h-6 w-6"
         alt=""
@@ -83,14 +80,17 @@ export default function Home() {
             <ServiceCard
               title="Créer mon entreprise"
               image="/icons8company-1.svg"
+              links={LINKS_DATA}
             />
             <ServiceCard
               title="Modifier mes Status"
               image="/icons8settings-1-11.svg"
+              links={LINKS_DATA}
             />
             <ServiceCard
               title="Fin de Mon Entreprise"
               image="/vector1.svg"
+              links={LINKS_DATA}
             />
           </div>
         </div>
@@ -656,15 +656,14 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="z-[11] flex flex-col max-w-screen-xl items-center w-full justify-center gap-[60px]   py-[120px] text-center">
+      <div className="z-[20] flex flex-col max-w-screen-xl items-center w-full justify-center gap-[60px]   py-[120px] text-center">
         <div className="flex flex-col items-center justify-start">
           <div className="relative font-medium">We know you are curious!</div>
         </div>
-        <div className="w-full text-base max-w-screen-sm">
+        <div className="w-full text-base max-w-screen-sm  mx-3">
           <Accordion
-            type="single"
-            collapsible
-            className="cursor-pointer  py-2  font-Syne font-[400] tracking-tight  text-lg text-black bg-white px-3 rounded-md"
+            type="multiple"
+            className="cursor-pointer  py-2  font-Syne font-[400] tracking-tight  text-lg text-black bg-slate-100 px-3 rounded-md "
           >
             <AccordionItem value="item-1">
               <AccordionTrigger>Is it accessible?</AccordionTrigger>
@@ -672,13 +671,13 @@ export default function Home() {
                 Yes. It adheres to the WAI-ARIA design pattern.
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="item-2">
+            <AccordionItem value="item-23">
               <AccordionTrigger>Is it accessible?</AccordionTrigger>
               <AccordionContent className=" flex items-start">
                 Yes. It adheres to the WAI-ARIA design pattern.
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="item-3">
+            <AccordionItem value="item-333">
               <AccordionTrigger>Is it accessible?</AccordionTrigger>
               <AccordionContent className=" flex items-start">
                 Yes. It adheres to the WAI-ARIA design pattern.
