@@ -1,4 +1,5 @@
-import { FC } from 'react';
+'use client';
+import { FC, Fragment, useEffect } from 'react';
 import {
   Box,
   Step,
@@ -23,6 +24,9 @@ import {
   FormSix,
 } from '@/components/Forms';
 import { ChevronLeft } from 'lucide-react';
+import useFormPersist from 'react-hook-form-persist';
+import { useFormContext } from 'react-hook-form';
+import useAppStore from '@/zustand/store';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
@@ -32,9 +36,29 @@ const steps = [
   { title: 'Third', description: 'Récapitulatif' },
 ];
 const Stepper: FC<StepperProps> = () => {
-  const { activeStep, goToNext, goToPrevious } = useSteps({
+  const { activeStep, goToNext, goToPrevious, setActiveStep } = useSteps({
     index: 0,
     count: steps.length,
+  });
+
+  const { watch, setValue, reset } = useFormContext();
+  const { setActiveStep: setStoredStep, activeStep: storedStep } =
+    useAppStore();
+  console.log(storedStep);
+  useEffect(() => {
+    setStoredStep(activeStep);
+  }, [activeStep]);
+  useEffect(() => {
+    if (storedStep !== 0) {
+      setActiveStep(storedStep);
+    }
+  }, []);
+
+  useFormPersist('storageKey', {
+    watch,
+    setValue,
+
+    storage: window.localStorage, // default window.sessionStorage
   });
 
   function getStepContent(step: number) {
@@ -84,9 +108,9 @@ const Stepper: FC<StepperProps> = () => {
     }
   }
   return (
-    <div className="max-w-screen flex  w-full flex-col items-center justify-center gap-10">
+    <div className="max-w-screen-xl flex  w-full flex-col items-center justify-center gap-5">
       {activeStep !== 0 && (
-        <div className="ml-32 flex w-full">
+        <div className="ml-32 flex  w-full">
           <Button
             className="px-0 text-black hover:no-underline"
             variant={'link'}

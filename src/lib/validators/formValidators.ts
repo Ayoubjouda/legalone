@@ -74,7 +74,9 @@ export const saasFormSchema = z.object({
   companyType: z
     .string()
     .min(2, { message: 'Must have at Least 2 characters' }),
-  creationDelay: z.string().min(2),
+  creationDelay: z
+    .string()
+    .min(2, { message: 'Must select at least one option' }),
   activityField: z.object({
     id: z.number(),
     name: z.string().min(2),

@@ -12,11 +12,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-
+import { usePathname } from 'next/navigation';
 interface NavBarProps {}
 
 const NavBar: FC<NavBarProps> = () => {
   const { currentUser } = useAppStore();
+  const pathname = usePathname();
 
   return (
     <nav className="font-plus-jakarta-sans flex flex-row sticky inset-0 bg-white  z-10 items-center justify-between self-stretch border-b-[1px] border-solid border-gray-600 px-8 md:px-[88px] py-[7px] text-xl text-black">
@@ -62,7 +63,13 @@ const NavBar: FC<NavBarProps> = () => {
                 Outils et guides
               </Link>
             </div>
-            {currentUser ? (
+            {pathname === '/createsaas' ? (
+              <div className="text-sandybrown-100 flex flex-row items-start justify-start cursor-pointer">
+                <div className="border-sandybrown-100 flex flex-row items-start justify-start overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
+                  <div className="relative font-semibold">07 76 67 87 67</div>
+                </div>
+              </div>
+            ) : currentUser ? (
               <UserNav currentUser={currentUser} />
             ) : (
               <div className="flex justify-center items-center gap-4">
@@ -72,7 +79,7 @@ const NavBar: FC<NavBarProps> = () => {
                 >
                   Se Connecter
                 </Link>
-                <div className="text-sandybrown-100 flex flex-row items-start justify-start">
+                <div className="text-sandybrown-100 flex flex-row items-start justify-start cursor-pointer">
                   <div className="border-sandybrown-100 flex flex-row items-start justify-start overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
                     <div className="relative font-semibold">07 76 67 87 67</div>
                   </div>

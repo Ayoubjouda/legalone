@@ -454,7 +454,7 @@ export default function Home() {
       </div>
       <div className="z-1 flex flex-col items-center justify-start gap-[54px] text-center max-w-screen-xl">
         <div className="flex  max-w-[771px] flex-col items-center justify-start gap-[94px]">
-          <div className="relative inline-block  max-w-[752px] shrink-0 font-medium">
+          <div className="relative inline-block text-4xl lg:text-5xl  max-w-[752px] shrink-0 font-medium">
             <span className="tracking-[-1px]">Rejoignez des mil</span>l
             <span className="tracking-[-1px]">
               iers de clients satisfaits !
@@ -660,26 +660,42 @@ export default function Home() {
         <div className="flex flex-col items-center justify-start">
           <div className="relative font-medium">We know you are curious!</div>
         </div>
-        <div className="w-full text-base max-w-screen-sm  mx-3">
+        <div className="w-full text-base max-w-screen-md  mx-3">
           <Accordion
             type="multiple"
-            className="cursor-pointer  py-2  font-Syne font-[400] tracking-tight  text-lg text-black bg-slate-100 px-3 rounded-md "
+            className="cursor-pointer  pt-2  font-Syne font-[400] tracking-tight  text-lg text-black bg-orange-50  rounded-md "
+            defaultValue={['item-1']}
           >
-            <AccordionItem value="item-1">
+            <AccordionItem
+              value="item-1"
+              className="px-3"
+            >
+              <AccordionTrigger>
+                How do I choose the right supplement for my needs?
+              </AccordionTrigger>
+              <AccordionContent className=" flex items-start text-start text-base">
+                We offer a personalized quiz that takes into account your
+                specific health goals, dietary preferences, and lifestyle
+                factors. Based on your responses, we provide tailored
+                recommendations to help you find the supplements that best suit
+                your needs.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem
+              value="item-23"
+              className="px-3"
+            >
               <AccordionTrigger>Is it accessible?</AccordionTrigger>
-              <AccordionContent className=" flex items-start">
+              <AccordionContent className=" flex items-start text-start text-base">
                 Yes. It adheres to the WAI-ARIA design pattern.
               </AccordionContent>
             </AccordionItem>
-            <AccordionItem value="item-23">
+            <AccordionItem
+              value="item-333"
+              className="px-3"
+            >
               <AccordionTrigger>Is it accessible?</AccordionTrigger>
-              <AccordionContent className=" flex items-start">
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-333">
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
-              <AccordionContent className=" flex items-start">
+              <AccordionContent className=" flex items-start text-start text-base">
                 Yes. It adheres to the WAI-ARIA design pattern.
               </AccordionContent>
             </AccordionItem>
@@ -698,13 +714,13 @@ export default function Home() {
                 notre application. Inscrivez-vous dès aujourd'hui pour commencer
                 gratuitement !
               </div>
-              <div className="text-chocolate font-button-nav  flex max-w-[184px] flex-row items-center justify-center overflow-hidden rounded-md bg-white px-[18px] py-2.5 text-base">
+              <div className="text-chocolate font-button-nav  flex max-w-[184px] flex-row items-center justify-center overflow-hidden rounded-md bg-white px-[18px] py-2.5 text-base cursor-pointer">
                 <div className="relative font-semibold">Commencez</div>
               </div>
             </div>
           </div>
           <div className="font-plus-jakarta-sans flex flex-col w-full items-start justify-start gap-[32px] px-0 pb-0 pt-[31px] text-center text-xl text-black">
-            <div className="flex flex-row items-start justify-start gap-[291px]">
+            <div className="flex flex-col gap-10 lg:flex-row items-start justify-start lg:gap-[291px]">
               <div className="flex flex-col items-start justify-start gap-[14px]">
                 <div className="relative">
                   <span>Legal</span>

@@ -9,6 +9,7 @@ interface PackProps {
   description: string;
   price: string;
   elements: packElement[];
+  selected: boolean;
   onButtonClick?: () => void;
 }
 interface PercksProps {
@@ -37,12 +38,16 @@ const Pack: FC<PackProps> = ({
   elements,
   type,
   onButtonClick,
+  selected,
 }) => {
   return (
     <div
       className={cn(
-        'flex min-h-[550px] max-w-[400px] flex-col justify-between rounded-2xl border border-gray-400 border-opacity-50 p-6 ',
-        { 'border-orange-500 shadow-orange-500': type === 'PremiumPackage' }
+        'flex min-h-[550px] max-w-[400px] flex-col justify-between rounded-2xl border border-gray-400 border-opacity-50 p-6  box-border',
+        { 'border-orange-500 shadow-orange-500': type === 'PremiumPackage' },
+        {
+          ' border-primary border-2': selected,
+        }
       )}
     >
       <div className="flex flex-col gap-6">
@@ -70,11 +75,14 @@ const Pack: FC<PackProps> = ({
       <div className="flex justify-center">
         <Button
           variant={'outline'}
-          className="border-black px-12 font-semibold"
+          className={cn('border-black px-12 font-semibold', {
+            'bg-primary border-primary  text-white hover:bg-orange-400 hover:text-white':
+              selected,
+          })}
           onClick={onButtonClick}
           type="button"
         >
-          Choisir
+          {selected ? 'Sélectionné' : 'Choisir'}
         </Button>
       </div>
     </div>

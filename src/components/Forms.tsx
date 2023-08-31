@@ -19,6 +19,7 @@ import api from '@/lib/axiosConfig';
 import { Spinner } from '@chakra-ui/react';
 import CheckoutForm from './CheckoutForm';
 import Checkout from './Checkout';
+import { ErrorMessage } from '@hookform/error-message';
 
 interface FormProps {
   goToNext: () => void;
@@ -36,9 +37,8 @@ const DetailItem = ({ title, value }: { title: string; value: string }) => {
   );
 };
 
-export const FormOne = ({ goToNext, goToPrevious }: FormProps) => {
+export const FormOne = ({ goToNext }: FormProps) => {
   const { control, trigger } = useFormContext();
-
   return (
     <form className="max-w-[650px]">
       <div className="my-5 flex flex-col gap-4">
@@ -147,7 +147,7 @@ export const FormOne = ({ goToNext, goToPrevious }: FormProps) => {
               'firstName',
               'lastName',
               'email',
-              'phoneNumber',
+              'phone',
               'companyName',
             ]);
             if (isValid) {
@@ -163,8 +163,15 @@ export const FormOne = ({ goToNext, goToPrevious }: FormProps) => {
 };
 
 export const FormTwo = ({ goToNext, goToPrevious }: FormProps) => {
-  const { setValue, control, trigger } = useFormContext();
-  const [selected, setselected] = useState<number | null>(null);
+  const {
+    setValue,
+    control,
+    trigger,
+    formState: { errors },
+    getValues,
+  } = useFormContext();
+  const creationDelay = getValues('creationDelay');
+  const [selected, setselected] = useState<string>(creationDelay);
   const handleSetValue = (newValue: string) => {
     setValue('creationDelay', newValue);
   };
@@ -185,6 +192,13 @@ export const FormTwo = ({ goToNext, goToPrevious }: FormProps) => {
           rules={{ required: true }}
         />
       </div>
+      <div className="flex justify-center text-red-500 font-semibold">
+        <ErrorMessage
+          errors={errors}
+          name="creationDelay"
+          render={({ message }) => <p>{message}</p>}
+        />
+      </div>
 
       <div className=" flex flex-row  gap-10">
         <IconBox
@@ -192,27 +206,27 @@ export const FormTwo = ({ goToNext, goToPrevious }: FormProps) => {
           image={'/fast.svg'}
           onClick={() => {
             handleSetValue('WEEKLY');
-            setselected(1);
+            setselected('WEEKLY');
           }}
-          className={cn({ 'border-orange-500': selected === 1 })}
+          className={cn({ 'border-orange-500': selected === 'WEEKLY' })}
         />
         <IconBox
           title="Dans la Semaine"
           image={'/calander.svg'}
           onClick={() => {
             handleSetValue('MONTHLY');
-            setselected(2);
+            setselected('MONTHLY');
           }}
-          className={cn({ 'border-orange-500': selected === 2 })}
+          className={cn({ 'border-orange-500': selected === 'MONTHLY' })}
         />
         <IconBox
           title="Je ne sais pas encore"
           image={'/doubt.svg'}
           onClick={() => {
             handleSetValue('je ne sais pas');
-            setselected(3);
+            setselected('je ne sais pas');
           }}
-          className={cn({ 'border-orange-500': selected === 3 })}
+          className={cn({ 'border-orange-500': selected === 'je ne sais pas' })}
         />
       </div>
       <Button
@@ -233,10 +247,14 @@ export const FormTwo = ({ goToNext, goToPrevious }: FormProps) => {
 };
 
 export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
-  const { setValue, control, trigger } = useFormContext();
-  const [selectedDomain, setselectedDomain] = useState<number | null>(null);
+  const { setValue, control, trigger, getValues } = useFormContext();
+  const values = getValues();
+
+  const [selectedDomain, setselectedDomain] = useState<number | null>(
+    values?.activityField?.id || null
+  );
   const [selectedPresident, setselectedPresident] = useState<string | null>(
-    null
+    values?.selectedManagerType || null
   );
   const { isLoading, data } = useQuery('packs', async () => {
     const data = (await api
@@ -248,9 +266,15 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
   const handleSetValue = (key: string, newValue: string | Activity) => {
     setValue(key, newValue);
   };
-  if (isLoading) return <Spinner color="orange.500" />;
+  if (isLoading)
+    return (
+      <div className="min-h-[300px] h-full w-full flex justify-center items-center">
+        <Spinner color="orange.500" />
+      </div>
+    );
+
   return (
-    <form className="flex max-w-[850px] flex-col gap-10">
+    <form className="flex max-w-[950px] flex-col gap-10">
       <div className="flex flex-col gap-10">
         <div className="hidden">
           <Controller
@@ -265,7 +289,7 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
           Quel est votre domaine d'activité ?
         </p>
 
-        <div className="flex  flex-wrap gap-10">
+        <div className="flex w-full  flex-wrap gap-10">
           {data ? (
             data?.map((item: Activity, idx: number) => (
               <Button
@@ -480,8 +504,11 @@ export const FormFour = ({ goToNext, goToPrevious }: FormProps) => {
 };
 
 export const FormFive = ({ goToNext, goToPrevious }: FormProps) => {
-  const { watch, register, control, setValue, trigger } = useFormContext();
-
+  const { control, setValue, trigger, getValues } = useFormContext();
+  const values = getValues();
+  const [selectedPack, setSelectedPack] = useState<Package | null>(
+    values.pack || null
+  );
   const { isLoading, data } = useQuery('packs', async () => {
     const data = (await api
       .get('package/getAllPackage')
@@ -489,13 +516,13 @@ export const FormFive = ({ goToNext, goToPrevious }: FormProps) => {
     return data;
   });
 
-  const watchAllFields = watch();
   const handleSetValue = (newValue: Package) => {
     setValue('pack', newValue);
+    setSelectedPack(newValue);
   };
-  if (isLoading) return <Spinner color="orange.500" />;
+  if (isLoading && !data) return <Spinner color="orange.500" />;
   return (
-    <form className="w-full ">
+    <form className="w-full flex flex-col gap-8">
       <div className="hidden">
         <Controller
           name="companyType"
@@ -517,11 +544,8 @@ export const FormFive = ({ goToNext, goToPrevious }: FormProps) => {
         {data?.map((item: Package, idx: number) => (
           <Pack
             key={idx}
-            description={item.description}
-            name={item.name}
-            price={item.price}
-            elements={item.elements}
-            type={item.type}
+            {...item}
+            selected={selectedPack?.id === item.id}
             onButtonClick={() => handleSetValue(item)}
           />
         ))}
@@ -642,7 +666,9 @@ export const FormSix = ({ goToNext, goToPrevious }: FormProps) => {
           </div>
         </div>
       </div>
-      <Checkout />
+      <div className="w-1/2">
+        <Checkout />
+      </div>
     </div>
   );
 };

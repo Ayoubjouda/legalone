@@ -11,15 +11,19 @@ import {
 } from '@stripe/stripe-js';
 import { Button } from './ui/button';
 import { Spinner } from '@chakra-ui/react';
+import { useFormContext } from 'react-hook-form';
+import useAppStore from '@/zustand/store';
+import { useRouter } from 'next/navigation';
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-
+  const { reset } = useFormContext();
   const [email, setEmail] = useState({ email: '' });
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const { setActiveStep } = useAppStore();
+  const router = useRouter();
   useEffect(() => {
     if (!stripe) {
       return;
@@ -40,8 +44,10 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: process.env.NEXT_PUBLIC_DOMAIN!,
+        // return_url: process.env.NEXT_PUBLIC_DOMAIN!,
+        return_url: 'http://localhost:3000',
       },
+      redirect: 'if_required',
     });
     console.log(error);
 
@@ -57,10 +63,12 @@ export default function CheckoutForm() {
     ) {
       setMessage(error?.message);
     } else {
-      setMessage('An unexpected error occurred.');
+      reset({}, { keepValues: false, keepDirty: false });
+      setIsLoading(false);
+      setActiveStep(0);
+      router.push('/');
     }
-
-    setIsLoading(false);
+    // window.localStorage.removeItem('storageKey');
   };
 
   const paymentElementOptions: StripePaymentElementOptions = {
