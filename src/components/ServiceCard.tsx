@@ -1,7 +1,9 @@
+'use client';
 import { FC } from 'react';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hover-card';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 interface ServiceCardProps {
   title: string;
   image: string;
@@ -39,10 +41,14 @@ const ServiceCard: FC<ServiceCardProps> = ({
   image,
   links,
 }: ServiceCardProps) => {
+  const router = useRouter();
   return (
     <HoverCard openDelay={100}>
       <HoverCardTrigger>
-        <div className="hover:border-sandybrown-100 box-border flex h-[88px] flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5 cursor-pointer">
+        <div
+          className="hover:border-sandybrown-100 box-border flex h-[88px] flex-col items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5 cursor-pointer"
+          onClick={() => router.push('/createcompany')}
+        >
           <Image
             className="relative h-[30px] w-[30px] shrink-0 overflow-hidden"
             alt=""

@@ -12,6 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import { Divider, Center } from '@chakra-ui/react';
 import { usePathname } from 'next/navigation';
 interface NavBarProps {}
 
@@ -63,6 +64,10 @@ const NavBar: FC<NavBarProps> = () => {
                 Outils et guides
               </Link>
             </div>
+            <Center height="50px">
+              <Divider orientation="vertical" />
+            </Center>
+
             {pathname === '/createsaas' ? (
               <div className="text-sandybrown-100 flex flex-row items-start justify-start cursor-pointer">
                 <div className="border-sandybrown-100 flex flex-row items-start justify-start overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">

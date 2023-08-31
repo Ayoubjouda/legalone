@@ -205,7 +205,7 @@ export default function Home() {
           </div>
         </div>
         <div className="font-button-nav relative  h-[504px]   w-full text-center text-xs ">
-          <div className="absolute right-[72px] top-[calc(50%_-_252px)] flex max-h-[476px] w-full  max-w-[483px] flex-col items-start justify-end">
+          <div className="lg:absolute lg:right-[72px] lg:top-[calc(50%_-_252px)] flex max-h-[476px] w-full  max-w-[483px] flex-col items-start justify-end">
             <div className="flex h-[479px]  lg:w-[423px] flex-col items-start justify-start">
               <div className="relative h-[138.39px] w-[140px] mix-blend-normal">
                 <div className="bg-soft-purple absolute left-[calc(50%_-_70px)] top-[calc(50%_-_69.19px)] h-[3.78px] w-[3.78px] rounded" />
@@ -310,7 +310,7 @@ export default function Home() {
                 <div className="bg-soft-purple absolute left-[calc(50%_+_66.22px)] top-[calc(50%_+_65.41px)] h-[3.78px] w-[3.78px] rounded" />
               </div>
               <Image
-                className="rounded-21xl relative mt-[-106px] max-h-[447px] h-full w-full max-w-[423px] mx-3 object-cover"
+                className="rounded-xl relative mt-[-106px] max-w-[340px] max-h-[447px] h-full w-full md:max-w-[423px] mx-3 object-cover"
                 alt=""
                 src="/pexelsphoto3205567-1@2x.png"
                 width={0}
@@ -376,7 +376,7 @@ export default function Home() {
             height={0}
             sizes="100vw"
           />
-          <div className=" md:absolute md:left-[124.5px] md:top-[0px]  md:h-[602px] w-[280px]  items-center justify-end ">
+          <div className=" md:absolute md:left-[124.5px] md:top-[380px]  md:h-[602px] w-[280px]  items-center justify-end ">
             <div className="relative h-[222px] w-[280px]">
               <div className="absolute left-[170px] top-[0px] font-black leading-[204px] tracking-[-0.02em] opacity-[0.05]">
                 1
@@ -663,12 +663,12 @@ export default function Home() {
         <div className="w-full text-base max-w-screen-md  mx-3">
           <Accordion
             type="multiple"
-            className="cursor-pointer  pt-2  font-Syne font-[400] tracking-tight  text-lg text-black bg-orange-50  rounded-md "
+            className="cursor-pointer  pt-2  font-Syne font-[400] tracking-tight  text-lg text-black bg-orange-50  rounded-md  "
             defaultValue={['item-1']}
           >
             <AccordionItem
               value="item-1"
-              className="px-3"
+              className="px-3 "
             >
               <AccordionTrigger>
                 How do I choose the right supplement for my needs?
