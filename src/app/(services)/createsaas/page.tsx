@@ -31,7 +31,6 @@ export default function CreateSaas() {
       associerNumber: '',
       selectedManagerType: '',
       shareCapital: '',
-      companyLocation: '',
       pack: {} as Package,
     },
   });

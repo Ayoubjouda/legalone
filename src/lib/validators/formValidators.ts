@@ -81,7 +81,6 @@ export const saasFormSchema = z.object({
     id: z.number(),
     name: z.string().min(2),
   }),
-
   president: z.string().min(2),
   associerNumber: z.string().min(2),
   selectedManagerType: z.string().min(2),
