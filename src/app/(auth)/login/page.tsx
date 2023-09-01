@@ -52,7 +52,7 @@ export default function LoginPage() {
         placeholder="blur"
         blurDataURL="https://ik.imagekit.io/zb5z1u26qn/LegalOne/legaloneSigninPic.jpeg?updatedAt=1692030316256"
       />
-      <div className="mt-10 flex-col justify-center fixed lg:inset-x-2/4   lg:mx-10 lg:mt-32 lg:w-[calc(50%-100px)] lg:items-center">
+      <div className="mt-10 flex-col justify-center lg:fixed lg:inset-x-2/4   lg:mx-10 lg:mt-32 lg:w-[calc(50%-100px)] lg:items-center">
         <Link href="/">
           <Button
             className="px-0 text-black hover:no-underline"

@@ -14,7 +14,7 @@ import { LINKS_DATA } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
 export default function CreateCompany() {
   return (
-    <div className="text-29xl z-0 font-headers-h2 relative  flex max-w-screen w-full flex-col items-center justify-start gap-[219px] overflow-hidden bg-gray-100 px-0 py-[46px] text-left text-gray-300 ">
+    <div className="text-29xl z-0 font-headers-h2 relative  flex max-w-screen w-full flex-col items-center justify-start gap-[219px] overflow-hidden bg-gray-100 px-8 py-[46px] text-left text-gray-300 ">
       <Image
         className="absolute my-0 mx-[!important] top-[430px] left-[1244px] w-6 h-6 z-[0]"
         alt=""
@@ -49,7 +49,7 @@ export default function CreateCompany() {
       />
       <div className="flex flex-row items-start justify-start gap-[10px] z-[4]">
         <div className="flex flex-col items-start justify-start lg:w-1/2 gap-[32px]">
-          <div className="max-w-[807px] h-56 flex flex-col items-start justify-start relative gap-[16px] mx-3">
+          <div className="max-w-[807px] flex flex-col items-start justify-start relative gap-[16px] mx-3">
             <div className="relative leading-[62px] text-3xl md:text-5xl font-semibold inline-block max-w-[746px] z-[0]">
               Lancez votre entreprise en ligne avec LegalCenter.
             </div>
@@ -77,7 +77,7 @@ export default function CreateCompany() {
             />
           </div>
           <div className="max-w-[816px] w-full overflow-hidden shrink-0 flex flex-col md:flex-row flex-wrap p-2.5 box-border md:items-start md:justify-start gap-[10px] text-center text-xl text-black">
-            <div className="rounded-2xl bg-white overflow-hidden flex flex-col flex-wrap py-[17px] px-5 items-center justify-center gap-[10px] cursor-pointer border-[1px] border-solid border-darkgray-100 hover:border-orange-500 transition-all ease-in-out duration-300">
+            <div className="rounded-2xl bg-white overflow-hidden basis-48  flex flex-col flex-wrap py-[17px] px-5 items-center justify-center gap-[10px] cursor-pointer border-[1px] border-solid border-darkgray-100 hover:border-orange-500 transition-all ease-in-out duration-300">
               <Image
                 className="relative w-10 h-10 object-cover"
                 alt=""
@@ -87,7 +87,7 @@ export default function CreateCompany() {
                 sizes="100vw"
               />
               <div className="flex flex-col items-center justify-center">
-                <div className="relative text-lg leading-[31px] font-semibold">
+                <div className="relative text-base font-semibold">
                   Auto-entrepreneur
                 </div>
                 <div className="relative text-xs leading-[31px] text-slategray-100 truncate max-w-[150px]">
@@ -95,7 +95,7 @@ export default function CreateCompany() {
                 </div>
               </div>
             </div>
-            <div className="rounded-2xl bg-white overflow-hidden flex flex-col py-[17px] px-5 items-center justify-center gap-[11px] cursor-pointer border-[1px] border-solid border-darkgray-100 hover:border-orange-500 transition-all ease-in-out duration-300">
+            <div className="rounded-2xl bg-white overflow-hidden basis-48 flex flex-col py-[17px]  items-center justify-center gap-[11px] cursor-pointer border-[1px] border-solid border-darkgray-100 hover:border-orange-500 transition-all ease-in-out duration-300">
               <Image
                 className="relative w-10 h-10 object-cover"
                 alt=""
@@ -105,7 +105,7 @@ export default function CreateCompany() {
                 sizes="100vw"
               />
               <div className="flex flex-col items-center justify-center">
-                <div className="relative leading-[31px] font-semibold text-lg">
+                <div className="relative  font-semibold text-base">
                   Entreprise individuelle
                 </div>
                 <div className="relative text-xs leading-[31px] text-slategray-100 truncate max-w-[150px]">
@@ -113,7 +113,7 @@ export default function CreateCompany() {
                 </div>
               </div>
             </div>
-            <div className="rounded-2xl bg-white overflow-hidden flex flex-col py-[17px] px-5 items-center justify-center gap-[10px] cursor-pointer border-[1px] border-solid border-silver-200 hover:border-orange-500 transition-all ease-in-out duration-300">
+            <div className="rounded-2xl bg-white overflow-hidden flex flex-col basis-48 py-[17px] px-5 items-center justify-center gap-[10px] cursor-pointer border-[1px] border-solid border-silver-200 hover:border-orange-500 transition-all ease-in-out duration-300">
               <Image
                 className="relative w-10 h-10 object-cover"
                 alt=""
@@ -123,7 +123,7 @@ export default function CreateCompany() {
                 sizes="100vw"
               />
               <div className="flex flex-col items-center justify-center">
-                <div className="relative leading-[31px] font-semibold text-lg">
+                <div className="relative  font-semibold text-base">
                   SAS/SASU
                 </div>
                 <div className="relative text-xs leading-[31px] text-slategray-100 truncate max-w-[150px]">
@@ -131,7 +131,7 @@ export default function CreateCompany() {
                 </div>
               </div>
             </div>
-            <div className="rounded-2xl bg-white overflow-hidden flex flex-col py-[17px] px-5 items-center justify-center gap-[10px] cursor-pointer border-[1px] border-solid border-darkgray-100 hover:border-orange-500 transition-all ease-in-out duration-300">
+            <div className="rounded-2xl bg-white overflow-hidden flex basis-48 flex-col py-[17px] px-5 items-center justify-center gap-[10px] cursor-pointer border-[1px] border-solid border-darkgray-100 hover:border-orange-500 transition-all ease-in-out duration-300">
               <Image
                 className="relative w-10 h-10 object-cover"
                 alt=""
@@ -141,7 +141,7 @@ export default function CreateCompany() {
                 sizes="100vw"
               />
               <div className="flex flex-col items-center justify-center">
-                <div className="relative leading-[31px] font-semibold text-lg">
+                <div className="relative  font-semibold text-base">
                   SARL/EURL
                 </div>
                 <div className="relative text-xs leading-[31px] text-slategray-100 truncate max-w-[150px]">
@@ -149,7 +149,7 @@ export default function CreateCompany() {
                 </div>
               </div>
             </div>
-            <div className="rounded-2xl bg-white overflow-hidden flex flex-col py-[17px] px-5 items-center justify-center gap-[10px] cursor-pointer border-[1px] border-solid border-darkgray-100 hover:border-orange-500 transition-all ease-in-out duration-300">
+            <div className="rounded-2xl bg-white overflow-hidden flex basis-48 flex-col py-[17px] px-5 items-center justify-center gap-[10px] cursor-pointer border-[1px] border-solid border-darkgray-100 hover:border-orange-500 transition-all ease-in-out duration-300">
               <Image
                 className="relative w-10 h-10 object-cover"
                 alt=""
@@ -159,9 +159,7 @@ export default function CreateCompany() {
                 sizes="100vw"
               />
               <div className="flex flex-col items-center justify-center">
-                <div className="relative leading-[31px] font-semibold text-lg">
-                  SCI
-                </div>
+                <div className="relative font-semibold text-base">SCI</div>
                 <div className="relative text-xs leading-[31px] text-slategray-100 truncate max-w-[150px]">
                   Gestion simplifiée pour lancer un projet
                 </div>
@@ -263,38 +261,36 @@ export default function CreateCompany() {
           </div>
         </div>
         <div className="max-w-[1321px] flex flex-col items-center justify-center gap-[95px]  text-gray-900">
-          <div className="max-w-[1270px] w-full flex flex-col lg:flex-row lg:items-start justify-start gap-[77px]">
-            <div className="self-stretch flex-1 flex flex-row items-start justify-center">
-              <div className="self-stretch rounded-xl bg-white flex flex-col py-5 px-[27px] items-center justify-start gap-10">
-                <Image
-                  className="relative w-24 h-24 overflow-hidden shrink-0"
-                  alt=""
-                  src="/icons8conflict-1.svg"
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                />
-                <b className="relative tracking-[-0.03em] text-2xl leading-[30px]">
-                  La rapidité
-                </b>
-                <div className="relative text-base text-slate-600 tracking-[-0.02em] leading-[30px] font-medium font-inherit text-slategray-200 inline-block max-w-[318px]  text-start ">
-                  <p className="m-0">
-                    Vous démarrez votre projet plus rapidement :
-                  </p>
-                  <ul className="m-0 pl-5">
-                    <li className="mb-0">
-                      Votre dossier est traité et envoyé au greffe par notre
-                      équipe sous 24h
-                    </li>
-                    <li>
-                      Nous accélérons votre démarche grâce à notre réseau de
-                      partenaires
-                    </li>
-                  </ul>
-                </div>
+          <div className="max-w-[1270px] w-full flex  flex-col lg:flex-row lg:items-start justify-center gap-10">
+            <div className="rounded-xl bg-white flex flex-col py-5 px-[27px] basis-96  items-center justify-start gap-10">
+              <Image
+                className="relative w-24 h-24 overflow-hidden shrink-0"
+                alt=""
+                src="/icons8conflict-1.svg"
+                width={0}
+                height={0}
+                sizes="100vw"
+              />
+              <b className="relative tracking-[-0.03em] text-2xl leading-[30px]">
+                La rapidité
+              </b>
+              <div className="relative text-base text-slate-600 tracking-[-0.02em] leading-[30px] font-medium font-inherit text-slategray-200 inline-block max-w-[318px]  text-start ">
+                <p className="m-0">
+                  Vous démarrez votre projet plus rapidement :
+                </p>
+                <ul className="m-0 pl-5">
+                  <li className="mb-0">
+                    Votre dossier est traité et envoyé au greffe par notre
+                    équipe sous 24h
+                  </li>
+                  <li>
+                    Nous accélérons votre démarche grâce à notre réseau de
+                    partenaires
+                  </li>
+                </ul>
               </div>
             </div>
-            <div className="flex flex-row items-start justify-center">
+            <div className="flex flex-row items-start justify-center  basis-96">
               <div className="rounded-xl bg-white flex flex-col py-5 px-[27px] items-center justify-start gap-10">
                 <Image
                   className="relative w-24 h-24 overflow-hidden shrink-0"
@@ -320,8 +316,8 @@ export default function CreateCompany() {
                 </div>
               </div>
             </div>
-            <div className="flex-1 flex flex-row items-center justify-center">
-              <div className="flex-1 rounded-xl bg-white flex flex-col py-5 px-[27px] items-center justify-start gap-10">
+            <div className="flex flex-row items-center justify-center basis-96">
+              <div className=" rounded-xl bg-white flex flex-col py-5 px-[27px] items-center justify-start gap-10">
                 <Image
                   className="relative w-24 h-24 overflow-hidden shrink-0"
                   alt=""

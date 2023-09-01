@@ -26,12 +26,12 @@ export default function CreateSaas() {
       companyName: '',
       companyType: 'SARL',
       creationDelay: '',
-      activityField: {} as Activity,
+      // activityField: {} as Activity,
       president: '',
       associerNumber: '',
       selectedManagerType: '',
       shareCapital: '',
-      pack: {} as Package,
+      // pack: {} as Package,
     },
   });
 

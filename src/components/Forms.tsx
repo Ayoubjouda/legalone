@@ -243,7 +243,6 @@ export const FormTwo = ({ goToNext, goToPrevious }: FormProps) => {
         type="button"
         onClick={async () => {
           const isValid = await trigger(['creationDelay']);
-          console.log(isValid);
           if (isValid) {
             goToNext();
           }
@@ -256,9 +255,15 @@ export const FormTwo = ({ goToNext, goToPrevious }: FormProps) => {
 };
 
 export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
-  const { setValue, control, trigger, getValues } = useFormContext();
+  const {
+    setValue,
+    control,
+    trigger,
+    getValues,
+    formState: { errors },
+  } = useFormContext();
   const values = getValues();
-
+  console.log(values);
   const [selectedDomain, setselectedDomain] = useState<number | null>(
     values?.activityField?.id || null
   );
@@ -281,7 +286,7 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
         <Spinner color="orange.500" />
       </div>
     );
-
+  console.log(errors);
   return (
     <form className="flex max-w-[950px] justify-center items-center flex-col gap-10">
       <div className="flex flex-col justify-center items-center gap-10">
@@ -297,6 +302,13 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
         <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
           Quel est votre domaine d'activité ?
         </p>
+        <div className="flex justify-center text-red-500 font-semibold">
+          <ErrorMessage
+            errors={errors}
+            name="activityField"
+            render={({ message }) => <p>{message}</p>}
+          />
+        </div>
 
         <div className="flex w-full  justify-center   flex-wrap gap-10">
           {data ? (
@@ -341,7 +353,13 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
         <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
           Qui sera président de la société ?
         </p>
-
+        <div className="flex justify-center text-red-500 font-semibold">
+          <ErrorMessage
+            errors={errors}
+            name="selectedManagerType"
+            render={({ message }) => <p>{message}</p>}
+          />
+        </div>
         <div className="flex gap-x-10">
           <Button
             variant={'ghost'}
@@ -380,7 +398,6 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
               'activityField',
               'selectedManagerType',
             ]);
-            console.log(isValid);
             if (isValid) {
               goToNext();
             }

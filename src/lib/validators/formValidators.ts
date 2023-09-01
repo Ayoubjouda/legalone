@@ -59,32 +59,43 @@ export const loginSchemaValidator = z.object({
 export const saasFormSchema = z.object({
   firstName: z
     .string()
-    .min(2, { message: 'Must have at Least 2 characters' })
-    .max(15, { message: 'Must have at max 15 characters' }),
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
   lastName: z
     .string()
-    .min(2, { message: 'Must have at Least 2 characters' })
-    .max(15, { message: 'Must have at max 15 characters' }),
-  email: z.string().email({ message: 'Must be an Email' }),
-  phone: z.string().min(2, { message: 'Must have at Least 2 characters' }),
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
+  email: z.string().email({ message: 'Doit être une adresse e-mail valide' }),
+  phone: z.string().min(2, { message: 'Doit contenir au moins 2 caractères' }),
   companyName: z
     .string()
-    .min(2, { message: 'Must have at Least 2 characters' })
-    .max(15, { message: 'Must have at max 15 characters' }),
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
   companyType: z
     .string()
-    .min(2, { message: 'Must have at Least 2 characters' }),
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+
   creationDelay: z
     .string()
-    .min(2, { message: 'Must select at least one option' }),
+    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
   activityField: z.object({
     id: z.number(),
-    name: z.string().min(2),
+    name: z
+      .string()
+      .min(2, { message: 'Vous devez sélectionner au moins une option' }),
   }),
-  president: z.string().min(2),
-  associerNumber: z.string().min(2),
-  selectedManagerType: z.string().min(2),
-  shareCapital: z.string().min(2),
+  president: z
+    .string()
+    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
+  associerNumber: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  selectedManagerType: z
+    .string()
+    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
+  shareCapital: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
   headquarter: z.custom<HeadQuarter>(),
   pack: z.custom<Package>(),
 });
