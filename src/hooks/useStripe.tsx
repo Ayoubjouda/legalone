@@ -20,7 +20,7 @@ async function createOrder(accessToken: string, FormValues: SaasSchemaType) {
         sex: 'Male',
         associer: 'Associer Name',
         nonAssociateManager: true,
-        shareCapital: FormValues.shareCapital,
+        shareCapital: Number(FormValues.shareCapital),
         companyLocation: FormValues.headquarter.id,
         companyType: FormValues.companyType,
         accountingExpert: true,

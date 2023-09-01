@@ -9,6 +9,7 @@ interface currentUser {
 interface Activity {
   id: number;
   name: string;
+  iconLink: string;
 }
 
 interface Package {

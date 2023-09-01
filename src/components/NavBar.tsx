@@ -1,5 +1,5 @@
 'use client';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
 import useAppStore from '@/zustand/store';
@@ -18,6 +18,7 @@ interface NavBarProps {}
 
 const NavBar: FC<NavBarProps> = () => {
   const { currentUser } = useAppStore();
+  const [mobileNavState, setmobileNavState] = useState<boolean>(false);
   const pathname = usePathname();
 
   return (
@@ -32,18 +33,63 @@ const NavBar: FC<NavBarProps> = () => {
         </Link>
       </div>
       <div className="lg:hidden">
-        <Sheet>
+        <Sheet open={mobileNavState}>
           <SheetTrigger>
-            <Menu />
+            <Menu onClick={() => setmobileNavState(true)} />
           </SheetTrigger>
           <SheetContent>
-            <SheetHeader>
-              <SheetTitle>Are you sure absolutely sure?</SheetTitle>
-              <SheetDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
-              </SheetDescription>
-            </SheetHeader>
+            <div className="font-button-nav   flex-col gap-[13px] text-left text-base text-gray-400">
+              <div className="flex flex-col items-center justify-center p-2.5">
+                <div className="flex flex-col items-start justify-center  gap-[28px]">
+                  <div className="flex flex-col  items-start justify-center gap-[28px]">
+                    <Link
+                      href={'/'}
+                      className="relative cursor-pointer"
+                      onClick={() => setmobileNavState(false)}
+                    >
+                      Nos Services
+                    </Link>
+                    <Link
+                      href={'/'}
+                      className="text-grey relative"
+                      onClick={() => setmobileNavState(false)}
+                    >
+                      Outils et guides
+                    </Link>
+                  </div>
+                  {/* <Divider orientation="horizontal" /> */}
+
+                  {pathname === '/createsaas' ? (
+                    <div className="text-sandybrown-100 flex flex-row items-center justify-center cursor-pointer">
+                      <div className="border-sandybrown-100 flex flex-row items-start justify-start overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
+                        <div className="relative font-semibold">
+                          07 76 67 87 67
+                        </div>
+                      </div>
+                    </div>
+                  ) : currentUser ? (
+                    <UserNav currentUser={currentUser} />
+                  ) : (
+                    <div className="flex flex-col justify-center  item-center gap-4">
+                      <Link
+                        href={'login'}
+                        className="text-grey relative w-fit"
+                        onClick={() => setmobileNavState(false)}
+                      >
+                        Se Connecter
+                      </Link>
+                      <div className="text-sandybrown-100 flex flex-row items-start justify-start cursor-pointer">
+                        <div className="border-sandybrown-100 flex flex-row items-start justify-start overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
+                          <div className="relative font-semibold">
+                            07 76 67 87 67
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </SheetContent>
         </Sheet>
       </div>

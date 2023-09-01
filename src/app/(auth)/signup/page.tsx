@@ -28,7 +28,11 @@ import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { useSignUp } from '@/hooks/useSignUp';
 import Link from 'next/link';
+import useAppStore from '@/zustand/store';
+import { useRouter } from 'next/navigation';
 export default function SignupPage() {
+  const { accessToken } = useAppStore();
+  const router = useRouter();
   const form = useForm<RegisterSchemaType>({
     resolver: zodResolver(RegisterSchema),
   });
@@ -41,6 +45,9 @@ export default function SignupPage() {
       birthDate: format(values.birthDate, 'yyyy-dd-MM').toString(),
     });
   };
+  if (accessToken) {
+    return router.push('/');
+  }
   return (
     <main className="max-w-screen mx-8 flex h-full  relative  md:justify-center   ">
       <Image

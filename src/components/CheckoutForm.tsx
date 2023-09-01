@@ -49,7 +49,6 @@ export default function CheckoutForm() {
       },
       redirect: 'if_required',
     });
-    console.log(error);
 
     // This point will only be reached if there is an immediate error when
     // confirming the payment. Otherwise, your customer will be redirected to
@@ -73,10 +72,8 @@ export default function CheckoutForm() {
 
   const paymentElementOptions: StripePaymentElementOptions = {
     layout: {
-      type: 'accordion',
+      type: 'tabs',
       defaultCollapsed: false,
-      radios: true,
-      spacedAccordionItems: false,
     },
     business: {
       name: 'LegalCenter',

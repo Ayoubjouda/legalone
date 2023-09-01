@@ -20,8 +20,13 @@ import {
   LoginSchemaType,
 } from '@/lib/validators/formValidators';
 import Link from 'next/link';
+import useAppStore from '@/zustand/store';
+import { useRouter } from 'next/navigation';
 export default function LoginPage() {
   const { isLoading, LoginMutation } = useLogin();
+  const { accessToken } = useAppStore();
+  const router = useRouter();
+
   const form = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchemaValidator),
     defaultValues: {
@@ -32,6 +37,9 @@ export default function LoginPage() {
   const onSubmit = (values: LoginSchemaType) => {
     LoginMutation(values);
   };
+  if (accessToken) {
+    return router.push('/');
+  }
   return (
     <main className="max-w-screen mx-8 flex h-full relative   md:justify-center   ">
       <Image

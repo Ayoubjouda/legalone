@@ -28,6 +28,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import Image from 'next/image';
 
 interface FormProps {
   goToNext: () => void;
@@ -264,7 +265,7 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
   const [selectedPresident, setselectedPresident] = useState<string | null>(
     values?.selectedManagerType || null
   );
-  const { isLoading, data } = useQuery('packs', async () => {
+  const { isLoading, data } = useQuery('Activity', async () => {
     const data = (await api
       .get('activity')
       .then((res) => res.data)) as Activity[];
@@ -282,8 +283,8 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
     );
 
   return (
-    <form className="flex max-w-[950px] flex-col gap-10">
-      <div className="flex flex-col gap-10">
+    <form className="flex max-w-[950px] justify-center items-center flex-col gap-10">
+      <div className="flex flex-col justify-center items-center gap-10">
         <div className="hidden">
           <Controller
             name="activityField"
@@ -297,14 +298,14 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
           Quel est votre domaine d'activité ?
         </p>
 
-        <div className="flex w-full  flex-wrap gap-10">
+        <div className="flex w-full  justify-center   flex-wrap gap-10">
           {data ? (
             data?.map((item: Activity, idx: number) => (
               <Button
                 variant={'ghost'}
                 className={cn(
-                  { 'bg-orange-200': idx == selectedDomain },
-                  'border  text-xl font-semibold'
+                  { 'border-orange-500 ': idx == selectedDomain },
+                  'border  text-sm font-semibold flex-col h-auto basis-1/4'
                 )}
                 key={idx}
                 type="button"
@@ -313,6 +314,12 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
                   setselectedDomain(idx);
                 }}
               >
+                <Image
+                  src={item.iconLink}
+                  alt={item.name}
+                  width={35}
+                  height={35}
+                />
                 {item.name}
               </Button>
             ))
@@ -654,7 +661,6 @@ export const FormSix = ({ goToNext, goToPrevious }: FormProps) => {
         <DialogTrigger>Open</DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Are you sure absolutely sure?</DialogTitle>
             <DialogDescription>
               <Checkout />
             </DialogDescription>
@@ -679,7 +685,6 @@ export const FormLast = ({ goToNext, goToPrevious }: FormProps) => {
       .then((res) => res.data)) as HeadQuarter[];
     return data;
   });
-  console.log(data);
 
   const headquarter = getValues('headquarter');
   const [selected, setselected] = useState<HeadQuarter>(headquarter);
@@ -750,7 +755,6 @@ export const FormLast = ({ goToNext, goToPrevious }: FormProps) => {
         type="button"
         onClick={async () => {
           const isValid = await trigger(['creationDelay']);
-          console.log(isValid);
           if (isValid) {
             goToNext();
           }
