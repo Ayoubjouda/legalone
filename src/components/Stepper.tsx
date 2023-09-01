@@ -22,6 +22,7 @@ import {
   FormFour,
   FormFive,
   FormSix,
+  FormLast,
 } from '@/components/Forms';
 import { ChevronLeft } from 'lucide-react';
 import useFormPersist from 'react-hook-form-persist';
@@ -33,6 +34,7 @@ const steps = [
   { title: 'Second', description: 'CRÉATION DE SASU' },
   { title: 'Third', description: 'PROJET' },
   { title: 'Third', description: 'CHOIX DU PLAN' },
+  { title: 'Third', description: 'Headquarter' },
   { title: 'Third', description: 'Récapitulatif' },
 ];
 const Stepper: FC<StepperProps> = () => {
@@ -44,7 +46,6 @@ const Stepper: FC<StepperProps> = () => {
   const { watch, setValue, reset } = useFormContext();
   const { setActiveStep: setStoredStep, activeStep: storedStep } =
     useAppStore();
-  console.log(storedStep);
   useEffect(() => {
     setStoredStep(activeStep);
   }, [activeStep]);
@@ -94,6 +95,13 @@ const Stepper: FC<StepperProps> = () => {
       case 4:
         return (
           <FormFive
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
+      case 5:
+        return (
+          <FormLast
             goToNext={goToNext}
             goToPrevious={goToPrevious}
           />

@@ -24,3 +24,8 @@ interface packElement {
   text: string;
   isBold?: boolean;
 }
+interface HeadQuarter {
+  id: number;
+  headquarter: string;
+  iconLink: string;
+}

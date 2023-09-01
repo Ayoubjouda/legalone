@@ -20,6 +20,14 @@ import { Spinner } from '@chakra-ui/react';
 import CheckoutForm from './CheckoutForm';
 import Checkout from './Checkout';
 import { ErrorMessage } from '@hookform/error-message';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 
 interface FormProps {
   goToNext: () => void;
@@ -457,29 +465,6 @@ export const FormFour = ({ goToNext, goToPrevious }: FormProps) => {
             </FormItem>
           )}
         />
-        <FormField
-          name="companyLocation"
-          control={control}
-          defaultValue={''}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                siège social
-                <span className="text-sm font-medium leading-tight text-slate-900 text-opacity-50">
-                  (L’adresse de votre société)
-                </span>
-              </FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="shadcn"
-                  {...field}
-                />
-              </FormControl>
-
-              <FormMessage />
-            </FormItem>
-          )}
-        />
       </div>
       <Button
         className="font-semibold"
@@ -488,7 +473,6 @@ export const FormFour = ({ goToNext, goToPrevious }: FormProps) => {
           const isValid = await trigger([
             'associerNumber',
             'shareCapital',
-            'companyLocation',
             'nonAssociateManager',
           ]);
           console.log(isValid);
@@ -666,9 +650,114 @@ export const FormSix = ({ goToNext, goToPrevious }: FormProps) => {
           </div>
         </div>
       </div>
-      <div className="w-1/2">
-        <Checkout />
-      </div>
+      <Dialog>
+        <DialogTrigger>Open</DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Are you sure absolutely sure?</DialogTitle>
+            <DialogDescription>
+              <Checkout />
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
+  );
+};
+
+export const FormLast = ({ goToNext, goToPrevious }: FormProps) => {
+  const {
+    setValue,
+    control,
+    trigger,
+    formState: { errors },
+    getValues,
+  } = useFormContext();
+  const { isLoading, data } = useQuery('headquarter', async () => {
+    const data = (await api
+      .get('companyHeadquarter/')
+      .then((res) => res.data)) as HeadQuarter[];
+    return data;
+  });
+  console.log(data);
+
+  const headquarter = getValues('headquarter');
+  const [selected, setselected] = useState<HeadQuarter>(headquarter);
+  const handleSetValue = (newValue: HeadQuarter) => {
+    setValue('headquarter', newValue);
+  };
+  if (isLoading) return <Spinner color="orange.500" />;
+
+  return (
+    <form className="flex flex-col gap-10">
+      <div>
+        <Controller
+          name="headquarter"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <input
+              className="hidden"
+              {...field}
+            />
+          )}
+          rules={{ required: true }}
+        />
+      </div>
+      <div className="flex justify-center text-red-500 font-semibold">
+        <ErrorMessage
+          errors={errors}
+          name="headquarter"
+          render={({ message }) => <p>{message}</p>}
+        />
+      </div>
+
+      <div className=" flex flex-row  gap-10">
+        {data?.map((item: HeadQuarter, idx: number) => (
+          <IconBox
+            key={idx}
+            title={item.headquarter}
+            image={item.iconLink}
+            onClick={() => {
+              handleSetValue(item);
+              setselected(item);
+            }}
+            className={cn({ 'border-orange-500': selected?.id === item.id })}
+          />
+        ))}
+
+        {/* <IconBox
+          title="Dans la Semaine"
+          image={'/calander.svg'}
+          onClick={() => {
+            handleSetValue('MONTHLY');
+            setselected('MONTHLY');
+          }}
+          className={cn({ 'border-orange-500': selected === 'MONTHLY' })}
+        />
+        <IconBox
+          title="Je ne sais pas encore"
+          image={'/doubt.svg'}
+          onClick={() => {
+            handleSetValue('je ne sais pas');
+            setselected('je ne sais pas');
+          }}
+          className={cn({ 'border-orange-500': selected === 'je ne sais pas' })}
+        /> */}
+      </div>
+      <Button
+        className="font-semibold"
+        type="button"
+        onClick={async () => {
+          const isValid = await trigger(['creationDelay']);
+          console.log(isValid);
+          if (isValid) {
+            goToNext();
+          }
+        }}
+      >
+        next
+      </Button>
+    </form>
   );
 };

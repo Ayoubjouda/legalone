@@ -660,10 +660,10 @@ export default function Home() {
         <div className="flex flex-col items-center justify-start">
           <div className="relative font-medium">We know you are curious!</div>
         </div>
-        <div className="w-full text-base max-w-screen-md  mx-3">
+        <div className="w-full text-base max-w-screen-md  ">
           <Accordion
             type="multiple"
-            className="cursor-pointer  pt-2  font-Syne font-[400] tracking-tight  text-lg text-black bg-orange-50  rounded-md  "
+            className="cursor-pointer  pt-2  font-Syne font-[400] tracking-tight  text-lg text-black border bg-orange-50  rounded-md mx-3 "
             defaultValue={['item-1']}
           >
             <AccordionItem

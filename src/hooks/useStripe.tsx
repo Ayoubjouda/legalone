@@ -21,7 +21,7 @@ async function createOrder(accessToken: string, FormValues: SaasSchemaType) {
         associer: 'Associer Name',
         nonAssociateManager: true,
         shareCapital: FormValues.shareCapital,
-        companyLocation: FormValues.companyLocation,
+        companyLocation: FormValues.headquarter.id,
         companyType: FormValues.companyType,
         accountingExpert: true,
         email: FormValues.email,
@@ -48,7 +48,6 @@ export function useStripe() {
   const { toast } = useToast();
   const { getValues } = useFormContext();
   const FormValues = getValues();
-  console.log(FormValues);
   const { accessToken } = useAppStore();
 
   const {
@@ -65,6 +64,7 @@ export function useStripe() {
       },
       onError: (err) => {
         if (isAxiosError(err)) {
+          console.log(err);
           toast({
             title: 'Checkout Error',
             description: `${err.response?.data?.message}`,

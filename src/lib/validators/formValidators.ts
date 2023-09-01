@@ -86,7 +86,7 @@ export const saasFormSchema = z.object({
   associerNumber: z.string().min(2),
   selectedManagerType: z.string().min(2),
   shareCapital: z.string().min(2),
-  companyLocation: z.string().min(2),
+  headquarter: z.custom<HeadQuarter>(),
   pack: z.custom<Package>(),
 });
 export type SaasSchemaType = z.infer<typeof saasFormSchema>;
