@@ -143,24 +143,29 @@ const Stepper: FC<StepperProps> = () => {
             className="flex h-10 flex-col  justify-center gap-1 "
           >
             <StepSeparator
-              style={{ width: '120%', maxHeight: '3px', borderRadius: '2px' }}
+              style={{
+                maxHeight: '3px',
+                minWidth: '10px',
+                borderRadius: '3px',
+              }}
             />
+            <div className="hidden lg:block">
+              <Step className="ml-3  flex flex-row items-center justify-center">
+                <StepIndicator boxSize={'4'}>
+                  <StepStatus complete={<StepIcon boxSize={3} />} />
+                </StepIndicator>
 
-            <Step className="ml-3 flex flex-row items-center justify-center">
-              <StepIndicator boxSize={'4'}>
-                <StepStatus complete={<StepIcon boxSize={3} />} />
-              </StepIndicator>
-
-              <Text>
-                <span className="text-sm font-medium uppercase leading-none text-gray-700">
-                  {step?.description}
-                </span>
-              </Text>
-            </Step>
+                <Text>
+                  <span className="text-sm font-medium uppercase leading-none text-gray-700">
+                    {step?.description}
+                  </span>
+                </Text>
+              </Step>
+            </div>
           </div>
         ))}
       </ChakraStepper>
-      <div className="flex items-center justify-center">
+      <div className="flex w-full px-3 items-center justify-center ">
         {getStepContent(activeStep)}
       </div>
     </div>

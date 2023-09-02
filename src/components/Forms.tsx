@@ -208,7 +208,7 @@ export const FormTwo = ({ goToNext, goToPrevious }: FormProps) => {
         />
       </div>
 
-      <div className=" flex flex-row  gap-10">
+      <div className=" flex flex-col md:flex-row flex-wrap gap-10">
         <IconBox
           title="Dans un mois"
           image={'/fast.svg'}
@@ -326,7 +326,7 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
                 variant={'ghost'}
                 className={cn(
                   { 'border-orange-500 ': idx == selectedDomain },
-                  'border  text-sm font-semibold flex-col h-auto basis-1/4'
+                  'border  text-sm font-semibold flex-col h-auto min-w-[116px] basis-1/4'
                 )}
                 key={idx}
                 type="button"
@@ -378,7 +378,7 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
                   {
                     'border-orange-500 ': idx === selectedPresident,
                   },
-                  'border  text-sm font-semibold flex-col h-auto basis-1/4'
+                  'border  text-sm font-semibold flex-col h-auto min-w-[116px] basis-1/4'
                 )}
                 key={idx}
                 type="button"
@@ -481,7 +481,7 @@ export const FormFour = ({ goToNext, goToPrevious }: FormProps) => {
           defaultValue={'non'}
           render={({ field }) => (
             <FormItem className="flex items-center gap-3 space-y-0 ">
-              <FormLabel>
+              <FormLabel className="leading-[20px]">
                 Le Président est-il Associé fondateur de la Société ?
               </FormLabel>
               <FormControl>
@@ -586,7 +586,7 @@ export const FormFive = ({ goToNext, goToPrevious }: FormProps) => {
           rules={{ required: true }}
         />
       </div>
-      <div className="flex w-full gap-10 ">
+      <div className="flex w-full justify-center flex-wrap gap-10 ">
         {data?.map((item: Package, idx: number) => (
           <Pack
             key={idx}
@@ -619,13 +619,13 @@ export const FormSix = ({ goToNext, goToPrevious }: FormProps) => {
   const values = getValues();
 
   return (
-    <div className="flex w-full items-start gap-3">
-      <div className="flex flex-col ">
+    <div className="flex w-full items-start gap-3 justify-center">
+      <div className="flex flex-col  ">
         <h3 className="text-lg font-semibold leading-none text-black">
           Details
         </h3>
-        <div className="mt-4 flex gap-3 rounded-sm bg-gray-100">
-          <div className="flex flex-col gap-3 p-2">
+        <div className="mt-4 flex flex-col md:flex-row  justify-center gap-3 rounded-sm bg-gray-100">
+          <div className="flex flex-col  gap-3 p-2">
             <DetailItem
               title={'Prenom'}
               value={values.firstName}
@@ -648,7 +648,7 @@ export const FormSix = ({ goToNext, goToPrevious }: FormProps) => {
             />
             <DetailItem
               title={'Siege Social'}
-              value={values.companyLocation}
+              value={values.headquarter?.headquarter}
             />
           </div>
           <div className="flex flex-col ">
@@ -774,7 +774,7 @@ export const FormLast = ({ goToNext, goToPrevious }: FormProps) => {
         />
       </div>
 
-      <div className=" flex flex-row  gap-10">
+      <div className=" flex flex-wrap justify-center flex-row  gap-10">
         {data?.map((item: HeadQuarter, idx: number) => (
           <IconBox
             key={idx}
