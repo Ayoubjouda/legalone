@@ -25,7 +25,6 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
 import Image from 'next/image';
@@ -699,7 +698,7 @@ export const FormSix = ({ goToNext, goToPrevious }: FormProps) => {
                 Tax
               </p>
               <p className="text-base font-normal leading-none text-zinc-600">
-                {values.pack?.price * 0.2} $
+                {Number(values.pack?.price * 0.2).toFixed(2)} $
               </p>
             </div>
             <div className="flex min-w-[300px] items-center justify-between">
@@ -707,24 +706,24 @@ export const FormSix = ({ goToNext, goToPrevious }: FormProps) => {
                 Total
               </p>
               <p className="text-base font-normal leading-none text-zinc-600">
-                {values.pack?.price * 1.2} $
+                {Number(values.pack?.price * 1.2).toFixed(2)} $
               </p>
             </div>
+            <Dialog>
+              <DialogTrigger>
+                <Button className="w-full">Procéder au paiement</Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogDescription>
+                    <Checkout />
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>
-      <Dialog>
-        <DialogTrigger>
-          <Button>Open</Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogDescription>
-              <Checkout />
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };

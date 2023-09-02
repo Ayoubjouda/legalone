@@ -64,6 +64,7 @@ export default function CheckoutForm() {
       (error?.type === 'card_error' || error?.type === 'validation_error')
     ) {
       setMessage(error?.message);
+      setIsLoading(false);
     } else {
       reset({}, { keepValues: false, keepDirty: false });
       setIsLoading(false);

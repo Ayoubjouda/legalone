@@ -20,13 +20,11 @@ const IconBox: FC<IconBoxProps> = ({ title, image, ...props }) => {
       <Image
         src={image}
         alt="2332"
-        width={60}
-        height={60}
+        width={45}
+        height={45}
         sizes="100vw"
       />
-      <p className="text-center text-xl font-semibold leading-[31px] text-black">
-        {title}
-      </p>
+      <p className="text-center text-base font-semibold  text-black">{title}</p>
     </button>
   );
 };
