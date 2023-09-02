@@ -279,7 +279,9 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
   const { isLoading: ManagerLoading, data: ManagerData } = useQuery(
     'Manager',
     async () => {
-      const data = await api.get('managerType/').then((res) => res.data);
+      const data = (await api
+        .get('managerType/')
+        .then((res) => res.data)) as ManagerType[];
       return data;
     }
   );
@@ -370,7 +372,7 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
         </div>
         <div className="flex w-full  justify-center   flex-wrap gap-10">
           {ManagerData ? (
-            ManagerData?.map((item, idx: number) => (
+            ManagerData?.map((item: ManagerType, idx: number) => (
               <Button
                 variant={'ghost'}
                 className={cn(
@@ -388,7 +390,7 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
               >
                 <Image
                   src={item.iconLink}
-                  alt={item.name}
+                  alt={item.type}
                   width={35}
                   height={35}
                 />

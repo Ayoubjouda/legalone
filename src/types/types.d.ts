@@ -30,3 +30,8 @@ interface HeadQuarter {
   headquarter: string;
   iconLink: string;
 }
+interface ManagerType {
+  id: number;
+  type: string;
+  iconLink: string;
+}
