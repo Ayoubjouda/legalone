@@ -267,7 +267,7 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
   const [selectedDomain, setselectedDomain] = useState<number | null>(
     values?.activityField?.id || null
   );
-  const [selectedPresident, setselectedPresident] = useState<string | null>(
+  const [selectedPresident, setselectedPresident] = useState<number | null>(
     values?.selectedManagerType || null
   );
   const { isLoading, data } = useQuery('Activity', async () => {
@@ -276,6 +276,14 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
       .then((res) => res.data)) as Activity[];
     return data;
   });
+  const { isLoading: ManagerLoading, data: ManagerData } = useQuery(
+    'Manager',
+    async () => {
+      const data = await api.get('managerType/').then((res) => res.data);
+      return data;
+    }
+  );
+  console.log(ManagerData);
 
   const handleSetValue = (key: string, newValue: string | Activity) => {
     setValue(key, newValue);
@@ -340,7 +348,7 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
           )}
         </div>
       </div>
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col w-full gap-10">
         <div className="hidden">
           <Controller
             name="selectedManagerType"
@@ -360,8 +368,37 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
             render={({ message }) => <p>{message}</p>}
           />
         </div>
-        <div className="flex gap-x-10">
-          <Button
+        <div className="flex w-full  justify-center   flex-wrap gap-10">
+          {ManagerData ? (
+            ManagerData?.map((item, idx: number) => (
+              <Button
+                variant={'ghost'}
+                className={cn(
+                  {
+                    'border-orange-500 ': idx === selectedPresident,
+                  },
+                  'border  text-sm font-semibold flex-col h-auto basis-1/4'
+                )}
+                key={idx}
+                type="button"
+                onClick={() => {
+                  handleSetValue('selectedManagerType', 'PersonalManager');
+                  setselectedPresident(idx);
+                }}
+              >
+                <Image
+                  src={item.iconLink}
+                  alt={item.name}
+                  width={35}
+                  height={35}
+                />
+                {item.type}
+              </Button>
+            ))
+          ) : (
+            <p>No Data Found Please Refresh the page</p>
+          )}
+          {/* <Button
             variant={'ghost'}
             className={cn(
               { 'bg-orange-200': 'PersonalManager' == selectedPresident },
@@ -388,7 +425,7 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
             }}
           >
             president
-          </Button>
+          </Button> */}
         </div>
         <Button
           className="font-semibold"
@@ -581,7 +618,7 @@ export const FormSix = ({ goToNext, goToPrevious }: FormProps) => {
   const values = getValues();
 
   return (
-    <div className="flex w-full gap-3">
+    <div className="flex w-full items-start gap-3">
       <div className="flex flex-col ">
         <h3 className="text-lg font-semibold leading-none text-black">
           Details
@@ -675,7 +712,9 @@ export const FormSix = ({ goToNext, goToPrevious }: FormProps) => {
         </div>
       </div>
       <Dialog>
-        <DialogTrigger>Open</DialogTrigger>
+        <DialogTrigger>
+          <Button>Open</Button>
+        </DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <DialogDescription>

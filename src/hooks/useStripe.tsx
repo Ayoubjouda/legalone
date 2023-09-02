@@ -7,6 +7,7 @@ import { useFormContext } from 'react-hook-form';
 import { SaasSchemaType } from '@/lib/validators/formValidators';
 async function createOrder(accessToken: string, FormValues: SaasSchemaType) {
   if (!accessToken) throw new Error('No access token');
+  console.log(FormValues);
   const { data } = await api.post(
     'order/create-order',
     {

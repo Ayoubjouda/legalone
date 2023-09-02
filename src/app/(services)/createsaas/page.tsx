@@ -27,7 +27,6 @@ export default function CreateSaas() {
       companyType: 'SARL',
       creationDelay: '',
       // activityField: {} as Activity,
-      president: '',
       associerNumber: '',
       selectedManagerType: '',
       shareCapital: '',
