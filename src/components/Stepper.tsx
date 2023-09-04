@@ -1,15 +1,11 @@
 'use client';
-import { FC, Fragment, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import {
-  Box,
   Step,
-  StepDescription,
   StepIcon,
   StepIndicator,
-  StepNumber,
   StepSeparator,
   StepStatus,
-  StepTitle,
   Stepper as ChakraStepper,
   useSteps,
   Text,
@@ -43,9 +39,10 @@ const Stepper: FC<StepperProps> = () => {
     count: steps.length,
   });
 
-  const { watch, setValue, reset } = useFormContext();
+  const { watch, setValue } = useFormContext();
   const { setActiveStep: setStoredStep, activeStep: storedStep } =
     useAppStore();
+
   useEffect(() => {
     setStoredStep(activeStep);
   }, [activeStep]);
@@ -58,7 +55,6 @@ const Stepper: FC<StepperProps> = () => {
   useFormPersist('storageKey', {
     watch,
     setValue,
-
     storage: window.localStorage, // default window.sessionStorage
   });
 

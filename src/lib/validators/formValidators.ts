@@ -1,6 +1,5 @@
-import { number, z } from 'zod';
+import { z } from 'zod';
 import { isOlderThan18 } from '@/lib/utils';
-import { Activity } from 'lucide-react';
 
 export const RegisterSchema = z
   .object({

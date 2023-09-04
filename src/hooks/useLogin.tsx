@@ -30,7 +30,7 @@ export function useLogin() {
     onSuccess(data) {
       setCurrentUser(data.User);
       setToken(data.token);
-
+      localStorage.setItem('accessToken', data.token);
       setRefreshToken(data.refreshToken);
       toast({
         title: 'Login Success',

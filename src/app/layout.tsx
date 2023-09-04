@@ -5,8 +5,7 @@ import Providers from './Providers';
 import { Toaster } from '@/components/ui/toaster';
 import NavBar from '@/components/NavBar';
 import NextTopLoader from 'nextjs-toploader';
-import { useRouter, usePathname } from 'next/navigation';
-import useAppStore from '@/zustand/store';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {

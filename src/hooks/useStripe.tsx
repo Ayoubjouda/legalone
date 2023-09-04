@@ -8,40 +8,32 @@ import { SaasSchemaType } from '@/lib/validators/formValidators';
 async function createOrder(accessToken: string, FormValues: SaasSchemaType) {
   if (!accessToken) throw new Error('No access token');
   console.log(FormValues);
-  const { data } = await api.post(
-    'order/create-order',
-    {
-      companyData: {
-        creationDelay: FormValues.creationDelay,
-        activityField: FormValues.activityField.id,
-        companyName: FormValues.companyName,
-        selectedManagerType: FormValues.selectedManagerType,
-        firstName: FormValues.firstName,
-        lastName: FormValues.lastName,
-        sex: 'Male',
-        associer: 'Associer Name',
-        nonAssociateManager: true,
-        shareCapital: Number(FormValues.shareCapital),
-        companyLocation: FormValues.headquarter.id,
-        companyType: FormValues.companyType,
-        accountingExpert: true,
-        email: FormValues.email,
-        phone: FormValues.phone,
-      },
-      paymentData: {
-        currency: 'USD',
-        description: 'Order payment',
-      },
-      packageField: FormValues.pack.id,
-      description: 'Order payment',
+  const { data } = await api.post('order/create-order', {
+    companyData: {
+      creationDelay: FormValues.creationDelay,
+      activityField: FormValues.activityField.id,
+      companyName: FormValues.companyName,
+      selectedManagerType: FormValues.selectedManagerType,
+      firstName: FormValues.firstName,
+      lastName: FormValues.lastName,
+      sex: 'Male',
+      associer: 'Associer Name',
+      nonAssociateManager: true,
+      shareCapital: Number(FormValues.shareCapital),
+      companyLocation: FormValues.headquarter.id,
       companyType: FormValues.companyType,
+      accountingExpert: true,
+      email: FormValues.email,
+      phone: FormValues.phone,
     },
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-  );
+    paymentData: {
+      currency: 'USD',
+      description: 'Order payment',
+    },
+    packageField: FormValues.pack.id,
+    description: 'Order payment',
+    companyType: FormValues.companyType,
+  });
   return data;
 }
 
