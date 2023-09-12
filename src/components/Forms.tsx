@@ -28,7 +28,9 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import Image from 'next/image';
-
+import useAppStore from '@/zustand/store';
+import Router from 'next/router';
+import { useRouter } from 'next/navigation';
 interface FormProps {
   goToNext: () => void;
   goToPrevious: () => void;
@@ -614,9 +616,15 @@ export const FormFive = ({ goToNext, goToPrevious }: FormProps) => {
 };
 export const FormSix = ({ goToNext, goToPrevious }: FormProps) => {
   const { watch, register, control, getValues } = useFormContext();
-
+  const router = useRouter();
+  const { accessToken } = useAppStore();
   // const watchAllFields = watch();
   const values = getValues();
+
+  const handleCheckout = () => {
+    localStorage.setItem('intendedDestination', '/createsaas');
+    router.push('/login');
+  };
 
   return (
     <div className="flex w-full items-start gap-3 justify-center">
@@ -709,18 +717,27 @@ export const FormSix = ({ goToNext, goToPrevious }: FormProps) => {
                 {Number(values.pack?.price * 1.2).toFixed(2)} $
               </p>
             </div>
-            <Dialog>
-              <DialogTrigger>
-                <Button className="w-full">Procéder au paiement</Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogDescription>
-                    <Checkout />
-                  </DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog>
+            {accessToken ? (
+              <Dialog>
+                <DialogTrigger>
+                  <Button className="w-full">Procéder au paiement</Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogDescription>
+                      <Checkout />
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
+            ) : (
+              <Button
+                onClick={handleCheckout}
+                className="w-full"
+              >
+                Procéder au paiement
+              </Button>
+            )}
           </div>
         </div>
       </div>

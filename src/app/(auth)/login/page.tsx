@@ -38,7 +38,14 @@ export default function LoginPage() {
     LoginMutation(values);
   };
   if (accessToken) {
-    return router.push('/');
+    const intendedDestination = localStorage.getItem('intendedDestination');
+    if (intendedDestination) {
+      localStorage.removeItem('intendedDestination');
+
+      return router.push(intendedDestination);
+    } else {
+      return router.push('/');
+    }
   }
   return (
     <main className="max-w-screen mx-8 flex h-full relative   md:justify-center   ">
