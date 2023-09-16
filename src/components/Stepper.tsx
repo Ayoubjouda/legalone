@@ -114,7 +114,7 @@ const Stepper: FC<StepperProps> = () => {
   return (
     <div className="max-w-screen-xl flex  w-full flex-col items-center justify-center gap-5">
       {activeStep !== 0 && (
-        <div className="ml-32 flex  w-full">
+        <div className=" flex max-w-screen-md  w-full">
           <Button
             className="px-0 text-black hover:no-underline"
             variant={'link'}
@@ -140,23 +140,13 @@ const Stepper: FC<StepperProps> = () => {
           >
             <StepSeparator
               style={{
-                maxHeight: '3px',
-                minWidth: '10px',
+                maxHeight: '4px',
+                minWidth: '30px',
                 borderRadius: '3px',
               }}
             />
             <div className="hidden lg:block">
-              <Step className="ml-3  flex flex-row items-center justify-center">
-                <StepIndicator boxSize={'4'}>
-                  <StepStatus complete={<StepIcon boxSize={3} />} />
-                </StepIndicator>
-
-                <Text>
-                  <span className="text-sm font-medium uppercase leading-none text-gray-700">
-                    {step?.description}
-                  </span>
-                </Text>
-              </Step>
+              <Step className="ml-3  flex flex-row items-center justify-center"></Step>
             </div>
           </div>
         ))}

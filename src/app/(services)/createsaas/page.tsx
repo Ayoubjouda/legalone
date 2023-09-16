@@ -1,16 +1,11 @@
 'use client';
 import Stepper from '@/components/Stepper';
 import { FormProvider, useForm, useFormContext } from 'react-hook-form';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   saasFormSchema,
   SaasSchemaType,
 } from '@/lib/validators/formValidators';
-import { useEffect, useState } from 'react';
-import api from '@/lib/axiosConfig';
-import useFormPersist from 'react-hook-form-persist';
 
 interface pageProps {}
 

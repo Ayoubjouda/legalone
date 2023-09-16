@@ -41,7 +41,6 @@ export default function LoginPage() {
     const intendedDestination = localStorage.getItem('intendedDestination');
     if (intendedDestination) {
       localStorage.removeItem('intendedDestination');
-
       return router.push(intendedDestination);
     } else {
       return router.push('/');

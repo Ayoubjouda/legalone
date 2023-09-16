@@ -51,7 +51,7 @@ export const FormOne = ({ goToNext }: FormProps) => {
   const { control, trigger } = useFormContext();
   return (
     <form className="max-w-[650px]">
-      <div className="my-5 flex flex-col gap-4">
+      <div className="my-5 flex flex-col  gap-4">
         <p className="text-center text-sm font-normal leading-tight text-slate-500">
           Ces informations nous permettront de vous assister au cours de votre
           processus de création, et seront nécessaires pour constituer votre
@@ -150,8 +150,9 @@ export const FormOne = ({ goToNext }: FormProps) => {
           )}
         />
         <Button
-          className="font-semibold"
+          className="font-semibold self-end text-lg "
           type="button"
+          size={'lg'}
           onClick={async () => {
             const isValid = await trigger([
               'firstName',
@@ -165,7 +166,7 @@ export const FormOne = ({ goToNext }: FormProps) => {
             }
           }}
         >
-          next
+          Continuer
         </Button>
       </div>
     </form>
@@ -240,8 +241,9 @@ export const FormTwo = ({ goToNext, goToPrevious }: FormProps) => {
         />
       </div>
       <Button
-        className="font-semibold"
+        className="font-semibold self-end text-lg "
         type="button"
+        size={'lg'}
         onClick={async () => {
           const isValid = await trigger(['creationDelay']);
           if (isValid) {
@@ -249,7 +251,7 @@ export const FormTwo = ({ goToNext, goToPrevious }: FormProps) => {
           }
         }}
       >
-        next
+        Continuer
       </Button>
     </form>
   );
@@ -431,8 +433,9 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
           </Button> */}
         </div>
         <Button
-          className="font-semibold"
+          className="font-semibold self-end text-lg "
           type="button"
+          size={'lg'}
           onClick={async () => {
             const isValid = await trigger([
               'activityField',
@@ -443,7 +446,7 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
             }
           }}
         >
-          next
+          Continuer
         </Button>
       </div>
     </form>
@@ -529,24 +532,25 @@ export const FormFour = ({ goToNext, goToPrevious }: FormProps) => {
             </FormItem>
           )}
         />
+        <Button
+          className="font-semibold self-end text-lg "
+          type="button"
+          size={'lg'}
+          onClick={async () => {
+            const isValid = await trigger([
+              'associerNumber',
+              'shareCapital',
+              'nonAssociateManager',
+            ]);
+            console.log(isValid);
+            if (isValid) {
+              goToNext();
+            }
+          }}
+        >
+          Continuer
+        </Button>
       </div>
-      <Button
-        className="font-semibold"
-        type="button"
-        onClick={async () => {
-          const isValid = await trigger([
-            'associerNumber',
-            'shareCapital',
-            'nonAssociateManager',
-          ]);
-          console.log(isValid);
-          if (isValid) {
-            goToNext();
-          }
-        }}
-      >
-        next
-      </Button>
     </form>
   );
 };
@@ -599,8 +603,9 @@ export const FormFive = ({ goToNext, goToPrevious }: FormProps) => {
         ))}
       </div>
       <Button
-        className="font-semibold"
+        className="font-semibold self-end text-lg "
         type="button"
+        size={'lg'}
         onClick={async () => {
           const isValid = await trigger(['pack']);
           console.log(isValid);
@@ -609,7 +614,7 @@ export const FormFive = ({ goToNext, goToPrevious }: FormProps) => {
           }
         }}
       >
-        next
+        Continuer
       </Button>
     </form>
   );
@@ -791,7 +796,7 @@ export const FormLast = ({ goToNext, goToPrevious }: FormProps) => {
         />
       </div>
 
-      <div className=" flex flex-wrap justify-center flex-row  gap-10">
+      <div className=" flex flex-wrap justify-center flex-row max-w-screen-sm  gap-10">
         {data?.map((item: HeadQuarter, idx: number) => (
           <IconBox
             key={idx}
@@ -825,8 +830,9 @@ export const FormLast = ({ goToNext, goToPrevious }: FormProps) => {
         /> */}
       </div>
       <Button
-        className="font-semibold"
+        className="font-semibold self-end text-lg "
         type="button"
+        size={'lg'}
         onClick={async () => {
           const isValid = await trigger(['creationDelay']);
           if (isValid) {
@@ -834,7 +840,7 @@ export const FormLast = ({ goToNext, goToPrevious }: FormProps) => {
           }
         }}
       >
-        next
+        Continuer
       </Button>
     </form>
   );
