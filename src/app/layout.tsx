@@ -1,12 +1,16 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, IBM_Plex_Sans } from 'next/font/google';
 import Providers from './Providers';
 import { Toaster } from '@/components/ui/toaster';
 import NavBar from '@/components/NavBar';
 import NextTopLoader from 'nextjs-toploader';
 
 const inter = Inter({ subsets: ['latin'] });
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ['greek'],
+  weight: ['400', '500', '600', '700'],
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} debug-screens`}>
+      <body className={` ${ibmPlexSans.className} debug-screens`}>
         <Providers>
           <NavBar />
 

@@ -36,6 +36,7 @@ module.exports = {
         },
         chocolate: '#e48634',
         gainsboro: '#dee5ed',
+        redish: '#E8613E',
         darkslategray: {
           '100': '#3c3c43',
           '200': '#223140',
@@ -111,6 +112,9 @@ module.exports = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: 0 },
         },
+      },
+      content: {
+        excited: 'url("/Excited.svg")',
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',

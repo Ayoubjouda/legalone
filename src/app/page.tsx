@@ -13,7 +13,7 @@ import Link from 'next/link';
 import { LINKS_DATA } from '@/lib/constants';
 export default function Home() {
   return (
-    <div className="text-29xl z-0 font-headers-h2 relative  flex max-w-screen w-full flex-col items-center justify-start gap-[219px] overflow-hidden bg-gray-100 px-0 py-[46px] text-left text-gray-300 ">
+    <div className="text-29xl z-0 font-headers-h2 relative  flex max-w-screen w-full flex-col items-center justify-start gap-32 overflow-hidden bg-gray-100 px-0 py-[46px] text-left text-gray-300 ">
       <Image
         className="absolute right-[1244px] top-[430px] z-[0] mx-[!important] my-0 h-6 w-6"
         alt=""
@@ -59,23 +59,29 @@ export default function Home() {
         sizes="100vw"
       />
       {/* <div className="bg-sandybrown-200 absolute left-[0px] top-[0px] z-[6] mx-[!important] my-0 h-[42px] w-full" /> */}
-      <div className="font-satoshi z-[7] flex flex-col items-center justify-start gap-[45px] md:gap-[28px] self-stretch text-center text-base mx-2">
-        <div className=" text-[45px] lg:text-45xl font-headers-h2 relative inline-block max-w-[869px] font-semibold tracking-[-0.04em] leading-[45px] md:leading-[80px] ">
-          <p className="m-0">Une Entreprise sur mesure,</p>
-          <p className="m-0">
-            <span>{` un soutien `}</span>
-            <span className="text-sandybrown-100">Inégalé.</span>
-          </p>
+      <div className="font-satoshi z-[7] flex flex-col items-center justify-start gap-[45px] mt-16 md:gap-12 self-stretch text-center text-base mx-2">
+        <div className="flex flex-col gap-6">
+          <div className=" text-[45px] lg:text-45xl font-headers-h2 relative inline-block max-w-[869px] font-medium tracking-[-0.04em] leading-[45px] md:leading-[80px] ">
+            <p className="m-0">Une Entreprise sur mesure,</p>
+            <p className="m-0">
+              un soutien
+              <span className="text-sandybrown-100 after:content-excited after:absolute after:top-14 after:right-28">
+                {' '}
+                Inégalé.
+              </span>
+            </p>
+          </div>
+          <div className="relative inline-block max-w-[771px] leading-[20.5px] text-gray-700 px-8">
+            <p className="m-0">
+              Lancez-vous dès aujourd'hui et faites évoluer votre entreprise en
+              un rien de temps ! et faites dès aujourd'hui et faites évoluer
+              votre entreprise enLancez-vous dès aujourd'hui et faites évoluer
+              votre entreprise en un rien.
+            </p>
+          </div>
         </div>
-        <div className="relative inline-block max-w-[771px] leading-[20.5px] text-gray-700 px-8">
-          <p className="m-0">
-            Lancez-vous dès aujourd'hui et faites évoluer votre entreprise en un
-            rien de temps ! et faites dès aujourd'hui et faites évoluer votre
-            entreprise enLancez-vous dès aujourd'hui et faites évoluer votre
-            entreprise en un rien.
-          </p>
-        </div>
-        <div className="flex  max-w-[980px] flex-row items-end justify-center text-lg">
+
+        <div className="flex flex-col gap-12  max-w-[980px] items-center justify-center text-lg">
           <div className="flex flex-col md:flex-row items-end justify-center gap-[48px]">
             <ServiceCard
               title="Créer mon entreprise"
@@ -93,61 +99,50 @@ export default function Home() {
               links={LINKS_DATA}
             />
           </div>
-        </div>
-        <div className="font-button-nav flex flex-col items-center justify-center gap-[17px] self-stretch px-0 md:py-[47px] ">
-          <div className="flex flex-row items-center justify-center gap-[34px] w-full">
-            <div className="border-darkgray relative box-border h-px max-w-[653px] w-full border-t-[1px] border-solid" />
-            <div className="flex flex-row items-center justify-center w-full">
-              <div className="flex flex-row items-center justify-start">
-                <div className="relative font-semibold text-[16px] ">
-                  TRUSTED BY{' '}
+          <div className="max-w-[290px] h-9 justify-center items-center gap-4 inline-flex">
+            <div className="justify-start items-center flex">
+              <div className="w-[25px] flex-col justify-start items-start inline-flex">
+                <div className="h-[35.71px] rounded-[99px] flex-col justify-start items-start flex">
+                  <img
+                    className="w-[35.71px] h-[35.71px] relative rounded-[99px]"
+                    src="https://i.pravatar.cc/300"
+                  />
+                  <div className="w-[35.71px] h-[35.71px] rounded-[99px] border-2 border-white" />
+                </div>
+              </div>
+              <div className="w-[25px] flex-col justify-start items-start inline-flex">
+                <div className="h-9 rounded-[99px] flex-col justify-start items-start flex">
+                  <img
+                    className="w-9 h-9 relative rounded-[99px]"
+                    src="https://i.pravatar.cc/300"
+                  />
+                  <div className="w-9 h-9 rounded-[99px] border-2 border-white" />
+                </div>
+              </div>
+              <div className="w-[25px] flex-col justify-start items-start inline-flex">
+                <div className="h-9 rounded-[99px] flex-col justify-start items-start flex">
+                  <img
+                    className="w-9 h-9 relative rounded-[99px]"
+                    src="https://i.pravatar.cc/300"
+                  />
+                  <div className="w-9 h-9 rounded-[99px] border-2 border-white" />
+                </div>
+              </div>
+              <div className="w-[25px] flex-col justify-start items-start inline-flex">
+                <div className="h-9 rounded-[99px] flex-col justify-start items-start flex">
+                  <img
+                    className="w-9 h-9 relative rounded-[99px]"
+                    src="https://i.pravatar.cc/300"
+                  />
+                  <div className="w-9 h-9 rounded-[99px] border-2 border-white" />
                 </div>
               </div>
             </div>
-            <div className="border-darkgray relative box-border h-px max-w-[653px] w-full border-t-[1px] border-solid" />
-          </div>
-          <div className="box-border flex max-w-[1438px] w-full flex-col md:flex-row items-center justify-center gap-[78px] md:px-[72px] py-6">
-            <Image
-              className="relative h-[41px] w-10"
-              alt=""
-              src="/poli1.svg"
-              width={0}
-              height={0}
-              sizes="100vw"
-            />
-            <Image
-              className="relative h-[35.56px] w-[120px]"
-              alt=""
-              src="/cubbies1.svg"
-              width={0}
-              height={0}
-              sizes="100vw"
-            />
-            <Image
-              className="relative h-[38px] w-[141px] shrink-0 overflow-hidden"
-              alt=""
-              src="/epoptique1.svg"
-              width={0}
-              height={0}
-              sizes="100vw"
-            />
-            <Image
-              className="relative h-[38px] w-[108.23px]"
-              alt=""
-              src="/sinta1.svg"
-              width={0}
-              height={0}
-              sizes="100vw"
-            />
-
-            <Image
-              className="relative h-[35.56px] w-[120px]"
-              alt=""
-              src="/cubbies1.svg"
-              width={0}
-              height={0}
-              sizes="100vw"
-            />
+            <div className="flex-col justify-start items-start inline-flex">
+              <div className="text-slate-400 text-sm font-normal font-['IBM Plex Sans'] leading-[18.20px]">
+                Trusted already by 1.2k+
+              </div>
+            </div>
           </div>
         </div>
       </div>
