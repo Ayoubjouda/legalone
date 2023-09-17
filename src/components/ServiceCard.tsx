@@ -22,7 +22,7 @@ interface Links {
 
 const ServicesContent = ({ Links }: ServicesContentProps) => {
   return (
-    <div className=" flex-col md:max-w-md w-full max-h-[170px] min-w-[220px] flex md:flex-col md:flex-start flex-wrap">
+    <div className=" flex-col md:max-w-md w-full md:max-h-[170px] min-w-[220px] flex md:flex-col md:flex-start flex-wrap">
       {Links.length > 0
         ? Links?.map((link: Links, idx: number) => (
             <Link

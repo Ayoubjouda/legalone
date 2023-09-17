@@ -9,7 +9,7 @@ import {
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 import ServiceCard from '@/components/ServiceCard';
-import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import {
   CREATE_COMPANY_DATA,
   DELETE_COMPANY_DATA,
@@ -18,22 +18,6 @@ import {
 export default function Home() {
   return (
     <div className="text-29xl z-0  relative bg-white  flex max-w-screen w-full flex-col items-center justify-start gap-32 overflow-hidden  px-0 py-[46px] text-left text-gray-300 ">
-      <Image
-        className="absolute right-[1244px] top-[430px] z-[0] mx-[!important] my-0 h-6 w-6"
-        alt=""
-        src="/union.svg"
-        width={0}
-        height={0}
-        sizes="100vw"
-      />
-      <Image
-        className="absolute right-[161px] top-[312px] z-[1] mx-[!important] my-0 h-6 w-6"
-        alt=""
-        src="/union1.svg"
-        width={0}
-        height={0}
-        sizes="100vw"
-      />
       {/* <div className="font-button-nav absolute left-[calc(50%_-_477px)] top-[9px] z-[2] mx-[!important] my-0 lg:text-base text-sm  text-black">
         Bonjour, vous êtes parrainé ! Vous débloquez 2 mois offerts,
         sécurisez-les en commençant votre essai gratuit de Dougs.
@@ -46,30 +30,32 @@ export default function Home() {
         height={0}
         sizes="100vw"
       /> */}
-      <Image
-        className="absolute right-[108px] top-[138px] z-[4] mx-[!important] my-0 h-[29.88px] w-6"
-        alt=""
-        src="/subtract.svg"
-        width={0}
-        height={0}
-        sizes="100vw"
-      />
-      <Image
-        className="absolute right-[1277px] top-[201px] z-[5] mx-[!important] my-0 h-[24.18px] w-6"
-        alt=""
-        src="/union2.svg"
-        width={0}
-        height={0}
-        sizes="100vw"
-      />
+
       {/* <div className="bg-sandybrown-200 absolute left-[0px] top-[0px] z-[6] mx-[!important] my-0 h-[42px] w-full" /> */}
-      <div className=" z-[7] flex flex-col items-center justify-start gap-[45px] mt-12 md:gap-12 self-stretch text-center text-base mx-2">
+      <div className=" z-[7] flex flex-col items-center justify-start gap-[45px]  md:gap-12 self-stretch text-center text-base mx-2">
         <div className="flex flex-col items-center gap-6">
-          <div className=" text-[45px] lg:text-45xl relative font-ibmPlexSans  inline-block max-w-[420px] md:max-w-[869px] font-medium tracking-[-0.02em] leading-[45px] md:leading-[80px] ">
+          <div className="h-[39.40px] pl-2 pr-3 py-1.5 bg-white bg-opacity-40 rounded-[50px] border border-black border-opacity-5 justify-start items-center gap-[11.69px] inline-flex">
+            <div className="pl-[11.75px] pr-[11.55px] pt-[3.50px] pb-[4.90px] bg-orange-500 bg-opacity-10 rounded-2xl justify-center items-center flex">
+              <div className="text-center text-orange-500 text-xs md:text-sm font-medium font-['Be Vietnam Pro'] leading-[18.90px]">
+                Nouveau
+              </div>
+            </div>
+            <div className="justify-start items-center gap-[3.34px] flex">
+              <div className="pb-[0.90px] flex-col justify-start items-center inline-flex">
+                <div className="text-center text-orange-500 text-xs sm:text-sm font-medium font-['Be Vietnam Pro'] leading-[18.90px]">
+                  Votre entreprise en quelques secondes
+                </div>
+              </div>
+              <div className="w-4 h-4 flex-col justify-start items-start inline-flex">
+                <ArrowRight color="#E87B35" />
+              </div>
+            </div>
+          </div>
+          <div className=" text-[45px] lg:text-45xl relative font-ibmPlexSans  inline-block max-w-[300px] sm:max-w-[420px] md:max-w-[869px] font-medium tracking-[-0.02em] leading-[45px] md:leading-[80px] ">
             <p className="m-0">Une Entreprise sur mesure,</p>
             <p className="m-0">
               un soutien
-              <span className="text-sandybrown-100 after:content-excited after:absolute md:after:top-14 after:top-16 lg:after:right-24  after:right-8 after:w-2 lg:after:w-8 md:after:right-20 md:after:w-2">
+              <span className="text-sandybrown-100 after:content-excited after:absolute md:after:top-14 sm:after:top-16 after:top-[70%]  lg:after:right-24   sm:after:right-8 sm:after:w-2 lg:after:w-8 md:after:right-20 md:after:w-2">
                 {' '}
                 Inégalé.
               </span>
