@@ -13,20 +13,6 @@ export default function CreateSaas() {
   const methods = useForm<SaasSchemaType>({
     resolver: zodResolver(saasFormSchema),
     mode: 'onBlur',
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      companyName: '',
-      companyType: 'SARL',
-      creationDelay: '',
-      // activityField: {} as Activity,
-      associerNumber: '',
-      selectedManagerType: '',
-      shareCapital: '',
-      // pack: {} as Package,
-    },
   });
 
   return (
