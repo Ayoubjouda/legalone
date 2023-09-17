@@ -85,6 +85,9 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      fontFamily: {
+        ibmPlexSans: 'var(--ibmPlexSans)',
+      },
       fontSize: {
         base: '16px',
         xl: '20px',

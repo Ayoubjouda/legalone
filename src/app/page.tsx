@@ -10,10 +10,14 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 import ServiceCard from '@/components/ServiceCard';
 import Link from 'next/link';
-import { LINKS_DATA } from '@/lib/constants';
+import {
+  CREATE_COMPANY_DATA,
+  DELETE_COMPANY_DATA,
+  UPDATE_COMPANY_DATA,
+} from '@/lib/constants';
 export default function Home() {
   return (
-    <div className="text-29xl z-0 font-headers-h2 relative  flex max-w-screen w-full flex-col items-center justify-start gap-32 overflow-hidden bg-gray-100 px-0 py-[46px] text-left text-gray-300 ">
+    <div className="text-29xl z-0  relative bg-white  flex max-w-screen w-full flex-col items-center justify-start gap-32 overflow-hidden  px-0 py-[46px] text-left text-gray-300 ">
       <Image
         className="absolute right-[1244px] top-[430px] z-[0] mx-[!important] my-0 h-6 w-6"
         alt=""
@@ -59,44 +63,46 @@ export default function Home() {
         sizes="100vw"
       />
       {/* <div className="bg-sandybrown-200 absolute left-[0px] top-[0px] z-[6] mx-[!important] my-0 h-[42px] w-full" /> */}
-      <div className="font-satoshi z-[7] flex flex-col items-center justify-start gap-[45px] mt-16 md:gap-12 self-stretch text-center text-base mx-2">
-        <div className="flex flex-col gap-6">
-          <div className=" text-[45px] lg:text-45xl font-headers-h2 relative inline-block max-w-[869px] font-medium tracking-[-0.04em] leading-[45px] md:leading-[80px] ">
+      <div className=" z-[7] flex flex-col items-center justify-start gap-[45px] mt-12 md:gap-12 self-stretch text-center text-base mx-2">
+        <div className="flex flex-col items-center gap-6">
+          <div className=" text-[45px] lg:text-45xl relative font-ibmPlexSans  inline-block max-w-[420px] md:max-w-[869px] font-medium tracking-[-0.02em] leading-[45px] md:leading-[80px] ">
             <p className="m-0">Une Entreprise sur mesure,</p>
             <p className="m-0">
               un soutien
-              <span className="text-sandybrown-100 after:content-excited after:absolute after:top-14 after:right-28">
+              <span className="text-sandybrown-100 after:content-excited after:absolute md:after:top-14 after:top-16 lg:after:right-24  after:right-8 after:w-2 lg:after:w-8 md:after:right-20 md:after:w-2">
                 {' '}
                 Inégalé.
               </span>
             </p>
           </div>
-          <div className="relative inline-block max-w-[771px] leading-[20.5px] text-gray-700 px-8">
+          <div className="relative  max-w-[590px] text-lg leading-6 text-gray-700 px-8">
             <p className="m-0">
               Lancez-vous dès aujourd'hui et faites évoluer votre entreprise en
               un rien de temps ! et faites dès aujourd'hui et faites évoluer
-              votre entreprise enLancez-vous dès aujourd'hui et faites évoluer
-              votre entreprise en un rien.
+              votre entreprise enLancez-vous dès aujourd'hui.
             </p>
           </div>
         </div>
 
-        <div className="flex flex-col gap-12  max-w-[980px] items-center justify-center text-lg">
+        <div className="flex flex-col gap-12  max-w-[980px] items-center justify-center ">
           <div className="flex flex-col md:flex-row items-end justify-center gap-[48px]">
             <ServiceCard
-              title="Créer mon entreprise"
+              title="Création d'entreprise"
               image="/icons8company-1.svg"
-              links={LINKS_DATA}
+              links={CREATE_COMPANY_DATA}
+              description="SAS, SARL, Auto-entreprise"
             />
             <ServiceCard
-              title="Modifier mes Status"
+              title="Modification de status"
               image="/icons8settings-1-11.svg"
-              links={LINKS_DATA}
+              links={UPDATE_COMPANY_DATA}
+              description="Transfert de siège, changement ..."
             />
             <ServiceCard
-              title="Fin de Mon Entreprise"
+              title="Fermeture d'entreprise"
               image="/vector1.svg"
-              links={LINKS_DATA}
+              links={DELETE_COMPANY_DATA}
+              description="Dissolution, liquidation et radiation"
             />
           </div>
           <div className="max-w-[290px] h-9 justify-center items-center gap-4 inline-flex">
@@ -118,7 +124,7 @@ export default function Home() {
                 <div className="h-9 rounded-[99px] flex-col justify-start items-start flex">
                   <Image
                     className="w-9 h-9 relative rounded-[99px]"
-                    src="https://i.pravatar.cc/300"
+                    src="https://i.pravatar.cc/250"
                     alt="avatar"
                     width={0}
                     height={0}
@@ -131,7 +137,7 @@ export default function Home() {
                 <div className="h-9 rounded-[99px] flex-col justify-start items-start flex">
                   <Image
                     className="w-9 h-9 relative rounded-[99px]"
-                    src="https://i.pravatar.cc/300"
+                    src="https://i.pravatar.cc/400"
                     alt="avatar"
                     width={0}
                     height={0}
@@ -144,7 +150,7 @@ export default function Home() {
                 <div className="h-9 rounded-[99px] flex-col justify-start items-start flex">
                   <Image
                     className="w-9 h-9 relative rounded-[99px]"
-                    src="https://i.pravatar.cc/300"
+                    src="https://i.pravatar.cc/200"
                     alt="avatar"
                     width={0}
                     height={0}
@@ -162,7 +168,64 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="font-satoshi z-[8] w-full  max-w-screen-xl flex flex-col md:flex-row items-center justify-center gap-[94px] text-base lg:text-xl text-black ">
+      <div className="w-full px-4 md:px-8 lg:px-32 bg-white flex-col justify-center items-center ">
+        <div className=" flex-col justify-center items-center gap-12 flex">
+          <div className="text-slate-500 text-xl font-normal font-['Be Vietnam Pro'] leading-[27px]">
+            Already chosen by the world leaders
+          </div>
+          <div className="flex justify-between flex-col md:flex-row items-center gap-8  w-full">
+            <Image
+              className=" w-32   md:w-24  lg:w-32  object-contain "
+              alt=""
+              src="https://ik.imagekit.io/zb5z1u26qn/LegalOne/svg79002381_8468.png?updatedAt=1694943387954"
+              width={0}
+              height={0}
+              sizes="100vw"
+            />
+            <Image
+              className=" object-contain  w-32   md:w-24  lg:w-32 "
+              alt=""
+              src="https://ik.imagekit.io/zb5z1u26qn/LegalOne/svg-1305855712_3249.png?updatedAt=1694943387877"
+              width={0}
+              height={0}
+              sizes="100vw"
+            />
+            <Image
+              className=" object-contain  w-32   md:w-24  lg:w-32 "
+              alt=""
+              src="https://ik.imagekit.io/zb5z1u26qn/LegalOne/svg-1422926009_3286.png?updatedAt=1694943387875"
+              width={0}
+              height={0}
+              sizes="100vw"
+            />
+            <Image
+              className="object-contain  w-32   md:w-24  lg:w-32 "
+              alt=""
+              src="https://ik.imagekit.io/zb5z1u26qn/LegalOne/svg-1490657353_1089.png?updatedAt=1694943387904"
+              width={0}
+              height={0}
+              sizes="100vw"
+            />
+            <Image
+              className=" object-contain  w-32   md:w-24  lg:w-32 "
+              alt=""
+              src="https://ik.imagekit.io/zb5z1u26qn/LegalOne/svg-2143453188_4259.png?updatedAt=1694943387902"
+              width={0}
+              height={0}
+              sizes="100vw"
+            />
+            <Image
+              className=" object-contain  w-32   md:w-24  lg:w-32 "
+              alt=""
+              src="https://ik.imagekit.io/zb5z1u26qn/LegalOne/svg-936861110_4209.png?updatedAt=1694943387925"
+              width={0}
+              height={0}
+              sizes="100vw"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="font-satoshi z-[8] w-full   max-w-screen-xl flex flex-col md:flex-row items-center justify-center gap-[94px] text-base lg:text-xl text-black ">
         <div className="flex flex-col items-start justify-center gap-[25px] px-4 w-full">
           <div className="text-[45px] lg:text-29xl font-headers-h2 relative inline-block max-w-[549px] font-medium">
             Gagnez du temps précieux
@@ -667,21 +730,24 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="z-[20] flex flex-col max-w-screen-xl items-center w-full justify-center gap-[60px]   py-[120px] text-center">
-        <div className="flex flex-col items-center justify-start">
-          <div className="relative font-medium">We know you are curious!</div>
+      <div className="z-[20] flex flex-col max-w-screen-xl items-center w-full justify-center gap-12   py-[120px] text-center">
+        <div className="flex flex-col items-center justify-start gap-6">
+          <div className="relative font-medium">Frequently asked questions</div>
+          <div className="text-center text-stone-900 text-base font-normal  leading-7">
+            Ask everything you need to know about our products and services.
+          </div>
         </div>
-        <div className="w-full text-base max-w-screen-md  ">
+        <div className="w-full text-base max-w-screen-lg  ">
           <Accordion
             type="multiple"
-            className="cursor-pointer  pt-2  font-Syne font-[400] tracking-tight  text-lg text-black border bg-orange-50  rounded-md mx-3 "
+            className="cursor-pointer   tracking-tight  text-lg text-black border bg-white  rounded-md mx-3 "
             defaultValue={['item-1']}
           >
             <AccordionItem
               value="item-1"
-              className="px-3 "
+              className="px-3 py-2 "
             >
-              <AccordionTrigger>
+              <AccordionTrigger className=" font-bold ">
                 How do I choose the right supplement for my needs?
               </AccordionTrigger>
               <AccordionContent className=" flex items-start text-start text-base">
@@ -694,18 +760,44 @@ export default function Home() {
             </AccordionItem>
             <AccordionItem
               value="item-23"
-              className="px-3"
+              className="px-3  py-2 "
             >
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionTrigger className="font-bold">
+                Do you provide any moneyback guarantee in this product?
+              </AccordionTrigger>
               <AccordionContent className=" flex items-start text-start text-base">
                 Yes. It adheres to the WAI-ARIA design pattern.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
               value="item-333"
-              className="px-3"
+              className="px-3  py-2"
             >
-              <AccordionTrigger>Is it accessible?</AccordionTrigger>
+              <AccordionTrigger className="font-bold">
+                What payment method do you support?
+              </AccordionTrigger>
+              <AccordionContent className=" flex items-start text-start text-base">
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem
+              value="item-12"
+              className="px-3  py-2"
+            >
+              <AccordionTrigger className="font-bold">
+                Will I get money back if I am not satisfied?
+              </AccordionTrigger>
+              <AccordionContent className=" flex items-start text-start text-base">
+                Yes. It adheres to the WAI-ARIA design pattern.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem
+              value="item-3232"
+              className="px-3  py-2 border-none"
+            >
+              <AccordionTrigger className="font-bold">
+                What payment method do you support?
+              </AccordionTrigger>
               <AccordionContent className=" flex items-start text-start text-base">
                 Yes. It adheres to the WAI-ARIA design pattern.
               </AccordionContent>

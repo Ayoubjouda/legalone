@@ -9,7 +9,8 @@ import NextTopLoader from 'nextjs-toploader';
 const inter = Inter({ subsets: ['latin'] });
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['greek'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--ibmPlexSans',
 });
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={` ${ibmPlexSans.className} debug-screens`}>
+      <body className={` ${ibmPlexSans.variable} debug-screens`}>
         <Providers>
           <NavBar />
 

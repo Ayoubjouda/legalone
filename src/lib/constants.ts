@@ -1,4 +1,4 @@
-export const LINKS_DATA = [
+export const CREATE_COMPANY_DATA = [
   {
     id: 1,
     title: 'Créer ma SASU',
@@ -38,5 +38,29 @@ export const LINKS_DATA = [
     id: 8,
     title: 'Choisir mon statut',
     url: '/choisir-mon-statut',
+  },
+];
+export const UPDATE_COMPANY_DATA = [
+  {
+    id: 1,
+    title: 'Transfert de siège',
+    url: '/creer-ma-sasu',
+  },
+  {
+    id: 2,
+    title: 'Changement de gérant',
+    url: '/createsaas',
+  },
+  {
+    id: 2,
+    title: 'Modification de statuts',
+    url: '/createsaas',
+  },
+];
+export const DELETE_COMPANY_DATA = [
+  {
+    id: 1,
+    title: 'Dissolution de société',
+    url: '/creer-ma-sasu',
   },
 ];
