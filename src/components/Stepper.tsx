@@ -134,7 +134,7 @@ const Stepper: FC<StepperProps> = () => {
         index={activeStep}
         colorScheme={'orange'}
         flex={1}
-        gap={10}
+        gap={4}
         width={'max-content'}
         showLastSeparator
       >
@@ -148,6 +148,7 @@ const Stepper: FC<StepperProps> = () => {
                 maxHeight: '4px',
                 minWidth: '30px',
                 borderRadius: '3px',
+                margin: '0px',
               }}
             />
             <div className="hidden lg:block">

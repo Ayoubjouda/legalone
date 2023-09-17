@@ -61,6 +61,9 @@ const HeadquarterForm = ({ goToNext, goToPrevious }: FormProps) => {
         />
       </div>
       <div className="flex justify-center text-red-500 font-semibold">
+        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+          Où sera fixé le siège social de la Société ?
+        </p>
         <ErrorMessage
           errors={errors}
           name="headquarter"

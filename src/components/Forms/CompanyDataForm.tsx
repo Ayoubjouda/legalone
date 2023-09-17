@@ -19,7 +19,7 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
   return (
     <form className="w-full max-w-[650px]">
       <div className="my-5 flex flex-col gap-4">
-        <p className="text-center text-sm font-normal leading-tight text-slate-500">
+        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
           Combien y a-t-il d'Associés fondateurs ?
         </p>
 

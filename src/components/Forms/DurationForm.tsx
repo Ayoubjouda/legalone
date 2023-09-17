@@ -43,6 +43,9 @@ const DurationForm = ({ goToNext, goToPrevious }: FormProps) => {
         />
       </div>
       <div className="flex justify-center text-red-500 font-semibold">
+        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+          Dans quel délai souhaitez-vous créer votre société ?
+        </p>
         <ErrorMessage
           errors={errors}
           name="creationDelay"
@@ -50,7 +53,7 @@ const DurationForm = ({ goToNext, goToPrevious }: FormProps) => {
         />
       </div>
 
-      <div className=" flex flex-col md:flex-row flex-wrap gap-10">
+      <div className=" flex flex-col items-center md:flex-row flex-wrap gap-10">
         <IconBox
           title="Dans un mois"
           image={'/fast.svg'}

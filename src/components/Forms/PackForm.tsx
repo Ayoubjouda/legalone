@@ -54,6 +54,11 @@ const PackForm = ({ goToNext, goToPrevious }: FormProps) => {
           rules={{ required: true }}
         />
       </div>
+      <div>
+        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+          Choisissez votre pack
+        </p>
+      </div>
       <div className="flex w-full justify-center flex-wrap gap-10 ">
         {data?.map((item: Package, idx: number) => (
           <Pack

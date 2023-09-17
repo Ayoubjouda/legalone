@@ -17,6 +17,9 @@ const PersonalForm = ({ goToNext }: FormProps) => {
   return (
     <form className="max-w-[650px]">
       <div className="my-5 flex flex-col  gap-4">
+        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+          Informations personnelles
+        </p>
         <p className="text-center text-sm font-normal leading-tight text-slate-500">
           Ces informations nous permettront de vous assister au cours de votre
           processus de création, et seront nécessaires pour constituer votre
