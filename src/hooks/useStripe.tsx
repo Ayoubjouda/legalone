@@ -11,7 +11,7 @@ async function createOrder(accessToken: string, FormValues: SaasSchemaType) {
   const { data } = await api.post('order/create-order', {
     companyData: {
       creationDelay: FormValues.creationDelay,
-      activityField: FormValues.activityField.id,
+      activityField: FormValues.activityField,
       companyName: FormValues.companyName,
       selectedManagerType: FormValues.selectedManagerType,
       firstName: FormValues.firstName,
@@ -20,7 +20,7 @@ async function createOrder(accessToken: string, FormValues: SaasSchemaType) {
       associer: 'Associer Name',
       nonAssociateManager: true,
       shareCapital: Number(FormValues.shareCapital),
-      companyLocation: FormValues.headquarter.id,
+      companyLocation: FormValues.headquarter,
       companyType: FormValues.companyType,
       accountingExpert: true,
       email: FormValues.email,
@@ -30,7 +30,7 @@ async function createOrder(accessToken: string, FormValues: SaasSchemaType) {
       currency: 'USD',
       description: 'Order payment',
     },
-    packageField: FormValues.pack.id,
+    packageField: FormValues.pack,
     description: 'Order payment',
     companyType: FormValues.companyType,
   });
