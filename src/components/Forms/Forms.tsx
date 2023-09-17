@@ -8,17 +8,17 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Input } from './ui/input';
-import { Button } from './ui/button';
-import IconBox from './IconBox';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import IconBox from '../IconBox';
 import { cn } from '@/lib/utils';
-import { RadioGroup, RadioGroupItem } from './ui/radio-group';
-import Pack from './Pack';
+import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
+import Pack from '../Pack';
 import { useQuery } from 'react-query';
 import api from '@/lib/axiosConfig';
 import { Spinner } from '@chakra-ui/react';
-import CheckoutForm from './CheckoutForm';
-import Checkout from './Checkout';
+import CheckoutForm from '../CheckoutForm';
+import Checkout from '../Checkout';
 import { ErrorMessage } from '@hookform/error-message';
 import {
   Dialog,
@@ -186,6 +186,11 @@ export const FormTwo = ({ goToNext, goToPrevious }: FormProps) => {
   const handleSetValue = (newValue: string) => {
     setValue('creationDelay', newValue);
   };
+  const handelSubmitValue = (value: string) => {
+    handleSetValue(value);
+    setselected(value);
+    goToNext();
+  };
 
   return (
     <form className="flex flex-col gap-10">
@@ -216,8 +221,7 @@ export const FormTwo = ({ goToNext, goToPrevious }: FormProps) => {
           title="Dans un mois"
           image={'/fast.svg'}
           onClick={() => {
-            handleSetValue('WEEKLY');
-            setselected('WEEKLY');
+            handelSubmitValue('WEEKLY');
           }}
           className={cn({ 'border-orange-500': selected === 'WEEKLY' })}
         />
@@ -225,8 +229,7 @@ export const FormTwo = ({ goToNext, goToPrevious }: FormProps) => {
           title="Dans la Semaine"
           image={'/calander.svg'}
           onClick={() => {
-            handleSetValue('MONTHLY');
-            setselected('MONTHLY');
+            handelSubmitValue('MONTHLY');
           }}
           className={cn({ 'border-orange-500': selected === 'MONTHLY' })}
         />
@@ -234,25 +237,11 @@ export const FormTwo = ({ goToNext, goToPrevious }: FormProps) => {
           title="Je ne sais pas encore"
           image={'/doubt.svg'}
           onClick={() => {
-            handleSetValue('je ne sais pas');
-            setselected('je ne sais pas');
+            handelSubmitValue('je ne sais pas');
           }}
           className={cn({ 'border-orange-500': selected === 'je ne sais pas' })}
         />
       </div>
-      <Button
-        className="font-semibold self-end text-lg "
-        type="button"
-        size={'lg'}
-        onClick={async () => {
-          const isValid = await trigger(['creationDelay']);
-          if (isValid) {
-            goToNext();
-          }
-        }}
-      >
-        Continuer
-      </Button>
     </form>
   );
 };
@@ -266,7 +255,6 @@ export const FormThree = ({ goToNext, goToPrevious }: FormProps) => {
     formState: { errors },
   } = useFormContext();
   const values = getValues();
-  console.log(values);
   const [selectedDomain, setselectedDomain] = useState<number | null>(
     values?.activityField?.id || null
   );

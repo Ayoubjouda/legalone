@@ -19,7 +19,7 @@ import {
   FormFive,
   FormSix,
   FormLast,
-} from '@/components/Forms';
+} from '@/components/Forms/Forms';
 import { ChevronLeft } from 'lucide-react';
 import useFormPersist from 'react-hook-form-persist';
 import { useFormContext } from 'react-hook-form';

@@ -6,11 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
-import ServiceCard from '@/components/ServiceCard';
-import Link from 'next/link';
-import { LINKS_DATA } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
 export default function CreateCompany() {
   return (
