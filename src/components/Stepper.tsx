@@ -2,28 +2,25 @@
 import { FC, useEffect } from 'react';
 import {
   Step,
-  StepIcon,
-  StepIndicator,
   StepSeparator,
-  StepStatus,
   Stepper as ChakraStepper,
   useSteps,
-  Text,
 } from '@chakra-ui/react';
 import { Button } from './ui/button';
+import { FormSix } from '@/components/Forms/Forms';
 import {
-  FormOne,
-  FormTwo,
-  FormThree,
-  FormFour,
-  FormFive,
-  FormSix,
-  FormLast,
-} from '@/components/Forms/Forms';
+  PersonalForm,
+  DurationForm,
+  ActivityForm,
+  ManagerForm,
+  CompanyDataForm,
+  HeadquarterForm,
+} from '@/components/Forms';
 import { ChevronLeft } from 'lucide-react';
 import useFormPersist from 'react-hook-form-persist';
 import { useFormContext } from 'react-hook-form';
 import useAppStore from '@/zustand/store';
+import PackForm from './Forms/PackForm';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
@@ -31,6 +28,7 @@ const steps = [
   { title: 'Third', description: 'PROJET' },
   { title: 'Third', description: 'CHOIX DU PLAN' },
   { title: 'Third', description: 'Headquarter' },
+  { title: 'Third', description: 'Récapitulatif' },
   { title: 'Third', description: 'Récapitulatif' },
 ];
 const Stepper: FC<StepperProps> = () => {
@@ -62,42 +60,49 @@ const Stepper: FC<StepperProps> = () => {
     switch (step) {
       case 0:
         return (
-          <FormOne
+          <PersonalForm
             goToNext={goToNext}
             goToPrevious={goToPrevious}
           />
         );
       case 1:
         return (
-          <FormTwo
+          <DurationForm
             goToNext={goToNext}
             goToPrevious={goToPrevious}
           />
         );
       case 2:
         return (
-          <FormThree
+          <ActivityForm
             goToNext={goToNext}
             goToPrevious={goToPrevious}
           />
         );
       case 3:
         return (
-          <FormFour
+          <ManagerForm
             goToNext={goToNext}
             goToPrevious={goToPrevious}
           />
         );
       case 4:
         return (
-          <FormFive
+          <CompanyDataForm
             goToNext={goToNext}
             goToPrevious={goToPrevious}
           />
         );
       case 5:
         return (
-          <FormLast
+          <HeadquarterForm
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
+      case 6:
+        return (
+          <PackForm
             goToNext={goToNext}
             goToPrevious={goToPrevious}
           />

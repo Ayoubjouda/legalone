@@ -77,12 +77,9 @@ export const saasFormSchema = z.object({
   creationDelay: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
-  activityField: z.object({
-    id: z.number(),
-    name: z
-      .string()
-      .min(2, { message: 'Vous devez sélectionner au moins une option' }),
-  }),
+  activityField: z
+    .number()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
   president: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
@@ -90,13 +87,17 @@ export const saasFormSchema = z.object({
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' }),
   selectedManagerType: z
-    .string()
-    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
+    .number()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
   shareCapital: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' }),
-  headquarter: z.custom<HeadQuarter>(),
-  pack: z.custom<Package>(),
+  headquarter: z
+    .number()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
+  pack: z
+    .number()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
 });
 export type SaasSchemaType = z.infer<typeof saasFormSchema>;
 
