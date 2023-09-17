@@ -103,36 +103,52 @@ export default function Home() {
             <div className="justify-start items-center flex">
               <div className="w-[25px] flex-col justify-start items-start inline-flex">
                 <div className="h-[35.71px] rounded-[99px] flex-col justify-start items-start flex">
-                  <img
+                  <Image
                     className="w-[35.71px] h-[35.71px] relative rounded-[99px]"
                     src="https://i.pravatar.cc/300"
+                    alt="avatar"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
                   />
                   <div className="w-[35.71px] h-[35.71px] rounded-[99px] border-2 border-white" />
                 </div>
               </div>
               <div className="w-[25px] flex-col justify-start items-start inline-flex">
                 <div className="h-9 rounded-[99px] flex-col justify-start items-start flex">
-                  <img
+                  <Image
                     className="w-9 h-9 relative rounded-[99px]"
                     src="https://i.pravatar.cc/300"
+                    alt="avatar"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
                   />
                   <div className="w-9 h-9 rounded-[99px] border-2 border-white" />
                 </div>
               </div>
               <div className="w-[25px] flex-col justify-start items-start inline-flex">
                 <div className="h-9 rounded-[99px] flex-col justify-start items-start flex">
-                  <img
+                  <Image
                     className="w-9 h-9 relative rounded-[99px]"
                     src="https://i.pravatar.cc/300"
+                    alt="avatar"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
                   />
                   <div className="w-9 h-9 rounded-[99px] border-2 border-white" />
                 </div>
               </div>
               <div className="w-[25px] flex-col justify-start items-start inline-flex">
                 <div className="h-9 rounded-[99px] flex-col justify-start items-start flex">
-                  <img
+                  <Image
                     className="w-9 h-9 relative rounded-[99px]"
                     src="https://i.pravatar.cc/300"
+                    alt="avatar"
+                    width={0}
+                    height={0}
+                    sizes="100vw"
                   />
                   <div className="w-9 h-9 rounded-[99px] border-2 border-white" />
                 </div>
