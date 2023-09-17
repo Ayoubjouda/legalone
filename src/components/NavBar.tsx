@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/sheet';
 import { Divider, Center } from '@chakra-ui/react';
 import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
 interface NavBarProps {}
 
 const NavBar: FC<NavBarProps> = () => {
@@ -46,7 +47,9 @@ const NavBar: FC<NavBarProps> = () => {
                     <SheetTrigger asChild>
                       <Link
                         href={'/'}
-                        className="relative cursor-pointer"
+                        className={cn('relative cursor-pointer text-grey', {
+                          'text-black': pathname === '/services',
+                        })}
                       >
                         Nos Services
                       </Link>
@@ -101,10 +104,18 @@ const NavBar: FC<NavBarProps> = () => {
       <div className="font-button-nav hidden  lg:flex flex-row items-start justify-start gap-[13px] text-left text-base text-gray-400">
         <div className="flex flex-col items-start justify-start p-2.5">
           <div className="flex flex-row items-center justify-center gap-[28px]">
-            <div className="flex h-6 w-[253.48px] flex-row items-center justify-start gap-[28px]">
+            <div className="flex h-6  flex-row items-center justify-start gap-[28px]">
               <Link
                 href={'/'}
-                className="relative cursor-pointer"
+                className={cn('relative cursor-pointer text-grey', {
+                  'text-black': pathname === '/',
+                })}
+              >
+                Accueil
+              </Link>
+              <Link
+                href={'/'}
+                className="relative text-grey  cursor-pointer"
               >
                 Nos Services
               </Link>
@@ -115,9 +126,6 @@ const NavBar: FC<NavBarProps> = () => {
                 Outils et guides
               </Link>
             </div>
-            <Center height="50px">
-              <Divider orientation="vertical" />
-            </Center>
 
             {pathname === '/createsaas' ? (
               <div className="text-sandybrown-100 flex flex-row items-start justify-start cursor-pointer">
@@ -126,20 +134,17 @@ const NavBar: FC<NavBarProps> = () => {
                 </div>
               </div>
             ) : currentUser ? (
-              <UserNav currentUser={currentUser} />
+              <div className="w-10">
+                <UserNav currentUser={currentUser} />
+              </div>
             ) : (
               <div className="flex justify-center items-center gap-4">
                 <Link
                   href={'login'}
-                  className="text-grey relative"
+                  className=" relative bg-orange-400 px-3 py-2 rounded-md text-white font-semibold"
                 >
-                  Se Connecter
+                  Connexion
                 </Link>
-                <div className="text-sandybrown-100 flex flex-row items-start justify-start cursor-pointer">
-                  <div className="border-sandybrown-100 flex flex-row items-start justify-start overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
-                    <div className="relative font-semibold">07 76 67 87 67</div>
-                  </div>
-                </div>
               </div>
             )}
           </div>
