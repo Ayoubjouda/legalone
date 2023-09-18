@@ -8,6 +8,7 @@ import {
 } from '../ui/form';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
+import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 interface FormProps {
   goToNext: () => void;
   goToPrevious: () => void;
@@ -82,6 +83,40 @@ const PersonalForm = ({ goToNext }: FormProps) => {
           )}
         />
         <FormField
+          name="sex"
+          control={control}
+          defaultValue={''}
+          render={({ field }) => (
+            <FormItem className="flex items-center gap-3 space-y-0 ">
+              <FormLabel className="leading-[20px]">
+                Sélectionnez votre sexe :
+              </FormLabel>
+              <FormControl>
+                <RadioGroup
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  className="flex"
+                >
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="Male" />
+                    </FormControl>
+                    <FormLabel className="font-semibold">Male</FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="Female" />
+                    </FormControl>
+                    <FormLabel className="font-semibold">Female</FormLabel>
+                  </FormItem>
+                </RadioGroup>
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
           name="phone"
           control={control}
           render={({ field }) => (
@@ -99,24 +134,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
             </FormItem>
           )}
         />
-        <FormField
-          name="companyName"
-          control={control}
-          defaultValue={''}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nom de la Societé</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="shadcn"
-                  {...field}
-                />
-              </FormControl>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <Button
           className="font-semibold self-end text-lg "
           type="button"
@@ -127,7 +145,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
               'lastName',
               'email',
               'phone',
-              'companyName',
+              'sex',
             ]);
             if (isValid) {
               goToNext();

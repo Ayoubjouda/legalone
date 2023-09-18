@@ -66,6 +66,9 @@ export const saasFormSchema = z.object({
     .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
   email: z.string().email({ message: 'Doit être une adresse e-mail valide' }),
   phone: z.string().min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  sex: z
+    .string()
+    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
   companyName: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })

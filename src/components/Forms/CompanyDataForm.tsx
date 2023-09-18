@@ -22,7 +22,24 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
         <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
           Combien y a-t-il d'Associés fondateurs ?
         </p>
+        <FormField
+          name="companyName"
+          control={control}
+          defaultValue={''}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Nom de la Societé</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="shadcn"
+                  {...field}
+                />
+              </FormControl>
 
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           name="associerNumber"
           control={control}
@@ -99,6 +116,7 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
           size={'lg'}
           onClick={async () => {
             const isValid = await trigger([
+              'companyName',
               'associerNumber',
               'shareCapital',
               'nonAssociateManager',
