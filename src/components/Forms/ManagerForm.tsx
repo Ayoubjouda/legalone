@@ -47,6 +47,7 @@ export const ManagerForm = ({ goToNext, goToPrevious }: FormProps) => {
       goToNext();
     }
   };
+  console.log(ManagerData);
 
   if (ManagerLoading)
     return (
@@ -69,13 +70,7 @@ export const ManagerForm = ({ goToNext, goToPrevious }: FormProps) => {
         <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
           Qui sera président de la société ?
         </p>
-        <div className="flex justify-center text-red-500 font-semibold">
-          <ErrorMessage
-            errors={errors}
-            name="selectedManagerType"
-            render={({ message }) => <p>{message}</p>}
-          />
-        </div>
+
         <div className="flex w-full  justify-center   flex-wrap gap-10">
           {ManagerData ? (
             ManagerData?.map((item: ManagerType, idx: number) => (

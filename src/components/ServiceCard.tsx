@@ -51,7 +51,7 @@ const ServiceCard: FC<ServiceCardProps> = ({
         <HoverCard openDelay={100}>
           <HoverCardTrigger>
             <div
-              className="hover:border-sandybrown-100 box-border flex px-4  items-center justify-center gap-4 overflow-hidden rounded-md border-[1px] border-solid bg-white py-3 cursor-pointer"
+              className="hover:border-redish box-border flex px-4  items-center justify-center gap-4 overflow-hidden rounded-md border-[1px] border-solid bg-white py-3 cursor-pointer"
               onClick={() => router.push('/createcompany')}
             >
               <Image

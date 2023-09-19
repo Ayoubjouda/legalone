@@ -17,11 +17,12 @@ async function createOrder(accessToken: string, FormValues: SaasSchemaType) {
       firstName: FormValues.firstName,
       lastName: FormValues.lastName,
       sex: FormValues.sex,
-      associer: 'Associer Name',
+      associer: FormValues.associerNumber,
       nonAssociateManager: FormValues.president,
       shareCapital: Number(FormValues.shareCapital),
       companyLocation: FormValues.headquarter,
       companyType: FormValues.companyType,
+      //TODO: add accountingExpert Form
       accountingExpert: true,
       email: FormValues.email,
       phone: FormValues.phone,

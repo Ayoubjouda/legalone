@@ -45,7 +45,7 @@ const DetailItem = ({ title, value }: { title: string; value: string }) => {
 };
 
 export const FormSix = ({ goToNext, goToPrevious }: FormProps) => {
-  const { watch, register, control, getValues } = useFormContext();
+  const { getValues } = useFormContext();
   const router = useRouter();
   const { accessToken } = useAppStore();
   // const watchAllFields = watch();

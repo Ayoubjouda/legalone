@@ -60,28 +60,28 @@ const Stepper: FC<StepperProps> = () => {
     switch (step) {
       case 0:
         return (
-          <PersonalForm
+          <DurationForm
             goToNext={goToNext}
             goToPrevious={goToPrevious}
           />
         );
       case 1:
         return (
-          <DurationForm
+          <ActivityForm
             goToNext={goToNext}
             goToPrevious={goToPrevious}
           />
         );
       case 2:
         return (
-          <ActivityForm
+          <ManagerForm
             goToNext={goToNext}
             goToPrevious={goToPrevious}
           />
         );
       case 3:
         return (
-          <ManagerForm
+          <PersonalForm
             goToNext={goToNext}
             goToPrevious={goToPrevious}
           />
@@ -132,7 +132,7 @@ const Stepper: FC<StepperProps> = () => {
       )}
       <ChakraStepper
         index={activeStep}
-        colorScheme={'orange'}
+        colorScheme={'red'}
         flex={1}
         gap={4}
         width={'max-content'}

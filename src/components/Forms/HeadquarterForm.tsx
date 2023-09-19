@@ -42,21 +42,21 @@ const HeadquarterForm = ({ goToNext, goToPrevious }: FormProps) => {
       goToNext();
     }
   };
-  if (isLoading) return <Spinner color="orange.500" />;
+  if (isLoading)
+    return (
+      <div className="min-h-[300px] h-full w-full flex justify-center items-center">
+        <Spinner color="orange.500" />
+      </div>
+    );
 
   return (
     <form className="flex flex-col gap-10">
-      <div>
+      <div className="hidden">
         <Controller
           name="headquarter"
           control={control}
           defaultValue=""
-          render={({ field }) => (
-            <input
-              className="hidden"
-              {...field}
-            />
-          )}
+          render={({ field }) => <input {...field} />}
           rules={{ required: true }}
         />
       </div>

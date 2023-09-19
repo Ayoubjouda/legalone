@@ -24,7 +24,7 @@ const IconBox: FC<IconBoxProps> = ({ title, image, ...props }) => {
         height={45}
         sizes="100vw"
       />
-      <p className="text-center text-base font-semibold  text-black">{title}</p>
+      <p className="text-center text-sm font-semibold  text-black">{title}</p>
     </button>
   );
 };

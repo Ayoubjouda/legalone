@@ -141,7 +141,7 @@ const NavBar: FC<NavBarProps> = () => {
               <div className="flex justify-center items-center gap-4">
                 <Link
                   href={'login'}
-                  className=" relative bg-orange-400 px-3 py-2 rounded-md text-white font-semibold"
+                  className=" relative bg-redish px-3 py-2 rounded-md text-white font-semibold"
                 >
                   Connexion
                 </Link>

@@ -36,18 +36,18 @@ export default function Home() {
         <div className="flex flex-col items-center gap-6">
           <div className="h-[39.40px] pl-2 pr-3 py-1.5 bg-white bg-opacity-40 rounded-[50px] border border-black border-opacity-5 justify-start items-center gap-[11.69px] inline-flex">
             <div className="pl-[11.75px] pr-[11.55px] pt-[3.50px] pb-[4.90px] bg-orange-500 bg-opacity-10 rounded-2xl justify-center items-center flex">
-              <div className="text-center text-orange-500 text-xs md:text-sm font-medium font-['Be Vietnam Pro'] leading-[18.90px]">
+              <div className="text-center text-redish text-xs md:text-sm font-medium font-['Be Vietnam Pro'] leading-[18.90px]">
                 Nouveau
               </div>
             </div>
             <div className="justify-start items-center gap-[3.34px] flex">
               <div className="pb-[0.90px] flex-col justify-start items-center inline-flex">
-                <div className="text-center text-orange-500 text-xs sm:text-sm font-medium font-['Be Vietnam Pro'] leading-[18.90px]">
+                <div className="text-center text-redish text-xs sm:text-sm font-medium font-['Be Vietnam Pro'] leading-[18.90px]">
                   Votre entreprise en quelques secondes
                 </div>
               </div>
               <div className="w-4 h-4 flex-col justify-start items-start inline-flex">
-                <ArrowRight color="#E87B35" />
+                <ArrowRight color="#D86949" />
               </div>
             </div>
           </div>
@@ -55,7 +55,7 @@ export default function Home() {
             <p className="m-0">Une Entreprise sur mesure,</p>
             <p className="m-0">
               un soutien
-              <span className="text-sandybrown-100 after:content-excited after:absolute md:after:top-14 sm:after:top-16 after:top-[70%]  lg:after:right-24   sm:after:right-8 sm:after:w-2 lg:after:w-8 md:after:right-20 md:after:w-2">
+              <span className="text-redish after:content-excited after:absolute md:after:top-14 sm:after:top-16 after:top-[70%]  lg:after:right-24   sm:after:right-8 sm:after:w-2 lg:after:w-8 md:after:right-20 md:after:w-2">
                 {' '}
                 Inégalé.
               </span>

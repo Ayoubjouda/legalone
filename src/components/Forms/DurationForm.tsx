@@ -28,20 +28,16 @@ const DurationForm = ({ goToNext, goToPrevious }: FormProps) => {
 
   return (
     <form className="flex flex-col gap-10">
-      <div>
+      <div className="hidden">
         <Controller
           name="creationDelay"
           control={control}
           defaultValue=""
-          render={({ field }) => (
-            <input
-              className="hidden"
-              {...field}
-            />
-          )}
+          render={({ field }) => <input {...field} />}
           rules={{ required: true }}
         />
       </div>
+
       <div className="flex justify-center text-red-500 font-semibold">
         <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
           Dans quel délai souhaitez-vous créer votre société ?

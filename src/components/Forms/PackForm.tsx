@@ -34,7 +34,12 @@ const PackForm = ({ goToNext, goToPrevious }: FormProps) => {
       goToNext();
     }
   };
-  if (isLoading && !data) return <Spinner color="orange.500" />;
+  if (isLoading && !data)
+    return (
+      <div className="min-h-[300px] h-full w-full flex justify-center items-center">
+        <Spinner color="orange.500" />
+      </div>
+    );
   return (
     <form className="w-full flex flex-col gap-8">
       <div className="hidden">
