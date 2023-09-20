@@ -36,7 +36,7 @@ module.exports = {
         },
         chocolate: '#e48634',
         gainsboro: '#dee5ed',
-        redish: '#E8613E',
+        redish: '#EE5622',
         darkslategray: {
           '100': '#3c3c43',
           '200': '#223140',
@@ -87,6 +87,7 @@ module.exports = {
       },
       fontFamily: {
         ibmPlexSans: 'var(--ibmPlexSans)',
+        inter: 'var(--inter)',
       },
       fontSize: {
         base: '16px',

@@ -36,13 +36,13 @@ export default function Home() {
         <div className="flex flex-col items-center gap-6">
           <div className="h-[39.40px] pl-2 pr-3 py-1.5 bg-white bg-opacity-40 rounded-[50px] border border-black border-opacity-5 justify-start items-center gap-[11.69px] inline-flex">
             <div className="pl-[11.75px] pr-[11.55px] pt-[3.50px] pb-[4.90px] bg-orange-500 bg-opacity-10 rounded-2xl justify-center items-center flex">
-              <div className="text-center text-redish text-xs md:text-sm font-medium font-['Be Vietnam Pro'] leading-[18.90px]">
+              <div className="text-center text-redish text-xs md:text-sm font-medium font-ibmPlexSans leading-[18.90px]">
                 Nouveau
               </div>
             </div>
             <div className="justify-start items-center gap-[3.34px] flex">
               <div className="pb-[0.90px] flex-col justify-start items-center inline-flex">
-                <div className="text-center text-redish text-xs sm:text-sm font-medium font-['Be Vietnam Pro'] leading-[18.90px]">
+                <div className="text-center text-redish text-xs sm:text-sm font-medium font-ibmPlexSans leading-[18.90px]">
                   Votre entreprise en quelques secondes
                 </div>
               </div>

@@ -47,38 +47,9 @@ export default function LoginPage() {
     }
   }
   return (
-    <main className="max-w-screen mx-8 flex h-full relative   md:justify-center   ">
-      <Image
-        className="my-2 h-full hidden  inset-0  lg:fixed lg:block lg:w-1/2 "
-        src="https://ik.imagekit.io/zb5z1u26qn/LegalOne/legaloneSigninPic.jpeg?updatedAt=1692030316256"
-        alt=""
-        width={0}
-        height={0}
-        sizes="100vw"
-        placeholder="blur"
-        blurDataURL="https://ik.imagekit.io/zb5z1u26qn/LegalOne/legaloneSigninPic.jpeg?updatedAt=1692030316256"
-      />
-      <div className="mt-10 flex-col justify-center lg:fixed lg:inset-x-2/4   lg:mx-10 lg:mt-32 lg:w-[calc(50%-100px)] lg:items-center">
-        <Link href="/">
-          <Button
-            className="px-0 text-black hover:no-underline"
-            variant={'link'}
-          >
-            <ChevronLeft size={24} />
-            Retour
-          </Button>
-        </Link>
-        <Image
-          className="my-2 h-36 w-full rounded-2xl md:hidden"
-          src="https://ik.imagekit.io/zb5z1u26qn/LegalOne/angela-bailey-GfUk_pFtjz0-unsplash%202.png?updatedAt=1692030421176"
-          alt=""
-          width={0}
-          height={0}
-          sizes="100vw"
-          placeholder="blur"
-          blurDataURL="https://ik.imagekit.io/zb5z1u26qn/LegalOne/angela-bailey-GfUk_pFtjz0-unsplash%202.png?updatedAt=1692030421176"
-        />
-        <h1 className="mt-5">
+    <main className="max-w-screen mx-4 sm:mx-8 flex h-full relative   md:justify-center   ">
+      <div className="mt-4 flex-col justify-center  border px-4 sm:px-16 py-1 rounded-md   lg:mx-10   lg:items-center">
+        <h1 className="mt-4">
           Legal<span className="font-bold">Center</span>
         </h1>
         <Form {...form}>
@@ -141,6 +112,7 @@ export default function LoginPage() {
               <Button
                 type="submit"
                 disabled={isLoading}
+                className="bg-black  text-white font-semibold font-inter hover:bg-opacity-80 hover:bg-black"
               >
                 {isLoading ? <Spinner /> : 'Se connecter'}
               </Button>

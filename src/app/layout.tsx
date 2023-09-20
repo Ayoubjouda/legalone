@@ -6,7 +6,7 @@ import { Toaster } from '@/components/ui/toaster';
 import NavBar from '@/components/NavBar';
 import NextTopLoader from 'nextjs-toploader';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--inter' });
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['greek'],
   weight: ['300', '400', '500', '600', '700'],
@@ -25,7 +25,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={` ${ibmPlexSans.variable} debug-screens`}>
+      <body
+        className={` ${inter.variable} debug-screens ${ibmPlexSans.variable}`}
+      >
         <Providers>
           <NavBar />
 

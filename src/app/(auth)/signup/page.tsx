@@ -50,38 +50,7 @@ export default function SignupPage() {
   }
   return (
     <main className="max-w-screen mx-8 flex h-full  relative  md:justify-center   ">
-      <Image
-        className="my-2 h-full hidden  inset-0  lg:fixed lg:block lg:w-1/2 "
-        src="https://ik.imagekit.io/zb5z1u26qn/LegalOne/legaloneSigninPic.jpeg?updatedAt=1692030316256"
-        alt=""
-        width={0}
-        height={0}
-        sizes="100vw"
-        placeholder="blur"
-        blurDataURL="https://ik.imagekit.io/zb5z1u26qn/LegalOne/legaloneSigninPic.jpeg?updatedAt=1692030316256"
-      />
-
-      <div className="flex-col justify-center py-10  md:mx-10  lg:absolute lg:inset-x-2/4 overflow-y-auto   lg:mx-10  lg:w-[calc(50%-100px)] lg:items-center lg:py-10 ">
-        <Link href="/">
-          <Button
-            className="px-0 text-black hover:no-underline"
-            variant={'link'}
-          >
-            <ChevronLeft size={24} />
-            Retour
-          </Button>
-        </Link>
-
-        <Image
-          className="my-2 h-36 w-full rounded-2xl md:hidden"
-          src="https://ik.imagekit.io/zb5z1u26qn/LegalOne/angela-bailey-GfUk_pFtjz0-unsplash%202.png?updatedAt=1692030421176"
-          alt=""
-          width={0}
-          height={0}
-          sizes="100vw"
-          placeholder="blur"
-          blurDataURL="https://ik.imagekit.io/zb5z1u26qn/LegalOne/angela-bailey-GfUk_pFtjz0-unsplash%202.png?updatedAt=1692030421176"
-        />
+      <div className="flex-col justify-center mt-2  md:mx-10 border px-4 sm:px-16 py-8 rounded-md   overflow-y-auto   lg:mx-10   lg:items-center lg:py-1 ">
         <h1 className="mt-5">
           Legal<span className="font-bold">Center</span>
         </h1>
@@ -242,7 +211,12 @@ export default function SignupPage() {
                 Vous avez deja un compte ?{' '}
                 <span className="underline">Se Connecter</span>
               </a>
-              <Button type="submit">Se connecter</Button>
+              <Button
+                className="bg-black  text-white font-semibold font-inter hover:bg-opacity-80 hover:bg-black"
+                type="submit"
+              >
+                Se connecter
+              </Button>
             </div>
           </form>
         </Form>

@@ -34,6 +34,7 @@ const NavBar: FC<NavBarProps> = () => {
           <b>Center</b>
         </Link>
       </div>
+
       <div className="lg:hidden">
         <Sheet>
           <SheetTrigger>
@@ -104,46 +105,46 @@ const NavBar: FC<NavBarProps> = () => {
       <div className="font-button-nav hidden  lg:flex flex-row items-start justify-start gap-[13px] text-left text-base text-gray-400">
         <div className="flex flex-col items-start justify-start p-2.5">
           <div className="flex flex-row items-center justify-center gap-[28px]">
-            <div className="flex h-6  flex-row items-center justify-start gap-[28px]">
+            <div className="flex h-6 font-inter text-sm font-medium   flex-row items-center justify-start gap-[28px]">
               <Link
                 href={'/'}
-                className={cn('relative cursor-pointer text-grey', {
+                className={cn('relative cursor-pointer hover:text-redish', {
                   'text-black': pathname === '/',
                 })}
               >
                 Accueil
               </Link>
               <Link
-                href={'/'}
-                className="relative text-grey  cursor-pointer"
+                href={'/tarifs'}
+                className="relative  cursor-pointer hover:text-redish"
               >
-                Nos Services
+                Tarifs
               </Link>
               <Link
                 href={'/'}
-                className="text-grey relative"
+                className=" relative hover:text-redish"
               >
                 Outils et guides
               </Link>
             </div>
 
-            {pathname === '/createsaas' ? (
-              <div className="text-sandybrown-100 flex flex-row items-start justify-start cursor-pointer">
-                <div className="border-sandybrown-100 flex flex-row items-start justify-start overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
-                  <div className="relative font-semibold">07 76 67 87 67</div>
-                </div>
-              </div>
-            ) : currentUser ? (
+            {currentUser ? (
               <div className="w-10">
                 <UserNav currentUser={currentUser} />
               </div>
             ) : (
-              <div className="flex justify-center items-center gap-4">
+              <div className="flex justify-center font-inter text-sm font-medium  items-center gap-4">
                 <Link
                   href={'login'}
-                  className=" relative bg-redish px-3 py-2 rounded-md text-white font-semibold"
+                  className=" relative   rounded-md  hover:text-redish"
                 >
                   Connexion
+                </Link>
+                <Link
+                  href={'signup'}
+                  className=" relative bg-redish px-3 py-2 rounded-md text-white font-semibold"
+                >
+                  Lancez-vous
                 </Link>
               </div>
             )}
