@@ -10,6 +10,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import Faq from '@/components/Faq';
+import Footer from '@/components/Footer';
+import LancezVous from '@/components/LancezVous';
 interface pageProps {}
 
 const packs = [
@@ -362,7 +365,7 @@ const page: FC<pageProps> = () => {
                 <div className="  flex-col justify-start items-center gap-2.5 inline-flex">
                   <div className="self-stretch  flex-col justify-start items-start flex">
                     <div className="self-stretch  flex-col justify-start items-start flex">
-                      <div className="text-zinc-500 text-base font-semibold font-['IBM Plex Sans'] leading-normal">
+                      <div className="text-zinc-500 w-max text-base font-semibold font-['IBM Plex Sans'] leading-normal">
                         Express + Expert-comptable
                       </div>
                     </div>
@@ -419,7 +422,7 @@ const page: FC<pageProps> = () => {
           <div className="self-stretch  flex-col justify-start items-center gap-[30px] flex">
             <div className="self-stretch  flex-col justify-start items-start flex">
               <div className="self-stretch  pl-[100px] pr-[97px] flex-col justify-start items-center flex">
-                <div className="text-center text-stone-900 text-5xl font-medium font-['IBM Plex Sans'] leading-[70px]">
+                <div className="text-center text-stone-900 text-5xl font-medium font-ibmPlexSans leading-[70px]">
                   Nos Services
                 </div>
               </div>
@@ -439,39 +442,13 @@ const page: FC<pageProps> = () => {
             <TableRow className="w-full grid grid-cols-12">
               <TableHead className="col-span-6"></TableHead>
               <TableHead className="col-span-3 h-fit">
-                <div className="w-[215.20px] h-16 flex-col justify-start items-center gap-2.5 inline-flex">
-                  <div className="self-stretch h-6 flex-col justify-start items-start flex">
-                    <div className="self-stretch h-6 pr-[162.20px] flex-col justify-start items-start flex">
-                      <div className="text-zinc-500 text-base font-semibold font-['IBM Plex Sans'] leading-normal">
-                        Standard
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch h-[30px] flex-col justify-start items-start flex">
-                    <div className="self-stretch h-[30px] pr-[141.20px] flex-col justify-start items-start flex">
-                      <div className="text-stone-900 text-xl font-semibold font-['IBM Plex Sans'] leading-[30px]">
-                        $99
-                      </div>
-                    </div>
-                  </div>
+                <div className="text-zinc-500 text-base font-semibold font-['IBM Plex Sans'] leading-normal">
+                  Prix
                 </div>
               </TableHead>
               <TableHead className="col-span-3">
-                <div className=" h-16 flex-col justify-start items-center gap-2.5 inline-flex">
-                  <div className="self-stretch h-6 flex-col justify-start items-start flex">
-                    <div className="self-stretch h-6  flex-col justify-start items-start flex">
-                      <div className="text-zinc-500 text-base font-semibold font-['IBM Plex Sans'] leading-normal">
-                        Express 24h
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-stretch h-[30px] flex-col justify-start items-start flex">
-                    <div className="self-stretch h-[30px] pr-[141.20px] flex-col justify-start items-start flex">
-                      <div className="text-stone-900 text-xl font-semibold font-['IBM Plex Sans'] leading-[30px]">
-                        $199
-                      </div>
-                    </div>
-                  </div>
+                <div className="text-zinc-500 text-base font-semibold font-['IBM Plex Sans'] leading-normal">
+                  Frais
                 </div>
               </TableHead>
             </TableRow>
@@ -531,6 +508,9 @@ const page: FC<pageProps> = () => {
           </TableBody>
         </Table>
       </section>
+      <Faq />
+      <LancezVous />
+      <Footer />
     </div>
   );
 };

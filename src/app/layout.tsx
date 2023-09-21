@@ -34,7 +34,7 @@ export default function RootLayout({
           <NextTopLoader
             showSpinner={false}
             easing="ease-in-out"
-            color="#e48634"
+            color="#DD6135"
           />
           {children}
         </Providers>

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { ArrowUpRight } from 'lucide-react';
 interface PricingComponentProps {
   type: 'standard' | 'express' | 'expert';
 }
@@ -53,7 +54,7 @@ const PricingComponent: FC<PricingComponentProps> = ({ type }) => {
             <div className="[9.70px] pb-2.5 rounded-lg justify-center items-start inline-flex">
               <div
                 className={cn(
-                  'px-4 py-2 bg-stone-900 rounded-lg justify-center items-center gap-[9.50px] flex',
+                  'px-4 py-2 bg-stone-900 cursor-pointer rounded-lg justify-center items-center gap-[9.50px] flex',
                   {
                     'bg-redish': type === 'express',
                   }
@@ -66,14 +67,10 @@ const PricingComponent: FC<PricingComponentProps> = ({ type }) => {
                 >
                   Lancez-vous
                 </button>
-
-                <div className="h-6 justify-center items-center flex">
-                  <div className="grow shrink basis-0 h-[191px] pl-[2.21px] [2.20px] py-[85.70px] origin-top-left rotate-[30deg] justify-center items-center inline-flex">
-                    <div className="w-4 h-4 origin-top-left rotate-[-75deg] flex-col justify-start items-start inline-flex">
-                      <div className="w-4 h-4 relative" />
-                    </div>
-                  </div>
-                </div>
+                <ArrowUpRight
+                  size={16}
+                  color="white"
+                />
               </div>
             </div>
           </div>

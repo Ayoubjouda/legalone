@@ -7,6 +7,8 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import Faq from '@/components/Faq';
+import LancezVous from '@/components/LancezVous';
 
 import ServiceCard from '@/components/ServiceCard';
 import { ArrowRight } from 'lucide-react';
@@ -15,24 +17,11 @@ import {
   DELETE_COMPANY_DATA,
   UPDATE_COMPANY_DATA,
 } from '@/lib/constants';
+import Footer from '@/components/Footer';
 export default function Home() {
   return (
-    <div className="text-29xl z-0  relative bg-white  flex max-w-screen w-full flex-col items-center justify-start gap-32 overflow-hidden  px-0 py-[46px] text-left text-gray-300 ">
-      {/* <div className="font-button-nav absolute left-[calc(50%_-_477px)] top-[9px] z-[2] mx-[!important] my-0 lg:text-base text-sm  text-black">
-        Bonjour, vous êtes parrainé ! Vous débloquez 2 mois offerts,
-        sécurisez-les en commençant votre essai gratuit de Dougs.
-      </div> */}
-      {/* <Image
-        className="absolute left-[1384px] top-[11px] z-[3] mx-[!important] my-0 h-5 w-5 shrink-0 overflow-hidden"
-        alt=""
-        src="/close.svg"
-        width={0}
-        height={0}
-        sizes="100vw"
-      /> */}
-
-      {/* <div className="bg-sandybrown-200 absolute left-[0px] top-[0px] z-[6] mx-[!important] my-0 h-[42px] w-full" /> */}
-      <div className=" z-[7] flex flex-col items-center justify-start gap-[45px]  md:gap-12 self-stretch text-center text-base mx-2">
+    <div className="text-29xl z-0  relative bg-white  flex max-w-screen w-full flex-col items-center justify-start gap-32 overflow-hidden   text-left text-gray-300 ">
+      <div className=" z-[7] flex flex-col items-center justify-start gap-[45px] mt-8  md:gap-12 self-stretch text-center text-base mx-2">
         <div className="flex flex-col items-center gap-6">
           <div className="h-[39.40px] pl-2 pr-3 py-1.5 bg-white bg-opacity-40 rounded-[50px] border border-black border-opacity-5 justify-start items-center gap-[11.69px] inline-flex">
             <div className="pl-[11.75px] pr-[11.55px] pt-[3.50px] pb-[4.90px] bg-orange-500 bg-opacity-10 rounded-2xl justify-center items-center flex">
@@ -716,171 +705,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="z-[20] flex flex-col max-w-screen-xl items-center w-full justify-center gap-12   py-[120px] text-center">
-        <div className="flex flex-col items-center justify-start gap-6">
-          <div className="relative font-medium">Frequently asked questions</div>
-          <div className="text-center text-stone-900 text-base font-normal  leading-7">
-            Ask everything you need to know about our products and services.
-          </div>
-        </div>
-        <div className="w-full text-base max-w-screen-lg  ">
-          <Accordion
-            type="multiple"
-            className="cursor-pointer   tracking-tight  text-lg text-black border bg-white  rounded-md mx-3 "
-            defaultValue={['item-1']}
-          >
-            <AccordionItem
-              value="item-1"
-              className="px-3 py-2 "
-            >
-              <AccordionTrigger className=" font-bold ">
-                How do I choose the right supplement for my needs?
-              </AccordionTrigger>
-              <AccordionContent className=" flex items-start text-start text-base">
-                We offer a personalized quiz that takes into account your
-                specific health goals, dietary preferences, and lifestyle
-                factors. Based on your responses, we provide tailored
-                recommendations to help you find the supplements that best suit
-                your needs.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem
-              value="item-23"
-              className="px-3  py-2 "
-            >
-              <AccordionTrigger className="font-bold">
-                Do you provide any moneyback guarantee in this product?
-              </AccordionTrigger>
-              <AccordionContent className=" flex items-start text-start text-base">
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem
-              value="item-333"
-              className="px-3  py-2"
-            >
-              <AccordionTrigger className="font-bold">
-                What payment method do you support?
-              </AccordionTrigger>
-              <AccordionContent className=" flex items-start text-start text-base">
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem
-              value="item-12"
-              className="px-3  py-2"
-            >
-              <AccordionTrigger className="font-bold">
-                Will I get money back if I am not satisfied?
-              </AccordionTrigger>
-              <AccordionContent className=" flex items-start text-start text-base">
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem
-              value="item-3232"
-              className="px-3  py-2 border-none"
-            >
-              <AccordionTrigger className="font-bold">
-                What payment method do you support?
-              </AccordionTrigger>
-              <AccordionContent className=" flex items-start text-start text-base">
-                Yes. It adheres to the WAI-ARIA design pattern.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      </div>
-      <div className="z-[12] flex flex-col items-start justify-start p-2.5 w-full   text-white max-w-screen-xl ">
-        <div className="flex flex-col items-center justify-start w-full max-w-screen-xl  gap-[36px] ">
-          <div className="bg-sandybrown-100 flex py-12  w-full   flex-row items-center mx-[100px]   justify-center rounded-xl ">
-            <div className="flex flex-col items-center  justify-center  gap-[33px] ">
-              <div className="relative font-semibold text-4xl lg:text-6xl text-center">
-                Prêt à Lancer Votre Entreprise ?
-              </div>
-              <div className="font-satoshi relative  max-w-[825px] text-center text-base md:text-xl leading-[30px]">
-                Rejoignez des milliers d'entrepreneurs qui ont déjà bénéficié de
-                notre application. Inscrivez-vous dès aujourd'hui pour commencer
-                gratuitement !
-              </div>
-              <div className="text-chocolate font-button-nav  flex max-w-[184px] flex-row items-center justify-center overflow-hidden rounded-md bg-white px-[18px] py-2.5 text-base cursor-pointer">
-                <div className="relative font-semibold">Commencez</div>
-              </div>
-            </div>
-          </div>
-          <div className="font-plus-jakarta-sans flex flex-col w-full items-start justify-start gap-[32px] px-0 pb-0 pt-[31px] text-center text-xl text-black">
-            <div className="flex flex-col gap-10 lg:flex-row items-start justify-start lg:gap-[291px]">
-              <div className="flex flex-col items-start justify-start gap-[14px]">
-                <div className="relative">
-                  <span>Legal</span>
-                  <b>Center</b>
-                </div>
-                <div className="font-satoshi text-dimgray relative inline-block max-w-[285px] text-left text-base leading-[30px]">
-                  Streamline inventory management and order fulfillment.
-                </div>
-              </div>
-              <div className="font-headers-h2 flex flex-col md:flex-row items-start justify-center gap-[90px] text-left">
-                <div className="flex flex-col items-start justify-start gap-[12px]">
-                  <div className="relative font-medium leading-[30px]">
-                    Product
-                  </div>
-                  <div className="text-dimgray font-satoshi flex flex-col items-start justify-start gap-[2px] text-base">
-                    <div className="relative leading-[30px]">Automation</div>
-                    <div className="relative leading-[30px]">Payments</div>
-                    <div className="relative leading-[30px]">Observability</div>
-                    <div className="relative leading-[30px]">Reconcilation</div>
-                  </div>
-                </div>
-                <div className="flex flex-col items-start justify-start gap-[12px]">
-                  <div className="relative font-medium leading-[30px]">
-                    Support
-                  </div>
-                  <div className="text-dimgray font-satoshi flex flex-col items-start justify-start gap-[2px] text-base">
-                    <div className="relative leading-[30px]">On-boarding</div>
-                    <div className="relative leading-[30px]">Help center</div>
-                    <div className="relative leading-[30px]">Contact us</div>
-                    <div className="relative leading-[30px]">Expert</div>
-                    <div className="relative leading-[30px]">Status</div>
-                  </div>
-                </div>
-                <div className="flex flex-col items-start justify-start gap-[12px]">
-                  <div className="relative font-medium leading-[30px]">
-                    Resources
-                  </div>
-                  <div className="text-dimgray font-satoshi flex flex-col items-start justify-start gap-[2px] text-base">
-                    <div className="relative leading-[30px]">Community</div>
-                    <div className="relative leading-[30px]">Affiliates</div>
-                    <div className="relative leading-[30px]">Partnerships</div>
-                    <div className="relative leading-[30px]">{`Perks & benefits`}</div>
-                    <div className="relative leading-[30px]">API docs</div>
-                  </div>
-                </div>
-                <div className="flex flex-col items-start justify-start gap-[12px]">
-                  <div className="relative font-medium leading-[30px]">
-                    Company
-                  </div>
-                  <div className="text-dimgray font-satoshi flex flex-col items-start justify-start gap-[2px] text-base">
-                    <div className="relative leading-[30px]">About us</div>
-                    <div className="relative leading-[30px]">Blog</div>
-                    <div className="relative leading-[30px]">Press</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="relative box-border h-[0.6px] w-[1290.6px] border-t-[0.6px] border-solid border-white" />
-            <div className="text-dimgray font-button-nav flex h-6 w-[1290px] flex-row items-center justify-start gap-[860px] text-left text-base">
-              <div className="relative">
-                © 2023 OrderEase. All rights reserved.
-              </div>
-              <div className="flex flex-row items-center justify-center gap-[27px]">
-                <div className="relative">Privacy</div>
-                <div className="relative">Terms</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="absolute left-[0px] top-[3993px] z-[13] mx-[!important] my-0 h-[542px] w-[1440px]" />
+      <Faq />
+      <LancezVous />
+      <Footer />
     </div>
   );
 }
