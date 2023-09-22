@@ -50,7 +50,7 @@ const CommandeForm = ({ goToNext, goToPrevious }: FormProps) => {
 
   return (
     <div className="flex w-full items-start gap-3 justify-center">
-      <div className="w-full justify-between items-start flex flex-col gap-4 md:flex-row ">
+      <div className="w-full justify-between items-center md:items-start flex flex-col gap-4 md:flex-row ">
         <div className="rounded-lg border w-full border-gray-200 flex-col justify-start items-start inline-flex">
           <div className="self-stretch h-[66px] px-8 py-2 bg-black rounded-tl-lg rounded-tr-lg flex-col justify-start items-start gap-2.5 flex">
             <div className="justify-between items-start inline-flex">
@@ -240,14 +240,15 @@ const CommandeForm = ({ goToNext, goToPrevious }: FormProps) => {
                 </Button>
               </div>
             </div>
-            <div className="  bg-orange-600 rounded-md w-full shadow justify-center items-center  inline-flex">
-              <Button className="text-center text-white text-base  font-bold font-['Helvetica'] leading-normal">
-                Valider
-              </Button>
+            <Button className="  bg-orange-600 hover:bg-darkRedish gap-2 text-base self-stretch rounded-md w-full shadow justify-center cursor-pointer items-center  inline-flex">
+              Valider
               <div className="  justify-start items-center flex">
-                <MoveRight color="white" />
+                <MoveRight
+                  size={24}
+                  color="white"
+                />
               </div>
-            </div>
+            </Button>
           </div>
         </div>
       </div>
