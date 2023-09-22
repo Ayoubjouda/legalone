@@ -68,7 +68,6 @@ export default function LoginPage() {
                     <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="shadcn"
                         type="email"
                         autoComplete="email"
                         {...field}
@@ -86,7 +85,6 @@ export default function LoginPage() {
                     <FormLabel>Mot de passe</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="shadcn"
                         type="password"
                         autoComplete="current-password"
                         {...field}

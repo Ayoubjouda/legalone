@@ -4,3 +4,4 @@ export { default as ActivityForm } from './ActivityForm';
 export { default as ManagerForm } from './ManagerForm';
 export { default as CompanyDataForm } from './CompanyDataForm';
 export { default as HeadquarterForm } from './HeadquarterForm';
+export { default as CommandeForm } from './CommandeForm';

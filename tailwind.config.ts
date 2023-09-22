@@ -37,6 +37,7 @@ module.exports = {
         chocolate: '#e48634',
         gainsboro: '#dee5ed',
         redish: '#EE5622',
+        darkRedish: '#d64d1f',
         darkslategray: {
           '100': '#3c3c43',
           '200': '#223140',

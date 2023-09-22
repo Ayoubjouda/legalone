@@ -38,10 +38,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
               <FormItem>
                 <FormLabel>Raison social</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="shadcn"
-                    {...field}
-                  />
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -55,10 +52,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
               <FormItem>
                 <FormLabel>Forme juridique de la Société</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="shadcn"
-                    {...field}
-                  />
+                  <Input {...field} />
                 </FormControl>
 
                 <FormMessage />
@@ -73,10 +67,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
               <FormItem>
                 <FormLabel>Numéro RCS(SIREN)</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="shadcn"
-                    {...field}
-                  />
+                  <Input {...field} />
                 </FormControl>
 
                 <FormMessage />
@@ -85,7 +76,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
           />
 
           <Button
-            className="font-semibold self-end text-lg "
+            className="font-semibold self-end text-lg hover:bg-darkRedish"
             type="button"
             size={'lg'}
             onClick={async () => {
@@ -127,10 +118,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
               <FormItem className="w-1/2">
                 <FormLabel>Nom</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="shadcn"
-                    {...field}
-                  />
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -144,10 +132,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
               <FormItem className="w-1/2">
                 <FormLabel>Prénom</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="shadcn"
-                    {...field}
-                  />
+                  <Input {...field} />
                 </FormControl>
 
                 <FormMessage />
@@ -163,10 +148,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="shadcn"
-                  {...field}
-                />
+                <Input {...field} />
               </FormControl>
 
               <FormMessage />
@@ -215,7 +197,6 @@ const PersonalForm = ({ goToNext }: FormProps) => {
               <FormLabel>Phone number</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="shadcn"
                   type="number"
                   {...field}
                 />
@@ -227,7 +208,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
         />
 
         <Button
-          className="font-semibold self-end text-lg "
+          className="font-semibold self-end text-lg hover:bg-darkRedish"
           type="button"
           size={'lg'}
           onClick={async () => {

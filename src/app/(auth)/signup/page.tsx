@@ -69,10 +69,7 @@ export default function SignupPage() {
                     <FormItem className="w-1/2">
                       <FormLabel>Nom</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="shadcn"
-                          {...field}
-                        />
+                        <Input {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -85,10 +82,7 @@ export default function SignupPage() {
                     <FormItem className="w-1/2">
                       <FormLabel>Prénom</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="shadcn"
-                          {...field}
-                        />
+                        <Input {...field} />
                       </FormControl>
 
                       <FormMessage />
@@ -103,10 +97,7 @@ export default function SignupPage() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="shadcn"
-                        {...field}
-                      />
+                      <Input {...field} />
                     </FormControl>
 
                     <FormMessage />
@@ -176,10 +167,7 @@ export default function SignupPage() {
                   <FormItem>
                     <FormLabel>Mot de passe</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="shadcn"
-                        {...field}
-                      />
+                      <Input {...field} />
                     </FormControl>
 
                     <FormMessage />
@@ -193,10 +181,7 @@ export default function SignupPage() {
                   <FormItem>
                     <FormLabel>Confirmer le Mot de passe</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="shadcn"
-                        {...field}
-                      />
+                      <Input {...field} />
                     </FormControl>
 
                     <FormMessage />

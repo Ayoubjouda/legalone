@@ -9,6 +9,7 @@ import {
 import { Input } from '../ui/input';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 import { Button } from '../ui/button';
+import { MoveRight } from 'lucide-react';
 
 interface FormProps {
   goToNext: () => void;
@@ -30,10 +31,7 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
             <FormItem>
               <FormLabel>Nom de la Societé</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="shadcn"
-                  {...field}
-                />
+                <Input {...field} />
               </FormControl>
 
               <FormMessage />
@@ -48,10 +46,7 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
             <FormItem>
               <FormLabel>Nombre d'associer</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="shadcn"
-                  {...field}
-                />
+                <Input {...field} />
               </FormControl>
 
               <FormMessage />
@@ -100,10 +95,7 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
             <FormItem>
               <FormLabel>Capital social</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="shadcn"
-                  {...field}
-                />
+                <Input {...field} />
               </FormControl>
 
               <FormMessage />
@@ -111,7 +103,7 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
           )}
         />
         <Button
-          className="font-semibold self-end text-lg "
+          className="font-semibold items-center self-end flex gap-2 text-base  hover:bg-darkRedish"
           type="button"
           size={'lg'}
           onClick={async () => {
@@ -127,7 +119,9 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
             }
           }}
         >
+          <span></span>
           Continuer
+          <MoveRight />
         </Button>
       </div>
     </form>

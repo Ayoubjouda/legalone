@@ -7,7 +7,6 @@ import {
   useSteps,
 } from '@chakra-ui/react';
 import { Button } from './ui/button';
-import { FormSix } from '@/components/Forms/Forms';
 import {
   PersonalForm,
   DurationForm,
@@ -15,6 +14,7 @@ import {
   ManagerForm,
   CompanyDataForm,
   HeadquarterForm,
+  CommandeForm,
 } from '@/components/Forms';
 import { ChevronLeft } from 'lucide-react';
 import useFormPersist from 'react-hook-form-persist';
@@ -109,7 +109,7 @@ const Stepper: FC<StepperProps> = () => {
         );
       default:
         return (
-          <FormSix
+          <CommandeForm
             goToNext={goToNext}
             goToPrevious={goToPrevious}
           />
@@ -118,18 +118,24 @@ const Stepper: FC<StepperProps> = () => {
   }
   return (
     <div className="max-w-screen-xl flex  w-full flex-col items-center justify-center gap-5">
-      {activeStep !== 0 && (
-        <div className=" flex max-w-screen-md  w-full">
-          <Button
-            className="px-0 text-black hover:no-underline"
-            variant={'link'}
-            onClick={goToPrevious}
-          >
-            <ChevronLeft size={24} />
-            Retour
-          </Button>
-        </div>
-      )}
+      <div className=" w-full lg:max-w-3xl sm:max-w-lg relative">
+        <p className=" text-center text-lg font-medium leading-[31px] text-black">
+          Création de saas
+        </p>
+        {activeStep !== 0 && (
+          <div className="absolute top-0 left-0 flex max-w-screen-md  w-full">
+            <Button
+              className="px-0 text-black hover:no-underline"
+              variant={'link'}
+              onClick={goToPrevious}
+            >
+              <ChevronLeft size={24} />
+              Retour
+            </Button>
+          </div>
+        )}
+      </div>
+
       <ChakraStepper
         index={activeStep}
         colorScheme={'red'}

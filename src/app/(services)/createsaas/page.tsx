@@ -17,13 +17,9 @@ export default function CreateSaas() {
 
   return (
     <div className="max-w-screen-xl mx-auto flex  gap-2 flex-col items-center justify-center overflow-hidden my-12">
-      <p className="text-center text-lg font-medium leading-[31px] text-black">
-        CRÉATION DE SAAS
-      </p>
       <FormProvider {...methods}>
         <Stepper />
       </FormProvider>
-      {/* <PaymentElement /> */}
     </div>
   );
 }

@@ -480,23 +480,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {/* <div className="md:absolute md:left-[927.5px] flex top-[0px] md:h-[222px] w-[280px]">
-            <div className="absolute left-[159px] top-[0px] font-black leading-[204px] tracking-[-0.02em] opacity-[0.05]">
-              3
-            </div>
-            <div className="text-sandybrown-100 font-satoshi absolute left-[1px] top-[101px] flex h-[121px] w-[279px] flex-col items-start justify-start gap-[7px] text-lg">
-              <div className="relative font-medium capitalize">
-                Validation et Lancement
-              </div>
-              <div className="text-slategray relative inline-block w-[279px] text-base leading-[30px] tracking-[-0.02em]">
-                From they fine john he give of rich he. They age and draw mrs
-                like. Improving end distrusts may instantly.
-              </div>
-            </div>
-            <div className="absolute left-[0px] top-[13px] box-border flex h-16 w-16 flex-col items-start justify-start rounded-xl bg-white p-5">
-              <div className="rounded-3xs bg-silver relative h-[23px] w-[23px]" />
-            </div>
-          </div> */}
         </div>
 
         {/* //!Keep This one for last} */}

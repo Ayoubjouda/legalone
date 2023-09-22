@@ -13,15 +13,15 @@ const IconBox: FC<IconBoxProps> = ({ title, image, ...props }) => {
       {...props}
       className={cn(
         props.className,
-        'flex w-[210px] cursor-pointer flex-col items-center justify-center gap-y-1 rounded-2xl border p-7 transition duration-300 ease-in-out hover:border-orange-500 hover:shadow-lg'
+        'flex w-[210px] cursor-pointer flex-col items-center justify-center gap-y-1 rounded-2xl border p-7 transition duration-300 ease-in-out hover:border-redish hover:shadow-lg'
       )}
       type="button"
     >
       <Image
         src={image}
         alt="2332"
-        width={45}
-        height={45}
+        width={48}
+        height={48}
         sizes="100vw"
       />
       <p className="text-center text-sm font-semibold  text-black">{title}</p>
