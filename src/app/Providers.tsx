@@ -11,14 +11,6 @@ interface ProvidersProps {
 
 const Providers: FC<ProvidersProps> = ({ children }) => {
   const queryClient = new QueryClient();
-  const pathName = usePathname();
-  const router = useRouter();
-  const { accessToken } = useAppStore();
-  if (accessToken) {
-    if (pathName === '/login' || pathName === '/signup') {
-      router.push('/');
-    }
-  }
 
   return (
     <>

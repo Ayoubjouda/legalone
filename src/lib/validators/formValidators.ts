@@ -59,16 +59,25 @@ export const saasFormSchema = z.object({
   firstName: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
-    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
   lastName: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
-    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
-  email: z.string().email({ message: 'Doit être une adresse e-mail valide' }),
-  phone: z.string().min(2, { message: 'Doit contenir au moins 2 caractères' }),
-  sex: z
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
+  email: z
     .string()
-    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
+    .email({ message: 'Doit être une adresse e-mail valide' })
+    .optional(),
+  phone: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .optional(),
+  sexManager: z
+    .string()
+    .min(2, { message: 'Vous devez sélectionner au moins une option' })
+    .optional(),
   companyName: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
@@ -76,31 +85,42 @@ export const saasFormSchema = z.object({
   companyType: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  SocialNumber: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
 
   creationDelay: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
-  activityField: z
+  activityId: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
-  president: z
-    .string()
-    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
-  associerNumber: z
-    .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
-  selectedManagerType: z
+  managerTypeId: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
-  shareCapital: z
+  associer: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' }),
-  headquarter: z
+  nonAssociateManager: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  legalState: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .optional(),
+
+  shareCapital: z.coerce
+    .number()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  headquarterId: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
-  pack: z
-    .number()
-    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
+  Rcs: z
+    .string()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' })
+    .optional(),
+  accountingExpert: z.boolean().optional(),
+  pack: z.custom<Package>(),
 });
 export type SaasSchemaType = z.infer<typeof saasFormSchema>;
 

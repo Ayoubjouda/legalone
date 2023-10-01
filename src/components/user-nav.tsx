@@ -76,6 +76,7 @@ export function UserNav({ currentUser }: UserNavProps) {
             setCurrentUser(null);
             setToken(null);
             setRefreshToken(null);
+            localStorage.removeItem('accessToken');
           }}
         >
           <LogOut className="w-4 h-4 mr-2" />

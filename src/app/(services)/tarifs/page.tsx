@@ -15,18 +15,102 @@ import Footer from '@/components/Footer';
 import LancezVous from '@/components/LancezVous';
 interface pageProps {}
 
-const packs = [
+const packs: Package[] = [
   {
-    id: 1,
-    type: 'standard',
+    id: 7,
+    name: 'Standard',
+    type: 'Standard',
+    description: 'This is a sample package description.',
+    price: 235,
+    elements: [
+      {
+        text: 'Element 1',
+      },
+      {
+        text: 'Element 2',
+      },
+    ],
+    extra: [
+      {
+        text: 'Extra 1',
+      },
+      {
+        text: 'Extra 2',
+      },
+    ],
+    packageDetails: [
+      {
+        text: 'Detail 1',
+        detail: 'Detail 1 Description',
+      },
+      {
+        text: 'Detail 2',
+        detail: 'Detail 2 Description',
+      },
+    ],
+    administrativeFees: {
+      perks: [
+        {
+          text: 'Perk 1',
+          detail: 'Perk 1 Description',
+        },
+        {
+          text: 'Perk 2',
+          detail: 'Perk 2 Description',
+        },
+      ],
+      price: 29.99,
+      description: 'Administrative Fee Description',
+      isObligatory: true,
+    },
   },
   {
-    id: 2,
-    type: 'express',
-  },
-  {
-    id: 3,
-    type: 'expert',
+    id: 8,
+    name: 'Express',
+    type: 'Express',
+    description: 'This is a sample package description.',
+    price: 535,
+    elements: [
+      {
+        text: 'Element 1',
+      },
+      {
+        text: 'Element 2',
+      },
+    ],
+    extra: [
+      {
+        text: 'Extra 1',
+      },
+      {
+        text: 'Extra 2',
+      },
+    ],
+    packageDetails: [
+      {
+        text: 'Detail 1',
+        detail: 'Detail 1 Description',
+      },
+      {
+        text: 'Detail 2',
+        detail: 'Detail 2 Description',
+      },
+    ],
+    administrativeFees: {
+      perks: [
+        {
+          text: 'Perk 1',
+          detail: 'Perk 1 Description',
+        },
+        {
+          text: 'Perk 2',
+          detail: 'Perk 2 Description',
+        },
+      ],
+      price: 29.99,
+      description: 'Administrative Fee Description',
+      isObligatory: true,
+    },
   },
 ];
 
@@ -293,10 +377,10 @@ const page: FC<pageProps> = () => {
           </div>
         </div>
         <div className="flex gap-4 flex-wrap justify-center lg:justify-start">
-          {packs.map((pack) => (
+          {packs.map((pack: Package) => (
             <PricingComponent
               key={pack.id}
-              type={pack.type as 'standard' | 'express' | 'expert'}
+              {...pack}
             />
           ))}
         </div>

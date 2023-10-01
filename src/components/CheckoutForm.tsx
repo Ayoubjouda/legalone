@@ -11,27 +11,36 @@ import {
 } from '@stripe/stripe-js';
 import { Button } from './ui/button';
 import { Spinner } from '@chakra-ui/react';
-import { useFormContext } from 'react-hook-form';
 import useAppStore from '@/zustand/store';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Download } from 'lucide-react';
 import Link from 'next/link';
+import api from '@/lib/axiosConfig';
+import { OrderType } from '@/types/order';
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-  const { reset } = useFormContext();
   const [email, setEmail] = useState({ email: '' });
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const { setActiveStep } = useAppStore();
+  const { setActiveStep, Order } = useAppStore();
   const router = useRouter();
   useEffect(() => {
     if (!stripe) {
       return;
     }
   }, [stripe]);
+  console.log(Order);
+  const handleCreateCompany = async (Order: OrderType | null) => {
+    if (!Order) return null;
+    const data = await api.post(`company`, {
+      ...Order,
+    });
+    console.log(data);
+    return data;
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,7 +67,6 @@ export default function CheckoutForm() {
     // your `return_url`. For some payment methods like iDEAL, your customer will
     // be redirected to an intermediate site first to authorize the payment, then
     // redirected to the `return_url`.
-    console.log(paymentIntent);
     if (
       error?.message &&
       (error?.type === 'card_error' || error?.type === 'validation_error')
@@ -66,7 +74,8 @@ export default function CheckoutForm() {
       setMessage(error?.message);
       setIsLoading(false);
     } else {
-      reset({}, { keepValues: false, keepDirty: false });
+      const createCompany = await handleCreateCompany(Order);
+
       setIsLoading(false);
       setActiveStep(0);
       setIsSuccess(true);
@@ -78,7 +87,7 @@ export default function CheckoutForm() {
   if (isSuccess) {
     return (
       <div className="flex  ">
-        <div className="w-full max-w-[550px] flex flex-col gap-6 items-center justify-center ">
+        <div className="w-full  flex flex-col gap-6 items-center justify-center ">
           <Image
             src={'/success.svg'}
             alt=""
@@ -121,13 +130,13 @@ export default function CheckoutForm() {
   };
 
   return (
-    <div className="flex  ">
+    <div className="flex w-full px-1">
       <form
         id="payment-form"
         onSubmit={handleSubmit}
-        className="w-full max-w-[550px] flex flex-col gap-2 items-center justify-center "
+        className="w-full  flex flex-col gap-2 items-center justify-center "
       >
-        <div>
+        <div className="w-full">
           <LinkAuthenticationElement
             id="link-authentication-element"
             onChange={(e: StripeLinkAuthenticationElementChangeEvent) =>
@@ -143,9 +152,12 @@ export default function CheckoutForm() {
         <Button
           disabled={isLoading || !stripe || !elements}
           id="submit"
-          className="w-full"
+          className="w-full bg-black hover:bg-black hover:bg-opacity-80"
         >
-          <span id="button-text">
+          <span
+            id="button-text"
+            className="font-semibold"
+          >
             {isLoading ? <Spinner /> : 'Payer en toute Securité'}
           </span>
         </Button>

@@ -29,6 +29,7 @@ const ActivityForm = ({ goToNext, goToPrevious }: FormProps) => {
     const data = (await api
       .get('activity')
       .then((res) => res.data)) as Activity[];
+
     return data;
   });
 

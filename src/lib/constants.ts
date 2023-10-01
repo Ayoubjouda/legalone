@@ -7,7 +7,7 @@ export const CREATE_COMPANY_DATA = [
   {
     id: 2,
     title: 'Créer ma SAS',
-    url: '/createsaas',
+    url: '/createsaas?type=SAS',
   },
   {
     id: 3,

@@ -4,6 +4,7 @@ import { Spinner } from '@chakra-ui/react';
 import api from '@/lib/axiosConfig';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
+import PricingComponent from '../PricingComponent';
 interface FormProps {
   goToNext: () => void;
   goToPrevious: () => void;
@@ -12,21 +13,21 @@ interface FormProps {
 const PackForm = ({ goToNext, goToPrevious }: FormProps) => {
   const { control, setValue, trigger, getValues } = useFormContext();
   const values = getValues();
-  const [selectedPack, setSelectedPack] = useState<number | null>(
+  const [selectedPack, setSelectedPack] = useState<Package | null>(
     values.pack || null
   );
   const { isLoading, data } = useQuery('packs', async () => {
     const data = (await api
-      .get('package/getAllPackage')
+      .get('package')
       .then((res) => res.data)) as Package[];
     return data;
   });
 
-  const handleSetValue = (packId: number) => {
-    setValue('pack', packId);
-    setSelectedPack(packId);
+  const handleSetValue = (pack: Package) => {
+    setValue('pack', pack);
+    setSelectedPack(pack);
   };
-  const handelSubmitValue = async (value: number) => {
+  const handelSubmitValue = async (value: Package) => {
     handleSetValue(value);
     setSelectedPack(value);
     const isValid = await trigger(['pack']);
@@ -44,14 +45,6 @@ const PackForm = ({ goToNext, goToPrevious }: FormProps) => {
     <form className="w-full flex flex-col gap-8">
       <div className="hidden">
         <Controller
-          name="companyType"
-          control={control}
-          defaultValue="SARL"
-          render={({ field }) => <input {...field} />}
-        />
-      </div>
-      <div className="hidden">
-        <Controller
           name="pack"
           control={control}
           defaultValue=""
@@ -66,12 +59,17 @@ const PackForm = ({ goToNext, goToPrevious }: FormProps) => {
       </div>
       <div className="flex w-full justify-center flex-wrap gap-10 ">
         {data?.map((item: Package, idx: number) => (
-          <Pack
-            key={idx}
+          <PricingComponent
+            key={item.name}
             {...item}
-            selected={selectedPack === item.id}
-            onButtonClick={() => handelSubmitValue(item.id)}
+            onButtonClick={() => handelSubmitValue(item)}
           />
+          // <Pack
+          //   key={idx}
+          //   {...item}
+          //   selected={selectedPack === item.id}
+          //   onButtonClick={() => handelSubmitValue(item.id)}
+          // />
         ))}
       </div>
     </form>

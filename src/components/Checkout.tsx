@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import {
   StripeElementsOptionsClientSecret,
   loadStripe,
@@ -8,7 +8,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '@/components/CheckoutForm';
 import { useStripe } from '@/hooks/useStripe';
 import { Spinner } from '@chakra-ui/react';
-import { useFormContext } from 'react-hook-form';
+
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );
@@ -16,11 +16,9 @@ const stripePromise = loadStripe(
 export default function Checkout() {
   const { createOrderMutation, isLoading, orderData, isError } = useStripe();
 
-  const runCreateOrderOnLoad = useCallback(() => {
+  useEffect(() => {
     createOrderMutation();
   }, [createOrderMutation]);
-
-  useEffect(() => runCreateOrderOnLoad(), [runCreateOrderOnLoad]);
 
   if (isLoading)
     return (
@@ -31,19 +29,28 @@ export default function Checkout() {
         />
       </div>
     );
-
-  if (isError || !orderData?.paymentResult?.clientSecret)
+  if (isError || !orderData?.payment.stripeIntent?.clientSecret)
     return <div>Error...</div>;
 
   const options: StripeElementsOptionsClientSecret = {
-    clientSecret: orderData.paymentResult.clientSecret,
+    clientSecret: orderData.payment.stripeIntent.clientSecret,
     appearance: {
-      theme: 'stripe',
+      theme: 'flat',
+      variables: {
+        colorPrimary: '#0570de',
+        colorBackground: '#ffffff',
+        colorText: '#30313d',
+        colorDanger: '#df1b41',
+        fontFamily: 'Ideal Sans, system-ui, sans-serif',
+        spacingUnit: '4px',
+        borderRadius: '8px',
+        // See all possible variables below
+      },
     },
   };
 
   return (
-    <div>
+    <div className="w-full">
       {orderData ? (
         <Elements
           options={options}

@@ -23,31 +23,30 @@ export const ManagerForm = ({ goToNext, goToPrevious }: FormProps) => {
   const values = getValues();
 
   const [selectedPresident, setselectedPresident] = useState<number | null>(
-    values?.selectedManagerType || null
+    values?.managerTypeId || null
   );
 
   const { isLoading: ManagerLoading, data: ManagerData } = useQuery(
     'Manager',
     async () => {
       const data = (await api
-        .get('managerType/')
+        .get('manager/managerType')
         .then((res) => res.data)) as ManagerType[];
       return data;
     }
   );
 
   const handleSetValue = (newValue: number) => {
-    setValue('selectedManagerType', newValue);
+    setValue('managerTypeId', newValue);
   };
   const handelSubmitValue = async (value: number) => {
     handleSetValue(value);
     setselectedPresident(value);
-    const isValid = await trigger(['selectedManagerType']);
+    const isValid = await trigger(['managerTypeId']);
     if (isValid) {
       goToNext();
     }
   };
-  console.log(ManagerData);
 
   if (ManagerLoading)
     return (
@@ -60,7 +59,7 @@ export const ManagerForm = ({ goToNext, goToPrevious }: FormProps) => {
       <div className="flex flex-col w-full  gap-10">
         <div className="hidden">
           <Controller
-            name="selectedManagerType"
+            name="managerTypeId"
             control={control}
             defaultValue=""
             render={({ field }) => <input {...field} />}

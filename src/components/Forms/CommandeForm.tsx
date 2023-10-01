@@ -1,52 +1,57 @@
-import React, { useState } from 'react';
-import { useFormContext, Controller } from 'react-hook-form';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
+import React from 'react';
+import { useFormContext } from 'react-hook-form';
+
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
-import IconBox from '../IconBox';
-import { cn } from '@/lib/utils';
-import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
-import Pack from '../Pack';
-import { useQuery } from 'react-query';
-import api from '@/lib/axiosConfig';
-import { Spinner } from '@chakra-ui/react';
-import Checkout from '../Checkout';
-import { ErrorMessage } from '@hookform/error-message';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+
 import useAppStore from '@/zustand/store';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { MoveRight } from 'lucide-react';
-import { de } from 'date-fns/locale';
 import Image from 'next/image';
+import api from '@/lib/axiosConfig';
+import { OrderType } from '@/types/order';
+import {
+  RegisterSchemaType,
+  SaasSchemaType,
+} from '@/lib/validators/formValidators';
 interface FormProps {
   goToNext: () => void;
   goToPrevious: () => void;
 }
-
-const CommandeForm = ({ goToNext, goToPrevious }: FormProps) => {
-  const { getValues } = useFormContext();
+type CompanyType = 'SAS' | 'SARL';
+type ConditionalSchemaType<T> = T extends 'SAS'
+  ? SaasSchemaType
+  : SaasSchemaType;
+const CommandeForm = () => {
+  const { getValues } =
+    useFormContext<ConditionalSchemaType<typeof companyType>>();
+  const pathname = usePathname();
   const router = useRouter();
-  const { accessToken } = useAppStore();
+  const { setOrder } = useAppStore();
   // const watchAllFields = watch();
-  const values = getValues();
+  const values: ConditionalSchemaType<typeof companyType> = getValues();
+  const selectedPack: Package = values?.pack;
 
-  const handleCheckout = () => {
-    localStorage.setItem('intendedDestination', '/createsaas');
-    router.push('/login');
+  const handleSubmitOrder = async () => {
+    const accessToken: string | null = localStorage.getItem('accessToken');
+    if (!accessToken) {
+      localStorage.setItem('intendedDestination', pathname);
+      router.push('/login');
+    } else {
+      api.post('/order', { description: 'test' }).then((res) => {
+        const Order: OrderType = {
+          orderId: Number(res.data.id),
+          ...values,
+        } as OrderType;
+        setOrder(Order);
+        router.push(`/checkout`);
+      });
+    }
   };
+
+  const searchParams = useSearchParams();
+  const companyType: CompanyType =
+    (searchParams.get('type') as CompanyType) || ('SAS' as CompanyType);
 
   return (
     <div className="flex w-full items-start gap-3 justify-center">
@@ -63,7 +68,7 @@ const CommandeForm = ({ goToNext, goToPrevious }: FormProps) => {
             <div className="justify-start items-center gap-2 inline-flex">
               <div className="pr-[0.91px] flex-col justify-start items-start inline-flex">
                 <div className="text-black text-lg font-semibold font-['IBM Plex Sans'] leading-normal">
-                  Création de SARL
+                  Création de {companyType}
                 </div>
               </div>
               <div className="flex-col justify-start items-start inline-flex">
@@ -73,12 +78,12 @@ const CommandeForm = ({ goToNext, goToPrevious }: FormProps) => {
             <div className="flex-col w-full justify-start items-start gap-[3px] flex">
               <div className="w-full justify-between items-center flex">
                 <div className="text-blue-950 text-base font-bold font-['Helvetica']">
-                  Pack Premium
+                  Pack {selectedPack.type}
                 </div>
                 <div className="flex-col justify-start items-start inline-flex">
                   <div className="  flex-col justify-start items-end flex">
                     <div className="text-right text-blue-950 text-base font-bold font-['Helvetica']">
-                      229 €
+                      {selectedPack.price}$
                     </div>
                   </div>
                 </div>
@@ -86,31 +91,11 @@ const CommandeForm = ({ goToNext, goToPrevious }: FormProps) => {
               <div className="pl-7 w-full justify-between items-start inline-flex">
                 <div className="flex-col w-full justify-between items-start inline-flex">
                   <div className="flex-col justify-start items-start flex gap-3">
-                    <div className="pr-[54.46px] justify-start gap-1 inline-flex">
-                      <div className=" flex-col justify-start items-start inline-flex">
-                        <Image
-                          alt=""
-                          src={'/valid.svg'}
-                          height={24}
-                          width={24}
-                        />
-                      </div>
-                      <div className="flex-col w-full justify-start items-start gap-[5px] inline-flex">
-                        <div className=" flex-col w-full justify-start items-start flex">
-                          <div className="text-blue-950 w-full text-sm font-normal font-['Helvetica'] leading-none">
-                            Immatriculation de votre société à responsabilité
-                            limitée
-                          </div>
-                        </div>
-                        <div className=" flex-col justify-start items-start flex">
-                          <div className="text-slate-500 text-xs font-normal font-['Helvetica'] leading-none">
-                            On s'occupe de tout !
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="justify-start  gap-1 inline-flex">
-                      <div className="flex-col justify-start items-start inline-flex">
+                    {selectedPack.packageDetails?.map((elem, index) => (
+                      <div
+                        key={index}
+                        className="pr-[54.46px] justify-start gap-1 inline-flex"
+                      >
                         <div className=" flex-col justify-start items-start inline-flex">
                           <Image
                             alt=""
@@ -119,23 +104,20 @@ const CommandeForm = ({ goToNext, goToPrevious }: FormProps) => {
                             width={24}
                           />
                         </div>
-                      </div>
-                      <div className="flex-col justify-start items-start gap-[5px] inline-flex">
-                        <div className="flex-col justify-start items-start flex">
-                          <div className="text-blue-950 text-sm font-normal font-['Helvetica'] leading-none">
-                            Assistance Legalstart
+                        <div className="flex-col w-full justify-start items-start gap-[5px] inline-flex">
+                          <div className=" flex-col w-full justify-start items-start flex">
+                            <div className="text-blue-950 w-full text-sm font-normal font-['Helvetica'] leading-none">
+                              {elem.text}
+                            </div>
                           </div>
-                        </div>
-                        <div className="flex-col justify-start items-start flex">
-                          <div className="text-slate-500 text-xs font-normal font-['Helvetica'] leading-none">
-                            30 jours gratuits puis 29,90 € HT / mois. Un
-                            accompagnement juridique
-                            <br />
-                            pour ne laisser aucune question sans réponse !
+                          <div className=" flex-col justify-start items-start flex">
+                            <div className="text-slate-500 text-xs font-normal font-['Helvetica'] leading-none">
+                              {elem.detail}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -152,31 +134,7 @@ const CommandeForm = ({ goToNext, goToPrevious }: FormProps) => {
                 </div>
                 <div className="flex-col  justify-start items-start inline-flex">
                   <div className="text-right text-blue-950 text-base font-bold font-['Helvetica']">
-                    259,39 €
-                  </div>
-                </div>
-              </div>
-              <div className="flex justify-between w-full  ">
-                <div className="self-stretch flex-col justify-start items-start inline-flex">
-                  <div className="text-blue-950 text-sm font-normal font-['Helvetica'] leading-none">
-                    Frais de publication légale
-                  </div>
-                </div>
-                <div className="self-stretch flex-col justify-start items-start inline-flex">
-                  <div className="text-blue-950 text-xs font-normal font-['Helvetica'] leading-none">
-                    197 €
-                  </div>
-                </div>
-              </div>
-              <div className="flex w-full justify-between items-start ">
-                <div className="self-stretch flex-col justify-start items-start inline-flex">
-                  <div className="text-blue-950 text-sm font-normal font-['Helvetica'] leading-none">
-                    Frais de greffe
-                  </div>
-                </div>
-                <div className="self-stretch flex-col justify-start items-start inline-flex">
-                  <div className="text-blue-950 text-xs font-normal font-['Helvetica'] leading-none">
-                    197 €
+                    {selectedPack.administrativeFees.price}$
                   </div>
                 </div>
               </div>
@@ -199,7 +157,8 @@ const CommandeForm = ({ goToNext, goToPrevious }: FormProps) => {
                 </div>
                 <div className=" flex-col justify-start items-start inline-flex">
                   <div className="text-blue-950 text-base font-normal font-['Helvetica']">
-                    488,39 €
+                    {selectedPack.price + selectedPack.administrativeFees.price}{' '}
+                    €
                   </div>
                 </div>
               </div>
@@ -212,7 +171,7 @@ const CommandeForm = ({ goToNext, goToPrevious }: FormProps) => {
                 </div>
                 <div className="flex-col justify-start items-start inline-flex">
                   <div className="text-blue-950 text-base font-normal font-['Helvetica']">
-                    85,20 €
+                    {selectedPack.price * 0.2}$
                   </div>
                 </div>
               </div>
@@ -224,7 +183,7 @@ const CommandeForm = ({ goToNext, goToPrevious }: FormProps) => {
                 </div>
                 <div className=" flex-col justify-start items-start inline-flex">
                   <div className="text-blue-950 text-base font-normal font-['Helvetica']">
-                    573,59 €
+                    {selectedPack.price * 1.2}$
                   </div>
                 </div>
               </div>
@@ -240,7 +199,10 @@ const CommandeForm = ({ goToNext, goToPrevious }: FormProps) => {
                 </Button>
               </div>
             </div>
-            <Button className="  bg-orange-600 hover:bg-darkRedish gap-2 text-base self-stretch rounded-md w-full shadow justify-center cursor-pointer items-center  inline-flex">
+            <Button
+              className="  bg-orange-600 hover:bg-darkRedish gap-2 text-base self-stretch rounded-md w-full shadow justify-center cursor-pointer items-center  inline-flex"
+              onClick={handleSubmitOrder}
+            >
               Valider
               <div className="  justify-start items-center flex">
                 <MoveRight

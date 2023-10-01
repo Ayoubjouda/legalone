@@ -21,7 +21,7 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
     <form className="w-full max-w-[650px]">
       <div className=" flex flex-col gap-4">
         <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
-          Combien y a-t-il d'Associés fondateurs ?
+          information complementaire sur votre société
         </p>
         <FormField
           name="companyName"
@@ -38,15 +38,35 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
             </FormItem>
           )}
         />
+
         <FormField
-          name="associerNumber"
+          name="associer"
           control={control}
-          defaultValue={''}
+          defaultValue={'one'}
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nombre d'associer</FormLabel>
+            <FormItem className="flex items-center gap-3 space-y-0 ">
+              <FormLabel className="leading-[20px]">
+                Combien y a-t-il d'Associés fondateurs ?
+              </FormLabel>
               <FormControl>
-                <Input {...field} />
+                <RadioGroup
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  className="flex"
+                >
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="one" />
+                    </FormControl>
+                    <FormLabel className="font-semibold">Un seul</FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="many" />
+                    </FormControl>
+                    <FormLabel className="font-semibold">Plusieurs</FormLabel>
+                  </FormItem>
+                </RadioGroup>
               </FormControl>
 
               <FormMessage />
@@ -56,7 +76,7 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
         <FormField
           name="nonAssociateManager"
           control={control}
-          defaultValue={'non'}
+          defaultValue={'False'}
           render={({ field }) => (
             <FormItem className="flex items-center gap-3 space-y-0 ">
               <FormLabel className="leading-[20px]">
@@ -70,13 +90,13 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
                 >
                   <FormItem className="flex items-center space-x-3 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="oui" />
+                      <RadioGroupItem value="True" />
                     </FormControl>
                     <FormLabel className="font-semibold">Oui</FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-3 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="non" />
+                      <RadioGroupItem value="False" />
                     </FormControl>
                     <FormLabel className="font-semibold">Non</FormLabel>
                   </FormItem>
@@ -95,6 +115,24 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
             <FormItem>
               <FormLabel>Capital social</FormLabel>
               <FormControl>
+                <Input
+                  {...field}
+                  type="number"
+                />
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          name="email"
+          control={control}
+          defaultValue={''}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
                 <Input {...field} />
               </FormControl>
 
@@ -112,6 +150,7 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
               'associerNumber',
               'shareCapital',
               'nonAssociateManager',
+              'email',
             ]);
             console.log(isValid);
             if (isValid) {

@@ -6,7 +6,7 @@ import {
   Stepper as ChakraStepper,
   useSteps,
 } from '@chakra-ui/react';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import {
   PersonalForm,
   DurationForm,
@@ -20,7 +20,7 @@ import { ChevronLeft } from 'lucide-react';
 import useFormPersist from 'react-hook-form-persist';
 import { useFormContext } from 'react-hook-form';
 import useAppStore from '@/zustand/store';
-import PackForm from './Forms/PackForm';
+import PackForm from '../Forms/PackForm';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
@@ -31,7 +31,7 @@ const steps = [
   { title: 'Third', description: 'Récapitulatif' },
   { title: 'Third', description: 'Récapitulatif' },
 ];
-const Stepper: FC<StepperProps> = () => {
+const SaasStepper: FC<StepperProps> = () => {
   const { activeStep, goToNext, goToPrevious, setActiveStep } = useSteps({
     index: 0,
     count: steps.length,
@@ -58,55 +58,55 @@ const Stepper: FC<StepperProps> = () => {
 
   function getStepContent(step: number) {
     switch (step) {
-      // case 0:
-      //   return (
-      //     <DurationForm
-      //       goToNext={goToNext}
-      //       goToPrevious={goToPrevious}
-      //     />
-      //   );
-      // case 1:
-      //   return (
-      //     <ActivityForm
-      //       goToNext={goToNext}
-      //       goToPrevious={goToPrevious}
-      //     />
-      //   );
-      // case 2:
-      //   return (
-      //     <ManagerForm
-      //       goToNext={goToNext}
-      //       goToPrevious={goToPrevious}
-      //     />
-      //   );
-      // case 3:
-      //   return (
-      //     <PersonalForm
-      //       goToNext={goToNext}
-      //       goToPrevious={goToPrevious}
-      //     />
-      //   );
-      // case 4:
-      //   return (
-      //     <CompanyDataForm
-      //       goToNext={goToNext}
-      //       goToPrevious={goToPrevious}
-      //     />
-      //   );
-      // case 5:
-      //   return (
-      //     <HeadquarterForm
-      //       goToNext={goToNext}
-      //       goToPrevious={goToPrevious}
-      //     />
-      //   );
-      // case 6:
-      //   return (
-      //     <PackForm
-      //       goToNext={goToNext}
-      //       goToPrevious={goToPrevious}
-      //     />
-      //   );
+      case 0:
+        return (
+          <DurationForm
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
+      case 1:
+        return (
+          <ActivityForm
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
+      case 2:
+        return (
+          <ManagerForm
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
+      case 3:
+        return (
+          <PersonalForm
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
+      case 4:
+        return (
+          <CompanyDataForm
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
+      case 5:
+        return (
+          <HeadquarterForm
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
+      case 6:
+        return (
+          <PackForm
+            goToNext={goToNext}
+            goToPrevious={goToPrevious}
+          />
+        );
       default:
         return <CommandeForm />;
     }
@@ -165,4 +165,4 @@ const Stepper: FC<StepperProps> = () => {
   );
 };
 
-export default Stepper;
+export default SaasStepper;

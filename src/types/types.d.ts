@@ -17,9 +17,22 @@ interface Package {
   name: string;
   type: string;
   description: string;
-  price: string;
+  price: number;
   elements: packElement[];
-  extras: packElement[] | null;
+  extra: packElement[] | null;
+  packageDetails: {
+    text: string;
+    detail: string;
+  }[];
+  administrativeFees: {
+    perks: {
+      text: string;
+      detail: string;
+    }[];
+    price: number;
+    description: string;
+    isObligatory: boolean;
+  };
 }
 interface packElement {
   text: string;

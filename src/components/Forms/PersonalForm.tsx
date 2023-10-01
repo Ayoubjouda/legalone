@@ -17,7 +17,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
   const { control, trigger, getValues } = useFormContext();
   const values = getValues();
 
-  if (values.selectedManagerType === 2)
+  if (values.managerTypeId === 2)
     return (
       <form className="max-w-[650px]">
         <div className="my-5 flex flex-col  gap-4">
@@ -45,7 +45,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
             )}
           />
           <FormField
-            name="formeJuridique"
+            name="legalState"
             control={control}
             defaultValue={''}
             render={({ field }) => (
@@ -60,7 +60,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
             )}
           />
           <FormField
-            name="numeroRCS"
+            name="Rcs"
             control={control}
             defaultValue={''}
             render={({ field }) => (
@@ -80,13 +80,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
             type="button"
             size={'lg'}
             onClick={async () => {
-              const isValid = await trigger([
-                'firstName',
-                'lastName',
-                'email',
-                'phone',
-                'sex',
-              ]);
+              const isValid = await trigger(['legalState', 'Rcs']);
               if (isValid) {
                 goToNext();
               }
@@ -140,23 +134,9 @@ const PersonalForm = ({ goToNext }: FormProps) => {
             )}
           />
         </div>
-        <FormField
-          name="email"
-          control={control}
-          defaultValue={''}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <FormField
-          name="sex"
+          name="sexManager"
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -215,9 +195,8 @@ const PersonalForm = ({ goToNext }: FormProps) => {
             const isValid = await trigger([
               'firstName',
               'lastName',
-              'email',
               'phone',
-              'sex',
+              'sexManager',
             ]);
             if (isValid) {
               goToNext();

@@ -1,11 +1,13 @@
+'use client';
 import { useMutation } from 'react-query';
 import api from '@/lib/axiosConfig';
 import { useToast } from '@/components/ui/use-toast';
 import useAppStore from '@/zustand/store';
 import { AxiosError, isAxiosError } from 'axios';
+import { useRouter } from 'next/navigation';
 async function Login(email: string, password: string): Promise<LoginResponse> {
   const { data } = await api.post(
-    'users/login',
+    'auth/login',
     { email: email, password: password },
     { timeout: 10000 }
   );
@@ -21,6 +23,7 @@ interface LoginResponse {
 export function useLogin() {
   const { toast } = useToast();
   const { setToken, setCurrentUser, setRefreshToken } = useAppStore();
+  const router = useRouter();
   const { mutate: LoginMutation, isLoading } = useMutation<
     LoginResponse,
     AxiosError,
@@ -32,6 +35,14 @@ export function useLogin() {
       setToken(data.token);
       localStorage.setItem('accessToken', data.token);
       setRefreshToken(data.refreshToken);
+      const intendedDestination = localStorage.getItem('intendedDestination');
+      console.log(intendedDestination);
+      if (intendedDestination) {
+        router.back();
+        localStorage.removeItem('intendedDestination');
+      } else {
+        router.push('/');
+      }
       toast({
         title: 'Login Success',
         description: `Welcome ${data.User.firstName}`,

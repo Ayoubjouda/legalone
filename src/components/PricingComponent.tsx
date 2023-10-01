@@ -2,11 +2,16 @@ import { FC } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { ArrowUpRight } from 'lucide-react';
-interface PricingComponentProps {
-  type: 'standard' | 'express' | 'expert';
+interface PricingComponentProps extends Package {
+  onButtonClick?: () => void;
 }
 
-const PricingComponent: FC<PricingComponentProps> = ({ type }) => {
+const PricingComponent: FC<PricingComponentProps> = ({
+  type,
+  price,
+  elements,
+  onButtonClick,
+}) => {
   return (
     <div
       className={cn(
@@ -21,7 +26,7 @@ const PricingComponent: FC<PricingComponentProps> = ({ type }) => {
           <div className="self-stretch h-7 flex-col justify-start items-start flex">
             <div className="self-stretch h-7 [244px] flex-col justify-start items-start flex">
               <div className="text-stone-900 text-lg font-semibold font-['IBM Plex Sans'] leading-7">
-                Standard
+                {type}
               </div>
             </div>
           </div>
@@ -39,7 +44,7 @@ const PricingComponent: FC<PricingComponentProps> = ({ type }) => {
           <div className="flex-col justify-start items-start inline-flex">
             <div className="flex-row justify-start items-end flex">
               <div className="text-stone-900 text-[56px] font-medium font-ibmPlexSans leading-[50px]">
-                $99
+                ${price}
               </div>
               {type === 'expert' ? (
                 <div className="text-slate-500 text-sm  font-ibmPlexSans">
@@ -52,7 +57,8 @@ const PricingComponent: FC<PricingComponentProps> = ({ type }) => {
         <div className="rounded-lg justify-start items-start inline-flex">
           <div className="flex-col justify-start items-start inline-flex">
             <div className="[9.70px] pb-2.5 rounded-lg justify-center items-start inline-flex">
-              <div
+              <button
+                onClick={onButtonClick}
                 className={cn(
                   'px-4 py-2 bg-stone-900 cursor-pointer rounded-lg justify-center items-center gap-[9.50px] flex',
                   {
@@ -60,18 +66,18 @@ const PricingComponent: FC<PricingComponentProps> = ({ type }) => {
                   }
                 )}
               >
-                <button
+                <p
                   className={cn(
                     'text-center text-white text-sm font-medium font-inter leading-normal'
                   )}
                 >
                   Lancez-vous
-                </button>
+                </p>
                 <ArrowUpRight
                   size={16}
                   color="white"
                 />
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -82,7 +88,7 @@ const PricingComponent: FC<PricingComponentProps> = ({ type }) => {
             </div>
           </div>
           <div className="self-stretch  flex-col justify-center items-center gap-[18px] flex">
-            {[0, 1, 3, 4].map((item, index) => (
+            {elements.map((item, index) => (
               <div
                 className="self-stretch h-6 flex-col justify-start items-start flex"
                 key={index}
@@ -104,7 +110,7 @@ const PricingComponent: FC<PricingComponentProps> = ({ type }) => {
                   <div className="grow shrink basis-0 flex-col justify-start items-start inline-flex">
                     <div className="self-stretch h-6  flex-col justify-start items-start flex">
                       <div className="text-stone-900 text-base font-normal font-['IBM Plex Sans'] leading-normal">
-                        Publication de l'annonce légale
+                        {item.text}
                       </div>
                     </div>
                   </div>
