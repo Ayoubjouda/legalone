@@ -1,4 +1,7 @@
-import { SaasSchemaType } from '@/lib/validators/formValidators';
+import {
+  SaasSchemaType,
+  AutoEntreSchemaType,
+} from '@/lib/validators/formValidators';
 type Order = {
   orderId: number;
 };
@@ -9,4 +12,4 @@ type OrderType =
     } & SaasSchemaType)
   | ({
       orderId: number;
-    } & SaasSchemaType);
+    } & AutoEntreSchemaType);

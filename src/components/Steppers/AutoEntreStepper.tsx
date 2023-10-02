@@ -47,12 +47,6 @@ const SciStepper: FC<StepperProps> = () => {
 
   const router = useRouter();
 
-  useFormPersist(companyType, {
-    watch,
-    setValue,
-    storage: window.localStorage, // default window.sessionStorage
-  });
-
   const handleGoToNext = () => {
     router.push(`/create?type=${companyType}&step=${activeStep + 1}`);
     goToNext();

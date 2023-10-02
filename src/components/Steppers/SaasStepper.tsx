@@ -48,11 +48,6 @@ const SaasStepper: FC<StepperProps> = () => {
 
   const { watch, setValue } = useFormContext();
 
-  useFormPersist(companyType, {
-    watch,
-    setValue,
-    storage: window.localStorage, // default window.sessionStorage
-  });
   const handleGoToNext = () => {
     router.push(`/create?type=${companyType}&step=${activeStep + 1}`);
     goToNext();
@@ -80,7 +75,7 @@ const SaasStepper: FC<StepperProps> = () => {
         return <HeadquarterForm goToNext={handleGoToNext} />;
       case 7:
         return <PackForm goToNext={handleGoToNext} />;
-      default:
+      case 8:
         return <CommandeForm />;
     }
   }
@@ -95,7 +90,7 @@ const SaasStepper: FC<StepperProps> = () => {
             <Button
               className="px-0 text-black hover:no-underline"
               variant={'link'}
-              onClick={goToPrevious}
+              onClick={handleGoToPrevious}
             >
               <ChevronLeft size={24} />
               Retour

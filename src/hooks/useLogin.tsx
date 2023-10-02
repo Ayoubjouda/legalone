@@ -38,7 +38,7 @@ export function useLogin() {
       const intendedDestination = localStorage.getItem('intendedDestination');
       console.log(intendedDestination);
       if (intendedDestination) {
-        router.back();
+        router.push(intendedDestination);
         localStorage.removeItem('intendedDestination');
       } else {
         router.push('/');

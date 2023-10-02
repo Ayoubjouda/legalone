@@ -12,6 +12,7 @@ import { ConditionalSchemaType } from '@/types/schema.types';
 import AutoEntreStepper from '@/components/Steppers/AutoEntreStepper';
 import CompanyTypeForm from '@/components/Forms/CompanyTypeForm';
 import { ZodObject } from 'zod';
+import useFormPersist from 'react-hook-form-persist';
 // type CompanyForms = {
 //   [key: string]: typeof saasFormSchema;
 // };
@@ -41,12 +42,11 @@ export default function CreateSaas() {
   const methods = useForm<ConditionalSchemaType<typeof companyType>>({
     resolver: zodResolver(FormSchema),
     mode: 'onBlur',
-    defaultValues: {
-      companyType: companyType,
-      accountingExpert: false,
-    },
   });
-
+  useFormPersist(companyType, {
+    ...methods,
+    storage: window.localStorage, // default window.sessionStorage
+  });
   return (
     <div className="max-w-screen-xl mx-auto flex  gap-2 flex-col items-center justify-center overflow-hidden my-12">
       <FormProvider {...methods}>

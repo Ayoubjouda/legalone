@@ -11,26 +11,26 @@ import { MoveRight } from 'lucide-react';
 import Image from 'next/image';
 import api from '@/lib/axiosConfig';
 import { OrderType } from '@/types/order';
-import { SaasSchemaType } from '@/lib/validators/formValidators';
-import { ConditionalSchemaType } from '@/types/schema.types';
 
 const CommandeForm = () => {
   const searchParams = useSearchParams();
   const companyType: CompanyType =
     (searchParams.get('type') as CompanyType) || ('SAS' as CompanyType);
-
-  const { getValues } =
-    useFormContext<ConditionalSchemaType<typeof companyType>>();
+  const { getValues } = useFormContext();
   const pathname = usePathname();
   const router = useRouter();
   const { setOrder } = useAppStore();
-  const values: ConditionalSchemaType<typeof companyType> = getValues();
+  const values = getValues();
   const selectedPack: Package = values?.pack;
+  console.log(values);
 
   const handleSubmitOrder = async () => {
     const accessToken: string | null = localStorage.getItem('accessToken');
     if (!accessToken) {
-      await localStorage.setItem('intendedDestination', pathname);
+      await localStorage.setItem(
+        'intendedDestination',
+        pathname + window.location.search
+      );
       router.push('/login');
     } else {
       api.post('/order', { description: 'test' }).then((res) => {
@@ -43,8 +43,9 @@ const CommandeForm = () => {
       });
     }
   };
-  console.log(values);
 
+  console.log(values);
+  if (!values?.pack) return null;
   return (
     <div className="flex w-full items-start gap-3 justify-center">
       <div className="w-full justify-between items-center md:items-start flex flex-col gap-4 md:flex-row ">
