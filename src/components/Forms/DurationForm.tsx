@@ -5,9 +5,8 @@ import { cn } from '@/lib/utils';
 import { useState } from 'react';
 interface FormProps {
   goToNext: () => void;
-  goToPrevious: () => void;
 }
-const DurationForm = ({ goToNext, goToPrevious }: FormProps) => {
+const DurationForm = ({ goToNext }: FormProps) => {
   const {
     setValue,
     control,

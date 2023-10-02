@@ -58,6 +58,7 @@ const PricingComponent: FC<PricingComponentProps> = ({
           <div className="flex-col justify-start items-start inline-flex">
             <div className="[9.70px] pb-2.5 rounded-lg justify-center items-start inline-flex">
               <button
+                type="button"
                 onClick={onButtonClick}
                 className={cn(
                   'px-4 py-2 bg-stone-900 cursor-pointer rounded-lg justify-center items-center gap-[9.50px] flex',

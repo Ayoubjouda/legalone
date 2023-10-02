@@ -9,9 +9,8 @@ import { cn } from '@/lib/utils';
 
 interface FormProps {
   goToNext: () => void;
-  goToPrevious: () => void;
 }
-const HeadquarterForm = ({ goToNext, goToPrevious }: FormProps) => {
+const HeadquarterForm = ({ goToNext }: FormProps) => {
   const {
     setValue,
     control,

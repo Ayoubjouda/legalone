@@ -13,9 +13,8 @@ import { MoveRight } from 'lucide-react';
 
 interface FormProps {
   goToNext: () => void;
-  goToPrevious: () => void;
 }
-const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
+const CompanyDataForm = ({ goToNext }: FormProps) => {
   const { control, trigger } = useFormContext();
   return (
     <form className="w-full max-w-[650px]">
@@ -38,7 +37,24 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
             </FormItem>
           )}
         />
+        <FormField
+          name="shareCapital"
+          control={control}
+          defaultValue={''}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Capital social</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  type="number"
+                />
+              </FormControl>
 
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           name="associer"
           control={control}
@@ -74,18 +90,25 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
           )}
         />
         <FormField
-          name="nonAssociateManager"
+          name="accountingExpert"
           control={control}
-          defaultValue={'False'}
-          render={({ field }) => (
+          defaultValue={'one'}
+          render={({ field: { onChange, value } }) => (
             <FormItem className="flex items-center gap-3 space-y-0 ">
               <FormLabel className="leading-[20px]">
-                Le Président est-il Associé fondateur de la Société ?
+                Avez-vous déjà mandaté un expert comptable pour effectuer votre
+                comptabilité annuelle ?
               </FormLabel>
               <FormControl>
                 <RadioGroup
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  onValueChange={(value) => {
+                    if (value === 'True') {
+                      onChange(true);
+                    } else {
+                      onChange(false);
+                    }
+                  }}
+                  defaultValue={value === true ? 'True' : 'False'}
                   className="flex"
                 >
                   <FormItem className="flex items-center space-x-3 space-y-0">
@@ -108,38 +131,46 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
           )}
         />
         <FormField
-          name="shareCapital"
+          name="nonAssociateManager"
           control={control}
-          defaultValue={''}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Capital social</FormLabel>
+          defaultValue={'False'}
+          render={({ field: { onChange, onBlur, value, ref } }) => (
+            <FormItem className="flex items-center gap-3 space-y-0 ">
+              <FormLabel className="leading-[20px]">
+                Le Président est-il Associé fondateur de la Société ?
+              </FormLabel>
               <FormControl>
-                <Input
-                  {...field}
-                  type="number"
-                />
+                <RadioGroup
+                  onValueChange={(value) => {
+                    if (value === 'True') {
+                      onChange(true);
+                    } else {
+                      onChange(false);
+                    }
+                  }}
+                  defaultValue={value === true ? 'True' : 'False'}
+                  className="flex"
+                >
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="True" />
+                    </FormControl>
+                    <FormLabel className="font-semibold">Oui</FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="False" />
+                    </FormControl>
+                    <FormLabel className="font-semibold">Non</FormLabel>
+                  </FormItem>
+                </RadioGroup>
               </FormControl>
 
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormField
-          name="email"
-          control={control}
-          defaultValue={''}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <Button
           className="font-semibold items-center self-end flex gap-2 text-base  hover:bg-darkRedish"
           type="button"
@@ -149,8 +180,8 @@ const CompanyDataForm = ({ goToNext, goToPrevious }: FormProps) => {
               'companyName',
               'associerNumber',
               'shareCapital',
+              'accountingExpert',
               'nonAssociateManager',
-              'email',
             ]);
             console.log(isValid);
             if (isValid) {

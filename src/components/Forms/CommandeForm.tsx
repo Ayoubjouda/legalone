@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -10,32 +11,26 @@ import { MoveRight } from 'lucide-react';
 import Image from 'next/image';
 import api from '@/lib/axiosConfig';
 import { OrderType } from '@/types/order';
-import {
-  RegisterSchemaType,
-  SaasSchemaType,
-} from '@/lib/validators/formValidators';
-interface FormProps {
-  goToNext: () => void;
-  goToPrevious: () => void;
-}
-type CompanyType = 'SAS' | 'SARL';
-type ConditionalSchemaType<T> = T extends 'SAS'
-  ? SaasSchemaType
-  : SaasSchemaType;
+import { SaasSchemaType } from '@/lib/validators/formValidators';
+import { ConditionalSchemaType } from '@/types/schema.types';
+
 const CommandeForm = () => {
+  const searchParams = useSearchParams();
+  const companyType: CompanyType =
+    (searchParams.get('type') as CompanyType) || ('SAS' as CompanyType);
+
   const { getValues } =
     useFormContext<ConditionalSchemaType<typeof companyType>>();
   const pathname = usePathname();
   const router = useRouter();
   const { setOrder } = useAppStore();
-  // const watchAllFields = watch();
   const values: ConditionalSchemaType<typeof companyType> = getValues();
   const selectedPack: Package = values?.pack;
 
   const handleSubmitOrder = async () => {
     const accessToken: string | null = localStorage.getItem('accessToken');
     if (!accessToken) {
-      localStorage.setItem('intendedDestination', pathname);
+      await localStorage.setItem('intendedDestination', pathname);
       router.push('/login');
     } else {
       api.post('/order', { description: 'test' }).then((res) => {
@@ -48,10 +43,7 @@ const CommandeForm = () => {
       });
     }
   };
-
-  const searchParams = useSearchParams();
-  const companyType: CompanyType =
-    (searchParams.get('type') as CompanyType) || ('SAS' as CompanyType);
+  console.log(values);
 
   return (
     <div className="flex w-full items-start gap-3 justify-center">
@@ -202,6 +194,7 @@ const CommandeForm = () => {
             <Button
               className="  bg-orange-600 hover:bg-darkRedish gap-2 text-base self-stretch rounded-md w-full shadow justify-center cursor-pointer items-center  inline-flex"
               onClick={handleSubmitOrder}
+              type="button"
             >
               Valider
               <div className="  justify-start items-center flex">

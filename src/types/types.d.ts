@@ -48,3 +48,11 @@ interface ManagerType {
   type: string;
   iconLink: string;
 }
+
+type CompanyType =
+  | 'SAS'
+  | 'SARL'
+  | 'EURL'
+  | 'SCI'
+  | 'AUTOENTREPRENEUR'
+  | 'ASSOCIATION';

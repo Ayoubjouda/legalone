@@ -3,35 +3,42 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   saasFormSchema,
-  SaasSchemaType,
+  AutoEntreFormSchema,
 } from '@/lib/validators/formValidators';
 import { useSearchParams } from 'next/navigation';
 import SaasStepper from '@/components/Steppers/SaasStepper';
 import React from 'react';
-
-type CompanyForms = {
-  [key: string]: typeof saasFormSchema;
+import { ConditionalSchemaType } from '@/types/schema.types';
+import AutoEntreStepper from '@/components/Steppers/AutoEntreStepper';
+import CompanyTypeForm from '@/components/Forms/CompanyTypeForm';
+import { ZodObject } from 'zod';
+// type CompanyForms = {
+//   [key: string]: typeof saasFormSchema;
+// };
+type Companys = {
+  [key: string]: typeof saasFormSchema | typeof AutoEntreFormSchema;
 };
-
-const companys: CompanyForms = {
-  saas: saasFormSchema,
-  sarl: saasFormSchema,
+const companys: Companys = {
+  SAS: saasFormSchema,
+  AUTOENTREPRENEUR: AutoEntreFormSchema,
 };
 type Stepper = {
   [key: string]: React.ComponentType;
 };
 const steppers: Stepper = {
-  saas: SaasStepper,
+  SAS: SaasStepper,
+  AUTOENTREPRENEUR: AutoEntreStepper,
 };
 
 export default function CreateSaas() {
   const searchParams = useSearchParams();
-  const companyType = searchParams.get('type') || 'saas';
+  const companyType =
+    (searchParams.get('type') as CompanyType) || ('SAS' as CompanyType);
 
   const FormSchema = companys[companyType] ?? saasFormSchema;
-  const SelectedStepper = steppers[companyType] ?? SaasStepper;
+  const SelectedStepper = steppers[companyType] ?? CompanyTypeForm;
 
-  const methods = useForm<SaasSchemaType>({
+  const methods = useForm<ConditionalSchemaType<typeof companyType>>({
     resolver: zodResolver(FormSchema),
     mode: 'onBlur',
     defaultValues: {

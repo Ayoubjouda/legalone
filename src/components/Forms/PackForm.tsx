@@ -7,10 +7,9 @@ import { useQuery } from 'react-query';
 import PricingComponent from '../PricingComponent';
 interface FormProps {
   goToNext: () => void;
-  goToPrevious: () => void;
 }
 
-const PackForm = ({ goToNext, goToPrevious }: FormProps) => {
+const PackForm = ({ goToNext }: FormProps) => {
   const { control, setValue, trigger, getValues } = useFormContext();
   const values = getValues();
   const [selectedPack, setSelectedPack] = useState<Package | null>(

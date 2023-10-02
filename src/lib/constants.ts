@@ -2,37 +2,37 @@ export const CREATE_COMPANY_DATA = [
   {
     id: 1,
     title: 'Créer ma SASU',
-    url: '/creer-ma-sasu',
+    url: '/create?type=SASU',
   },
   {
     id: 2,
     title: 'Créer ma SAS',
-    url: '/createsaas?type=SAS',
+    url: '/create?type=SAS',
   },
   {
     id: 3,
     title: 'Créer ma SARL',
-    url: '/creer-ma-sarl',
+    url: '/create?type=SARL',
   },
   {
     id: 4,
     title: 'Créer ma EURL',
-    url: '/creer-ma-eurl',
+    url: '/create?type=EURL',
   },
   {
     id: 5,
     title: 'Créer ma SCI',
-    url: '/creer-ma-sci',
+    url: '/createsaas?type=SCI',
   },
   {
     id: 6,
     title: 'Créer mon auto-entreprise',
-    url: '/creer-mon-auto-entreprise',
+    url: '/create?type=AUTOENTREPRENEUR',
   },
   {
     id: 7,
     title: 'Créer mon association',
-    url: '/creer-mon-association',
+    url: '/create?type=ASSOCIATION',
   },
   {
     id: 8,

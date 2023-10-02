@@ -9,10 +9,9 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 interface FormProps {
   goToNext: () => void;
-  goToPrevious: () => void;
 }
 
-export const ManagerForm = ({ goToNext, goToPrevious }: FormProps) => {
+export const ManagerForm = ({ goToNext }: FormProps) => {
   const {
     setValue,
     control,

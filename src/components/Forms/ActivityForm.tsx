@@ -10,9 +10,8 @@ import Image from 'next/image';
 
 interface FormProps {
   goToNext: () => void;
-  goToPrevious: () => void;
 }
-const ActivityForm = ({ goToNext, goToPrevious }: FormProps) => {
+const ActivityForm = ({ goToNext }: FormProps) => {
   const {
     setValue,
     control,

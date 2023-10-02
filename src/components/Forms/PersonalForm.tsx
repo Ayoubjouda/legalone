@@ -11,7 +11,6 @@ import { Button } from '../ui/button';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 interface FormProps {
   goToNext: () => void;
-  goToPrevious: () => void;
 }
 const PersonalForm = ({ goToNext }: FormProps) => {
   const { control, trigger, getValues } = useFormContext();
@@ -163,23 +162,6 @@ const PersonalForm = ({ goToNext }: FormProps) => {
                     <FormLabel className="font-semibold">Female</FormLabel>
                   </FormItem>
                 </RadioGroup>
-              </FormControl>
-
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          name="phone"
-          control={control}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Phone number</FormLabel>
-              <FormControl>
-                <Input
-                  type="number"
-                  {...field}
-                />
               </FormControl>
 
               <FormMessage />

@@ -21,6 +21,8 @@ import useFormPersist from 'react-hook-form-persist';
 import { useFormContext } from 'react-hook-form';
 import useAppStore from '@/zustand/store';
 import PackForm from '../Forms/PackForm';
+import ContactForm from '../Forms/ContactForm';
+import { useRouter, useSearchParams } from 'next/navigation';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
@@ -30,83 +32,54 @@ const steps = [
   { title: 'Third', description: 'Headquarter' },
   { title: 'Third', description: 'Récapitulatif' },
   { title: 'Third', description: 'Récapitulatif' },
+  { title: 'Third', description: 'Récapitulatif' },
 ];
 const SaasStepper: FC<StepperProps> = () => {
-  const { activeStep, goToNext, goToPrevious, setActiveStep } = useSteps({
-    index: 0,
+  const router = useRouter();
+
+  const searchParams = useSearchParams();
+  const companyType =
+    (searchParams.get('type') as CompanyType) || ('SAS' as CompanyType);
+  const currentStep = searchParams.get('step') ?? 0;
+  const { activeStep, goToNext, goToPrevious } = useSteps({
+    index: Number(currentStep),
     count: steps.length,
   });
 
   const { watch, setValue } = useFormContext();
-  const { setActiveStep: setStoredStep, activeStep: storedStep } =
-    useAppStore();
 
-  useEffect(() => {
-    setStoredStep(activeStep);
-  }, [activeStep]);
-  useEffect(() => {
-    if (storedStep !== 0) {
-      setActiveStep(storedStep);
-    }
-  }, []);
-
-  useFormPersist('storageKey', {
+  useFormPersist(companyType, {
     watch,
     setValue,
     storage: window.localStorage, // default window.sessionStorage
   });
+  const handleGoToNext = () => {
+    router.push(`/create?type=${companyType}&step=${activeStep + 1}`);
+    goToNext();
+  };
+  const handleGoToPrevious = () => {
+    router.push(`/create?type=${companyType}&step=${activeStep - 1}`);
+    goToPrevious();
+  };
 
   function getStepContent(step: number) {
     switch (step) {
       case 0:
-        return (
-          <DurationForm
-            goToNext={goToNext}
-            goToPrevious={goToPrevious}
-          />
-        );
+        return <DurationForm goToNext={handleGoToNext} />;
       case 1:
-        return (
-          <ActivityForm
-            goToNext={goToNext}
-            goToPrevious={goToPrevious}
-          />
-        );
+        return <ActivityForm goToNext={handleGoToNext} />;
       case 2:
-        return (
-          <ManagerForm
-            goToNext={goToNext}
-            goToPrevious={goToPrevious}
-          />
-        );
+        return <ManagerForm goToNext={handleGoToNext} />;
       case 3:
-        return (
-          <PersonalForm
-            goToNext={goToNext}
-            goToPrevious={goToPrevious}
-          />
-        );
+        return <PersonalForm goToNext={handleGoToNext} />;
       case 4:
-        return (
-          <CompanyDataForm
-            goToNext={goToNext}
-            goToPrevious={goToPrevious}
-          />
-        );
+        return <CompanyDataForm goToNext={handleGoToNext} />;
       case 5:
-        return (
-          <HeadquarterForm
-            goToNext={goToNext}
-            goToPrevious={goToPrevious}
-          />
-        );
+        return <ContactForm goToNext={handleGoToNext} />;
       case 6:
-        return (
-          <PackForm
-            goToNext={goToNext}
-            goToPrevious={goToPrevious}
-          />
-        );
+        return <HeadquarterForm goToNext={handleGoToNext} />;
+      case 7:
+        return <PackForm goToNext={handleGoToNext} />;
       default:
         return <CommandeForm />;
     }
@@ -115,7 +88,7 @@ const SaasStepper: FC<StepperProps> = () => {
     <div className="max-w-screen-xl flex  w-full flex-col items-center justify-center gap-5">
       <div className=" w-full lg:max-w-3xl sm:max-w-lg relative">
         <p className=" text-center text-lg font-medium leading-[31px] text-black">
-          Création de saas
+          Création de {companyType}
         </p>
         {activeStep !== 0 && (
           <div className="absolute top-0 left-0 flex max-w-screen-md  w-full">

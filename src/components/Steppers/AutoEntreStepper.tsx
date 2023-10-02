@@ -1,12 +1,12 @@
 'use client';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import {
   Step,
   StepSeparator,
   Stepper as ChakraStepper,
   useSteps,
 } from '@chakra-ui/react';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import {
   PersonalForm,
   DurationForm,
@@ -19,8 +19,10 @@ import {
 import { ChevronLeft } from 'lucide-react';
 import useFormPersist from 'react-hook-form-persist';
 import { useFormContext } from 'react-hook-form';
-import useAppStore from '@/zustand/store';
-import PackForm from './Forms/PackForm';
+import PackForm from '../Forms/PackForm';
+import ContactForm from '../Forms/ContactForm';
+import AutoEntreForm from '../Forms/AutoEntreForm';
+import { useRouter, useSearchParams } from 'next/navigation';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
@@ -31,83 +33,52 @@ const steps = [
   { title: 'Third', description: 'Récapitulatif' },
   { title: 'Third', description: 'Récapitulatif' },
 ];
-const Stepper: FC<StepperProps> = () => {
-  const { activeStep, goToNext, goToPrevious, setActiveStep } = useSteps({
-    index: 0,
+const SciStepper: FC<StepperProps> = () => {
+  const searchParams = useSearchParams();
+  const companyType =
+    (searchParams.get('type') as CompanyType) || ('SAS' as CompanyType);
+  const currentStep = searchParams.get('step') ?? 0;
+  const { activeStep, goToNext, goToPrevious } = useSteps({
+    index: Number(currentStep),
     count: steps.length,
   });
 
   const { watch, setValue } = useFormContext();
-  const { setActiveStep: setStoredStep, activeStep: storedStep } =
-    useAppStore();
 
-  useEffect(() => {
-    setStoredStep(activeStep);
-  }, [activeStep]);
-  useEffect(() => {
-    if (storedStep !== 0) {
-      setActiveStep(storedStep);
-    }
-  }, []);
+  const router = useRouter();
 
-  useFormPersist('storageKey', {
+  useFormPersist(companyType, {
     watch,
     setValue,
     storage: window.localStorage, // default window.sessionStorage
   });
 
+  const handleGoToNext = () => {
+    router.push(`/create?type=${companyType}&step=${activeStep + 1}`);
+    goToNext();
+  };
+  const handleGoToPrevious = () => {
+    router.push(`/create?type=${companyType}&step=${activeStep - 1}`);
+    goToPrevious();
+  };
+
   function getStepContent(step: number) {
     switch (step) {
-      // case 0:
-      //   return (
-      //     <DurationForm
-      //       goToNext={goToNext}
-      //       goToPrevious={goToPrevious}
-      //     />
-      //   );
-      // case 1:
-      //   return (
-      //     <ActivityForm
-      //       goToNext={goToNext}
-      //       goToPrevious={goToPrevious}
-      //     />
-      //   );
-      // case 2:
-      //   return (
-      //     <ManagerForm
-      //       goToNext={goToNext}
-      //       goToPrevious={goToPrevious}
-      //     />
-      //   );
-      // case 3:
-      //   return (
-      //     <PersonalForm
-      //       goToNext={goToNext}
-      //       goToPrevious={goToPrevious}
-      //     />
-      //   );
-      // case 4:
-      //   return (
-      //     <CompanyDataForm
-      //       goToNext={goToNext}
-      //       goToPrevious={goToPrevious}
-      //     />
-      //   );
-      // case 5:
-      //   return (
-      //     <HeadquarterForm
-      //       goToNext={goToNext}
-      //       goToPrevious={goToPrevious}
-      //     />
-      //   );
-      // case 6:
-      //   return (
-      //     <PackForm
-      //       goToNext={goToNext}
-      //       goToPrevious={goToPrevious}
-      //     />
-      //   );
-      default:
+      case 0:
+        return <DurationForm goToNext={handleGoToNext} />;
+      case 1:
+        return <AutoEntreForm goToNext={handleGoToNext} />;
+      case 2:
+        return <HeadquarterForm goToNext={handleGoToNext} />;
+      case 3:
+        return <ActivityForm goToNext={handleGoToNext} />;
+      case 4:
+        return <PersonalForm goToNext={handleGoToNext} />;
+      case 5:
+        return <ContactForm goToNext={handleGoToNext} />;
+      case 6:
+        return <PackForm goToNext={handleGoToNext} />;
+      case 7:
         return <CommandeForm />;
     }
   }
@@ -115,14 +86,14 @@ const Stepper: FC<StepperProps> = () => {
     <div className="max-w-screen-xl flex  w-full flex-col items-center justify-center gap-5">
       <div className=" w-full lg:max-w-3xl sm:max-w-lg relative">
         <p className=" text-center text-lg font-medium leading-[31px] text-black">
-          Création de saas
+          Création de micro-entreprise
         </p>
         {activeStep !== 0 && (
           <div className="absolute top-0 left-0 flex max-w-screen-md  w-full">
             <Button
               className="px-0 text-black hover:no-underline"
               variant={'link'}
-              onClick={goToPrevious}
+              onClick={handleGoToPrevious}
             >
               <ChevronLeft size={24} />
               Retour
@@ -165,4 +136,4 @@ const Stepper: FC<StepperProps> = () => {
   );
 };
 
-export default Stepper;
+export default SciStepper;
