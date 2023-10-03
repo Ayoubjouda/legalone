@@ -55,4 +55,5 @@ type CompanyType =
   | 'EURL'
   | 'SCI'
   | 'AUTOENTREPRENEUR'
-  | 'ASSOCIATION';
+  | 'ASSOCIATION'
+  | 'SASU';

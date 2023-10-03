@@ -22,7 +22,7 @@ export const CREATE_COMPANY_DATA = [
   {
     id: 5,
     title: 'Créer ma SCI',
-    url: '/createsaas?type=SCI',
+    url: '/create?type=SCI',
   },
   {
     id: 6,
@@ -37,7 +37,7 @@ export const CREATE_COMPANY_DATA = [
   {
     id: 8,
     title: 'Choisir mon statut',
-    url: '/choisir-mon-statut',
+    url: '/create?type=chose',
   },
 ];
 export const UPDATE_COMPANY_DATA = [

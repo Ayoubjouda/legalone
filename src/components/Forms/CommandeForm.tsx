@@ -22,7 +22,6 @@ const CommandeForm = () => {
   const { setOrder } = useAppStore();
   const values = getValues();
   const selectedPack: Package = values?.pack;
-  console.log(values);
 
   const handleSubmitOrder = async () => {
     const accessToken: string | null = localStorage.getItem('accessToken');
@@ -33,18 +32,20 @@ const CommandeForm = () => {
       );
       router.push('/login');
     } else {
-      api.post('/order', { description: 'test' }).then((res) => {
-        const Order: OrderType = {
-          orderId: Number(res.data.id),
-          ...values,
-        } as OrderType;
-        setOrder(Order);
-        router.push(`/checkout`);
-      });
+      api
+        .post('/order/company-creation', { description: 'test' })
+        .then((res) => {
+          console.log(res);
+          const Order: OrderType = {
+            orderId: Number(res.data.id),
+            ...values,
+          } as OrderType;
+          setOrder(Order);
+          router.push(`/checkout`);
+        });
     }
   };
 
-  console.log(values);
   if (!values?.pack) return null;
   return (
     <div className="flex w-full items-start gap-3 justify-center">

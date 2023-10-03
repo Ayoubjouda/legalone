@@ -4,6 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   saasFormSchema,
   AutoEntreFormSchema,
+  AssociationFormSchema,
+  SciFormSchema,
 } from '@/lib/validators/formValidators';
 import { useSearchParams } from 'next/navigation';
 import SaasStepper from '@/components/Steppers/SaasStepper';
@@ -13,15 +15,26 @@ import AutoEntreStepper from '@/components/Steppers/AutoEntreStepper';
 import CompanyTypeForm from '@/components/Forms/CompanyTypeForm';
 import { ZodObject } from 'zod';
 import useFormPersist from 'react-hook-form-persist';
+import AssociationStepper from '@/components/Steppers/AssociationStepper';
+import SciStepper from '@/components/Steppers/SciStepper';
 // type CompanyForms = {
 //   [key: string]: typeof saasFormSchema;
 // };
 type Companys = {
-  [key: string]: typeof saasFormSchema | typeof AutoEntreFormSchema;
+  [key: string]:
+    | typeof saasFormSchema
+    | typeof AutoEntreFormSchema
+    | typeof AssociationFormSchema
+    | typeof SciFormSchema;
 };
 const companys: Companys = {
   SAS: saasFormSchema,
   AUTOENTREPRENEUR: AutoEntreFormSchema,
+  ASSOCIATION: AssociationFormSchema,
+  SCI: SciFormSchema,
+  SARL: saasFormSchema,
+  EURL: saasFormSchema,
+  SASU: saasFormSchema,
 };
 type Stepper = {
   [key: string]: React.ComponentType;
@@ -29,6 +42,11 @@ type Stepper = {
 const steppers: Stepper = {
   SAS: SaasStepper,
   AUTOENTREPRENEUR: AutoEntreStepper,
+  ASSOCIATION: AssociationStepper,
+  SCI: SciStepper,
+  SARL: SaasStepper,
+  EURL: SaasStepper,
+  SASU: SaasStepper,
 };
 
 export default function CreateSaas() {

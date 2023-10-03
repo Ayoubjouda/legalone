@@ -126,6 +126,45 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
             </FormItem>
           )}
         />
+        <FormField
+          name="artisan"
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <FormItem className="flex items-center gap-3 space-y-0 ">
+              <FormLabel className="leading-[20px]">
+                Votre activité est-elle artisanale ?
+              </FormLabel>
+              <FormControl>
+                <RadioGroup
+                  onValueChange={(value) => {
+                    if (value === 'True') {
+                      onChange(true);
+                    } else {
+                      onChange(false);
+                    }
+                  }}
+                  defaultValue={value === true ? 'True' : 'False'}
+                  className="flex"
+                >
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="True" />
+                    </FormControl>
+                    <FormLabel className="font-semibold">Oui</FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="False" />
+                    </FormControl>
+                    <FormLabel className="font-semibold">Non</FormLabel>
+                  </FormItem>
+                </RadioGroup>
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <Button
           className="font-semibold items-center self-end flex gap-2 text-base  hover:bg-darkRedish"

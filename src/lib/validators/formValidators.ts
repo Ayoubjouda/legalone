@@ -127,6 +127,7 @@ export const AutoEntreFormSchema = z.object({
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
   exAutoEntrepreneur: z.boolean(),
+  artisan: z.boolean(),
   headquarterId: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
@@ -145,7 +146,7 @@ export const AutoEntreFormSchema = z.object({
     .optional(),
   sexManager: z
     .string()
-    .min(2, { message: 'Vous devez sélectionner au moins une option' })
+    .min(1, { message: 'Vous devez sélectionner au moins une option' })
     .optional(),
   adresse: z
     .string()
@@ -175,8 +176,145 @@ export const AutoEntreFormSchema = z.object({
 
   pack: z.custom<Package>(),
 });
+export const AssociationFormSchema = z.object({
+  creationDelay: z
+    .string()
+    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
+  companyName: z
+    .string()
+    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
+  artisan: z.boolean(),
+  headquarterId: z
+    .number()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
+  activityId: z
+    .number()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
+  firstName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
+  lastName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
+  sexManager: z
+    .string()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' })
+    .optional(),
+  tresorierFirstName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
+  tresorierLastName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
+  tresorierSex: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
+  desktopComposition: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
 
+  email: z.string().email({ message: 'Doit être une adresse e-mail valide' }),
+  phone: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .optional(),
+
+  companyType: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  descriptionAssociation: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+
+  managerTypeId: z
+    .number()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
+
+  pack: z.custom<Package>(),
+});
+export const SciFormSchema = z.object({
+  creationDelay: z
+    .string()
+    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
+  companyName: z
+    .string()
+    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
+  artisan: z.boolean(),
+  headquarterId: z
+    .number()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
+  activityId: z
+    .number()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
+  firstName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
+  lastName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
+  sexManager: z
+    .string()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' })
+    .optional(),
+  tresorierFirstName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
+  tresorierLastName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
+  tresorierSex: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
+  sciActivityField: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
+
+  email: z.string().email({ message: 'Doit être une adresse e-mail valide' }),
+  phone: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .optional(),
+
+  companyType: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  descriptionAssociation: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+
+  managerTypeId: z
+    .number()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
+
+  pack: z.custom<Package>(),
+});
 export type AutoEntreSchemaType = z.infer<typeof AutoEntreFormSchema>;
+export type SciSchemaType = z.infer<typeof SciFormSchema>;
+
+export type AssociationSchemaType = z.infer<typeof AssociationFormSchema>;
 
 export type SaasSchemaType = z.infer<typeof saasFormSchema>;
 
