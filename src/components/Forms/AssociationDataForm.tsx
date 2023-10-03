@@ -37,6 +37,7 @@ const AssociationDataForm = ({ goToNext }: FormProps) => {
             </FormItem>
           )}
         />
+
         <FormField
           name="descriptionAssociation"
           control={control}

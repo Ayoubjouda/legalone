@@ -53,7 +53,7 @@ export default function CreateSaas() {
   const searchParams = useSearchParams();
   const companyType =
     (searchParams.get('type') as CompanyType) || ('SAS' as CompanyType);
-
+  console.log(companyType);
   const FormSchema = companys[companyType] ?? saasFormSchema;
   const SelectedStepper = steppers[companyType] ?? CompanyTypeForm;
 

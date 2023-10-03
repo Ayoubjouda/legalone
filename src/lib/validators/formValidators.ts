@@ -311,7 +311,50 @@ export const SciFormSchema = z.object({
 
   pack: z.custom<Package>(),
 });
+
+export const UpdateFormSchema = z.object({
+  modifications: z
+    .array(z.string())
+    .refine((value) => value?.some((item) => item), {
+      message: 'You have to select at least one item.',
+    }),
+
+  creationDelay: z
+    .string()
+    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
+  companyName: z
+    .string()
+    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
+  declaration: z.boolean(),
+
+  firstName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
+  lastName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
+    .optional(),
+
+  email: z.string().email({ message: 'Doit être une adresse e-mail valide' }),
+  phone: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .optional(),
+
+  companyType: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+
+  pack: z.custom<Package>(),
+});
+
 export type AutoEntreSchemaType = z.infer<typeof AutoEntreFormSchema>;
+
+export type UpdateFormSchemaType = z.infer<typeof UpdateFormSchema>;
+
 export type SciSchemaType = z.infer<typeof SciFormSchema>;
 
 export type AssociationSchemaType = z.infer<typeof AssociationFormSchema>;

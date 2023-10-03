@@ -54,7 +54,7 @@ export const UPDATE_COMPANY_DATA = [
   {
     id: 2,
     title: 'Modification de statuts',
-    url: '/createsaas',
+    url: '/update',
   },
 ];
 export const DELETE_COMPANY_DATA = [
