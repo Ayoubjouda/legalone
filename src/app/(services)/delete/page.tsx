@@ -16,12 +16,12 @@ import useFormPersist from 'react-hook-form-persist';
 import AssociationStepper from '@/components/Steppers/AssociationStepper';
 import SciStepper from '@/components/Steppers/SciStepper';
 import { FormProvider, useForm } from 'react-hook-form';
-import UpdateStepper from '@/components/Steppers/UpdateStepper';
+import DeleteStepper from '@/components/Steppers/DeleteStepper';
 import {
   UpdateFormSchema,
   UpdateFormSchemaType,
 } from '@/lib/validators/formValidators';
-export default function Update() {
+export default function Delete() {
   const methods = useForm<UpdateFormSchemaType>({
     resolver: zodResolver(UpdateFormSchema),
     mode: 'onBlur',
@@ -29,14 +29,14 @@ export default function Update() {
       modifications: [],
     },
   });
-  useFormPersist('Update', {
+  useFormPersist('Delete', {
     ...methods,
     storage: window.localStorage, // default window.sessionStorage
   });
   return (
     <div className="max-w-screen-xl mx-auto flex  gap-2 flex-col items-center justify-center overflow-hidden my-12">
       <FormProvider {...methods}>
-        <UpdateStepper />
+        <DeleteStepper />
       </FormProvider>
     </div>
   );

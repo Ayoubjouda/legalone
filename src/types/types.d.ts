@@ -48,8 +48,13 @@ interface ManagerType {
   type: string;
   iconLink: string;
 }
-
-type CompanyType =
+interface CompanyType {
+  id: number;
+  name: string;
+  description: string;
+  iconLink: string;
+}
+type CompanyEnum =
   | 'SAS'
   | 'SARL'
   | 'EURL'

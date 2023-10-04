@@ -7,6 +7,7 @@ import { useQuery } from 'react-query';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { useGetManagerType } from '@/hooks/useCompany';
 interface FormProps {
   goToNext: () => void;
 }
@@ -25,15 +26,7 @@ export const ManagerForm = ({ goToNext }: FormProps) => {
     values?.managerTypeId || null
   );
 
-  const { isLoading: ManagerLoading, data: ManagerData } = useQuery(
-    'Manager',
-    async () => {
-      const data = (await api
-        .get('manager/managerType')
-        .then((res) => res.data)) as ManagerType[];
-      return data;
-    }
-  );
+  const { isLoading: ManagerLoading, data: ManagerData } = useGetManagerType();
 
   const handleSetValue = (newValue: number) => {
     setValue('managerTypeId', newValue);

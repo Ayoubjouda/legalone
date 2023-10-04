@@ -61,6 +61,6 @@ export const DELETE_COMPANY_DATA = [
   {
     id: 1,
     title: 'Dissolution de société',
-    url: '/creer-ma-sasu',
+    url: '/delete',
   },
 ];

@@ -55,7 +55,7 @@ const RequestedUpdates = ({ goToNext }: FormProps) => {
     <form className="w-full max-w-[650px]">
       <div className=" flex flex-col gap-4">
         <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
-          information complementaire sur votre Association
+          information complementaire
         </p>
 
         <FormField

@@ -12,7 +12,7 @@ import SaasStepper from '@/components/Steppers/SaasStepper';
 import React from 'react';
 import { ConditionalSchemaType } from '@/types/schema.types';
 import AutoEntreStepper from '@/components/Steppers/AutoEntreStepper';
-import CompanyTypeForm from '@/components/Forms/CompanyTypeForm';
+import CompanyTypeForm from '@/components/Forms/CompanyType';
 import { ZodObject } from 'zod';
 import useFormPersist from 'react-hook-form-persist';
 import AssociationStepper from '@/components/Steppers/AssociationStepper';
@@ -52,7 +52,7 @@ const steppers: Stepper = {
 export default function CreateSaas() {
   const searchParams = useSearchParams();
   const companyType =
-    (searchParams.get('type') as CompanyType) || ('SAS' as CompanyType);
+    (searchParams.get('type') as CompanyEnum) || ('SAS' as CompanyEnum);
   console.log(companyType);
   const FormSchema = companys[companyType] ?? saasFormSchema;
   const SelectedStepper = steppers[companyType] ?? CompanyTypeForm;

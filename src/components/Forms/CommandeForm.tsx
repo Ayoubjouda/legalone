@@ -14,8 +14,8 @@ import { OrderType } from '@/types/order';
 
 const CommandeForm = () => {
   const searchParams = useSearchParams();
-  const companyType: CompanyType =
-    (searchParams.get('type') as CompanyType) || ('SAS' as CompanyType);
+  const companyType: CompanyEnum =
+    (searchParams.get('type') as CompanyEnum) || ('SAS' as CompanyEnum);
   const { getValues } = useFormContext();
   const pathname = usePathname();
   const router = useRouter();

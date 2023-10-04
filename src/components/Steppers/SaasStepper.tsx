@@ -39,7 +39,7 @@ const SaasStepper: FC<StepperProps> = () => {
 
   const searchParams = useSearchParams();
   const companyType =
-    (searchParams.get('type') as CompanyType) || ('SAS' as CompanyType);
+    (searchParams.get('type') as CompanyEnum) || ('SAS' as CompanyEnum);
   const currentStep = searchParams.get('step') ?? 0;
   const { activeStep, goToNext, goToPrevious } = useSteps({
     index: Number(currentStep),

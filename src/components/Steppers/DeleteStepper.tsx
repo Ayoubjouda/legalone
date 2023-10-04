@@ -25,6 +25,10 @@ import SciDataForm from '../Forms/SciDataForm';
 import RequestedUpdates from '../Forms/RequestedUpdates';
 import DeclarationForm from '../Forms/DeclarationForm';
 import Companyinfo from '../Forms/Companyinfo';
+import CompanyTypeForm from '../Forms/CompanyTypeForm';
+import DissolutionCompanyDataForm from '../Forms/DissolutionCompanyDataForm';
+import DissolutionLiquidateurForm from '../Forms/dissolution/DissolutionLiquidateurForm';
+import DissolutionAssocierForm from '../Forms/dissolution/DissolutionAssocierForm';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
@@ -35,7 +39,7 @@ const steps = [
   { title: 'Third', description: 'Headquarter' },
   { title: 'Third', description: 'Headquarter' },
 ];
-const UpdateStepper: FC<StepperProps> = () => {
+const DeleteStepper: FC<StepperProps> = () => {
   const router = useRouter();
 
   const searchParams = useSearchParams();
@@ -48,11 +52,11 @@ const UpdateStepper: FC<StepperProps> = () => {
   });
 
   const handleGoToNext = () => {
-    router.push(`/update?type=${companyType}&step=${activeStep + 1}`);
+    router.push(`/delete?&step=${activeStep + 1}`);
     goToNext();
   };
   const handleGoToPrevious = () => {
-    router.push(`/update?type=${companyType}&step=${activeStep - 1}`);
+    router.push(`/delete?&step=${activeStep - 1}`);
     goToPrevious();
   };
 
@@ -61,16 +65,18 @@ const UpdateStepper: FC<StepperProps> = () => {
       case 0:
         return <DurationForm goToNext={handleGoToNext} />;
       case 1:
-        return <RequestedUpdates goToNext={handleGoToNext} />;
+        return <CompanyTypeForm goToNext={handleGoToNext} />;
       case 2:
-        return <DeclarationForm goToNext={handleGoToNext} />;
+        return <DissolutionCompanyDataForm goToNext={handleGoToNext} />;
       case 3:
-        return <Companyinfo goToNext={handleGoToNext} />;
+        return <DissolutionLiquidateurForm goToNext={handleGoToNext} />;
       case 4:
         return <ContactForm goToNext={handleGoToNext} />;
       case 5:
-        return <PackForm goToNext={handleGoToNext} />;
+        return <DissolutionAssocierForm goToNext={handleGoToNext} />;
       case 6:
+        return <PackForm goToNext={handleGoToNext} />;
+      case 7:
         return <CommandeForm />;
     }
   }
@@ -78,7 +84,7 @@ const UpdateStepper: FC<StepperProps> = () => {
     <div className="max-w-screen-xl flex  w-full flex-col items-center justify-center gap-5">
       <div className=" w-full lg:max-w-3xl sm:max-w-lg relative">
         <p className=" text-center text-lg font-medium leading-[31px] text-black">
-          Modification de votre société
+          Dissolution de votre société
         </p>
         {activeStep !== 0 && (
           <div className="absolute top-0 left-0 flex max-w-screen-md  w-full">
@@ -128,4 +134,4 @@ const UpdateStepper: FC<StepperProps> = () => {
   );
 };
 
-export default UpdateStepper;
+export default DeleteStepper;

@@ -6,6 +6,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import IconBox from '../IconBox';
 import { cn } from '@/lib/utils';
+import { useGetHeadQuarter } from '@/hooks/useCompany';
 
 interface FormProps {
   goToNext: () => void;
@@ -18,12 +19,7 @@ const HeadquarterForm = ({ goToNext }: FormProps) => {
     formState: { errors },
     getValues,
   } = useFormContext();
-  const { isLoading, data } = useQuery('headquarter', async () => {
-    const data = (await api
-      .get('company/headquarter')
-      .then((res) => res.data)) as HeadQuarter[];
-    return data;
-  });
+  const { isLoading, data } = useGetHeadQuarter();
 
   const headquarter = getValues('headquarter');
   const [selectedHQ, setSelectedHQ] = useState<number | null>(

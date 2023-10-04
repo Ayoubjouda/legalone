@@ -2,12 +2,11 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { Button } from '../ui/button';
 import { Spinner } from '@chakra-ui/react';
 import { useState } from 'react';
-import { useQuery } from 'react-query';
-import api from '@/lib/axiosConfig';
+
 import { ErrorMessage } from '@hookform/error-message';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-
+import { useGetActivity } from '@/hooks/useCompany';
 interface FormProps {
   goToNext: () => void;
 }
@@ -24,13 +23,7 @@ const ActivityForm = ({ goToNext }: FormProps) => {
     values?.activityField || null
   );
 
-  const { isLoading, data } = useQuery('Activity', async () => {
-    const data = (await api
-      .get('activity')
-      .then((res) => res.data)) as Activity[];
-
-    return data;
-  });
+  const { isLoading, data: ActivityData } = useGetActivity();
 
   const handleSetValue = (newValue: number) => {
     setValue('activityField', newValue);
@@ -43,6 +36,7 @@ const ActivityForm = ({ goToNext }: FormProps) => {
       goToNext();
     }
   };
+
   if (isLoading)
     return (
       <div className="min-h-[300px] h-full w-full flex justify-center items-center">
@@ -73,8 +67,8 @@ const ActivityForm = ({ goToNext }: FormProps) => {
         </div>
 
         <div className="flex w-full  justify-center   flex-wrap gap-10">
-          {data ? (
-            data?.map((item: Activity, idx: number) => (
+          {ActivityData ? (
+            ActivityData?.map((item: Activity, idx: number) => (
               <Button
                 variant={'ghost'}
                 className={cn(

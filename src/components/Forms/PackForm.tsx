@@ -1,45 +1,35 @@
 import { Controller, useFormContext } from 'react-hook-form';
-import Pack from '../Pack';
 import { Spinner } from '@chakra-ui/react';
-import api from '@/lib/axiosConfig';
-import { useState } from 'react';
-import { useQuery } from 'react-query';
+
 import PricingComponent from '../PricingComponent';
+import { useGetPackages } from '@/hooks/useCompany';
 interface FormProps {
   goToNext: () => void;
 }
 
 const PackForm = ({ goToNext }: FormProps) => {
-  const { control, setValue, trigger, getValues } = useFormContext();
-  const values = getValues();
-  const [selectedPack, setSelectedPack] = useState<Package | null>(
-    values.pack || null
-  );
-  const { isLoading, data } = useQuery('packs', async () => {
-    const data = (await api
-      .get('package')
-      .then((res) => res.data)) as Package[];
-    return data;
-  });
+  const { control, setValue, trigger } = useFormContext();
+
+  const { isLoading, data } = useGetPackages();
 
   const handleSetValue = (pack: Package) => {
     setValue('pack', pack);
-    setSelectedPack(pack);
   };
   const handelSubmitValue = async (value: Package) => {
     handleSetValue(value);
-    setSelectedPack(value);
     const isValid = await trigger(['pack']);
     if (isValid) {
       goToNext();
     }
   };
+
   if (isLoading && !data)
     return (
       <div className="min-h-[300px] h-full w-full flex justify-center items-center">
         <Spinner color="orange.500" />
       </div>
     );
+
   return (
     <form className="w-full flex flex-col gap-8">
       <div className="hidden">
@@ -63,12 +53,6 @@ const PackForm = ({ goToNext }: FormProps) => {
             {...item}
             onButtonClick={() => handelSubmitValue(item)}
           />
-          // <Pack
-          //   key={idx}
-          //   {...item}
-          //   selected={selectedPack === item.id}
-          //   onButtonClick={() => handelSubmitValue(item.id)}
-          // />
         ))}
       </div>
     </form>
