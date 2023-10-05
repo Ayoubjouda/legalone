@@ -6,6 +6,7 @@ import {
   AutoEntreFormSchema,
   AssociationFormSchema,
   SciFormSchema,
+  DomiciliationFormSchema,
 } from '@/lib/validators/formValidators';
 import { useSearchParams } from 'next/navigation';
 import SaasStepper from '@/components/Steppers/SaasStepper';
@@ -26,6 +27,7 @@ type Companys = {
     | typeof saasFormSchema
     | typeof AutoEntreFormSchema
     | typeof AssociationFormSchema
+    | typeof DomiciliationFormSchema
     | typeof SciFormSchema;
 };
 const companys: Companys = {
@@ -36,6 +38,7 @@ const companys: Companys = {
   SARL: saasFormSchema,
   EURL: saasFormSchema,
   SASU: saasFormSchema,
+  DOMICILIATION: DomiciliationFormSchema,
 };
 type Stepper = {
   [key: string]: React.ComponentType;
@@ -55,7 +58,6 @@ export default function CreateSaas() {
   const searchParams = useSearchParams();
   const companyType =
     (searchParams.get('type') as CompanyEnum) || ('SAS' as CompanyEnum);
-  console.log(companyType);
   const FormSchema = companys[companyType] ?? saasFormSchema;
   const SelectedStepper = steppers[companyType] ?? CompanyTypeForm;
 

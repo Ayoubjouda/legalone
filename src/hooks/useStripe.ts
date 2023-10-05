@@ -11,8 +11,8 @@ async function createOrder(accessToken: string, order: OrderType) {
   if (!accessToken) throw new Error('No access token');
   const { data } = await api.post('payment/handlePayment', {
     currency: 'usd',
-    orderId: order.orderId,
-    packageId: order.pack.id,
+    orderId: 17,
+    packageId: 6,
     description: 'Order payment',
   });
   return data;

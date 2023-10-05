@@ -203,6 +203,7 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
             <FormField
               control={control}
               name="companyLiquidatorType"
+              defaultValue={''}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Forme Social</FormLabel>
@@ -239,13 +240,7 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
           type="button"
           size={'lg'}
           onClick={async () => {
-            const isValid = await trigger([
-              'companyNameLiquidator',
-              'companyLiquidatorType',
-              'civilite',
-              'firstName',
-              'lastName',
-            ]);
+            const isValid = await trigger([]);
             if (isValid) {
               goToNext();
             }

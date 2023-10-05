@@ -23,16 +23,19 @@ import useAppStore from '@/zustand/store';
 import PackForm from '../Forms/PackForm';
 import ContactForm from '../Forms/ContactForm';
 import { useRouter, useSearchParams } from 'next/navigation';
+import CompanyTypeForm from '../Forms/CompanyTypeForm';
+import CompanyNameForm from '../Forms/CompanyNameForm';
+import DomiciliationBaseForm from '../Forms/DomiciliationBaseForm';
+import SubscriptionForm from '../Forms/SubscriptionForm';
+import DomiciliationReexpeditionForm from '../Forms/DomiciliationReexpeditionForm';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
   { title: 'Second', description: 'CRÉATION DE SASU' },
   { title: 'Third', description: 'PROJET' },
   { title: 'Third', description: 'CHOIX DU PLAN' },
-  { title: 'Third', description: 'Headquarter' },
-  { title: 'Third', description: 'Récapitulatif' },
-  { title: 'Third', description: 'Récapitulatif' },
-  { title: 'Third', description: 'Récapitulatif' },
+  { title: 'Third', description: 'CHOIX DU PLAN' },
+  { title: 'Third', description: 'CHOIX DU PLAN' },
 ];
 const DomiciliationStepper: FC<StepperProps> = () => {
   const router = useRouter();
@@ -57,23 +60,19 @@ const DomiciliationStepper: FC<StepperProps> = () => {
   function getStepContent(step: number) {
     switch (step) {
       case 0:
-        return <DurationForm goToNext={handleGoToNext} />;
-      case 1:
-        return <ActivityForm goToNext={handleGoToNext} />;
-      case 2:
-        return <ManagerForm goToNext={handleGoToNext} />;
-      case 3:
         return <PersonalForm goToNext={handleGoToNext} />;
-      case 4:
-        return <CompanyDataForm goToNext={handleGoToNext} />;
-      case 5:
+      case 1:
         return <ContactForm goToNext={handleGoToNext} />;
+      case 2:
+        return <CompanyTypeForm goToNext={handleGoToNext} />;
+      case 3:
+        return <CompanyNameForm goToNext={handleGoToNext} />;
+      case 4:
+        return <DomiciliationBaseForm goToNext={handleGoToNext} />;
+      case 5:
+        return <SubscriptionForm goToNext={handleGoToNext} />;
       case 6:
-        return <HeadquarterForm goToNext={handleGoToNext} />;
-      case 7:
-        return <PackForm goToNext={handleGoToNext} />;
-      case 8:
-        return <CommandeForm />;
+        return <DomiciliationReexpeditionForm goToNext={handleGoToNext} />;
     }
   }
   return (

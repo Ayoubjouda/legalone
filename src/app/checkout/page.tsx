@@ -54,14 +54,14 @@ export default function Page() {
                     </div>
                   </div>
                   <div className="text-white text-2xl font-bold font-['IBM Plex Sans'] leading-[50px]">
-                    299$
+                    {Order.pack.price + Order.pack.administrativeFees.price}$
                   </div>
                 </div>
                 <div className="px-8 py-4 w-full flex-col justify-start items-start gap-6 flex">
                   <div className="justify-start items-center gap-2 inline-flex">
                     <div className="pr-[0.91px] flex-col justify-start items-start inline-flex">
                       <div className="text-black text-lg font-semibold font-['IBM Plex Sans'] leading-normal">
-                        Création de {Order.companyType}
+                        {Order.companyType}
                       </div>
                     </div>
                     <div className="flex-col justify-start items-start inline-flex">

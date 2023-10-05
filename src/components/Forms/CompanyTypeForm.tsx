@@ -34,7 +34,7 @@ const CompanyTypeForm = ({ goToNext }: FormProps) => {
     );
 
   return (
-    <form className="flex flex-col gap-10">
+    <form className="flex flex-col gap-10 max-w-lg">
       <div className="hidden">
         <Controller
           name="companyType"
