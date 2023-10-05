@@ -18,13 +18,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../../ui/select';
+import { useGetCompanyType } from '@/hooks/useCompany';
+import { Spinner } from '@chakra-ui/react';
 interface FormProps {
   goToNext: () => void;
 }
 const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
   const { control, trigger, getValues } = useFormContext();
   const values = getValues();
-
+  const { data: CompanyTypes, isLoading } = useGetCompanyType();
+  if (isLoading)
+    return (
+      <div className="min-h-[300px] h-full w-full flex justify-center items-center">
+        <Spinner color="orange.500" />
+      </div>
+    );
   return (
     <form className="max-w-[650px]">
       <div className="my-5 flex flex-col  gap-4">
@@ -37,7 +45,7 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
           dossier.
         </p>
 
-        <FormField
+        {/* <FormField
           name="declaration"
           control={control}
           render={({ field: { onChange, onBlur, value, ref } }) => (
@@ -59,6 +67,12 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
                 >
                   <FormItem className="flex items-center space-x-3 space-y-0">
                     <FormControl>
+                      <RadioGroupItem value="False" />
+                    </FormControl>
+                    <FormLabel className="font-semibold">Moi </FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
                       <RadioGroupItem value="True" />
                     </FormControl>
                     <FormLabel className="font-semibold">Un tiers </FormLabel>
@@ -69,9 +83,9 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <FormField
-          name="declaration"
+          name="liquidatorType"
           control={control}
           render={({ field: { onChange, onBlur, value, ref } }) => (
             <FormItem className="flex flex-col gap-3 space-y-0 ">
@@ -82,9 +96,9 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
                 <RadioGroup
                   onValueChange={(value) => {
                     if (value === 'True') {
-                      onChange(true);
+                      onChange(1);
                     } else {
-                      onChange(false);
+                      onChange(2);
                     }
                   }}
                   defaultValue={value === true ? 'True' : 'False'}
@@ -111,101 +125,114 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
             </FormItem>
           )}
         />
-        <div className="flex w-full gap-2 ">
-          <FormField
-            name="firstName"
-            control={control}
-            defaultValue={''}
-            render={({ field }) => (
-              <FormItem className="w-1/2">
-                <FormLabel>Nom</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            name="lastName"
-            control={control}
-            defaultValue={''}
-            render={({ field }) => (
-              <FormItem className="w-1/2">
-                <FormLabel>Prénom</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
+        {values.liquidatorType === 1 ? (
+          <>
+            <div className="flex w-full gap-2 ">
+              <FormField
+                name="firstName"
+                control={control}
+                defaultValue={''}
+                render={({ field }) => (
+                  <FormItem className="w-1/2">
+                    <FormLabel>Nom</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="lastName"
+                control={control}
+                defaultValue={''}
+                render={({ field }) => (
+                  <FormItem className="w-1/2">
+                    <FormLabel>Prénom</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-        <FormField
-          control={control}
-          name="civilite"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Civilité</FormLabel>
-              <Select
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-              >
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="selectioner votre civilité" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="madame">madame</SelectItem>
-                  <SelectItem value="monsieur">monsieur</SelectItem>
-                </SelectContent>
-              </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <FormField
+              control={control}
+              name="civilite"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Civilité</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="selectioner votre civilité" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="madame">madame</SelectItem>
+                      <SelectItem value="monsieur">monsieur</SelectItem>
+                    </SelectContent>
+                  </Select>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          name="compyName"
-          control={control}
-          defaultValue={''}
-          render={({ field }) => (
-            <FormItem className="w-1/2">
-              <FormLabel>Nom de la société</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={control}
-          name="FormeSocial"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Forme Social</FormLabel>
-              <Select
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-              >
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Forme Social" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="madame">madame</SelectItem>
-                  <SelectItem value="monsieur">monsieur</SelectItem>
-                </SelectContent>
-              </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </>
+        ) : (
+          <div>
+            <FormField
+              name="companyNameLiquidator"
+              control={control}
+              defaultValue={''}
+              render={({ field }) => (
+                <FormItem className="w-1/2">
+                  <FormLabel>Nom de la société</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={control}
+              name="companyLiquidatorType"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Forme Social</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Forme Social" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {CompanyTypes?.map((item) => (
+                        <SelectItem
+                          key={item.id}
+                          value={item.name}
+                        >
+                          {item.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+        )}
 
         <Button
           className="font-semibold self-end text-lg hover:bg-darkRedish"
@@ -213,9 +240,11 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
           size={'lg'}
           onClick={async () => {
             const isValid = await trigger([
+              'companyNameLiquidator',
+              'companyLiquidatorType',
+              'civilite',
               'firstName',
               'lastName',
-              'declaration',
             ]);
             if (isValid) {
               goToNext();

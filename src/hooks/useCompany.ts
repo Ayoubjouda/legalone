@@ -16,11 +16,13 @@ export const useGetActivity = () => {
 };
 
 export const useGetCompanyType = () => {
-  return useQuery<Activity[], Error>('CompanyType', () => fetchCompanyType());
+  return useQuery<CompanyType[], Error>('CompanyType', () =>
+    fetchCompanyType()
+  );
 };
 
 const fetchHeadQuarter = async (): Promise<HeadQuarter[]> => {
-  const { data } = await api.get(`headquarter`);
+  const { data } = await api.get(`company/headquarter`);
   return data;
 };
 

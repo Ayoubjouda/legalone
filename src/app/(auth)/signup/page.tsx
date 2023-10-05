@@ -167,7 +167,10 @@ export default function SignupPage() {
                   <FormItem>
                     <FormLabel>Mot de passe</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input
+                        {...field}
+                        type="password"
+                      />
                     </FormControl>
 
                     <FormMessage />
@@ -181,7 +184,10 @@ export default function SignupPage() {
                   <FormItem>
                     <FormLabel>Confirmer le Mot de passe</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input
+                        {...field}
+                        type="password"
+                      />
                     </FormControl>
 
                     <FormMessage />

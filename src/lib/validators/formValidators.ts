@@ -123,7 +123,7 @@ export const saasFormSchema = z.object({
 });
 
 export const AutoEntreFormSchema = z.object({
-  creationDelay: z
+  delay: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
   exAutoEntrepreneur: z.boolean(),
@@ -177,7 +177,7 @@ export const AutoEntreFormSchema = z.object({
   pack: z.custom<Package>(),
 });
 export const AssociationFormSchema = z.object({
-  creationDelay: z
+  delay: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
   companyName: z
@@ -245,7 +245,7 @@ export const AssociationFormSchema = z.object({
   pack: z.custom<Package>(),
 });
 export const SciFormSchema = z.object({
-  creationDelay: z
+  delay: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
   companyName: z
@@ -350,8 +350,70 @@ export const UpdateFormSchema = z.object({
 
   pack: z.custom<Package>(),
 });
+const AssociateSchema = z.object({
+  associateSex: z.string(),
+  associateFirstName: z.string(),
+  associateLastName: z.string(),
+});
+const CompanyAssociateSchema = z.object({
+  companyNameAssociate: z.string(),
+  companyAssociateType: z.string(),
+});
+export const DissolutionFormSchema = z.object({
+  delay: z
+    .string()
+    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
+  companyType: z
+    .number()
+    .min(1, { message: 'Doit contenir au moins 2 caractères' }),
+  companyName: z
+    .string()
+    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
+  rcs: z.string().min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  declaration: z.boolean(),
+  lastName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
+  firstName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
+  civilite: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  phone: z.string().min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  email: z.string().email({ message: 'Doit être une adresse e-mail valide' }),
+  liquidatorType: z
+    .number()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
+
+  companyNameLiquidator: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  companyLiquidatorType: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  LiquidatorfirstName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  LiquidatorlastName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  Liquidatorsex: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  associates: z.array(
+    z.object({
+      type: z.number(),
+      dto: z.union([AssociateSchema, CompanyAssociateSchema]),
+    })
+  ),
+});
 
 export type AutoEntreSchemaType = z.infer<typeof AutoEntreFormSchema>;
+
+export type DissolutionFormSchemaType = z.infer<typeof DissolutionFormSchema>;
 
 export type UpdateFormSchemaType = z.infer<typeof UpdateFormSchema>;
 

@@ -17,13 +17,13 @@ const CompanyTypeForm = ({ goToNext }: FormProps) => {
 
   const { isLoading, data: CompanyType } = useGetCompanyType();
 
-  const companyName = getValues('creationDelay');
+  const companyType = getValues('companyType');
 
-  const handleSetValue = (newValue: string) => {
-    setValue('creationDelay', newValue);
+  const handleSetValue = (id: number) => {
+    setValue('companyType', id);
   };
-  const handelSubmitValue = (value: string) => {
-    handleSetValue(value);
+  const handelSubmitValue = (id: number) => {
+    handleSetValue(id);
     goToNext();
   };
   if (isLoading)
@@ -63,9 +63,9 @@ const CompanyTypeForm = ({ goToNext }: FormProps) => {
             title={item.name}
             image={item.iconLink}
             onClick={() => {
-              handelSubmitValue(item.name);
+              handelSubmitValue(item.id);
             }}
-            className={cn({ 'border-orange-500': companyName === item.name })}
+            className={cn({ 'border-orange-500': companyType === item.id })}
           />
         ))}
       </div>

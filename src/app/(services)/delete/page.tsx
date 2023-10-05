@@ -18,16 +18,13 @@ import SciStepper from '@/components/Steppers/SciStepper';
 import { FormProvider, useForm } from 'react-hook-form';
 import DeleteStepper from '@/components/Steppers/DeleteStepper';
 import {
-  UpdateFormSchema,
-  UpdateFormSchemaType,
+  DissolutionFormSchema,
+  DissolutionFormSchemaType,
 } from '@/lib/validators/formValidators';
 export default function Delete() {
-  const methods = useForm<UpdateFormSchemaType>({
-    resolver: zodResolver(UpdateFormSchema),
+  const methods = useForm<DissolutionFormSchemaType>({
+    resolver: zodResolver(DissolutionFormSchema),
     mode: 'onBlur',
-    defaultValues: {
-      modifications: [],
-    },
   });
   useFormPersist('Delete', {
     ...methods,

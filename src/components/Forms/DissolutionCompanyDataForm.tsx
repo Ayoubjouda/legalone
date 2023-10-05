@@ -12,8 +12,7 @@ interface FormProps {
   goToNext: () => void;
 }
 const DissolutionCompanyDataForm = ({ goToNext }: FormProps) => {
-  const { control, trigger, getValues } = useFormContext();
-  const values = getValues();
+  const { control, trigger } = useFormContext();
 
   return (
     <form className="max-w-[650px]">
@@ -30,7 +29,6 @@ const DissolutionCompanyDataForm = ({ goToNext }: FormProps) => {
         <FormField
           name="companyName"
           control={control}
-          defaultValue={''}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Nom de la société</FormLabel>
@@ -43,7 +41,7 @@ const DissolutionCompanyDataForm = ({ goToNext }: FormProps) => {
           )}
         />
         <FormField
-          name="Rcs"
+          name="rcs"
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -63,7 +61,7 @@ const DissolutionCompanyDataForm = ({ goToNext }: FormProps) => {
           type="button"
           size={'lg'}
           onClick={async () => {
-            const isValid = await trigger(['comanyName', 'Rcs']);
+            const isValid = await trigger(['companyName', 'rcs']);
             if (isValid) {
               goToNext();
             }

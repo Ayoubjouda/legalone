@@ -43,8 +43,7 @@ const DeleteStepper: FC<StepperProps> = () => {
   const router = useRouter();
 
   const searchParams = useSearchParams();
-  const companyType =
-    (searchParams.get('type') as CompanyEnum) || ('SAS' as CompanyEnum);
+  const deleteType = searchParams.get('type');
   const currentStep = searchParams.get('step') ?? 0;
   const { activeStep, goToNext, goToPrevious } = useSteps({
     index: Number(currentStep),
@@ -52,11 +51,11 @@ const DeleteStepper: FC<StepperProps> = () => {
   });
 
   const handleGoToNext = () => {
-    router.push(`/delete?&step=${activeStep + 1}`);
+    router.push(`/delete?type=${deleteType}&step=${activeStep + 1}`);
     goToNext();
   };
   const handleGoToPrevious = () => {
-    router.push(`/delete?&step=${activeStep - 1}`);
+    router.push(`/delete?type=${deleteType}&step=${activeStep - 1}`);
     goToPrevious();
   };
 
@@ -84,7 +83,7 @@ const DeleteStepper: FC<StepperProps> = () => {
     <div className="max-w-screen-xl flex  w-full flex-col items-center justify-center gap-5">
       <div className=" w-full lg:max-w-3xl sm:max-w-lg relative">
         <p className=" text-center text-lg font-medium leading-[31px] text-black">
-          Dissolution de votre société
+          {deleteType} de votre société
         </p>
         {activeStep !== 0 && (
           <div className="absolute top-0 left-0 flex max-w-screen-md  w-full">

@@ -44,23 +44,28 @@ export const UPDATE_COMPANY_DATA = [
   {
     id: 1,
     title: 'Transfert de siège',
-    url: '/creer-ma-sasu',
+    url: '/update?type=Transfert',
   },
   {
     id: 2,
     title: 'Changement de gérant',
-    url: '/createsaas',
+    url: '/update?type=Changement',
   },
   {
     id: 2,
     title: 'Modification de statuts',
-    url: '/update',
+    url: '/update?type=Modification',
   },
 ];
 export const DELETE_COMPANY_DATA = [
   {
     id: 1,
+    title: 'Radiation de société',
+    url: '/delete?type=Radiation',
+  },
+  {
+    id: 2,
     title: 'Dissolution de société',
-    url: '/delete',
+    url: '/delete?type=Dissolution',
   },
 ];
