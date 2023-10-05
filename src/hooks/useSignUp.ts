@@ -6,13 +6,11 @@ import { AxiosError, isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 
 interface SignUpCredentials {
-  user: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    birthDate: string;
-    password: string;
-  };
+  firstName: string;
+  lastName: string;
+  email: string;
+  birthDate: string;
+  password: string;
 }
 
 async function signUp(
@@ -49,13 +47,11 @@ export function useSignUp() {
   >(
     ({ firstName, lastName, email, birthDate, password }) => {
       return signUp({
-        user: {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          birthDate: birthDate,
-          password: password,
-        },
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        birthDate: birthDate,
+        password: password,
       });
     },
 

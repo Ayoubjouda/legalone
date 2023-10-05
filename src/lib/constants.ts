@@ -39,6 +39,11 @@ export const CREATE_COMPANY_DATA = [
     title: 'Choisir mon statut',
     url: '/create?type=chose',
   },
+  {
+    id: 8,
+    title: 'Domiciliation',
+    url: '/create?type=DOMICILIATION',
+  },
 ];
 export const UPDATE_COMPANY_DATA = [
   {

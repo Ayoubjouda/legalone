@@ -61,4 +61,5 @@ type CompanyEnum =
   | 'SCI'
   | 'AUTOENTREPRENEUR'
   | 'ASSOCIATION'
-  | 'SASU';
+  | 'SASU'
+  | 'DOMICILIATION';

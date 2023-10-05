@@ -17,6 +17,7 @@ import { ZodObject } from 'zod';
 import useFormPersist from 'react-hook-form-persist';
 import AssociationStepper from '@/components/Steppers/AssociationStepper';
 import SciStepper from '@/components/Steppers/SciStepper';
+import DomiciliationStepper from '@/components/Steppers/DomiciliationStepper';
 // type CompanyForms = {
 //   [key: string]: typeof saasFormSchema;
 // };
@@ -47,6 +48,7 @@ const steppers: Stepper = {
   SARL: SaasStepper,
   EURL: SaasStepper,
   SASU: SaasStepper,
+  DOMICILIATION: DomiciliationStepper,
 };
 
 export default function CreateSaas() {
