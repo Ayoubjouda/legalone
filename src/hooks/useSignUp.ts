@@ -3,6 +3,7 @@ import api from '@/lib/axiosConfig';
 import { useToast } from '@/components/ui/use-toast';
 import useAppStore from '@/zustand/store';
 import { AxiosError, isAxiosError } from 'axios';
+import { useRouter } from 'next/navigation';
 
 interface SignUpCredentials {
   user: {
@@ -17,7 +18,7 @@ interface SignUpCredentials {
 async function signUp(
   signUpcredentials: SignUpCredentials
 ): Promise<SignUpResponse> {
-  const { data } = await api.post('users/register', signUpcredentials, {
+  const { data } = await api.post('auth/register', signUpcredentials, {
     timeout: 10000,
   });
   return data;
@@ -32,7 +33,7 @@ interface SignUpResponse {
 export function useSignUp() {
   const { toast } = useToast();
   const { setToken, setCurrentUser, setRefreshToken } = useAppStore();
-
+  const router = useRouter();
   const { mutate: signUpMutation, isLoading } = useMutation<
     SignUpResponse,
     AxiosError,
@@ -62,7 +63,16 @@ export function useSignUp() {
       onSuccess(data: SignUpResponse) {
         setCurrentUser(data.User);
         setToken(data.token);
+        localStorage.setItem('accessToken', data.token);
         setRefreshToken(data.refreshToken);
+        const intendedDestination = localStorage.getItem('intendedDestination');
+        console.log(intendedDestination);
+        if (intendedDestination) {
+          router.push(intendedDestination);
+          localStorage.removeItem('intendedDestination');
+        } else {
+          router.push('/');
+        }
         toast({
           title: 'SignUp Success',
           description: `Welcome ${data.User.firstName}`,
