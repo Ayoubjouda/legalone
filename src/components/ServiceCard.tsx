@@ -61,6 +61,7 @@ const ServiceCard: FC<ServiceCardProps> = ({
                 width={0}
                 height={0}
                 sizes="100vw"
+                loading="eager"
               />
               <div className="flex flex-col w-full">
                 <div className="flex flex-row ">
