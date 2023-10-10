@@ -6,7 +6,7 @@ import HydrationZustand from '@/zustand/HydriationZustand';
 import { usePathname, useRouter } from 'next/navigation';
 import useAppStore from '@/zustand/store';
 import { ErrorBoundary } from 'react-error-boundary';
-
+import { NextUIProvider } from '@nextui-org/react';
 interface ProvidersProps {
   children: ReactNode;
 }
@@ -18,9 +18,11 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
     <>
       <ErrorBoundary fallback={<div>Something went wrong</div>}>
         <HydrationZustand>
-          <QueryClientProvider client={queryClient}>
-            <ChakraProvider>{children}</ChakraProvider>
-          </QueryClientProvider>
+          <NextUIProvider>
+            <QueryClientProvider client={queryClient}>
+              <ChakraProvider>{children}</ChakraProvider>
+            </QueryClientProvider>
+          </NextUIProvider>
         </HydrationZustand>
       </ErrorBoundary>
     </>
