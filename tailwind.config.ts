@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -18,29 +18,29 @@ module.exports = {
     extend: {
       colors: {
         gray: {
-          '100': '#fafafa',
-          '200': '#242120',
-          '300': '#1c1934',
-          '400': '#1c1c1c',
-          '500': '#1a1a1a',
-          '600': 'rgba(0, 0, 0, 0.1)',
-          '700': 'rgba(0, 0, 0, 0.6)',
-          '800': 'rgba(26, 26, 26, 0.7)',
+          100: '#fafafa',
+          200: '#242120',
+          300: '#1c1934',
+          400: '#1c1c1c',
+          500: '#1a1a1a',
+          600: 'rgba(0, 0, 0, 0.1)',
+          700: 'rgba(0, 0, 0, 0.6)',
+          800: 'rgba(26, 26, 26, 0.7)',
         },
         dimgray: '#796b65',
         white: '#fff',
         black: '#000',
         sandybrown: {
-          '100': '#e4ac5d',
-          '200': 'rgba(228, 172, 93, 0.3)',
+          100: '#e4ac5d',
+          200: 'rgba(228, 172, 93, 0.3)',
         },
         chocolate: '#e48634',
         gainsboro: '#dee5ed',
         redish: '#EE5622',
         darkRedish: '#d64d1f',
         darkslategray: {
-          '100': '#3c3c43',
-          '200': '#223140',
+          100: '#3c3c43',
+          200: '#223140',
         },
         silver: '#c4c4c4',
         slategray: '#64607d',
@@ -131,4 +131,8 @@ module.exports = {
     require('tailwindcss-animate'),
     require('tailwindcss-debug-screens'),
   ],
+};
+
+module.exports = {
+  ...config,
 };

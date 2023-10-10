@@ -2,10 +2,9 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter, IBM_Plex_Sans } from 'next/font/google';
 import Providers from './Providers';
-import { Toaster } from '@/components/ui/toaster';
 import NavBar from '@/components/NavBar';
 import NextTopLoader from 'nextjs-toploader';
-
+import { Toaster } from 'sonner';
 const inter = Inter({ subsets: ['latin'], variable: '--inter' });
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['greek'],

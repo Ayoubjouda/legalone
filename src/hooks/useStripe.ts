@@ -1,11 +1,11 @@
 import { useMutation } from 'react-query';
 import api from '@/lib/axiosConfig';
-import { useToast } from '@/components/ui/use-toast';
 import useAppStore from '@/zustand/store';
 import { isAxiosError } from 'axios';
 import { useFormContext } from 'react-hook-form';
 import { SaasSchemaType } from '@/lib/validators/formValidators';
 import { Order, OrderType } from '@/types/order';
+import { toast } from 'sonner';
 
 async function createOrder(accessToken: string, order: OrderType) {
   if (!accessToken) throw new Error('No access token');
@@ -19,7 +19,6 @@ async function createOrder(accessToken: string, order: OrderType) {
 }
 
 export function useStripe() {
-  const { toast } = useToast();
   // const { getValues } = useFormContext();
   const FormValues = {};
   const { accessToken, Order } = useAppStore();
@@ -36,10 +35,7 @@ export function useStripe() {
     onError: (err) => {
       if (isAxiosError(err)) {
         console.log(err);
-        toast({
-          title: 'Checkout Error',
-          description: `${err.response?.data?.message}`,
-        });
+        toast(`${err.response?.data?.message}`);
       }
     },
   });

@@ -22,7 +22,7 @@ const NavBar: FC<NavBarProps> = () => {
   const { currentUser } = useAppStore();
   const [mobileNavState, setmobileNavState] = useState<boolean>(false);
   const pathname = usePathname();
-
+  const { isSidebarOpen, setSideBarState } = useAppStore();
   return (
     <nav className="font-plus-jakarta-sans flex flex-row sticky inset-0 bg-white  z-10 items-center justify-between self-stretch border-b-[1px] border-solid border-gray-600 px-8 md:px-[88px] py-[7px] text-xl text-black">
       <div className="flex w-[129.82px] flex-col items-center justify-center">
@@ -36,10 +36,11 @@ const NavBar: FC<NavBarProps> = () => {
       </div>
 
       <div className="lg:hidden">
+        {/*//! Fix this and don't foget to add the sheet Trigger */}
         <Sheet>
-          <SheetTrigger>
+          <div onClick={() => setSideBarState(!isSidebarOpen)}>
             <Menu />
-          </SheetTrigger>
+          </div>
           <SheetContent>
             <div className="font-button-nav   flex-col gap-[13px] text-left text-base text-gray-400">
               <div className="flex flex-col items-center justify-center p-2.5">

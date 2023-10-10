@@ -22,6 +22,7 @@ import DomiciliationStepper from '@/components/Steppers/DomiciliationStepper';
 // type CompanyForms = {
 //   [key: string]: typeof saasFormSchema;
 // };
+
 type Companys = {
   [key: string]:
     | typeof saasFormSchema

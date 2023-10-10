@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query';
 import api from '@/lib/axiosConfig';
-import { useToast } from '@/components/ui/use-toast';
+import { toast } from 'sonner';
 import useAppStore from '@/zustand/store';
 import { AxiosError, isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
@@ -29,7 +29,6 @@ interface SignUpResponse {
 }
 
 export function useSignUp() {
-  const { toast } = useToast();
   const { setToken, setCurrentUser, setRefreshToken } = useAppStore();
   const router = useRouter();
   const { mutate: signUpMutation, isLoading } = useMutation<
@@ -69,23 +68,14 @@ export function useSignUp() {
         } else {
           router.push('/');
         }
-        toast({
-          title: 'SignUp Success',
-          description: `Welcome ${data.User.firstName}`,
-        });
+        toast('login successful');
       },
       onError(err: Error | AxiosError) {
         console.log(err);
         if (isAxiosError(err)) {
-          toast({
-            title: 'Login Error',
-            description: `${err.response?.data?.message}`,
-          });
+          toast('Invalid Credentials');
         } else {
-          toast({
-            title: 'Unkown Error',
-            description: `${err.message}`,
-          });
+          toast('Something went wrong');
         }
       },
     }

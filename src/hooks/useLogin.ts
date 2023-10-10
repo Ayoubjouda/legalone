@@ -1,8 +1,8 @@
 'use client';
 import { useMutation } from 'react-query';
 import api from '@/lib/axiosConfig';
-import { useToast } from '@/components/ui/use-toast';
 import useAppStore from '@/zustand/store';
+import { toast } from 'sonner';
 import { AxiosError, isAxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 async function Login(email: string, password: string): Promise<LoginResponse> {
@@ -21,7 +21,6 @@ interface LoginResponse {
 }
 
 export function useLogin() {
-  const { toast } = useToast();
   const { setToken, setCurrentUser, setRefreshToken } = useAppStore();
   const router = useRouter();
   const { mutate: LoginMutation, isLoading } = useMutation<
@@ -43,22 +42,13 @@ export function useLogin() {
       } else {
         router.push('/');
       }
-      toast({
-        title: 'Login Success',
-        description: `Welcome ${data.User.firstName}`,
-      });
+      toast('login successful');
     },
     onError(err: Error | AxiosError) {
       if (isAxiosError(err)) {
-        toast({
-          title: 'Login Error',
-          description: `${err.response?.data?.message}`,
-        });
+        toast('Invalid Credentials');
       } else {
-        toast({
-          title: 'Unkown Error',
-          description: `${err.message}`,
-        });
+        toast('Something went wrong');
       }
     },
   });

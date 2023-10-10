@@ -6,6 +6,7 @@ import HydrationZustand from '@/zustand/HydriationZustand';
 import { usePathname, useRouter } from 'next/navigation';
 import useAppStore from '@/zustand/store';
 import { ErrorBoundary } from 'react-error-boundary';
+
 interface ProvidersProps {
   children: ReactNode;
 }
