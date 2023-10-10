@@ -8,8 +8,16 @@ import React, { useState } from 'react';
 //   const Icon = Icons[icon];
 //   return <Icon {...props} />;
 // }
+interface SidebarSubmenuProps {
+  route: {
+    name: string;
+    routes: {
+      name: string;
+    };
+  };
+}
 
-function SidebarSubmenu({ route }) {
+function SidebarSubmenu({ route }: SidebarSubmenuProps) {
   const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false);
 
   function handleDropdownMenuClick() {
