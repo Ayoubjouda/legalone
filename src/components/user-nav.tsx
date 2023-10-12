@@ -13,14 +13,13 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import useAppStore from '@/zustand/store';
+import { signOut } from 'next-auth/react';
 
 interface UserNavProps {
   currentUser: currentUser | null;
 }
 
 export function UserNav({ currentUser }: UserNavProps) {
-  const { setCurrentUser, setToken, setRefreshToken } = useAppStore();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -73,10 +72,7 @@ export function UserNav({ currentUser }: UserNavProps) {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {
-            setCurrentUser(null);
-            setToken(null);
-            setRefreshToken(null);
-            localStorage.removeItem('accessToken');
+            signOut();
           }}
         >
           <LogOut className="w-4 h-4 mr-2" />

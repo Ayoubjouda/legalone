@@ -15,10 +15,13 @@ import {
 } from '@/components/ui/sheet';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { useSession } from 'next-auth/react';
+import { stat } from 'fs';
 interface NavBarProps {}
 
 const NavBar: FC<NavBarProps> = () => {
-  const { currentUser } = useAppStore();
+  const { data: session, status } = useSession();
+
   const [mobileNavState, setmobileNavState] = useState<boolean>(false);
   const pathname = usePathname();
   const { isSidebarOpen, setSideBarState } = useAppStore();
@@ -75,8 +78,8 @@ const NavBar: FC<NavBarProps> = () => {
                         </div>
                       </div>
                     </div>
-                  ) : currentUser ? (
-                    <UserNav currentUser={currentUser} />
+                  ) : status === 'authenticated' ? (
+                    <UserNav currentUser={{} as currentUser} />
                   ) : (
                     <div className="flex flex-col justify-center  item-center gap-4">
                       <SheetTrigger asChild>
@@ -105,9 +108,9 @@ const NavBar: FC<NavBarProps> = () => {
       <div className="font-button-nav hidden  lg:flex flex-row items-start justify-start gap-[13px] text-left text-base ">
         <div className="flex flex-col items-start justify-start p-2.5">
           <div className="flex flex-row items-center justify-center gap-[28px]">
-            {currentUser ? (
+            {status === 'authenticated' ? (
               <div className="w-10">
-                <UserNav currentUser={currentUser} />
+                <UserNav currentUser={{} as currentUser} />
               </div>
             ) : (
               <div className="flex h-6 font-inter text-sm font-medium   flex-row items-center justify-start gap-[28px]">

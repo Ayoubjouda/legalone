@@ -11,19 +11,19 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useLogin } from '@/hooks/useLogin';
-import { Spinner } from '@nextui-org/react';
 
+import { useRouter } from 'next/navigation';
 import {
   loginSchemaValidator,
   LoginSchemaType,
 } from '@/lib/validators/formValidators';
-
+import { signIn } from 'next-auth/react';
 interface LoginFormProps {}
+import { toast } from 'sonner';
+import { el } from 'date-fns/locale';
 
 const LoginForm = () => {
-  const { isLoading, LoginMutation } = useLogin();
-
+  const router = useRouter();
   const form = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchemaValidator),
     defaultValues: {
@@ -31,8 +31,18 @@ const LoginForm = () => {
       password: '',
     },
   });
-  const onSubmit = (values: LoginSchemaType) => {
-    LoginMutation(values);
+  const onSubmit = async (values: LoginSchemaType) => {
+    const res = await signIn('credentials', {
+      redirect: true,
+      email: values.email,
+      password: values.password,
+      callbackUrl: `${window.location.origin}`,
+    });
+    if (res?.ok) {
+      return toast('login successful');
+    } else {
+      return toast('login Failed');
+    }
   };
   return (
     <Form {...form}>
@@ -92,10 +102,12 @@ const LoginForm = () => {
           </a>
           <Button
             type="submit"
-            disabled={isLoading}
+            // disabled={isLoading}
             className="bg-black  text-white font-semibold font-inter hover:bg-opacity-80 hover:bg-black"
           >
-            {isLoading ? <Spinner /> : 'Se connecter'}
+            {/* {isLoading ? <Spinner /> : 'Se connecter'}
+             */}
+            se conecter
           </Button>
         </div>
       </form>
