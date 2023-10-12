@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { SaasSchemaType } from '@/lib/validators/formValidators';
 import { OrderType } from '@/types/order';
 interface AppState {
   accessToken: string | null;

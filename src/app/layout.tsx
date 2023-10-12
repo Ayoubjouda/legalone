@@ -25,18 +25,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` ${inter.variable} debug-screens ${ibmPlexSans.variable}`}
+        className={` ${inter.variable} debug-screens ${ibmPlexSans.variable} relative overflow-clip`}
       >
         <Providers>
           <NavBar />
 
-          <NextTopLoader
-            showSpinner={false}
-            easing="ease-in-out"
-            color="#DD6135"
-          />
           {children}
         </Providers>
+        <NextTopLoader
+          showSpinner={false}
+          easing="ease-in-out"
+          color="#DD6135"
+        />
         <Toaster />
       </body>
     </html>

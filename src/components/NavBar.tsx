@@ -13,7 +13,6 @@ import {
   SheetTrigger,
   SheetClose,
 } from '@/components/ui/sheet';
-import { Divider, Center } from '@chakra-ui/react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 interface NavBarProps {}
@@ -24,7 +23,7 @@ const NavBar: FC<NavBarProps> = () => {
   const pathname = usePathname();
   const { isSidebarOpen, setSideBarState } = useAppStore();
   return (
-    <nav className="font-plus-jakarta-sans flex flex-row sticky inset-0 bg-white  z-10 items-center justify-between self-stretch border-b-[1px] border-solid border-gray-600 px-8 md:px-[88px] py-[7px] text-xl text-black">
+    <nav className="font-plus-jakarta-sans flex flex-row sticky inset-0 bg-white  z-10 items-center justify-between self-stretch border-b-[1px] border-solid border-gray-200 px-8 md:px-[88px] py-[7px] text-xl text-black">
       <div className="flex w-[129.82px] flex-col items-center justify-center">
         <Link
           href={'/'}
@@ -103,38 +102,35 @@ const NavBar: FC<NavBarProps> = () => {
           </SheetContent>
         </Sheet>
       </div>
-      <div className="font-button-nav hidden  lg:flex flex-row items-start justify-start gap-[13px] text-left text-base text-gray-400">
+      <div className="font-button-nav hidden  lg:flex flex-row items-start justify-start gap-[13px] text-left text-base ">
         <div className="flex flex-col items-start justify-start p-2.5">
           <div className="flex flex-row items-center justify-center gap-[28px]">
-            <div className="flex h-6 font-inter text-sm font-medium   flex-row items-center justify-start gap-[28px]">
-              <Link
-                href={'/'}
-                className={cn('relative cursor-pointer hover:text-redish', {
-                  'text-black': pathname === '/',
-                })}
-              >
-                Accueil
-              </Link>
-              <Link
-                href={'/tarifs'}
-                className="relative  cursor-pointer hover:text-redish"
-              >
-                Tarifs
-              </Link>
-              <Link
-                href={'/'}
-                className=" relative hover:text-redish"
-              >
-                Outils et guides
-              </Link>
-            </div>
-
             {currentUser ? (
               <div className="w-10">
                 <UserNav currentUser={currentUser} />
               </div>
             ) : (
-              <div className="flex justify-center font-inter text-sm font-medium  items-center gap-4">
+              <div className="flex h-6 font-inter text-sm font-medium   flex-row items-center justify-start gap-[28px]">
+                <Link
+                  href={'/'}
+                  className={cn('relative cursor-pointer hover:text-redish', {
+                    'text-black': pathname === '/',
+                  })}
+                >
+                  Accueil
+                </Link>
+                <Link
+                  href={'/tarifs'}
+                  className="relative  cursor-pointer hover:text-redish"
+                >
+                  Tarifs
+                </Link>
+                <Link
+                  href={'/'}
+                  className=" relative hover:text-redish"
+                >
+                  Outils et guides
+                </Link>
                 <Link
                   href={'login'}
                   className=" relative   rounded-md  hover:text-redish"

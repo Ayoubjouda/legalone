@@ -10,8 +10,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import Faq from '@/components/Faq';
-import Footer from '@/components/Footer';
+import Faq from '@/components/sections/Faq';
+import Footer from '@/components/sections/Footer';
 import LancezVous from '@/components/LancezVous';
 interface pageProps {}
 

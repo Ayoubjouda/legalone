@@ -10,7 +10,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
-import Image from 'next/image';
 import { CalendarIcon, ChevronLeft } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { fr } from 'date-fns/locale';
@@ -27,7 +26,6 @@ import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { useSignUp } from '@/hooks/useSignUp';
-import Link from 'next/link';
 import useAppStore from '@/zustand/store';
 import { useRouter } from 'next/navigation';
 export default function SignupPage() {
