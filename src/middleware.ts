@@ -1,4 +1,3 @@
-import { is } from 'date-fns/locale';
 import { getToken } from 'next-auth/jwt';
 import { NextRequestWithAuth, withAuth } from 'next-auth/middleware';
 import { NextResponse } from 'next/server';

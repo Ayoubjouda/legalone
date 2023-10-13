@@ -1,85 +1,73 @@
 'use client';
-import { CreditCard, LogOut, PlusCircle, Settings, User } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import { Button } from './ui/button';
 import {
+  Dropdown,
+  DropdownTrigger,
   DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from './ui/dropdown-menu';
-import useAppStore from '@/zustand/store';
+  DropdownItem,
+  User,
+} from '@nextui-org/react';
 import { signOut } from 'next-auth/react';
+import type { Session } from 'next-auth';
 
 interface UserNavProps {
-  currentUser: currentUser | null;
+  session: Session | null;
 }
+const menuItems = [
+  'Profile',
+  'Dashboard',
+  'Activity',
+  'Analytics',
+  'System',
+  'Deployments',
+  'My Settings',
+  'Team Settings',
+  'Help & Feedback',
+  'Log Out',
+];
 
-export function UserNav({ currentUser }: UserNavProps) {
+export function UserNav({ session }: UserNavProps) {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          className="relative w-10 h-10 rounded-full"
+    <div className="flex items-center gap-4">
+      <Dropdown placement="bottom-start">
+        <DropdownTrigger>
+          <User
+            as="button"
+            avatarProps={{
+              isBordered: true,
+              src: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
+            }}
+            isFocusable
+            className="transition-transform flex-row-reverse "
+            description={session?.user?.email}
+            name={`${session?.user?.firstName} ${session?.user?.lastName}`}
+          />
+        </DropdownTrigger>
+        <DropdownMenu
+          aria-label="User Actions"
+          variant="flat"
         >
-          <Avatar className="w-10 h-10">
-            <AvatarImage
-              src={''}
-              alt="profile"
-            />
-            <AvatarFallback>SC</AvatarFallback>
-          </Avatar>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
-        className="w-56"
-        align="end"
-        forceMount
-      >
-        <DropdownMenuLabel className="font-normal">
-          <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">
-              {currentUser?.firstName} {currentUser?.lastName}
-            </p>
-            <p className="text-xs leading-none text-muted-foreground">
-              {currentUser?.email}
-            </p>
-          </div>
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <User className="w-4 h-4 mr-2" />
-            <span>Profile</span>
-            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <CreditCard className="w-4 h-4 mr-2" />
-            <span>Billing</span>
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Settings className="w-4 h-4 mr-2" />
-            <span>Settings</span>
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem
-          onClick={() => {
-            signOut();
-          }}
-        >
-          <LogOut className="w-4 h-4 mr-2" />
-          <span>Log out</span>
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+          <DropdownItem
+            key="profile"
+            className="h-14 gap-2"
+          >
+            <p className="font-bold">Signed in as</p>
+            <p className="font-bold">{`${session?.user?.firstName}`} </p>
+          </DropdownItem>
+          <DropdownItem key="settings">My Settings</DropdownItem>
+          <DropdownItem key="team_settings">Team Settings</DropdownItem>
+          <DropdownItem key="analytics">Analytics</DropdownItem>
+          <DropdownItem key="system">System</DropdownItem>
+          <DropdownItem key="configurations">Configurations</DropdownItem>
+          <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
+          <DropdownItem
+            key="logout"
+            color="danger"
+            onClick={() => signOut()}
+          >
+            Log Out
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    </div>
   );
 }

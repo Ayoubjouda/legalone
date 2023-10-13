@@ -20,8 +20,6 @@ import {
 import { signIn } from 'next-auth/react';
 interface LoginFormProps {}
 import { toast } from 'sonner';
-import { el } from 'date-fns/locale';
-
 const LoginForm = () => {
   const router = useRouter();
   const form = useForm<LoginSchemaType>({
@@ -31,18 +29,42 @@ const LoginForm = () => {
       password: '',
     },
   });
-  const onSubmit = async (values: LoginSchemaType) => {
+  const promise = async (values: LoginSchemaType) => {
     const res = await signIn('credentials', {
-      redirect: true,
+      redirect: false,
       email: values.email,
       password: values.password,
-      callbackUrl: `${window.location.origin}`,
+      callbackUrl: `/`,
     });
     if (res?.ok) {
-      return toast('login successful');
+      return `Login successful`;
+      // toast.success('login successful');
+      // return router.push('/dashboard');
     } else {
-      return toast('login Failed');
+      throw new Error('Login Faild');
+      // return toast.error('login Failed');
     }
+  };
+
+  const onSubmit = async (values: LoginSchemaType) => {
+    toast.promise(promise(values), {
+      loading: 'Loading...',
+      success: (data) => {
+        router.push('/dashboard');
+
+        return `Login successful`;
+      },
+      error: 'Login Faild',
+    });
+
+    // const res = await
+
+    // if (res?.ok) {
+    //   toast.success('login successful');
+    //   return router.push('/dashboard');
+    // } else {
+    //   return toast.error('login Failed');
+    // }
   };
   return (
     <Form {...form}>

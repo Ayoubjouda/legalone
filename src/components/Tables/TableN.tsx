@@ -110,7 +110,7 @@ export default function TableN() {
       case 'name':
         return (
           <User
-            avatarProps={{ radius: 'lg', src: user.avatar }}
+            avatarProps={{ radius: 'sm', src: user.avatar }}
             description={user.email}
             name={cellValue}
           >
@@ -199,7 +199,7 @@ export default function TableN() {
 
   const topContent = React.useMemo(() => {
     return (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 ">
         <div className="flex justify-between gap-3 items-end">
           <Input
             isClearable
@@ -267,9 +267,10 @@ export default function TableN() {
             </Dropdown>
             <Button
               color="primary"
-              endContent={<PlusIcon />}
+              startContent={<PlusIcon />}
+              className="font-semibold"
             >
-              Add New
+              Ajouter
             </Button>
           </div>
         </div>

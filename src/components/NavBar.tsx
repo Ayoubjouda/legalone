@@ -1,157 +1,139 @@
 'use client';
-import { FC, useState } from 'react';
-import { Menu } from 'lucide-react';
-import Link from 'next/link';
-import useAppStore from '@/zustand/store';
+import { FC } from 'react';
 import { UserNav } from './user-nav';
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-  SheetClose,
-} from '@/components/ui/sheet';
-import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/utils';
 import { useSession } from 'next-auth/react';
-import { stat } from 'fs';
+
 interface NavBarProps {}
+
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  Link,
+  NavbarMenuToggle,
+  NavbarMenuItem,
+  NavbarMenu,
+} from '@nextui-org/react';
+
+const menuItems = [
+  'Profile',
+  'Dashboard',
+  'Activity',
+  'Analytics',
+  'System',
+  'Deployments',
+  'My Settings',
+  'Team Settings',
+  'Help & Feedback',
+  'Log Out',
+];
 
 const NavBar: FC<NavBarProps> = () => {
   const { data: session, status } = useSession();
 
-  const [mobileNavState, setmobileNavState] = useState<boolean>(false);
-  const pathname = usePathname();
-  const { isSidebarOpen, setSideBarState } = useAppStore();
   return (
-    <nav className="font-plus-jakarta-sans flex flex-row sticky inset-0 bg-white  z-10 items-center justify-between self-stretch border-b-[1px] border-solid border-gray-200 px-8 md:px-[88px] py-[7px] text-xl text-black">
-      <div className="flex w-[129.82px] flex-col items-center justify-center">
-        <Link
-          href={'/'}
-          className="relative inline-block w-[129.82px]"
-        >
-          <span>Legal</span>
-          <b>Center</b>
-        </Link>
-      </div>
+    <Navbar
+      isBordered
+      shouldHideOnScroll
+      maxWidth="xl"
+    >
+      <NavbarContent
+        className="lg:hidden"
+        justify="start"
+      >
+        <NavbarMenuToggle />
+      </NavbarContent>
 
-      <div className="lg:hidden">
-        {/*//! Fix this and don't foget to add the sheet Trigger */}
-        <Sheet>
-          <div onClick={() => setSideBarState(!isSidebarOpen)}>
-            <Menu />
+      <NavbarContent
+        className="lg:hidden pr-3"
+        justify="center"
+      >
+        <NavbarBrand>
+          <div className="relative inline-block w-[129.82px]">
+            <span>Legal</span>
+            <b>Centre</b>
           </div>
-          <SheetContent>
-            <div className="font-button-nav   flex-col gap-[13px] text-left text-base text-gray-400">
-              <div className="flex flex-col items-center justify-center p-2.5">
-                <div className="flex flex-col items-start justify-center  gap-[28px]">
-                  <div className="flex flex-col  items-start justify-center gap-[28px]">
-                    <SheetTrigger asChild>
-                      <Link
-                        href={'/'}
-                        className={cn('relative cursor-pointer text-grey', {
-                          'text-black': pathname === '/services',
-                        })}
-                      >
-                        Nos Services
-                      </Link>
-                    </SheetTrigger>
-                    <SheetTrigger asChild>
-                      <Link
-                        href={'/'}
-                        className="text-grey relative"
-                        onClick={() => setmobileNavState(false)}
-                      >
-                        Outils et guides
-                      </Link>
-                    </SheetTrigger>
-                  </div>
-                  {/* <Divider orientation="horizontal" /> */}
+        </NavbarBrand>
+      </NavbarContent>
+      <NavbarContent
+        className="hidden lg:flex pr-3"
+        justify="start"
+      >
+        <NavbarBrand>
+          <div className="relative inline-block w-[129.82px]">
+            <span>Legal</span>
+            <b>Centre</b>
+          </div>
+        </NavbarBrand>
+      </NavbarContent>
 
-                  {pathname === '/createsaas' ? (
-                    <div className="text-sandybrown-100 flex flex-row items-center justify-center cursor-pointer">
-                      <div className="border-sandybrown-100 flex flex-row items-start justify-start overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
-                        <div className="relative font-semibold">
-                          07 76 67 87 67
-                        </div>
-                      </div>
-                    </div>
-                  ) : status === 'authenticated' ? (
-                    <UserNav currentUser={{} as currentUser} />
-                  ) : (
-                    <div className="flex flex-col justify-center  item-center gap-4">
-                      <SheetTrigger asChild>
-                        <Link
-                          href={'login'}
-                          className="text-grey relative w-fit"
-                        >
-                          Se Connecter
-                        </Link>
-                      </SheetTrigger>
-                      <div className="text-sandybrown-100 flex flex-row items-start justify-start cursor-pointer">
-                        <div className="border-sandybrown-100 flex flex-row items-start justify-start overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5">
-                          <div className="relative font-semibold">
-                            07 76 67 87 67
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </SheetContent>
-        </Sheet>
-      </div>
-      <div className="font-button-nav hidden  lg:flex flex-row items-start justify-start gap-[13px] text-left text-base ">
-        <div className="flex flex-col items-start justify-start p-2.5">
-          <div className="flex flex-row items-center justify-center gap-[28px]">
-            {status === 'authenticated' ? (
-              <div className="w-10">
-                <UserNav currentUser={{} as currentUser} />
-              </div>
-            ) : (
-              <div className="flex h-6 font-inter text-sm font-medium   flex-row items-center justify-start gap-[28px]">
-                <Link
-                  href={'/'}
-                  className={cn('relative cursor-pointer hover:text-redish', {
-                    'text-black': pathname === '/',
-                  })}
-                >
-                  Accueil
-                </Link>
-                <Link
-                  href={'/tarifs'}
-                  className="relative  cursor-pointer hover:text-redish"
-                >
-                  Tarifs
-                </Link>
-                <Link
-                  href={'/'}
-                  className=" relative hover:text-redish"
-                >
-                  Outils et guides
-                </Link>
-                <Link
-                  href={'login'}
-                  className=" relative   rounded-md  hover:text-redish"
-                >
-                  Connexion
-                </Link>
-                <Link
-                  href={'signup'}
-                  className=" relative bg-redish px-3 py-2 rounded-md text-white font-semibold"
-                >
-                  Lancez-vous
-                </Link>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </nav>
+      <NavbarContent justify="end">
+        {status === 'authenticated' ? (
+          <UserNav session={session} />
+        ) : (
+          <>
+            <NavbarItem className="hidden lg:flex ">
+              <Link
+                href={'/'}
+                color="foreground"
+                className=" relative   rounded-md  hover:text-redish"
+              >
+                Accueil
+              </Link>
+            </NavbarItem>
+            <NavbarItem className="hidden lg:flex ">
+              <Link
+                href={'tarifs'}
+                color="foreground"
+                className=" relative   rounded-md  hover:text-redish"
+              >
+                Tarifs
+              </Link>
+            </NavbarItem>
+
+            <NavbarItem className="hidden lg:flex ">
+              <Link
+                href={'login'}
+                color="foreground"
+                className=" relative   rounded-md  hover:text-redish"
+              >
+                Connexion
+              </Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Link
+                href={'signup'}
+                className=" relative bg-redish px-3 py-2 rounded-md text-white font-semibold"
+              >
+                Lancez-vous
+              </Link>
+            </NavbarItem>
+          </>
+        )}
+      </NavbarContent>
+
+      <NavbarMenu>
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              className="w-full"
+              color={
+                index === 2
+                  ? 'warning'
+                  : index === menuItems.length - 1
+                  ? 'danger'
+                  : 'foreground'
+              }
+              href="#"
+              size="lg"
+            >
+              {item}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
+    </Navbar>
   );
 };
 

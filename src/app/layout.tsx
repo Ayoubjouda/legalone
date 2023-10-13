@@ -5,7 +5,9 @@ import Providers from './Providers';
 import NavBar from '@/components/NavBar';
 import NextTopLoader from 'nextjs-toploader';
 import { Toaster } from 'sonner';
-
+import { getServerSession } from 'next-auth/next';
+import type { Session } from 'next-auth';
+import { authOption } from './api/auth/[...nextauth]/AuthOptions';
 const inter = Inter({ subsets: ['latin'], variable: '--inter' });
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['greek'],
@@ -23,12 +25,13 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const session: Session | null = await getServerSession(authOption);
   return (
     <html lang="en">
       <body
         className={` ${inter.variable} debug-screens ${ibmPlexSans.variable} relative overflow-clip`}
       >
-        <Providers>
+        <Providers session={session}>
           <NavBar />
 
           {children}
@@ -38,7 +41,7 @@ export default async function RootLayout({
           easing="ease-in-out"
           color="#DD6135"
         />
-        <Toaster />
+        <Toaster richColors />
       </body>
     </html>
   );
