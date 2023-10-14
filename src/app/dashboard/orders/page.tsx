@@ -5,9 +5,11 @@ interface pageProps {}
 
 const page: FC<pageProps> = () => {
   return (
-    <div className="w-full px-3 space-y-8">
-      <div className="text-4xl font-bold mt-8">Orders</div>
-      <TableN />
+    <div className="w-full px-8 space-y-8 bg-gray-50">
+      <div className="pt-6 space-y-4 ">
+        <h2 className="text-3xl font-bold tracking-tight">Orders</h2>
+        <TableN />
+      </div>
     </div>
   );
 };

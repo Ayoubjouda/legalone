@@ -2,7 +2,6 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter, IBM_Plex_Sans } from 'next/font/google';
 import Providers from './Providers';
-import NavBar from '@/components/NavBar';
 import NextTopLoader from 'nextjs-toploader';
 import { Toaster } from 'sonner';
 import { getServerSession } from 'next-auth/next';
@@ -31,11 +30,7 @@ export default async function RootLayout({
       <body
         className={` ${inter.variable} debug-screens ${ibmPlexSans.variable} relative overflow-clip`}
       >
-        <Providers session={session}>
-          <NavBar />
-
-          {children}
-        </Providers>
+        <Providers session={session}>{children}</Providers>
         <NextTopLoader
           showSpinner={false}
           easing="ease-in-out"
