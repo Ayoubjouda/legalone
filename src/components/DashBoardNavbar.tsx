@@ -2,6 +2,19 @@
 import { FC } from 'react';
 import { UserNav } from './user-nav';
 import { useSession } from 'next-auth/react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 
 interface NavBarProps {}
 
@@ -15,6 +28,7 @@ import {
   NavbarMenuItem,
   NavbarMenu,
 } from '@nextui-org/react';
+import Sidebar from './Sidebar';
 
 const menuItems = [
   'Profile',
@@ -29,7 +43,7 @@ const menuItems = [
   'Log Out',
 ];
 
-const NavBar: FC<NavBarProps> = () => {
+const DashBoardNavbar: FC<NavBarProps> = () => {
   const { data: session, status } = useSession();
 
   return (
@@ -42,30 +56,19 @@ const NavBar: FC<NavBarProps> = () => {
         className='lg:hidden'
         justify='start'
       >
-        <NavbarMenuToggle />
-      </NavbarContent>
-
-      <NavbarContent
-        className='pr-3 lg:hidden'
-        justify='center'
-      >
-        <NavbarBrand>
-          <div className='relative inline-block w-[129.82px]'>
-            <span>Legal</span>
-            <b>Centre</b>
-          </div>
-        </NavbarBrand>
-      </NavbarContent>
-      <NavbarContent
-        className='hidden pr-3 lg:flex'
-        justify='start'
-      >
-        <NavbarBrand>
-          <div className='relative inline-block w-[129.82px]'>
-            <span>Legal</span>
-            <b>Centre</b>
-          </div>
-        </NavbarBrand>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant='outline'>Open</Button>
+          </SheetTrigger>
+          <SheetContent side={'left'}>
+            <Sidebar />
+            {/* <SheetFooter>
+              <SheetClose asChild>
+                <Button type='submit'>Save changes</Button>
+              </SheetClose>
+            </SheetFooter> */}
+          </SheetContent>
+        </Sheet>
       </NavbarContent>
 
       <NavbarContent justify='end'>
@@ -137,4 +140,4 @@ const NavBar: FC<NavBarProps> = () => {
   );
 };
 
-export default NavBar;
+export default DashBoardNavbar;

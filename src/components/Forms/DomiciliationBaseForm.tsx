@@ -28,37 +28,37 @@ const DomiciliationBaseForm = ({ goToNext }: FormProps) => {
   };
   if (isLoading)
     return (
-      <div className="min-h-[300px] h-full w-full flex justify-center items-center ">
-        <Spinner color="orange.500" />
+      <div className='flex h-full min-h-[300px] w-full items-center justify-center '>
+        <Spinner color='orange.500' />
       </div>
     );
 
   return (
-    <form className="flex flex-col gap-10 ">
-      <div className="hidden">
+    <form className='flex flex-col gap-10 '>
+      <div className='hidden'>
         <Controller
-          name="domiciliationBase"
+          name='domiciliationBase'
           control={control}
-          defaultValue=""
+          defaultValue=''
           render={({ field }) => <input {...field} />}
           rules={{ required: true }}
         />
       </div>
 
-      <div className="flex justify-center text-red-500 font-semibold">
-        <p className="text-center text-xl font-medium leading-[31px] text-slate-500 max-w-md">
+      <div className='flex justify-center font-semibold text-red-500'>
+        <p className='max-w-md text-center text-xl font-medium leading-[31px] text-slate-500'>
           En domiciliant votre société à Paris, vous bénéficiez de la CFE la
           plus basse de France. Souhaitez vous domicilier votre société à Paris
           ?
         </p>
         <ErrorMessage
           errors={errors}
-          name="domiciliationBase"
+          name='domiciliationBase'
           render={({ message }) => <p>{message}</p>}
         />
       </div>
 
-      <div className=" flex flex-col items-center md:flex-row flex-wrap gap-10">
+      <div className=' flex flex-col flex-wrap items-center gap-10 md:flex-row'>
         <IconBox
           title={'Oui'}
           image={
@@ -78,11 +78,11 @@ const DomiciliationBaseForm = ({ goToNext }: FormProps) => {
           className={cn({ 'border-orange-500': domiciliationBase === 'Non' })}
         />
       </div>
-      <div className="space-y-2">
-        <p className="font-semibold">
+      <div className='space-y-2'>
+        <p className='font-semibold'>
           Qu'est ce que la CFE et comment faire des économies ?
         </p>
-        <div className="max-w-md space-y-2">
+        <div className='max-w-md space-y-2'>
           <p>
             En domiciliant votre société avec LegalPlace à Paris, vous
             bénéficiez de la Cotisation Foncière des Entreprises (CFE) la moins

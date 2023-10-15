@@ -90,7 +90,7 @@ export const saasFormSchema = z.object({
   creationDelay: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
-  activityId: z
+  activity: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
   accountingExpert: z.boolean(),

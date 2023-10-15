@@ -26,15 +26,15 @@ export default async function RootLayout({
 }) {
   const session: Session | null = await getServerSession(authOption);
   return (
-    <html lang="en">
+    <html lang='en'>
       <body
-        className={` ${inter.variable} debug-screens ${ibmPlexSans.variable} relative overflow-clip`}
+        className={` ${inter.variable} debug-screens ${ibmPlexSans.variable} relative  overflow-clip`}
       >
         <Providers session={session}>{children}</Providers>
         <NextTopLoader
           showSpinner={false}
-          easing="ease-in-out"
-          color="#DD6135"
+          easing='ease-in-out'
+          color='#DD6135'
         />
         <Toaster richColors />
       </body>

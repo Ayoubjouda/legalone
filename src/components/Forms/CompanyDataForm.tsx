@@ -17,13 +17,13 @@ interface FormProps {
 const CompanyDataForm = ({ goToNext }: FormProps) => {
   const { control, trigger } = useFormContext();
   return (
-    <form className="w-full max-w-[650px]">
-      <div className=" flex flex-col gap-4">
-        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+    <form className='w-full max-w-[650px]'>
+      <div className=' flex flex-col gap-4'>
+        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           information complementaire sur votre société
         </p>
         <FormField
-          name="companyName"
+          name='companyName'
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -38,7 +38,7 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
           )}
         />
         <FormField
-          name="shareCapital"
+          name='shareCapital'
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -47,7 +47,7 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
               <FormControl>
                 <Input
                   {...field}
-                  type="number"
+                  type='number'
                 />
               </FormControl>
 
@@ -56,31 +56,31 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
           )}
         />
         <FormField
-          name="associer"
+          name='associer'
           control={control}
           defaultValue={'one'}
           render={({ field }) => (
-            <FormItem className="flex items-center gap-3 space-y-0 ">
-              <FormLabel className="leading-[20px]">
+            <FormItem className='flex items-center gap-3 space-y-0 '>
+              <FormLabel className='leading-[20px]'>
                 Combien y a-t-il d'Associés fondateurs ?
               </FormLabel>
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
                   defaultValue={field.value}
-                  className="flex"
+                  className='flex'
                 >
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value="one" />
+                      <RadioGroupItem value='one' />
                     </FormControl>
-                    <FormLabel className="font-semibold">Un seul</FormLabel>
+                    <FormLabel className='font-semibold'>Un seul</FormLabel>
                   </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value="many" />
+                      <RadioGroupItem value='many' />
                     </FormControl>
-                    <FormLabel className="font-semibold">Plusieurs</FormLabel>
+                    <FormLabel className='font-semibold'>Plusieurs</FormLabel>
                   </FormItem>
                 </RadioGroup>
               </FormControl>
@@ -90,12 +90,12 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
           )}
         />
         <FormField
-          name="accountingExpert"
+          name='accountingExpert'
           control={control}
           defaultValue={'one'}
           render={({ field: { onChange, value } }) => (
-            <FormItem className="flex items-center gap-3 space-y-0 ">
-              <FormLabel className="leading-[20px]">
+            <FormItem className='flex items-center gap-3 space-y-0 '>
+              <FormLabel className='leading-[20px]'>
                 Avez-vous déjà mandaté un expert comptable pour effectuer votre
                 comptabilité annuelle ?
               </FormLabel>
@@ -109,19 +109,19 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
                     }
                   }}
                   defaultValue={value === true ? 'True' : 'False'}
-                  className="flex"
+                  className='flex'
                 >
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value="True" />
+                      <RadioGroupItem value='True' />
                     </FormControl>
-                    <FormLabel className="font-semibold">Oui</FormLabel>
+                    <FormLabel className='font-semibold'>Oui</FormLabel>
                   </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value="False" />
+                      <RadioGroupItem value='False' />
                     </FormControl>
-                    <FormLabel className="font-semibold">Non</FormLabel>
+                    <FormLabel className='font-semibold'>Non</FormLabel>
                   </FormItem>
                 </RadioGroup>
               </FormControl>
@@ -131,12 +131,12 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
           )}
         />
         <FormField
-          name="nonAssociateManager"
+          name='nonAssociateManager'
           control={control}
           defaultValue={'False'}
           render={({ field: { onChange, onBlur, value, ref } }) => (
-            <FormItem className="flex items-center gap-3 space-y-0 ">
-              <FormLabel className="leading-[20px]">
+            <FormItem className='flex items-center gap-3 space-y-0 '>
+              <FormLabel className='leading-[20px]'>
                 Le Président est-il Associé fondateur de la Société ?
               </FormLabel>
               <FormControl>
@@ -149,19 +149,19 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
                     }
                   }}
                   defaultValue={value === true ? 'True' : 'False'}
-                  className="flex"
+                  className='flex'
                 >
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value="True" />
+                      <RadioGroupItem value='True' />
                     </FormControl>
-                    <FormLabel className="font-semibold">Oui</FormLabel>
+                    <FormLabel className='font-semibold'>Oui</FormLabel>
                   </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value="False" />
+                      <RadioGroupItem value='False' />
                     </FormControl>
-                    <FormLabel className="font-semibold">Non</FormLabel>
+                    <FormLabel className='font-semibold'>Non</FormLabel>
                   </FormItem>
                 </RadioGroup>
               </FormControl>
@@ -172,8 +172,8 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
         />
 
         <Button
-          className="font-semibold items-center self-end flex gap-2 text-base  hover:bg-darkRedish"
-          type="button"
+          className='flex items-center gap-2 self-end text-base font-semibold  hover:bg-darkRedish'
+          type='button'
           size={'lg'}
           onClick={async () => {
             const isValid = await trigger([

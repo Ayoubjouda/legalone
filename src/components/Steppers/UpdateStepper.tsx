@@ -75,15 +75,15 @@ const UpdateStepper: FC<StepperProps> = () => {
     }
   }
   return (
-    <div className="max-w-screen-xl flex  w-full flex-col items-center justify-center gap-5">
-      <div className=" w-full lg:max-w-3xl sm:max-w-lg relative">
-        <p className=" text-center text-lg font-medium leading-[31px] text-black">
+    <div className='flex w-full  max-w-screen-xl flex-col items-center justify-center gap-5'>
+      <div className=' relative w-full sm:max-w-lg lg:max-w-3xl'>
+        <p className=' text-center text-lg font-medium leading-[31px] text-black'>
           Modification de votre société
         </p>
         {activeStep !== 0 && (
-          <div className="absolute top-0 left-0 flex max-w-screen-md  w-full">
+          <div className='absolute left-0 top-0 flex w-full  max-w-screen-md'>
             <Button
-              className="px-0 text-black hover:no-underline"
+              className='px-0 text-black hover:no-underline'
               variant={'link'}
               onClick={handleGoToPrevious}
             >
@@ -105,7 +105,7 @@ const UpdateStepper: FC<StepperProps> = () => {
         {steps.map((step, index) => (
           <div
             key={index}
-            className="flex h-10 flex-col  justify-center gap-1 "
+            className='flex h-10 flex-col  justify-center gap-1 '
           >
             <StepSeparator
               style={{
@@ -115,13 +115,13 @@ const UpdateStepper: FC<StepperProps> = () => {
                 margin: '0px',
               }}
             />
-            <div className="hidden lg:block">
-              <Step className="ml-3  flex flex-row items-center justify-center"></Step>
+            <div className='hidden lg:block'>
+              <Step className='ml-3  flex flex-row items-center justify-center'></Step>
             </div>
           </div>
         ))}
       </ChakraStepper>
-      <div className="flex w-full px-3 items-center justify-center ">
+      <div className='flex w-full items-center justify-center px-3 '>
         {getStepContent(activeStep)}
       </div>
     </div>

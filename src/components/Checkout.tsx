@@ -22,10 +22,10 @@ export default function Checkout() {
 
   if (isLoading)
     return (
-      <div className="flex  w-full items-center justify-center">
+      <div className='flex  w-full items-center justify-center'>
         <Spinner
           size={'xl'}
-          color="orange.500"
+          color='orange.500'
         />
       </div>
     );
@@ -50,7 +50,7 @@ export default function Checkout() {
   };
 
   return (
-    <div className="w-full">
+    <div className='w-full'>
       {orderData ? (
         <Elements
           options={options}

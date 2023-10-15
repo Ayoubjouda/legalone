@@ -9,5 +9,5 @@ export default function ServiceLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <section className="flex min-h-screen">{children}</section>;
+  return <section className='flex min-h-screen'>{children}</section>;
 }

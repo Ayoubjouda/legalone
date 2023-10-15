@@ -4,73 +4,73 @@ interface FooterProps {}
 
 const Footer: FC<FooterProps> = () => {
   return (
-    <section className="w-full">
-      <div className="w-full  px-[60.50px] pt-[85px] pb-[55px] bg-stone-900  flex-col justify-center items-center inline-flex">
-        <div className="w-full pt-1 pb-[0.01px] flex-col justify-center items-start gap-[83.99px] flex">
-          <div className="w-full flex flex-col gap-y-10 md:flex-row justify-between  ">
-            <div className=" flex-col justify-center items-start gap-[23px] ">
+    <section className='w-full'>
+      <div className='inline-flex  w-full flex-col items-center justify-center  bg-stone-900 px-[60.50px] pb-[55px] pt-[85px]'>
+        <div className='flex w-full flex-col items-start justify-center gap-[83.99px] pb-[0.01px] pt-1'>
+          <div className='flex w-full flex-col justify-between gap-y-10 md:flex-row  '>
+            <div className=' flex-col items-start justify-center gap-[23px] '>
               <div>
-                <span className="text-white text-xl font-normal font-['Plus Jakarta Sans']">
+                <span className="font-['Plus Jakarta Sans'] text-xl font-normal text-white">
                   Legal
                 </span>
-                <span className="text-white text-xl font-bold font-['Plus Jakarta Sans']">
+                <span className="font-['Plus Jakarta Sans'] text-xl font-bold text-white">
                   Center
                 </span>
               </div>
-              <div className=" flex-col justify-start items-start flex">
-                <div className="text-white text-[56px] font-medium font-['IBM Plex Sans'] leading-[59.92px]">
+              <div className=' flex flex-col items-start justify-start'>
+                <div className="font-['IBM Plex Sans'] text-[56px] font-medium leading-[59.92px] text-white">
                   Digital solution that <br />
                   just makes sense
                 </div>
               </div>
             </div>
             <div>
-              <div className="text-white text-lg font-normal font-['IBM Plex Sans'] leading-7">
+              <div className="font-['IBM Plex Sans'] text-lg font-normal leading-7 text-white">
                 8502 Preston Rd. Inglewood, <br />
                 Maine 98380, USA
               </div>
-              <div className="text-white text-lg font-normal font-['IBM Plex Sans'] leading-7">
+              <div className="font-['IBM Plex Sans'] text-lg font-normal leading-7 text-white">
                 framerbite@gmail.com
               </div>
             </div>
           </div>
-          <div className="self-stretch h-[74px] flex-col justify-center items-center gap-[46px] inline-flex">
-            <div className=" h-1 flex-col justify-start items-start flex">
-              <div className=" h-1 px-[1.50px] justify-center items-center inline-flex" />
+          <div className='inline-flex h-[74px] flex-col items-center justify-center gap-[46px] self-stretch'>
+            <div className=' flex h-1 flex-col items-start justify-start'>
+              <div className=' inline-flex h-1 items-center justify-center px-[1.50px]' />
             </div>
-            <div className="self-stretch justify-between font-inter items-center inline-flex">
-              <div className="h-6 justify-center items-start gap-6 flex md:flex-row flex-col">
-                <div className="grow shrink basis-0 self-stretch flex-col justify-start items-start inline-flex">
-                  <div className="h-6 pr-[42.68px] flex-col justify-start items-start flex">
-                    <div className="text-white text-base font-normal cursor-pointer hover:text-redish transition-colors duration-300 leading-normal">
+            <div className='inline-flex items-center justify-between self-stretch font-inter'>
+              <div className='flex h-6 flex-col items-start justify-center gap-6 md:flex-row'>
+                <div className='inline-flex shrink grow basis-0 flex-col items-start justify-start self-stretch'>
+                  <div className='flex h-6 flex-col items-start justify-start pr-[42.68px]'>
+                    <div className='cursor-pointer text-base font-normal leading-normal text-white transition-colors duration-300 hover:text-redish'>
                       About
                     </div>
                   </div>
                 </div>
-                <div className="grow shrink basis-0 self-stretch flex-col justify-start items-start inline-flex">
-                  <div className="h-6 pr-[22.68px] flex-col justify-start items-start flex">
-                    <div className="text-white text-base font-normal cursor-pointer hover:text-redish transition-colors duration-300 leading-normal">
+                <div className='inline-flex shrink grow basis-0 flex-col items-start justify-start self-stretch'>
+                  <div className='flex h-6 flex-col items-start justify-start pr-[22.68px]'>
+                    <div className='cursor-pointer text-base font-normal leading-normal text-white transition-colors duration-300 hover:text-redish'>
                       Features
                     </div>
                   </div>
                 </div>
-                <div className="grow shrink basis-0 self-stretch flex-col justify-start items-start inline-flex">
-                  <div className="h-6 pr-[40.68px] flex-col justify-start items-start flex">
-                    <div className="text-white text-base font-normal cursor-pointer hover:text-redish transition-colors duration-300 leading-normal">
+                <div className='inline-flex shrink grow basis-0 flex-col items-start justify-start self-stretch'>
+                  <div className='flex h-6 flex-col items-start justify-start pr-[40.68px]'>
+                    <div className='cursor-pointer text-base font-normal leading-normal text-white transition-colors duration-300 hover:text-redish'>
                       Works
                     </div>
                   </div>
                 </div>
-                <div className="grow shrink basis-0 self-stretch flex-col justify-start items-start inline-flex">
-                  <div className="h-6 pr-[27.68px] flex-col justify-start items-start flex">
-                    <div className="text-white text-base font-normal cursor-pointer hover:text-redish transition-colors duration-300 leading-normal">
+                <div className='inline-flex shrink grow basis-0 flex-col items-start justify-start self-stretch'>
+                  <div className='flex h-6 flex-col items-start justify-start pr-[27.68px]'>
+                    <div className='cursor-pointer text-base font-normal leading-normal text-white transition-colors duration-300 hover:text-redish'>
                       Support
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="flex-col justify-start items-start inline-flex">
-                <div className="text-white text-base font-normal font-['IBM Plex Sans'] leading-normal">
+              <div className='inline-flex flex-col items-start justify-start'>
+                <div className="font-['IBM Plex Sans'] text-base font-normal leading-normal text-white">
                   © 2023 FramerBite, All Rights Reserved
                 </div>
               </div>

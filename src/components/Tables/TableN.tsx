@@ -119,9 +119,9 @@ export default function TableN() {
         );
       case 'role':
         return (
-          <div className="flex flex-col">
-            <p className="text-bold text-small capitalize">{cellValue}</p>
-            <p className="text-bold text-tiny capitalize text-default-400">
+          <div className='flex flex-col'>
+            <p className='text-bold text-small capitalize'>{cellValue}</p>
+            <p className='text-bold text-tiny capitalize text-default-400'>
               {user.team}
             </p>
           </div>
@@ -129,25 +129,25 @@ export default function TableN() {
       case 'status':
         return (
           <Chip
-            className="capitalize"
+            className='capitalize'
             color={statusColorMap[user.status]}
-            size="sm"
-            variant="flat"
+            size='sm'
+            variant='flat'
           >
             {cellValue}
           </Chip>
         );
       case 'actions':
         return (
-          <div className="relative flex justify-end items-center gap-2">
+          <div className='relative flex items-center justify-end gap-2'>
             <Dropdown>
               <DropdownTrigger>
                 <Button
                   isIconOnly
-                  size="sm"
-                  variant="light"
+                  size='sm'
+                  variant='light'
                 >
-                  <VerticalDotsIcon className="text-default-300" />
+                  <VerticalDotsIcon className='text-default-300' />
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
@@ -199,39 +199,39 @@ export default function TableN() {
 
   const topContent = React.useMemo(() => {
     return (
-      <div className="flex flex-col gap-4 ">
-        <div className="flex justify-between gap-3 items-end">
+      <div className='flex flex-col gap-4 '>
+        <div className='flex items-end justify-between gap-3'>
           <Input
             isClearable
-            className="w-full sm:max-w-[44%]"
-            placeholder="Search by name..."
+            className='w-full sm:max-w-[44%]'
+            placeholder='Search by name...'
             startContent={<SearchIcon />}
             value={filterValue}
             onClear={() => onClear()}
             onValueChange={onSearchChange}
           />
-          <div className="flex gap-3">
+          <div className='flex gap-3'>
             <Dropdown>
-              <DropdownTrigger className="hidden sm:flex">
+              <DropdownTrigger className='hidden sm:flex'>
                 <Button
-                  endContent={<ChevronDownIcon className="text-small" />}
-                  variant="flat"
+                  endContent={<ChevronDownIcon className='text-small' />}
+                  variant='flat'
                 >
                   Status
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
                 disallowEmptySelection
-                aria-label="Table Columns"
+                aria-label='Table Columns'
                 closeOnSelect={false}
                 selectedKeys={statusFilter}
-                selectionMode="multiple"
+                selectionMode='multiple'
                 onSelectionChange={setStatusFilter}
               >
                 {statusOptions.map((status) => (
                   <DropdownItem
                     key={status.uid}
-                    className="capitalize"
+                    className='capitalize'
                   >
                     {capitalize(status.name)}
                   </DropdownItem>
@@ -239,26 +239,26 @@ export default function TableN() {
               </DropdownMenu>
             </Dropdown>
             <Dropdown>
-              <DropdownTrigger className="hidden sm:flex">
+              <DropdownTrigger className='hidden sm:flex'>
                 <Button
-                  endContent={<ChevronDownIcon className="text-small" />}
-                  variant="flat"
+                  endContent={<ChevronDownIcon className='text-small' />}
+                  variant='flat'
                 >
                   Columns
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
                 disallowEmptySelection
-                aria-label="Table Columns"
+                aria-label='Table Columns'
                 closeOnSelect={false}
                 selectedKeys={visibleColumns}
-                selectionMode="multiple"
+                selectionMode='multiple'
                 onSelectionChange={setVisibleColumns}
               >
                 {columns.map((column) => (
                   <DropdownItem
                     key={column.uid}
-                    className="capitalize"
+                    className='capitalize'
                   >
                     {capitalize(column.name)}
                   </DropdownItem>
@@ -266,27 +266,27 @@ export default function TableN() {
               </DropdownMenu>
             </Dropdown>
             <Button
-              color="primary"
+              color='primary'
               startContent={<PlusIcon />}
-              className="font-semibold"
+              className='font-semibold'
             >
               Ajouter
             </Button>
           </div>
         </div>
-        <div className="flex justify-between items-center">
-          <span className="text-default-400 text-small">
+        <div className='flex items-center justify-between'>
+          <span className='text-small text-default-400'>
             Total {users.length} users
           </span>
-          <label className="flex items-center text-default-400 text-small">
+          <label className='flex items-center text-small text-default-400'>
             Rows per page:
             <select
-              className="bg-transparent outline-none text-default-400 text-small"
+              className='bg-transparent text-small text-default-400 outline-none'
               onChange={onRowsPerPageChange}
             >
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
+              <option value='5'>5</option>
+              <option value='10'>10</option>
+              <option value='15'>15</option>
             </select>
           </label>
         </div>
@@ -304,8 +304,8 @@ export default function TableN() {
 
   const bottomContent = React.useMemo(() => {
     return (
-      <div className="py-2 px-2 flex justify-between items-center">
-        <span className="w-[30%] text-small text-default-400">
+      <div className='flex items-center justify-between px-2 py-2'>
+        <span className='w-[30%] text-small text-default-400'>
           {selectedKeys === 'all'
             ? 'All items selected'
             : `${selectedKeys.size} of ${filteredItems.length} selected`}
@@ -314,24 +314,24 @@ export default function TableN() {
           isCompact
           showControls
           showShadow
-          color="primary"
+          color='primary'
           page={page}
           total={pages}
           onChange={setPage}
         />
-        <div className="hidden sm:flex w-[30%] justify-end gap-2">
+        <div className='hidden w-[30%] justify-end gap-2 sm:flex'>
           <Button
             isDisabled={pages === 1}
-            size="sm"
-            variant="flat"
+            size='sm'
+            variant='flat'
             onPress={onPreviousPage}
           >
             Previous
           </Button>
           <Button
             isDisabled={pages === 1}
-            size="sm"
-            variant="flat"
+            size='sm'
+            variant='flat'
             onPress={onNextPage}
           >
             Next
@@ -343,18 +343,18 @@ export default function TableN() {
 
   return (
     <Table
-      aria-label="Example table with custom cells, pagination and sorting"
+      aria-label='Example table with custom cells, pagination and sorting'
       isHeaderSticky
       bottomContent={bottomContent}
-      bottomContentPlacement="outside"
+      bottomContentPlacement='outside'
       classNames={{
         wrapper: 'max-h-[382px]',
       }}
       selectedKeys={selectedKeys}
-      selectionMode="multiple"
+      selectionMode='multiple'
       sortDescriptor={sortDescriptor}
       topContent={topContent}
-      topContentPlacement="outside"
+      topContentPlacement='outside'
       onSelectionChange={setSelectedKeys}
       onSortChange={setSortDescriptor}
     >

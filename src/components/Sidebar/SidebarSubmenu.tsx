@@ -26,13 +26,13 @@ function SidebarSubmenu({ route }: SidebarSubmenuProps) {
 
   return (
     <li
-      className="relative px-6 py-3"
+      className='relative px-6 py-3'
       key={route.name}
     >
       <button
-        className="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+        className='inline-flex w-full items-center justify-between text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200'
         onClick={handleDropdownMenuClick}
-        aria-haspopup="true"
+        aria-haspopup='true'
       >
         {/* <span className="inline-flex items-center"> */}
         {/* <Icon
@@ -49,8 +49,8 @@ function SidebarSubmenu({ route }: SidebarSubmenuProps) {
       </button>
       <div>
         <ul
-          className="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
-          aria-label="submenu"
+          className='mt-2 space-y-2 overflow-hidden rounded-md bg-gray-50 p-2 text-sm font-medium text-gray-500 shadow-inner dark:bg-gray-900 dark:text-gray-400'
+          aria-label='submenu'
         >
           {/* {route.routes.map((r) => (
             <li

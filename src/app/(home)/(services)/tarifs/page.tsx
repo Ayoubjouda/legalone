@@ -350,24 +350,24 @@ const invoices = [
 ];
 const page: FC<pageProps> = () => {
   return (
-    <div className="min-h-sceen flex flex-col justify-center gap-32 items-center bg-white">
-      <section className="flex max-w-[1296px]  flex-col gap-12">
-        <div className="max-w-[1296px] mt-10  flex-col  inline-flex">
-          <div className="self-stretch  flex-col justify-start items-center gap-[30px] flex">
-            <div className="self-stretch  flex-col justify-start items-start flex">
-              <div className="self-stretch  pl-[100px] pr-[97px] flex-col justify-start items-center flex">
-                <div className="text-center text-stone-900 text-7xl font-medium font-['IBM Plex Sans'] leading-[70px]">
+    <div className='min-h-sceen flex flex-col items-center justify-center gap-32 bg-white'>
+      <section className='flex max-w-[1296px]  flex-col gap-12'>
+        <div className='mt-10 inline-flex  max-w-[1296px]  flex-col'>
+          <div className='flex  flex-col items-center justify-start gap-[30px] self-stretch'>
+            <div className='flex  flex-col items-start justify-start self-stretch'>
+              <div className='flex  flex-col items-center justify-start self-stretch pl-[100px] pr-[97px]'>
+                <div className="font-['IBM Plex Sans'] text-center text-7xl font-medium leading-[70px] text-stone-900">
                   Tarifs
                 </div>
               </div>
             </div>
-            <div className="self-stretch flex-col justify-start items-start flex">
-              <div className="self-stretch  pl-[1.10px] pr-[0.90px] flex-col justify-start items-center flex">
-                <div className="text-center text-neutral-700 text-lg font-normal font-['IBM Plex Sans'] leading-7">
+            <div className='flex flex-col items-start justify-start self-stretch'>
+              <div className='flex  flex-col items-center justify-start self-stretch pl-[1.10px] pr-[0.90px]'>
+                <div className="font-['IBM Plex Sans'] text-center text-lg font-normal leading-7 text-neutral-700">
                   We consider all the drivers of change gives you the an blocks
                   & components you{' '}
                 </div>
-                <div className="text-center text-neutral-700 text-lg font-normal font-['IBM Plex Sans'] leading-7">
+                <div className="font-['IBM Plex Sans'] text-center text-lg font-normal leading-7 text-neutral-700">
                   need to change to create a truly professional website - so you
                   can save time and <br />
                   stay focused to it.
@@ -376,7 +376,7 @@ const page: FC<pageProps> = () => {
             </div>
           </div>
         </div>
-        <div className="flex gap-4 flex-wrap justify-center lg:justify-start">
+        <div className='flex flex-wrap justify-center gap-4 lg:justify-start'>
           {packs.map((pack: Package) => (
             <PricingComponent
               key={pack.id}
@@ -385,19 +385,19 @@ const page: FC<pageProps> = () => {
           ))}
         </div>
       </section>
-      <section className="flex flex-col max-w-6xl w-full gap-12">
-        <div className="max-w-[1296px] mt-10  flex-col  inline-flex">
-          <div className="self-stretch  flex-col justify-start items-center gap-[30px] flex">
-            <div className="self-stretch  flex-col justify-start items-start flex">
-              <div className="self-stretch  pl-[100px] pr-[97px] flex-col justify-start items-center flex">
-                <div className="text-center text-stone-900 text-5xl font-medium font-['IBM Plex Sans'] leading-[70px]">
+      <section className='flex w-full max-w-6xl flex-col gap-12'>
+        <div className='mt-10 inline-flex  max-w-[1296px]  flex-col'>
+          <div className='flex  flex-col items-center justify-start gap-[30px] self-stretch'>
+            <div className='flex  flex-col items-start justify-start self-stretch'>
+              <div className='flex  flex-col items-center justify-start self-stretch pl-[100px] pr-[97px]'>
+                <div className="font-['IBM Plex Sans'] text-center text-5xl font-medium leading-[70px] text-stone-900">
                   Comparez les pack
                 </div>
               </div>
             </div>
-            <div className="self-stretch flex-col justify-start items-start flex">
-              <div className="self-stretch  pl-[1.10px] pr-[0.90px] flex-col justify-start items-center flex">
-                <div className=" max-w-xl text-center text-neutral-700 text-lg font-normal font-['IBM Plex Sans'] leading-7">
+            <div className='flex flex-col items-start justify-start self-stretch'>
+              <div className='flex  flex-col items-center justify-start self-stretch pl-[1.10px] pr-[0.90px]'>
+                <div className=" font-['IBM Plex Sans'] max-w-xl text-center text-lg font-normal leading-7 text-neutral-700">
                   Clarity gives you the blocks & components you need to create a
                   truly professional website, landing page for your SaaS.
                 </div>
@@ -407,56 +407,56 @@ const page: FC<pageProps> = () => {
         </div>
         <Table>
           <TableHeader>
-            <TableRow className="w-full grid grid-cols-12">
-              <TableHead className="col-span-5"></TableHead>
-              <TableHead className="col-span-2 h-fit">
-                <div className="w-[215.20px] h-16 flex-col justify-start items-center gap-2.5 inline-flex">
-                  <div className="self-stretch h-6 flex-col justify-start items-start flex">
-                    <div className="self-stretch h-6 pr-[162.20px] flex-col justify-start items-start flex">
-                      <div className="text-zinc-500 text-base font-semibold font-['IBM Plex Sans'] leading-normal">
+            <TableRow className='grid w-full grid-cols-12'>
+              <TableHead className='col-span-5'></TableHead>
+              <TableHead className='col-span-2 h-fit'>
+                <div className='inline-flex h-16 w-[215.20px] flex-col items-center justify-start gap-2.5'>
+                  <div className='flex h-6 flex-col items-start justify-start self-stretch'>
+                    <div className='flex h-6 flex-col items-start justify-start self-stretch pr-[162.20px]'>
+                      <div className="font-['IBM Plex Sans'] text-base font-semibold leading-normal text-zinc-500">
                         Standard
                       </div>
                     </div>
                   </div>
-                  <div className="self-stretch h-[30px] flex-col justify-start items-start flex">
-                    <div className="self-stretch h-[30px] pr-[141.20px] flex-col justify-start items-start flex">
-                      <div className="text-stone-900 text-xl font-semibold font-['IBM Plex Sans'] leading-[30px]">
+                  <div className='flex h-[30px] flex-col items-start justify-start self-stretch'>
+                    <div className='flex h-[30px] flex-col items-start justify-start self-stretch pr-[141.20px]'>
+                      <div className="font-['IBM Plex Sans'] text-xl font-semibold leading-[30px] text-stone-900">
                         $99
                       </div>
                     </div>
                   </div>
                 </div>
               </TableHead>
-              <TableHead className="col-span-2">
-                <div className=" h-16 flex-col justify-start items-center gap-2.5 inline-flex">
-                  <div className="self-stretch h-6 flex-col justify-start items-start flex">
-                    <div className="self-stretch h-6  flex-col justify-start items-start flex">
-                      <div className="text-zinc-500 text-base font-semibold font-['IBM Plex Sans'] leading-normal">
+              <TableHead className='col-span-2'>
+                <div className=' inline-flex h-16 flex-col items-center justify-start gap-2.5'>
+                  <div className='flex h-6 flex-col items-start justify-start self-stretch'>
+                    <div className='flex h-6  flex-col items-start justify-start self-stretch'>
+                      <div className="font-['IBM Plex Sans'] text-base font-semibold leading-normal text-zinc-500">
                         Express 24h
                       </div>
                     </div>
                   </div>
-                  <div className="self-stretch h-[30px] flex-col justify-start items-start flex">
-                    <div className="self-stretch h-[30px] pr-[141.20px] flex-col justify-start items-start flex">
-                      <div className="text-stone-900 text-xl font-semibold font-['IBM Plex Sans'] leading-[30px]">
+                  <div className='flex h-[30px] flex-col items-start justify-start self-stretch'>
+                    <div className='flex h-[30px] flex-col items-start justify-start self-stretch pr-[141.20px]'>
+                      <div className="font-['IBM Plex Sans'] text-xl font-semibold leading-[30px] text-stone-900">
                         $199
                       </div>
                     </div>
                   </div>
                 </div>
               </TableHead>
-              <TableHead className="col-span-2 h-fit">
-                <div className="  flex-col justify-start items-center gap-2.5 inline-flex">
-                  <div className="self-stretch  flex-col justify-start items-start flex">
-                    <div className="self-stretch  flex-col justify-start items-start flex">
-                      <div className="text-zinc-500 w-max text-base font-semibold font-['IBM Plex Sans'] leading-normal">
+              <TableHead className='col-span-2 h-fit'>
+                <div className='  inline-flex flex-col items-center justify-start gap-2.5'>
+                  <div className='flex  flex-col items-start justify-start self-stretch'>
+                    <div className='flex  flex-col items-start justify-start self-stretch'>
+                      <div className="font-['IBM Plex Sans'] w-max text-base font-semibold leading-normal text-zinc-500">
                         Express + Expert-comptable
                       </div>
                     </div>
                   </div>
-                  <div className="self-stretch flex-col justify-start items-start flex">
-                    <div className="self-stretch  pr-[141.20px] flex-col justify-start items-start flex">
-                      <div className="text-stone-900 text-xl font-semibold font-['IBM Plex Sans'] leading-[30px]">
+                  <div className='flex flex-col items-start justify-start self-stretch'>
+                    <div className='flex  flex-col items-start justify-start self-stretch pr-[141.20px]'>
+                      <div className="font-['IBM Plex Sans'] text-xl font-semibold leading-[30px] text-stone-900">
                         $99
                       </div>
                     </div>
@@ -469,29 +469,29 @@ const page: FC<pageProps> = () => {
             {services.map((invoice) => (
               <TableRow
                 key={invoice.service}
-                className="w-full grid grid-cols-12"
+                className='grid w-full grid-cols-12'
               >
-                <TableCell className="col-span-5">{invoice.service}</TableCell>
-                <TableCell className="col-span-2">
+                <TableCell className='col-span-5'>{invoice.service}</TableCell>
+                <TableCell className='col-span-2'>
                   <Image
                     src={invoice.valid ? '/valid.svg' : '/notValid.svg'}
-                    alt=""
+                    alt=''
                     width={20}
                     height={20}
                   ></Image>
                 </TableCell>
-                <TableCell className="col-span-2">
+                <TableCell className='col-span-2'>
                   <Image
                     src={invoice.valid ? '/valid.svg' : '/notValid.svg'}
-                    alt=""
+                    alt=''
                     width={20}
                     height={20}
                   ></Image>
                 </TableCell>
-                <TableCell className="col-span-2">
+                <TableCell className='col-span-2'>
                   <Image
                     src={invoice.valid ? '/valid.svg' : '/notValid.svg'}
-                    alt=""
+                    alt=''
                     width={20}
                     height={20}
                   ></Image>
@@ -501,19 +501,19 @@ const page: FC<pageProps> = () => {
           </TableBody>
         </Table>
       </section>
-      <section className="flex flex-col max-w-6xl w-full gap-12">
-        <div className="max-w-[1296px] mt-10  flex-col  inline-flex">
-          <div className="self-stretch  flex-col justify-start items-center gap-[30px] flex">
-            <div className="self-stretch  flex-col justify-start items-start flex">
-              <div className="self-stretch  pl-[100px] pr-[97px] flex-col justify-start items-center flex">
-                <div className="text-center text-stone-900 text-5xl font-medium font-ibmPlexSans leading-[70px]">
+      <section className='flex w-full max-w-6xl flex-col gap-12'>
+        <div className='mt-10 inline-flex  max-w-[1296px]  flex-col'>
+          <div className='flex  flex-col items-center justify-start gap-[30px] self-stretch'>
+            <div className='flex  flex-col items-start justify-start self-stretch'>
+              <div className='flex  flex-col items-center justify-start self-stretch pl-[100px] pr-[97px]'>
+                <div className='text-center font-ibmPlexSans text-5xl font-medium leading-[70px] text-stone-900'>
                   Nos Services
                 </div>
               </div>
             </div>
-            <div className="self-stretch flex-col justify-start items-start flex">
-              <div className="self-stretch  pl-[1.10px] pr-[0.90px] flex-col justify-start items-center flex">
-                <div className=" max-w-xl text-center text-neutral-700 text-lg font-normal font-['IBM Plex Sans'] leading-7">
+            <div className='flex flex-col items-start justify-start self-stretch'>
+              <div className='flex  flex-col items-center justify-start self-stretch pl-[1.10px] pr-[0.90px]'>
+                <div className=" font-['IBM Plex Sans'] max-w-xl text-center text-lg font-normal leading-7 text-neutral-700">
                   Clarity gives you the blocks & components you need to create a
                   truly professional website, landing page for your SaaS.
                 </div>
@@ -523,24 +523,24 @@ const page: FC<pageProps> = () => {
         </div>
         <Table>
           <TableHeader>
-            <TableRow className="w-full grid grid-cols-12">
-              <TableHead className="col-span-6"></TableHead>
-              <TableHead className="col-span-3 h-fit">
-                <div className="text-zinc-500 text-base font-semibold font-['IBM Plex Sans'] leading-normal">
+            <TableRow className='grid w-full grid-cols-12'>
+              <TableHead className='col-span-6'></TableHead>
+              <TableHead className='col-span-3 h-fit'>
+                <div className="font-['IBM Plex Sans'] text-base font-semibold leading-normal text-zinc-500">
                   Prix
                 </div>
               </TableHead>
-              <TableHead className="col-span-3">
-                <div className="text-zinc-500 text-base font-semibold font-['IBM Plex Sans'] leading-normal">
+              <TableHead className='col-span-3'>
+                <div className="font-['IBM Plex Sans'] text-base font-semibold leading-normal text-zinc-500">
                   Frais
                 </div>
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow className="w-full grid grid-cols-12">
-              <TableCell className="col-span-6">
-                <div className="text-zinc-500 text-base font-semibold font-ibmPlexSans leading-normal">
+            <TableRow className='grid w-full grid-cols-12'>
+              <TableCell className='col-span-6'>
+                <div className='font-ibmPlexSans text-base font-semibold leading-normal text-zinc-500'>
                   **Création d’entreprise**{' '}
                 </div>
               </TableCell>
@@ -548,16 +548,16 @@ const page: FC<pageProps> = () => {
             {servicesCost.creation.map((invoice) => (
               <TableRow
                 key={invoice.service}
-                className="w-full grid grid-cols-12"
+                className='grid w-full grid-cols-12'
               >
-                <TableCell className="col-span-6">{invoice.service}</TableCell>
-                <TableCell className="col-span-3">{invoice.price}</TableCell>
-                <TableCell className="col-span-3">{invoice.frais}</TableCell>
+                <TableCell className='col-span-6'>{invoice.service}</TableCell>
+                <TableCell className='col-span-3'>{invoice.price}</TableCell>
+                <TableCell className='col-span-3'>{invoice.frais}</TableCell>
               </TableRow>
             ))}
-            <TableRow className="w-full grid grid-cols-12">
-              <TableCell className="col-span-6">
-                <div className="text-zinc-500 text-base font-semibold font-ibmPlexSans leading-normal">
+            <TableRow className='grid w-full grid-cols-12'>
+              <TableCell className='col-span-6'>
+                <div className='font-ibmPlexSans text-base font-semibold leading-normal text-zinc-500'>
                   **Modification de statuts**{' '}
                 </div>
               </TableCell>
@@ -565,16 +565,16 @@ const page: FC<pageProps> = () => {
             {servicesCost.modification.map((invoice) => (
               <TableRow
                 key={invoice.service}
-                className="w-full grid grid-cols-12"
+                className='grid w-full grid-cols-12'
               >
-                <TableCell className="col-span-6">{invoice.service}</TableCell>
-                <TableCell className="col-span-3">{invoice.price}</TableCell>
-                <TableCell className="col-span-3">{invoice.frais}</TableCell>
+                <TableCell className='col-span-6'>{invoice.service}</TableCell>
+                <TableCell className='col-span-3'>{invoice.price}</TableCell>
+                <TableCell className='col-span-3'>{invoice.frais}</TableCell>
               </TableRow>
             ))}
-            <TableRow className="w-full grid grid-cols-12">
-              <TableCell className="col-span-6">
-                <div className="text-zinc-500 text-base font-semibold font-ibmPlexSans leading-normal">
+            <TableRow className='grid w-full grid-cols-12'>
+              <TableCell className='col-span-6'>
+                <div className='font-ibmPlexSans text-base font-semibold leading-normal text-zinc-500'>
                   **Dissolution-liquidation**
                 </div>
               </TableCell>
@@ -582,11 +582,11 @@ const page: FC<pageProps> = () => {
             {servicesCost.dissolution.map((invoice) => (
               <TableRow
                 key={invoice.service}
-                className="w-full grid grid-cols-12"
+                className='grid w-full grid-cols-12'
               >
-                <TableCell className="col-span-6">{invoice.service}</TableCell>
-                <TableCell className="col-span-3">{invoice.price}</TableCell>
-                <TableCell className="col-span-3">{invoice.frais}</TableCell>
+                <TableCell className='col-span-6'>{invoice.service}</TableCell>
+                <TableCell className='col-span-3'>{invoice.price}</TableCell>
+                <TableCell className='col-span-3'>{invoice.frais}</TableCell>
               </TableRow>
             ))}
           </TableBody>

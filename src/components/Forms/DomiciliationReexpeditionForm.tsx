@@ -106,35 +106,35 @@ const DomiciliationReexpeditionForm = ({ goToNext }: FormProps) => {
   };
 
   return (
-    <form className="flex flex-col gap-10 ">
-      <div className="hidden">
+    <form className='flex flex-col gap-10 '>
+      <div className='hidden'>
         <Controller
-          name="expedition"
+          name='expedition'
           control={control}
-          defaultValue=""
+          defaultValue=''
           render={({ field }) => <input {...field} />}
           rules={{ required: true }}
         />
       </div>
 
-      <div className="flex justify-center text-red-500 font-semibold">
-        <p className="text-center text-xl font-medium leading-[31px] text-slate-500 max-w-md">
+      <div className='flex justify-center font-semibold text-red-500'>
+        <p className='max-w-md text-center text-xl font-medium leading-[31px] text-slate-500'>
           Fréquence de réexpédition
         </p>
         <ErrorMessage
           errors={errors}
-          name="expedition"
+          name='expedition'
           render={({ message }) => <p>{message}</p>}
         />
       </div>
-      <div className="max-w-2xl space-y-2">
+      <div className='max-w-2xl space-y-2'>
         <p>
           Vous recevrez tous les jours votre courrier scanné dans votre espace
           client et serez notifié par email 📧
         </p>
       </div>
 
-      <div className=" flex flex-col items-center md:flex-row flex-wrap gap-10">
+      <div className=' flex flex-col flex-wrap items-center gap-10 md:flex-row'>
         <IconBox
           title={'Pas de réexpédition Gratuit'}
           image={
@@ -166,8 +166,8 @@ const DomiciliationReexpeditionForm = ({ goToNext }: FormProps) => {
           className={cn({ 'border-orange-500': expedition === 'Non' })}
         />
       </div>
-      <div className="space-y-2">
-        <p className="font-semibold max-w-2xl ">
+      <div className='space-y-2'>
+        <p className='max-w-2xl font-semibold '>
           A savoir : les originaux des courriers "sensibles" vous sont renvoyés
           gratuitement à votre adresse dans la journée 📬
         </p>

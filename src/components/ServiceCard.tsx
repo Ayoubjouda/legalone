@@ -22,13 +22,13 @@ interface Links {
 
 const ServicesContent = ({ Links }: ServicesContentProps) => {
   return (
-    <div className=" flex-col md:max-w-md w-full md:max-h-[220px] min-w-[220px] flex md:flex-col md:flex-start flex-wrap">
+    <div className=' md:flex-start flex w-full min-w-[220px] flex-col flex-wrap md:max-h-[220px] md:max-w-md md:flex-col'>
       {Links.length > 0
         ? Links?.map((link: Links, idx: number) => (
             <Link
               key={idx}
               href={link.url}
-              className="  text-sm font-semibold min-w-[150px]  hover:bg-slate-100 p-2 rounded text-start"
+              className='  min-w-[150px] rounded p-2  text-start text-sm font-semibold hover:bg-slate-100'
             >
               {link.title}
             </Link>
@@ -47,28 +47,28 @@ const ServiceCard: FC<ServiceCardProps> = ({
   const router = useRouter();
   return (
     <div>
-      <div className="hidden md:flex">
+      <div className='hidden md:flex'>
         <HoverCard openDelay={100}>
           <HoverCardTrigger>
             <div
-              className="hover:border-redish box-border flex px-4  items-center justify-center gap-4 overflow-hidden rounded-md border-[1px] border-solid bg-white py-3 cursor-pointer"
+              className='box-border flex cursor-pointer items-center  justify-center gap-4 overflow-hidden rounded-md border-[1px] border-solid bg-white px-4 py-3 hover:border-redish'
               onClick={() => router.push('/createcompany')}
             >
               <Image
-                className="relative h-[30px] w-[30px] shrink-0 overflow-hidden"
-                alt=""
+                className='relative h-[30px] w-[30px] shrink-0 overflow-hidden'
+                alt=''
                 src={image}
                 width={0}
                 height={0}
-                sizes="100vw"
-                loading="eager"
+                sizes='100vw'
+                loading='eager'
               />
-              <div className="flex flex-col w-full">
-                <div className="flex flex-row ">
-                  <b className="relative inline-block  shrink-0">{title}</b>
+              <div className='flex w-full flex-col'>
+                <div className='flex flex-row '>
+                  <b className='relative inline-block  shrink-0'>{title}</b>
                 </div>
-                <div className="w-full text-start ">
-                  <p className="max-w-[160px] text-xs font-normal font-ibmPlexSans truncate">
+                <div className='w-full text-start '>
+                  <p className='max-w-[160px] truncate font-ibmPlexSans text-xs font-normal'>
                     {description}
                   </p>
                 </div>
@@ -76,31 +76,31 @@ const ServiceCard: FC<ServiceCardProps> = ({
             </div>
           </HoverCardTrigger>
           <HoverCardContent
-            side="top"
-            className="max-w-md w-full"
+            side='top'
+            className='w-full max-w-md'
           >
             <ServicesContent Links={links} />
           </HoverCardContent>
         </HoverCard>
       </div>
-      <div className="md:hidden">
+      <div className='md:hidden'>
         <Popover>
           <PopoverTrigger asChild>
-            <div className="hover:border-sandybrown-100 box-border flex   items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5 cursor-pointer">
+            <div className='box-border flex cursor-pointer   items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5 hover:border-sandybrown-100'>
               <Image
-                className="relative h-[30px] w-[30px] shrink-0 overflow-hidden"
-                alt=""
+                className='relative h-[30px] w-[30px] shrink-0 overflow-hidden'
+                alt=''
                 src={image}
                 width={0}
                 height={0}
-                sizes="100vw"
+                sizes='100vw'
               />
-              <div className="flex flex-col w-full">
-                <div className="flex flex-row ">
-                  <b className="relative inline-block  shrink-0">{title}</b>
+              <div className='flex w-full flex-col'>
+                <div className='flex flex-row '>
+                  <b className='relative inline-block  shrink-0'>{title}</b>
                 </div>
-                <div className="w-full text-start ">
-                  <p className="max-w-[160px] text-xs font-normal font-ibmPlexSans truncate">
+                <div className='w-full text-start '>
+                  <p className='max-w-[160px] truncate font-ibmPlexSans text-xs font-normal'>
                     {description}
                   </p>
                 </div>
@@ -108,8 +108,8 @@ const ServiceCard: FC<ServiceCardProps> = ({
             </div>
           </PopoverTrigger>
           <PopoverContent
-            className="max-w-md w-full"
-            side="top"
+            className='w-full max-w-md'
+            side='top'
           >
             <ServicesContent Links={links} />
           </PopoverContent>

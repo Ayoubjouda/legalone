@@ -28,35 +28,35 @@ const CompanyTypeForm = ({ goToNext }: FormProps) => {
   };
   if (isLoading)
     return (
-      <div className="min-h-[300px] h-full w-full flex justify-center items-center">
-        <Spinner color="orange.500" />
+      <div className='flex h-full min-h-[300px] w-full items-center justify-center'>
+        <Spinner color='orange.500' />
       </div>
     );
 
   return (
-    <form className="flex flex-col gap-10 max-w-lg">
-      <div className="hidden">
+    <form className='flex max-w-lg flex-col gap-10'>
+      <div className='hidden'>
         <Controller
-          name="companyType"
+          name='companyType'
           control={control}
-          defaultValue=""
+          defaultValue=''
           render={({ field }) => <input {...field} />}
           rules={{ required: true }}
         />
       </div>
 
-      <div className="flex justify-center text-red-500 font-semibold">
-        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+      <div className='flex justify-center font-semibold text-red-500'>
+        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           Dans quel délai souhaitez-vous créer votre société ?
         </p>
         <ErrorMessage
           errors={errors}
-          name="creationDelay"
+          name='creationDelay'
           render={({ message }) => <p>{message}</p>}
         />
       </div>
 
-      <div className=" flex flex-col items-center md:flex-row flex-wrap gap-10">
+      <div className=' flex flex-col flex-wrap items-center gap-10 md:flex-row'>
         {CompanyType?.map((item) => (
           <IconBox
             key={item.id}

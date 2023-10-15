@@ -26,31 +26,31 @@ const DurationForm = ({ goToNext }: FormProps) => {
   };
 
   return (
-    <form className="flex flex-col gap-10">
-      <div className="hidden">
+    <form className='flex flex-col gap-10'>
+      <div className='hidden'>
         <Controller
-          name="creationDelay"
+          name='creationDelay'
           control={control}
-          defaultValue=""
+          defaultValue=''
           render={({ field }) => <input {...field} />}
           rules={{ required: true }}
         />
       </div>
 
-      <div className="flex justify-center text-red-500 font-semibold">
-        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+      <div className='flex justify-center font-semibold text-red-500'>
+        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           Dans quel délai souhaitez-vous créer votre société ?
         </p>
         <ErrorMessage
           errors={errors}
-          name="creationDelay"
+          name='creationDelay'
           render={({ message }) => <p>{message}</p>}
         />
       </div>
 
-      <div className=" flex flex-col items-center md:flex-row flex-wrap gap-10">
+      <div className=' flex flex-col flex-wrap items-center gap-10 md:flex-row'>
         <IconBox
-          title="Dans un mois"
+          title='Dans un mois'
           image={'/fast.svg'}
           onClick={() => {
             handelSubmitValue('WEEKLY');
@@ -58,7 +58,7 @@ const DurationForm = ({ goToNext }: FormProps) => {
           className={cn({ 'border-orange-500': selected === 'WEEKLY' })}
         />
         <IconBox
-          title="Dans la Semaine"
+          title='Dans la Semaine'
           image={'/calander.svg'}
           onClick={() => {
             handelSubmitValue('MONTHLY');
@@ -66,7 +66,7 @@ const DurationForm = ({ goToNext }: FormProps) => {
           className={cn({ 'border-orange-500': selected === 'MONTHLY' })}
         />
         <IconBox
-          title="Je ne sais pas encore"
+          title='Je ne sais pas encore'
           image={'/doubt.svg'}
           onClick={() => {
             handelSubmitValue('je ne sais pas');

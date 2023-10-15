@@ -17,13 +17,13 @@ interface FormProps {
 const AssociationDataForm = ({ goToNext }: FormProps) => {
   const { control, trigger } = useFormContext();
   return (
-    <form className="w-full max-w-[650px]">
-      <div className=" flex flex-col gap-4">
-        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+    <form className='w-full max-w-[650px]'>
+      <div className=' flex flex-col gap-4'>
+        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           information complementaire sur votre Association
         </p>
         <FormField
-          name="companyName"
+          name='companyName'
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -39,7 +39,7 @@ const AssociationDataForm = ({ goToNext }: FormProps) => {
         />
 
         <FormField
-          name="descriptionAssociation"
+          name='descriptionAssociation'
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -55,33 +55,33 @@ const AssociationDataForm = ({ goToNext }: FormProps) => {
         />
 
         <FormField
-          name="desktopComposition"
+          name='desktopComposition'
           control={control}
           defaultValue={'one'}
           render={({ field }) => (
-            <FormItem className="flex items-center gap-3 space-y-0 ">
-              <FormLabel className="leading-[20px]">
+            <FormItem className='flex items-center gap-3 space-y-0 '>
+              <FormLabel className='leading-[20px]'>
                 De combien de membres sera composé le bureau ?
               </FormLabel>
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
                   defaultValue={field.value}
-                  className="flex"
+                  className='flex'
                 >
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value="one" />
+                      <RadioGroupItem value='one' />
                     </FormControl>
-                    <FormLabel className="font-semibold">
+                    <FormLabel className='font-semibold'>
                       Un président et un trésorier (le plus fréquent)
                     </FormLabel>
                   </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value="many" />
+                      <RadioGroupItem value='many' />
                     </FormControl>
-                    <FormLabel className="font-semibold">
+                    <FormLabel className='font-semibold'>
                       Un président, un trésorier et un secrétaire
                     </FormLabel>
                   </FormItem>
@@ -94,8 +94,8 @@ const AssociationDataForm = ({ goToNext }: FormProps) => {
         />
 
         <Button
-          className="font-semibold items-center self-end flex gap-2 text-base  hover:bg-darkRedish"
-          type="button"
+          className='flex items-center gap-2 self-end text-base font-semibold  hover:bg-darkRedish'
+          type='button'
           size={'lg'}
           onClick={async () => {
             const isValid = await trigger([

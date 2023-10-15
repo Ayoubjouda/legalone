@@ -25,28 +25,28 @@ const PackForm = ({ goToNext }: FormProps) => {
 
   if (isLoading && !data)
     return (
-      <div className="min-h-[300px] h-full w-full flex justify-center items-center">
-        <Spinner color="orange.500" />
+      <div className='flex h-full min-h-[300px] w-full items-center justify-center'>
+        <Spinner color='orange.500' />
       </div>
     );
 
   return (
-    <form className="w-full flex flex-col gap-8">
-      <div className="hidden">
+    <form className='flex w-full flex-col gap-8'>
+      <div className='hidden'>
         <Controller
-          name="pack"
+          name='pack'
           control={control}
-          defaultValue=""
+          defaultValue=''
           render={({ field }) => <input {...field} />}
           rules={{ required: true }}
         />
       </div>
       <div>
-        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           Choisissez votre pack
         </p>
       </div>
-      <div className="flex w-full justify-center flex-wrap gap-10 ">
+      <div className='flex w-full flex-wrap justify-center gap-10 '>
         {data?.map((item: Package, idx: number) => (
           <PricingComponent
             key={item.name}

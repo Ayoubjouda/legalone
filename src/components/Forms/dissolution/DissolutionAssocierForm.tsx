@@ -66,20 +66,20 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
 
   if (isLoading)
     return (
-      <div className="min-h-[300px] h-full w-full flex justify-center items-center">
-        <Spinner color="orange.500" />
+      <div className='flex h-full min-h-[300px] w-full items-center justify-center'>
+        <Spinner color='orange.500' />
       </div>
     );
 
   // console.log(count);
 
   return (
-    <form className="max-w-[650px]">
-      <div className="my-5 flex flex-col  gap-4">
-        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+    <form className='max-w-[650px]'>
+      <div className='my-5 flex flex-col  gap-4'>
+        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           Les associés
         </p>
-        <p className="text-center text-sm font-normal leading-tight text-slate-500">
+        <p className='text-center text-sm font-normal leading-tight text-slate-500'>
           Ces informations nous permettront de vous assister au cours de votre
           processus de création, et seront nécessaires pour constituer votre
           dossier.
@@ -91,12 +91,12 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
               name={`associates.${index}.type`}
               control={control}
               render={({ field: { onChange, onBlur, value, ref } }) => (
-                <FormItem className="flex flex-col gap-3 space-y-0 ">
-                  <FormLabel className="leading-[20px] relative">
+                <FormItem className='flex flex-col gap-3 space-y-0 '>
+                  <FormLabel className='relative leading-[20px]'>
                     Cet associé est :
                     {values.associates.length > 1 ? (
                       <div
-                        className="absolute right-0 cursor-pointer"
+                        className='absolute right-0 cursor-pointer'
                         onClick={() => handleDeleteItem(index)}
                       >
                         <X />
@@ -113,21 +113,21 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
                         }
                       }}
                       defaultValue={item.type === 1 ? 'True' : 'False'}
-                      className="flex"
+                      className='flex'
                     >
-                      <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
                         <FormControl>
-                          <RadioGroupItem value="True" />
+                          <RadioGroupItem value='True' />
                         </FormControl>
-                        <FormLabel className="font-semibold">
+                        <FormLabel className='font-semibold'>
                           Un particulier
                         </FormLabel>
                       </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
                         <FormControl>
-                          <RadioGroupItem value="False" />
+                          <RadioGroupItem value='False' />
                         </FormControl>
-                        <FormLabel className="font-semibold">
+                        <FormLabel className='font-semibold'>
                           Une société
                         </FormLabel>
                       </FormItem>
@@ -140,13 +140,13 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
             />
             {values.associates[index].type === 1 ? (
               <>
-                <div className="flex w-full gap-2 ">
+                <div className='flex w-full gap-2 '>
                   <FormField
                     name={`associates.${index}.dto.associateFirstName`}
                     control={control}
                     defaultValue={''}
                     render={({ field }) => (
-                      <FormItem className="w-1/2">
+                      <FormItem className='w-1/2'>
                         <FormLabel>Nom</FormLabel>
                         <FormControl>
                           <Input {...field} />
@@ -160,7 +160,7 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
                     control={control}
                     defaultValue={''}
                     render={({ field }) => (
-                      <FormItem className="w-1/2">
+                      <FormItem className='w-1/2'>
                         <FormLabel>Prénom</FormLabel>
                         <FormControl>
                           <Input {...field} />
@@ -183,12 +183,12 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="selectioner votre civilité" />
+                            <SelectValue placeholder='selectioner votre civilité' />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="madame">madame</SelectItem>
-                          <SelectItem value="monsieur">monsieur</SelectItem>
+                          <SelectItem value='madame'>madame</SelectItem>
+                          <SelectItem value='monsieur'>monsieur</SelectItem>
                         </SelectContent>
                       </Select>
 
@@ -204,7 +204,7 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
                   control={control}
                   defaultValue={''}
                   render={({ field }) => (
-                    <FormItem className="w-1/2">
+                    <FormItem className='w-1/2'>
                       <FormLabel>Nom de la société</FormLabel>
                       <FormControl>
                         <Input {...field} />
@@ -225,7 +225,7 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Forme Social" />
+                            <SelectValue placeholder='Forme Social' />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -249,8 +249,8 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
           </div>
         ))}
         <Button
-          className="font-semibold self-end text-lg hover:bg-darkRedish"
-          type="button"
+          className='self-end text-lg font-semibold hover:bg-darkRedish'
+          type='button'
           size={'lg'}
           onClick={handleAddField}
         >
@@ -258,8 +258,8 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
         </Button>
 
         <Button
-          className="font-semibold self-end text-lg hover:bg-darkRedish"
-          type="button"
+          className='self-end text-lg font-semibold hover:bg-darkRedish'
+          type='button'
           size={'lg'}
           onClick={async () => {
             const isValid = await trigger(['associates']);

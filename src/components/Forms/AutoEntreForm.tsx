@@ -18,17 +18,17 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
   const { control, trigger, watch } = useFormContext();
   watch();
   return (
-    <form className="w-full max-w-[650px]">
-      <div className=" flex flex-col gap-4">
-        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+    <form className='w-full max-w-[650px]'>
+      <div className=' flex flex-col gap-4'>
+        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           CRÉATION DE MICRO-ENTREPRISE
         </p>
         <FormField
-          name="activityId"
+          name='activityId'
           control={control}
           defaultValue={1}
           render={({ field }) => (
-            <FormItem className="hidden">
+            <FormItem className='hidden'>
               <FormLabel>Adresse de votre domicile</FormLabel>
               <FormControl>
                 <Input {...field} />
@@ -39,7 +39,7 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
           )}
         />
         <FormField
-          name="adresse"
+          name='adresse'
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -54,7 +54,7 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
           )}
         />
         <FormField
-          name="codePostal"
+          name='codePostal'
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -63,7 +63,7 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
               <FormControl>
                 <Input
                   {...field}
-                  type="number"
+                  type='number'
                 />
               </FormControl>
 
@@ -72,7 +72,7 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
           )}
         />
         <FormField
-          name="ville"
+          name='ville'
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -87,12 +87,12 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
           )}
         />
         <FormField
-          name="exAutoEntrepreneur"
+          name='exAutoEntrepreneur'
           control={control}
           defaultValue={''}
           render={({ field: { onChange, value } }) => (
-            <FormItem className="flex items-center gap-3 space-y-0 ">
-              <FormLabel className="leading-[20px]">
+            <FormItem className='flex items-center gap-3 space-y-0 '>
+              <FormLabel className='leading-[20px]'>
                 Avez vous déjà été auto-entrepreneur ?
               </FormLabel>
               <FormControl>
@@ -105,19 +105,19 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
                     }
                   }}
                   defaultValue={value === true ? 'True' : 'False'}
-                  className="flex"
+                  className='flex'
                 >
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value="True" />
+                      <RadioGroupItem value='True' />
                     </FormControl>
-                    <FormLabel className="font-semibold">Oui</FormLabel>
+                    <FormLabel className='font-semibold'>Oui</FormLabel>
                   </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value="False" />
+                      <RadioGroupItem value='False' />
                     </FormControl>
-                    <FormLabel className="font-semibold">Non</FormLabel>
+                    <FormLabel className='font-semibold'>Non</FormLabel>
                   </FormItem>
                 </RadioGroup>
               </FormControl>
@@ -127,11 +127,11 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
           )}
         />
         <FormField
-          name="artisan"
+          name='artisan'
           control={control}
           render={({ field: { onChange, value } }) => (
-            <FormItem className="flex items-center gap-3 space-y-0 ">
-              <FormLabel className="leading-[20px]">
+            <FormItem className='flex items-center gap-3 space-y-0 '>
+              <FormLabel className='leading-[20px]'>
                 Votre activité est-elle artisanale ?
               </FormLabel>
               <FormControl>
@@ -144,19 +144,19 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
                     }
                   }}
                   defaultValue={value === true ? 'True' : 'False'}
-                  className="flex"
+                  className='flex'
                 >
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value="True" />
+                      <RadioGroupItem value='True' />
                     </FormControl>
-                    <FormLabel className="font-semibold">Oui</FormLabel>
+                    <FormLabel className='font-semibold'>Oui</FormLabel>
                   </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value="False" />
+                      <RadioGroupItem value='False' />
                     </FormControl>
-                    <FormLabel className="font-semibold">Non</FormLabel>
+                    <FormLabel className='font-semibold'>Non</FormLabel>
                   </FormItem>
                 </RadioGroup>
               </FormControl>
@@ -167,8 +167,8 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
         />
 
         <Button
-          className="font-semibold items-center self-end flex gap-2 text-base  hover:bg-darkRedish"
-          type="button"
+          className='flex items-center gap-2 self-end text-base font-semibold  hover:bg-darkRedish'
+          type='button'
           size={'lg'}
           onClick={async () => {
             const isValid = await trigger([

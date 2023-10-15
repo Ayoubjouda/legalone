@@ -29,17 +29,17 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
   const { data: CompanyTypes, isLoading } = useGetCompanyType();
   if (isLoading)
     return (
-      <div className="min-h-[300px] h-full w-full flex justify-center items-center">
-        <Spinner color="orange.500" />
+      <div className='flex h-full min-h-[300px] w-full items-center justify-center'>
+        <Spinner color='orange.500' />
       </div>
     );
   return (
-    <form className="max-w-[650px]">
-      <div className="my-5 flex flex-col  gap-4">
-        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+    <form className='max-w-[650px]'>
+      <div className='my-5 flex flex-col  gap-4'>
+        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           Le liquidateur
         </p>
-        <p className="text-center text-sm font-normal leading-tight text-slate-500">
+        <p className='text-center text-sm font-normal leading-tight text-slate-500'>
           Ces informations nous permettront de vous assister au cours de votre
           processus de création, et seront nécessaires pour constituer votre
           dossier.
@@ -85,11 +85,11 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
           )}
         /> */}
         <FormField
-          name="liquidatorType"
+          name='liquidatorType'
           control={control}
           render={({ field: { onChange, onBlur, value, ref } }) => (
-            <FormItem className="flex flex-col gap-3 space-y-0 ">
-              <FormLabel className="leading-[20px]">
+            <FormItem className='flex flex-col gap-3 space-y-0 '>
+              <FormLabel className='leading-[20px]'>
                 Le liquidateur tiers est :
               </FormLabel>
               <FormControl>
@@ -102,21 +102,21 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
                     }
                   }}
                   defaultValue={value === true ? 'True' : 'False'}
-                  className="flex"
+                  className='flex'
                 >
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value="True" />
+                      <RadioGroupItem value='True' />
                     </FormControl>
-                    <FormLabel className="font-semibold">
+                    <FormLabel className='font-semibold'>
                       Un particulier (le plus fréquent)
                     </FormLabel>
                   </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value="False" />
+                      <RadioGroupItem value='False' />
                     </FormControl>
-                    <FormLabel className="font-semibold">Une société</FormLabel>
+                    <FormLabel className='font-semibold'>Une société</FormLabel>
                   </FormItem>
                 </RadioGroup>
               </FormControl>
@@ -127,13 +127,13 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
         />
         {values.liquidatorType === 1 ? (
           <>
-            <div className="flex w-full gap-2 ">
+            <div className='flex w-full gap-2 '>
               <FormField
-                name="firstName"
+                name='firstName'
                 control={control}
                 defaultValue={''}
                 render={({ field }) => (
-                  <FormItem className="w-1/2">
+                  <FormItem className='w-1/2'>
                     <FormLabel>Nom</FormLabel>
                     <FormControl>
                       <Input {...field} />
@@ -143,11 +143,11 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
                 )}
               />
               <FormField
-                name="lastName"
+                name='lastName'
                 control={control}
                 defaultValue={''}
                 render={({ field }) => (
-                  <FormItem className="w-1/2">
+                  <FormItem className='w-1/2'>
                     <FormLabel>Prénom</FormLabel>
                     <FormControl>
                       <Input {...field} />
@@ -160,7 +160,7 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
             </div>
             <FormField
               control={control}
-              name="civilite"
+              name='civilite'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Civilité</FormLabel>
@@ -170,12 +170,12 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="selectioner votre civilité" />
+                        <SelectValue placeholder='selectioner votre civilité' />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="madame">madame</SelectItem>
-                      <SelectItem value="monsieur">monsieur</SelectItem>
+                      <SelectItem value='madame'>madame</SelectItem>
+                      <SelectItem value='monsieur'>monsieur</SelectItem>
                     </SelectContent>
                   </Select>
 
@@ -187,11 +187,11 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
         ) : (
           <div>
             <FormField
-              name="companyNameLiquidator"
+              name='companyNameLiquidator'
               control={control}
               defaultValue={''}
               render={({ field }) => (
-                <FormItem className="w-1/2">
+                <FormItem className='w-1/2'>
                   <FormLabel>Nom de la société</FormLabel>
                   <FormControl>
                     <Input {...field} />
@@ -202,7 +202,7 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
             />
             <FormField
               control={control}
-              name="companyLiquidatorType"
+              name='companyLiquidatorType'
               defaultValue={''}
               render={({ field }) => (
                 <FormItem>
@@ -213,7 +213,7 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Forme Social" />
+                        <SelectValue placeholder='Forme Social' />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -236,8 +236,8 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
         )}
 
         <Button
-          className="font-semibold self-end text-lg hover:bg-darkRedish"
-          type="button"
+          className='self-end text-lg font-semibold hover:bg-darkRedish'
+          type='button'
           size={'lg'}
           onClick={async () => {
             const isValid = await trigger([]);

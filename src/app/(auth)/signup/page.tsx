@@ -47,24 +47,24 @@ export default function SignupPage() {
     return router.push('/');
   }
   return (
-    <main className="max-w-screen mx-8 flex h-full  relative  md:justify-center   ">
-      <div className="flex-col justify-center mt-2  md:mx-10 border px-4 sm:px-16 py-8 rounded-md   overflow-y-auto   lg:mx-10   lg:items-center lg:py-1 ">
-        <h1 className="mt-5">
-          Legal<span className="font-bold">Center</span>
+    <main className='max-w-screen relative mx-8 flex  h-full  md:justify-center   '>
+      <div className='mt-2 flex-col justify-center  overflow-y-auto rounded-md border px-4 py-8 sm:px-16   md:mx-10   lg:mx-10   lg:items-center lg:py-1 '>
+        <h1 className='mt-5'>
+          Legal<span className='font-bold'>Center</span>
         </h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="my-5 flex flex-col gap-4 mx-2">
-              <p className="text-sm font-normal leading-tight text-slate-500">
+            <div className='mx-2 my-5 flex flex-col gap-4'>
+              <p className='text-sm font-normal leading-tight text-slate-500'>
                 Accédez à votre espace personnel en toute sécurité,
                 Connectez-vous maintenant !
               </p>
-              <div className="flex w-full gap-2 ">
+              <div className='flex w-full gap-2 '>
                 <FormField
                   control={form.control}
-                  name="firstName"
+                  name='firstName'
                   render={({ field }) => (
-                    <FormItem className="w-1/2">
+                    <FormItem className='w-1/2'>
                       <FormLabel>Nom</FormLabel>
                       <FormControl>
                         <Input {...field} />
@@ -75,9 +75,9 @@ export default function SignupPage() {
                 />
                 <FormField
                   control={form.control}
-                  name="lastName"
+                  name='lastName'
                   render={({ field }) => (
-                    <FormItem className="w-1/2">
+                    <FormItem className='w-1/2'>
                       <FormLabel>Prénom</FormLabel>
                       <FormControl>
                         <Input {...field} />
@@ -90,7 +90,7 @@ export default function SignupPage() {
               </div>
               <FormField
                 control={form.control}
-                name="email"
+                name='email'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Email</FormLabel>
@@ -104,9 +104,9 @@ export default function SignupPage() {
               />
               <FormField
                 control={form.control}
-                name="birthDate"
+                name='birthDate'
                 render={({ field }) => (
-                  <FormItem className="flex flex-col">
+                  <FormItem className='flex flex-col'>
                     <FormLabel>Date de Naissance</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
@@ -123,23 +123,23 @@ export default function SignupPage() {
                             ) : (
                               <span>Pick a date</span>
                             )}
-                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
                       <PopoverContent
-                        className="w-auto p-0"
-                        align="start"
+                        className='w-auto p-0'
+                        align='start'
                       >
                         <Calendar
-                          mode="single"
+                          mode='single'
                           selected={field.value}
                           onSelect={field.onChange}
                           disabled={(date) =>
                             date > new Date() || date < new Date('1900-01-01')
                           }
                           initialFocus
-                          captionLayout="dropdown-buttons"
+                          captionLayout='dropdown-buttons'
                           fromYear={1901}
                           toYear={new Date().getFullYear()}
                           classNames={{
@@ -160,14 +160,14 @@ export default function SignupPage() {
               />
               <FormField
                 control={form.control}
-                name="password"
+                name='password'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Mot de passe</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
-                        type="password"
+                        type='password'
                       />
                     </FormControl>
 
@@ -177,14 +177,14 @@ export default function SignupPage() {
               />
               <FormField
                 control={form.control}
-                name="confirmPassword"
+                name='confirmPassword'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Confirmer le Mot de passe</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
-                        type="password"
+                        type='password'
                       />
                     </FormControl>
 
@@ -194,15 +194,15 @@ export default function SignupPage() {
               />
 
               <a
-                className="text-sm font-semibold text-black text-opacity-70"
-                href="d"
+                className='text-sm font-semibold text-black text-opacity-70'
+                href='d'
               >
                 Vous avez deja un compte ?{' '}
-                <span className="underline">Se Connecter</span>
+                <span className='underline'>Se Connecter</span>
               </a>
               <Button
-                className="bg-black  text-white font-semibold font-inter hover:bg-opacity-80 hover:bg-black"
-                type="submit"
+                className='bg-black  font-inter font-semibold text-white hover:bg-black hover:bg-opacity-80'
+                type='submit'
               >
                 Se connecter
               </Button>

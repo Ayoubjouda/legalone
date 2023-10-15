@@ -42,27 +42,27 @@ export const ManagerForm = ({ goToNext }: FormProps) => {
 
   if (ManagerLoading)
     return (
-      <div className="min-h-[300px] h-full w-full flex justify-center items-center">
-        <Spinner color="orange.500" />
+      <div className='flex h-full min-h-[300px] w-full items-center justify-center'>
+        <Spinner color='orange.500' />
       </div>
     );
   return (
-    <form className="flex max-w-[950px] w-full justify-center items-center flex-col gap-10">
-      <div className="flex flex-col w-full  gap-10">
-        <div className="hidden">
+    <form className='flex w-full max-w-[950px] flex-col items-center justify-center gap-10'>
+      <div className='flex w-full flex-col  gap-10'>
+        <div className='hidden'>
           <Controller
-            name="managerTypeId"
+            name='managerTypeId'
             control={control}
-            defaultValue=""
+            defaultValue=''
             render={({ field }) => <input {...field} />}
             rules={{ required: true }}
           />
         </div>
-        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           Qui sera président de la société ?
         </p>
 
-        <div className="flex w-full  justify-center   flex-wrap gap-10">
+        <div className='flex w-full  flex-wrap   justify-center gap-10'>
           {ManagerData ? (
             ManagerData?.map((item: ManagerType, idx: number) => (
               <Button
@@ -71,10 +71,10 @@ export const ManagerForm = ({ goToNext }: FormProps) => {
                   {
                     'border-orange-500 ': item.id === selectedPresident,
                   },
-                  'border  text-sm font-semibold flex-col h-auto min-w-[116px]  basis-1/4'
+                  'h-auto  min-w-[116px] basis-1/4 flex-col border text-sm  font-semibold'
                 )}
                 key={idx}
-                type="button"
+                type='button'
                 onClick={() => {
                   handelSubmitValue(item.id);
                 }}

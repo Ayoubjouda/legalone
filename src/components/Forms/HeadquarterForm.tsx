@@ -38,34 +38,34 @@ const HeadquarterForm = ({ goToNext }: FormProps) => {
   };
   if (isLoading)
     return (
-      <div className="min-h-[300px] h-full w-full flex justify-center items-center">
-        <Spinner color="orange.500" />
+      <div className='flex h-full min-h-[300px] w-full items-center justify-center'>
+        <Spinner color='orange.500' />
       </div>
     );
 
   return (
-    <form className="flex flex-col gap-10">
-      <div className="hidden">
+    <form className='flex flex-col gap-10'>
+      <div className='hidden'>
         <Controller
-          name="headquarter"
+          name='headquarter'
           control={control}
-          defaultValue=""
+          defaultValue=''
           render={({ field }) => <input {...field} />}
           rules={{ required: true }}
         />
       </div>
-      <div className="flex justify-center text-red-500 font-semibold">
-        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+      <div className='flex justify-center font-semibold text-red-500'>
+        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           Où sera fixé le siège social de la Société ?
         </p>
         <ErrorMessage
           errors={errors}
-          name="headquarter"
+          name='headquarter'
           render={({ message }) => <p>{message}</p>}
         />
       </div>
 
-      <div className=" flex flex-wrap justify-center flex-row max-w-screen-sm  gap-10">
+      <div className=' flex max-w-screen-sm flex-row flex-wrap justify-center  gap-10'>
         {data?.map((item: HeadQuarter, idx: number) => (
           <IconBox
             key={idx}

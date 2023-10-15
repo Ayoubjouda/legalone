@@ -86,28 +86,28 @@ export default function CheckoutForm() {
 
   if (isSuccess) {
     return (
-      <div className="flex  ">
-        <div className="w-full  flex flex-col gap-6 items-center justify-center ">
+      <div className='flex  '>
+        <div className='flex  w-full flex-col items-center justify-center gap-6 '>
           <Image
             src={'/success.svg'}
-            alt=""
+            alt=''
             width={45}
             height={45}
             sizes={'100vw'}
           />
-          <div className="text-semibold text-green-500">
+          <div className='text-semibold text-green-500'>
             Votre paiement a été effectué avec succès
           </div>
           <div>Merci pour votre achat</div>
           <div>
             votre numéro de commande est: <b>37455</b>
           </div>
-          <div className="flex gap-5">
+          <div className='flex gap-5'>
             <Link href={'/'}>
               <Button>Go to DashBoard</Button>
             </Link>
             <Button
-              className="flex gap-1"
+              className='flex gap-1'
               variant={'ghost'}
             >
               <Download />
@@ -130,33 +130,33 @@ export default function CheckoutForm() {
   };
 
   return (
-    <div className="flex w-full px-1">
+    <div className='flex w-full px-1'>
       <form
-        id="payment-form"
+        id='payment-form'
         onSubmit={handleSubmit}
-        className="w-full  flex flex-col gap-2 items-center justify-center "
+        className='flex  w-full flex-col items-center justify-center gap-2 '
       >
-        <div className="w-full">
+        <div className='w-full'>
           <LinkAuthenticationElement
-            id="link-authentication-element"
+            id='link-authentication-element'
             onChange={(e: StripeLinkAuthenticationElementChangeEvent) =>
               setEmail(e.value)
             }
           />
           <PaymentElement
-            id="payment-element"
+            id='payment-element'
             options={paymentElementOptions}
           />
         </div>
 
         <Button
           disabled={isLoading || !stripe || !elements}
-          id="submit"
-          className="w-full bg-black hover:bg-black hover:bg-opacity-80"
+          id='submit'
+          className='w-full bg-black hover:bg-black hover:bg-opacity-80'
         >
           <span
-            id="button-text"
-            className="font-semibold"
+            id='button-text'
+            className='font-semibold'
           >
             {isLoading ? <Spinner /> : 'Payer en toute Securité'}
           </span>
@@ -164,8 +164,8 @@ export default function CheckoutForm() {
         {/* Show any error or success messages */}
         {message && (
           <div
-            id="payment-message"
-            className="text-semibold text-red-500"
+            id='payment-message'
+            className='text-semibold text-red-500'
           >
             {message}
           </div>

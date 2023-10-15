@@ -17,13 +17,13 @@ interface FormProps {
 const ContactForm = ({ goToNext }: FormProps) => {
   const { control, trigger } = useFormContext();
   return (
-    <form className="w-full max-w-[650px]">
-      <div className=" flex flex-col gap-4">
-        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+    <form className='w-full max-w-[650px]'>
+      <div className=' flex flex-col gap-4'>
+        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           Email & numero de telephone
         </p>
         <FormField
-          name="phone"
+          name='phone'
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -32,7 +32,7 @@ const ContactForm = ({ goToNext }: FormProps) => {
               <FormControl>
                 <Input
                   {...field}
-                  type="number"
+                  type='number'
                 />
               </FormControl>
 
@@ -41,7 +41,7 @@ const ContactForm = ({ goToNext }: FormProps) => {
           )}
         />
         <FormField
-          name="email"
+          name='email'
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -56,8 +56,8 @@ const ContactForm = ({ goToNext }: FormProps) => {
           )}
         />
         <Button
-          className="font-semibold items-center self-end flex gap-2 text-base  hover:bg-darkRedish"
-          type="button"
+          className='flex items-center gap-2 self-end text-base font-semibold  hover:bg-darkRedish'
+          type='button'
           size={'lg'}
           onClick={async () => {
             const isValid = await trigger(['phone', 'email']);

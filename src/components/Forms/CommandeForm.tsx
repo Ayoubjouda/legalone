@@ -48,64 +48,64 @@ const CommandeForm = () => {
 
   if (!values?.pack) return null;
   return (
-    <div className="flex w-full items-start gap-3 justify-center">
-      <div className="w-full justify-between items-center md:items-start flex flex-col gap-4 md:flex-row ">
-        <div className="rounded-lg border w-full border-gray-200 flex-col justify-start items-start inline-flex">
-          <div className="self-stretch h-[66px] px-8 py-2 bg-black rounded-tl-lg rounded-tr-lg flex-col justify-start items-start gap-2.5 flex">
-            <div className="justify-between items-start inline-flex">
-              <div className="text-white text-2xl font-bold font-['IBM Plex Sans'] leading-[50px]">
+    <div className='flex w-full items-start justify-center gap-3'>
+      <div className='flex w-full flex-col items-center justify-between gap-4 md:flex-row md:items-start '>
+        <div className='inline-flex w-full flex-col items-start justify-start rounded-lg border border-gray-200'>
+          <div className='flex h-[66px] flex-col items-start justify-start gap-2.5 self-stretch rounded-tl-lg rounded-tr-lg bg-black px-8 py-2'>
+            <div className='inline-flex items-start justify-between'>
+              <div className="font-['IBM Plex Sans'] text-2xl font-bold leading-[50px] text-white">
                 Votre Commande{' '}
               </div>
             </div>
           </div>
-          <div className="px-8 py-4 w-full flex-col justify-start items-start gap-6 flex">
-            <div className="justify-start items-center gap-2 inline-flex">
-              <div className="pr-[0.91px] flex-col justify-start items-start inline-flex">
-                <div className="text-black text-lg font-semibold font-['IBM Plex Sans'] leading-normal">
+          <div className='flex w-full flex-col items-start justify-start gap-6 px-8 py-4'>
+            <div className='inline-flex items-center justify-start gap-2'>
+              <div className='inline-flex flex-col items-start justify-start pr-[0.91px]'>
+                <div className="font-['IBM Plex Sans'] text-lg font-semibold leading-normal text-black">
                   Création de {companyType}
                 </div>
               </div>
-              <div className="flex-col justify-start items-start inline-flex">
-                <div className="w-5 h-5 relative" />
+              <div className='inline-flex flex-col items-start justify-start'>
+                <div className='relative h-5 w-5' />
               </div>
             </div>
-            <div className="flex-col w-full justify-start items-start gap-[3px] flex">
-              <div className="w-full justify-between items-center flex">
-                <div className="text-blue-950 text-base font-bold font-['Helvetica']">
+            <div className='flex w-full flex-col items-start justify-start gap-[3px]'>
+              <div className='flex w-full items-center justify-between'>
+                <div className="font-['Helvetica'] text-base font-bold text-blue-950">
                   Pack {selectedPack.type}
                 </div>
-                <div className="flex-col justify-start items-start inline-flex">
-                  <div className="  flex-col justify-start items-end flex">
-                    <div className="text-right text-blue-950 text-base font-bold font-['Helvetica']">
+                <div className='inline-flex flex-col items-start justify-start'>
+                  <div className='  flex flex-col items-end justify-start'>
+                    <div className="text-right font-['Helvetica'] text-base font-bold text-blue-950">
                       {selectedPack.price}$
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="pl-7 w-full justify-between items-start inline-flex">
-                <div className="flex-col w-full justify-between items-start inline-flex">
-                  <div className="flex-col justify-start items-start flex gap-3">
+              <div className='inline-flex w-full items-start justify-between pl-7'>
+                <div className='inline-flex w-full flex-col items-start justify-between'>
+                  <div className='flex flex-col items-start justify-start gap-3'>
                     {selectedPack.packageDetails?.map((elem, index) => (
                       <div
                         key={index}
-                        className="pr-[54.46px] justify-start gap-1 inline-flex"
+                        className='inline-flex justify-start gap-1 pr-[54.46px]'
                       >
-                        <div className=" flex-col justify-start items-start inline-flex">
+                        <div className=' inline-flex flex-col items-start justify-start'>
                           <Image
-                            alt=""
+                            alt=''
                             src={'/valid.svg'}
                             height={24}
                             width={24}
                           />
                         </div>
-                        <div className="flex-col w-full justify-start items-start gap-[5px] inline-flex">
-                          <div className=" flex-col w-full justify-start items-start flex">
-                            <div className="text-blue-950 w-full text-sm font-normal font-['Helvetica'] leading-none">
+                        <div className='inline-flex w-full flex-col items-start justify-start gap-[5px]'>
+                          <div className=' flex w-full flex-col items-start justify-start'>
+                            <div className="w-full font-['Helvetica'] text-sm font-normal leading-none text-blue-950">
                               {elem.text}
                             </div>
                           </div>
-                          <div className=" flex-col justify-start items-start flex">
-                            <div className="text-slate-500 text-xs font-normal font-['Helvetica'] leading-none">
+                          <div className=' flex flex-col items-start justify-start'>
+                            <div className="font-['Helvetica'] text-xs font-normal leading-none text-slate-500">
                               {elem.detail}
                             </div>
                           </div>
@@ -116,18 +116,18 @@ const CommandeForm = () => {
                 </div>
               </div>
             </div>
-            <div className="flex-col w-full justify-start items-start gap-1 flex">
-              <div className="self-stretch  w-full justify-between items-center flex">
-                <div className="justify-between items-center flex">
-                  <div className="justify-start items-center gap-2 flex">
-                    <div className="text-blue-950 text-base font-bold font-['Helvetica']">
+            <div className='flex w-full flex-col items-start justify-start gap-1'>
+              <div className='flex  w-full items-center justify-between self-stretch'>
+                <div className='flex items-center justify-between'>
+                  <div className='flex items-center justify-start gap-2'>
+                    <div className="font-['Helvetica'] text-base font-bold text-blue-950">
                       Frais de greffe et de publication légale
                     </div>
-                    <div className="w-4 h-4 relative" />
+                    <div className='relative h-4 w-4' />
                   </div>
                 </div>
-                <div className="flex-col  justify-start items-start inline-flex">
-                  <div className="text-right text-blue-950 text-base font-bold font-['Helvetica']">
+                <div className='inline-flex  flex-col items-start justify-start'>
+                  <div className="text-right font-['Helvetica'] text-base font-bold text-blue-950">
                     {selectedPack.administrativeFees.price}$
                   </div>
                 </div>
@@ -135,74 +135,74 @@ const CommandeForm = () => {
             </div>
           </div>
         </div>
-        <div className="px-8 flex-col  justify-start items-start w-full lg:max-w-md min-w-[400px]">
-          <div className="p-4 bg-white bg-opacity-0 rounded-[25px] border border-zinc-100 flex-col justify-start items-start gap-3.5 flex">
-            <div className=" flex-col justify-start items-start flex">
-              <div className="text-blue-950 text-xl font-bold font-['Helvetica'] leading-10">
+        <div className='w-full min-w-[400px]  flex-col items-start justify-start px-8 lg:max-w-md'>
+          <div className='flex flex-col items-start justify-start gap-3.5 rounded-[25px] border border-zinc-100 bg-white bg-opacity-0 p-4'>
+            <div className=' flex flex-col items-start justify-start'>
+              <div className="font-['Helvetica'] text-xl font-bold leading-10 text-blue-950">
                 Récapitulatif
               </div>
             </div>
-            <div className="self-stretch  flex-col justify-start items-start gap-2 flex">
-              <div className="self-stretch justify-between items-start inline-flex">
-                <div className="py-px flex-col justify-start items-start inline-flex">
-                  <div className="text-blue-950 text-base font-normal font-['Helvetica']">
+            <div className='flex  flex-col items-start justify-start gap-2 self-stretch'>
+              <div className='inline-flex items-start justify-between self-stretch'>
+                <div className='inline-flex flex-col items-start justify-start py-px'>
+                  <div className="font-['Helvetica'] text-base font-normal text-blue-950">
                     Total commande HT
                   </div>
                 </div>
-                <div className=" flex-col justify-start items-start inline-flex">
-                  <div className="text-blue-950 text-base font-normal font-['Helvetica']">
+                <div className=' inline-flex flex-col items-start justify-start'>
+                  <div className="font-['Helvetica'] text-base font-normal text-blue-950">
                     {selectedPack.price + selectedPack.administrativeFees.price}{' '}
                     €
                   </div>
                 </div>
               </div>
-              <div className="self-stretch justify-between items-start inline-flex">
-                <div className=" justify-between items-start flex">
-                  <div className="text-blue-950 text-base font-normal font-['Helvetica']">
+              <div className='inline-flex items-start justify-between self-stretch'>
+                <div className=' flex items-start justify-between'>
+                  <div className="font-['Helvetica'] text-base font-normal text-blue-950">
                     TVA
                   </div>
-                  <div className="w-4 h-4 relative" />
+                  <div className='relative h-4 w-4' />
                 </div>
-                <div className="flex-col justify-start items-start inline-flex">
-                  <div className="text-blue-950 text-base font-normal font-['Helvetica']">
+                <div className='inline-flex flex-col items-start justify-start'>
+                  <div className="font-['Helvetica'] text-base font-normal text-blue-950">
                     {selectedPack.price * 0.2}$
                   </div>
                 </div>
               </div>
-              <div className="self-stretch justify-between items-start inline-flex">
-                <div className=" flex-col justify-start items-start inline-flex">
-                  <div className="text-blue-950 text-base font-normal font-['Helvetica']">
+              <div className='inline-flex items-start justify-between self-stretch'>
+                <div className=' inline-flex flex-col items-start justify-start'>
+                  <div className="font-['Helvetica'] text-base font-normal text-blue-950">
                     Total TTC
                   </div>
                 </div>
-                <div className=" flex-col justify-start items-start inline-flex">
-                  <div className="text-blue-950 text-base font-normal font-['Helvetica']">
+                <div className=' inline-flex flex-col items-start justify-start'>
+                  <div className="font-['Helvetica'] text-base font-normal text-blue-950">
                     {selectedPack.price * 1.2}$
                   </div>
                 </div>
               </div>
             </div>
-            <div className="self-stretch flex-col justify-start items-start gap-1.5 flex">
-              <div className="self-stretch justify-start items-start gap-2 inline-flex">
+            <div className='flex flex-col items-start justify-start gap-1.5 self-stretch'>
+              <div className='inline-flex items-start justify-start gap-2 self-stretch'>
                 <Input
-                  className="grow shrink basis-0 flex-col justify-start items-start gap-1.5 inline-flex"
-                  placeholder="Promo code"
+                  className='inline-flex shrink grow basis-0 flex-col items-start justify-start gap-1.5'
+                  placeholder='Promo code'
                 />
-                <Button className="text-white text-sm px-4 py-2 hover:bg-opacity-90 hover:bg-slate-900 bg-slate-900  font-medium font-inter leading-normal">
+                <Button className='bg-slate-900 px-4 py-2 font-inter text-sm font-medium leading-normal  text-white hover:bg-slate-900 hover:bg-opacity-90'>
                   Appliquer
                 </Button>
               </div>
             </div>
             <Button
-              className="  bg-orange-600 hover:bg-darkRedish gap-2 text-base self-stretch rounded-md w-full shadow justify-center cursor-pointer items-center  inline-flex"
+              className='  inline-flex w-full cursor-pointer items-center justify-center gap-2 self-stretch rounded-md bg-orange-600 text-base shadow  hover:bg-darkRedish'
               onClick={handleSubmitOrder}
-              type="button"
+              type='button'
             >
               Valider
-              <div className="  justify-start items-center flex">
+              <div className='  flex items-center justify-start'>
                 <MoveRight
                   size={24}
-                  color="white"
+                  color='white'
                 />
               </div>
             </Button>

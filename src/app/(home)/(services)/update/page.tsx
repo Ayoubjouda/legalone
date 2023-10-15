@@ -34,7 +34,7 @@ export default function Update() {
     storage: window.localStorage, // default window.sessionStorage
   });
   return (
-    <div className="max-w-screen-xl mx-auto flex  gap-2 flex-col items-center justify-center overflow-hidden my-12">
+    <div className='mx-auto my-12 flex  max-w-screen-xl flex-col items-center justify-center gap-2 overflow-hidden'>
       <FormProvider {...methods}>
         <UpdateStepper />
       </FormProvider>

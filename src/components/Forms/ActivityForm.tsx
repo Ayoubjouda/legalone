@@ -39,44 +39,44 @@ const ActivityForm = ({ goToNext }: FormProps) => {
 
   if (isLoading)
     return (
-      <div className="min-h-[300px] h-full w-full flex justify-center items-center">
-        <Spinner color="orange.500" />
+      <div className='flex h-full min-h-[300px] w-full items-center justify-center'>
+        <Spinner color='orange.500' />
       </div>
     );
   return (
-    <form className="flex max-w-[950px] justify-center items-center flex-col gap-10">
-      <div className="flex flex-col w-full justify-center items-center gap-4">
-        <div className="hidden">
+    <form className='flex max-w-[950px] flex-col items-center justify-center gap-10'>
+      <div className='flex w-full flex-col items-center justify-center gap-4'>
+        <div className='hidden'>
           <Controller
-            name="activityField"
+            name='activityField'
             control={control}
-            defaultValue=""
+            defaultValue=''
             render={({ field }) => <input {...field} />}
             rules={{ required: true }}
           />
         </div>
-        <p className="text-center text-xl font-medium leading-[31px] text-slate-500">
+        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           Quel est votre domaine d'activité ?
         </p>
-        <div className="flex justify-center text-red-500 font-semibold">
+        <div className='flex justify-center font-semibold text-red-500'>
           <ErrorMessage
             errors={errors}
-            name="activityField"
+            name='activityField'
             render={({ message }) => <p>{message}</p>}
           />
         </div>
 
-        <div className="flex w-full  justify-center   flex-wrap gap-10">
+        <div className='flex w-full  flex-wrap   justify-center gap-10'>
           {ActivityData ? (
             ActivityData?.map((item: Activity, idx: number) => (
               <Button
                 variant={'ghost'}
                 className={cn(
                   { 'border-orange-500 ': item.id === selectedDomain },
-                  'border  text-sm font-semibold flex-col h-auto min-w-[116px] basis-1/4'
+                  'h-auto  min-w-[116px] basis-1/4 flex-col border text-sm font-semibold'
                 )}
                 key={idx}
-                type="button"
+                type='button'
                 onClick={() => {
                   handelSubmitValue(item.id);
                 }}

@@ -15,21 +15,21 @@ type routes = {
 }[];
 
 const routes: routes = [
-  { name: 'DashBoard', icon: 'home', routes: { name: '/dashboard' } },
-  { name: 'Users', icon: 'users', routes: { name: '/dashboard/users' } },
+  { name: 'DashBoard', icon: 'Home', routes: { name: '/dashboard' } },
+  { name: 'Users', icon: 'Users', routes: { name: '/dashboard/users' } },
   {
     name: 'Services',
-    icon: 'folder',
+    icon: 'Folder',
     routes: { name: '/dashboard/services' },
   },
   {
     name: 'Orders',
-    icon: 'shopping-cart',
+    icon: 'ShoppingCart',
     routes: { name: '/dashboard/orders' },
   },
   {
     name: 'Payments',
-    icon: 'badge-dollar-sign',
+    icon: 'BadgeDollarSign',
     routes: { name: '/dashboard/payments' },
   },
 ];
@@ -37,8 +37,12 @@ const routes: routes = [
 function SidebarContent() {
   const pathname = usePathname();
   return (
-    <div className="py-4 text-gray-500 max-w-full dark:text-gray-400">
-      <ul className="mt-6 flex flex-col">
+    <div className='max-w-full py-4 '>
+      <div className='relative   inline-block pl-6'>
+        <span>Legal</span>
+        <b>Centre</b>
+      </div>
+      <ul className='mt-6 flex flex-col'>
         {routes.map((route, index) => {
           // if (routes) {
           //   return (
@@ -52,27 +56,27 @@ function SidebarContent() {
             <Link
               href={route.routes.name}
               key={route.name}
-              className={` items-center  px-6 py-4 mr-2 rounded-r-md relative flex text-lg font-semibold ${
+              className={` relative  mr-2 flex items-center rounded-r-md px-6 py-4 text-lg font-semibold ${
                 pathname === route.routes.name
-                  ? 'text-gray-800 bg-gray-100 dark:text-gray-100'
+                  ? 'bg-gray-100 text-gray-800 dark:text-gray-100'
                   : 'text-gray-500 dark:text-gray-400'
               }`}
             >
               {pathname === route.routes.name && (
                 <span
-                  className="absolute inset-y-0 left-0 w-1 bg-redish rounded-tr-lg rounded-br-lg"
-                  aria-hidden="true"
+                  className='absolute inset-y-0 left-0 w-1 rounded-br-lg rounded-tr-lg bg-redish'
+                  aria-hidden='true'
                 ></span>
               )}
               <Icon name={route.icon} />
-              <span className="ml-4">{route.name}</span>
+              <span className='ml-4'>{route.name}</span>
             </Link>
           );
 
           // }
         })}
       </ul>
-      <div className="px-6 my-6"></div>
+      <div className='my-6 px-6'></div>
     </div>
   );
 }
