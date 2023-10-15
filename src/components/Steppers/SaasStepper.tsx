@@ -31,8 +31,8 @@ const steps = [
   { title: 'Third', description: 'CHOIX DU PLAN' },
   { title: 'Third', description: 'Headquarter' },
   { title: 'Third', description: 'Récapitulatif' },
-  { title: 'Third', description: 'Récapitulatif' },
-  { title: 'Third', description: 'Récapitulatif' },
+  // { title: 'Third', description: 'Récapitulatif' },
+  // { title: 'Third', description: 'Récapitulatif' },
 ];
 const SaasStepper: FC<StepperProps> = () => {
   const router = useRouter();
@@ -73,10 +73,10 @@ const SaasStepper: FC<StepperProps> = () => {
         return <ContactForm goToNext={handleGoToNext} />;
       case 6:
         return <HeadquarterForm goToNext={handleGoToNext} />;
-      case 7:
-        return <PackForm goToNext={handleGoToNext} />;
-      case 8:
-        return <CommandeForm />;
+      // case 7:
+      //   return <PackForm goToNext={handleGoToNext} />;
+      // case 8:
+      //   return <CommandeForm />;
     }
   }
   return (

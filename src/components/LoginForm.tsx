@@ -50,7 +50,14 @@ const LoginForm = () => {
     toast.promise(promise(values), {
       loading: 'Loading...',
       success: (data) => {
-        router.push('/dashboard');
+        const intendedDestination = localStorage.getItem('intendedDestination');
+        console.log(intendedDestination);
+        if (intendedDestination) {
+          router.push(intendedDestination);
+          localStorage.removeItem('intendedDestination');
+        } else {
+          router.push('/dashboard');
+        }
 
         return `Login successful`;
       },
@@ -69,22 +76,22 @@ const LoginForm = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="my-5 flex flex-col gap-4">
-          <p className="text-sm font-normal leading-tight text-slate-500">
+        <div className='my-5 flex flex-col gap-4'>
+          <p className='text-sm font-normal leading-tight text-slate-500'>
             Accédez à votre espace personnel en toute sécurité, Connectez-vous
             maintenant !
           </p>
 
           <FormField
             control={form.control}
-            name="email"
+            name='email'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input
-                    type="email"
-                    autoComplete="email"
+                    type='email'
+                    autoComplete='email'
                     {...field}
                   />
                 </FormControl>
@@ -94,14 +101,14 @@ const LoginForm = () => {
           />
           <FormField
             control={form.control}
-            name="password"
+            name='password'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Mot de passe</FormLabel>
                 <FormControl>
                   <Input
-                    type="password"
-                    autoComplete="current-password"
+                    type='password'
+                    autoComplete='current-password'
                     {...field}
                   />
                 </FormControl>
@@ -111,21 +118,21 @@ const LoginForm = () => {
             )}
           />
           <a
-            className="text-sm font-semibold text-black text-opacity-70"
-            href="f"
+            className='text-sm font-semibold text-black text-opacity-70'
+            href='f'
           >
             Mot de passe oublié ?
           </a>
           <a
-            className="text-sm font-semibold text-black text-opacity-70"
-            href="d"
+            className='text-sm font-semibold text-black text-opacity-70'
+            href='d'
           >
             Vous n'avez pas de compte ? S'inscrire
           </a>
           <Button
-            type="submit"
+            type='submit'
             // disabled={isLoading}
-            className="bg-black  text-white font-semibold font-inter hover:bg-opacity-80 hover:bg-black"
+            className='bg-black  font-inter font-semibold text-white hover:bg-black hover:bg-opacity-80'
           >
             {/* {isLoading ? <Spinner /> : 'Se connecter'}
              */}
