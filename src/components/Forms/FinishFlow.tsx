@@ -6,6 +6,9 @@ import { useSubmitFormality } from '@/hooks/useServices';
 import { useRouter } from 'next/navigation';
 import useAppStore from '@/zustand/store';
 import { Formality } from '@/types/order';
+import { useSession } from 'next-auth/react';
+import { toast } from 'sonner';
+
 interface FormProps {
   goToNext: () => void;
 }
@@ -16,24 +19,36 @@ const FinishFlow = ({ goToNext }: FormProps) => {
   } = useFormContext();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const router = useRouter();
-  const { setFormality } = useAppStore();
+  const { status } = useSession();
+  const { FormalityMutation, isLoading } = useSubmitFormality();
+
   useEffect(() => {
     // Check if the button reference is not null
+
     if (buttonRef.current) {
       // Trigger a click on the button
       buttonRef.current.click();
     }
   }, []);
+
+  if (Object.keys(errors).length > 0)
+    toast.error(
+      `Il y a des erreurs dans le formulaire dans : ${Object.keys(errors)}`
+    );
   const onSubmit = async (data: Formality) => {
-    console.log(data);
-    setFormality(data);
-    router.push('/formality');
+    if (status === 'unauthenticated') {
+      console.log('log');
+      localStorage.setItem('intendedDestination', `${window.location.href}`);
+      router.push('login');
+    } else {
+      FormalityMutation(data);
+    }
   };
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='flex flex-col items-center justify-center gap-10'
+      className='mt-20 flex flex-col items-center justify-center gap-10'
     >
       <button
         ref={buttonRef}
@@ -42,7 +57,17 @@ const FinishFlow = ({ goToNext }: FormProps) => {
       >
         submit
       </button>
-      <div>test</div>
+      <div>
+        {isLoading && (
+          <div className='flex flex-col'>
+            <Spinner
+              color='warning'
+              size='lg'
+            />
+            <p>Submitting Formality</p>
+          </div>
+        )}
+      </div>
     </form>
   );
 };

@@ -50,7 +50,6 @@ const ActivityForm = ({ goToNext }: FormProps) => {
           <Controller
             name='activity'
             control={control}
-            defaultValue=''
             render={({ field }) => <input {...field} />}
             rules={{ required: true }}
           />
@@ -61,7 +60,7 @@ const ActivityForm = ({ goToNext }: FormProps) => {
         <div className='flex justify-center font-semibold text-red-500'>
           <ErrorMessage
             errors={errors}
-            name='activityField'
+            name='activity'
             render={({ message }) => <p>{message}</p>}
           />
         </div>

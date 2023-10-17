@@ -60,7 +60,7 @@ type CompanyEnum =
   | 'SARL'
   | 'EURL'
   | 'SCI'
-  | 'AUTOENTREPRENEUR'
+  | 'AUTOENTREPRISE'
   | 'ASSOCIATION'
   | 'SASU'
   | 'DOMICILIATION';

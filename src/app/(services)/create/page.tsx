@@ -33,7 +33,7 @@ type Companys = {
 };
 const companys: Companys = {
   SAS: EntrepriseFormSchema,
-  AUTOENTREPRENEUR: AutoEntreFormSchema,
+  AUTOENTREPRISE: AutoEntreFormSchema,
   ASSOCIATION: AssociationFormSchema,
   SCI: SciFormSchema,
   SARL: EntrepriseFormSchema,
@@ -46,7 +46,7 @@ type Stepper = {
 };
 const steppers: Stepper = {
   SAS: SaasStepper,
-  AUTOENTREPRENEUR: AutoEntreStepper,
+  AUTOENTREPRISE: AutoEntreStepper,
   ASSOCIATION: AssociationStepper,
   SCI: SciStepper,
   SARL: SaasStepper,
@@ -71,7 +71,7 @@ export default function CreateSaas() {
     storage: window.localStorage, // default window.sessionStorage
   });
   return (
-    <div className='mx-auto my-12 flex  max-w-screen-xl flex-col items-center  gap-2 overflow-hidden'>
+    <div className='relative mx-auto my-12 flex w-full  max-w-screen-xl flex-col items-center  gap-2 overflow-hidden'>
       <FormProvider {...methods}>
         <SelectedStepper />
       </FormProvider>

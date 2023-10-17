@@ -13,7 +13,7 @@ const HydrationZustand = ({ children }: HydrationProps) => {
     setIsHydrated(true);
   }, []);
 
-  return <>{isHydrated ? <div>{children}</div> : null}</>;
+  return <>{isHydrated ? <div className='h-full'>{children}</div> : null}</>;
 };
 
 export default HydrationZustand;

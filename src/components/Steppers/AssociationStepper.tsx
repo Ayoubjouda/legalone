@@ -21,6 +21,7 @@ import AutoEntreForm from '../Forms/AutoEntreForm';
 import { useRouter, useSearchParams } from 'next/navigation';
 import TresorierForm from '../Forms/TresorierForm';
 import AssociationDataForm from '../Forms/AssociationDataForm';
+import FinishFlow from '../Forms/FinishFlow';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
@@ -57,19 +58,19 @@ const AssociationStepper: FC<StepperProps> = () => {
       case 0:
         return <DurationForm goToNext={handleGoToNext} />;
       case 1:
-        return <AssociationDataForm goToNext={handleGoToNext} />;
+        return <ActivityForm goToNext={handleGoToNext} />;
       case 2:
-        return <PersonalForm goToNext={handleGoToNext} />;
+        return <AssociationDataForm goToNext={handleGoToNext} />;
       case 3:
-        return <TresorierForm goToNext={handleGoToNext} />;
+        return <PersonalForm goToNext={handleGoToNext} />;
       case 4:
-        return <HeadquarterForm goToNext={handleGoToNext} />;
+        return <TresorierForm goToNext={handleGoToNext} />;
       case 5:
-        return <ContactForm goToNext={handleGoToNext} />;
+        return <HeadquarterForm goToNext={handleGoToNext} />;
       case 6:
-        return <PackForm goToNext={handleGoToNext} />;
+        return <ContactForm goToNext={handleGoToNext} />;
       case 7:
-        return <CommandeForm />;
+        return <FinishFlow goToNext={handleGoToNext} />;
     }
   }
   return (
@@ -98,26 +99,27 @@ const AssociationStepper: FC<StepperProps> = () => {
         flex={1}
         gap={4}
         width={'max-content'}
-        showLastSeparator
       >
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            className='flex h-10 flex-col  justify-center gap-1 '
-          >
-            <StepSeparator
-              style={{
-                maxHeight: '4px',
-                minWidth: '30px',
-                borderRadius: '3px',
-                margin: '0px',
-              }}
-            />
-            <div className='hidden lg:block'>
-              <Step className='ml-3  flex flex-row items-center justify-center'></Step>
-            </div>
-          </div>
-        ))}
+        {steps.length > activeStep
+          ? steps.map((step, index) => (
+              <div
+                key={index}
+                className='flex h-10 flex-col  justify-center gap-1 '
+              >
+                <StepSeparator
+                  style={{
+                    maxHeight: '4px',
+                    minWidth: '30px',
+                    borderRadius: '3px',
+                    margin: '0px',
+                  }}
+                />
+                <div className='hidden lg:block'>
+                  <Step className='ml-3  flex flex-row items-center justify-center'></Step>
+                </div>
+              </div>
+            ))
+          : null}
       </ChakraStepper>
       <div className='flex w-full items-center justify-center px-3 '>
         {getStepContent(activeStep)}

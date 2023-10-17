@@ -16,7 +16,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
   const { control, trigger, getValues } = useFormContext();
   const values = getValues();
 
-  if (values.managerTypeId === 2)
+  if (values.managerType === 2)
     return (
       <form className='max-w-[650px]'>
         <div className='my-5 flex flex-col  gap-4'>

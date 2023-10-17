@@ -1,5 +1,5 @@
 'use client';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import {
   Step,
   StepSeparator,
@@ -14,13 +14,9 @@ import {
   ManagerForm,
   CompanyDataForm,
   HeadquarterForm,
-  CommandeForm,
 } from '@/components/Forms';
 import { ChevronLeft } from 'lucide-react';
-import useFormPersist from 'react-hook-form-persist';
-import { useFormContext } from 'react-hook-form';
-import useAppStore from '@/zustand/store';
-import PackForm from '../Forms/PackForm';
+
 import ContactForm from '../Forms/ContactForm';
 import { useRouter, useSearchParams } from 'next/navigation';
 import FinishFlow from '../Forms/FinishFlow';
@@ -33,7 +29,6 @@ const steps = [
   { title: 'Third', description: 'Headquarter' },
   { title: 'Third', description: 'Récapitulatif' },
   { title: 'Third', description: 'Récapitulatif' },
-  // { title: 'Third', description: 'Récapitulatif' },
 ];
 const SaasStepper: FC<StepperProps> = () => {
   const router = useRouter();
@@ -46,8 +41,6 @@ const SaasStepper: FC<StepperProps> = () => {
     index: Number(currentStep),
     count: steps.length,
   });
-
-  const { watch, setValue } = useFormContext();
 
   const handleGoToNext = () => {
     router.push(`/create?type=${companyType}&step=${activeStep + 1}`);
@@ -81,8 +74,8 @@ const SaasStepper: FC<StepperProps> = () => {
     }
   }
   return (
-    <div className='flex w-full  max-w-screen-xl flex-col items-center justify-center gap-5'>
-      <div className=' relative w-full sm:max-w-lg lg:max-w-3xl'>
+    <div className='flex w-full   max-w-screen-xl flex-col items-center justify-center gap-5'>
+      <div className=' w-full sm:max-w-lg lg:max-w-3xl'>
         <p className=' text-center text-lg font-medium leading-[31px] text-black'>
           Création de {companyType}
         </p>
@@ -106,26 +99,27 @@ const SaasStepper: FC<StepperProps> = () => {
         flex={1}
         gap={4}
         width={'max-content'}
-        showLastSeparator
       >
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            className='flex h-10 flex-col  justify-center gap-1 '
-          >
-            <StepSeparator
-              style={{
-                maxHeight: '4px',
-                minWidth: '30px',
-                borderRadius: '3px',
-                margin: '0px',
-              }}
-            />
-            <div className='hidden lg:block'>
-              <Step className='ml-3  flex flex-row items-center justify-center'></Step>
-            </div>
-          </div>
-        ))}
+        {steps.length > activeStep
+          ? steps.map((step, index) => (
+              <div
+                key={index}
+                className='flex h-10 flex-col  justify-center gap-1 '
+              >
+                <StepSeparator
+                  style={{
+                    maxHeight: '4px',
+                    minWidth: '30px',
+                    borderRadius: '3px',
+                    margin: '0px',
+                  }}
+                />
+                <div className='hidden lg:block'>
+                  <Step className='ml-3  flex flex-row items-center justify-center'></Step>
+                </div>
+              </div>
+            ))
+          : null}
       </ChakraStepper>
       <div className='flex w-full items-center justify-center px-3 '>
         {getStepContent(activeStep)}

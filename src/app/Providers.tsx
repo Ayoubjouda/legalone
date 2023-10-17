@@ -21,7 +21,7 @@ const Providers: FC<ProvidersProps> = ({ children, session }) => {
       <SessionProvider session={session}>
         <ErrorBoundary fallback={<div>Something went wrong</div>}>
           <HydrationZustand>
-            <NextUIProvider>
+            <NextUIProvider className='h-full'>
               <QueryClientProvider client={queryClient}>
                 <ChakraProvider>{children}</ChakraProvider>
               </QueryClientProvider>

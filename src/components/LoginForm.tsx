@@ -20,6 +20,7 @@ import {
 import { signIn } from 'next-auth/react';
 interface LoginFormProps {}
 import { toast } from 'sonner';
+import Link from 'next/link';
 const LoginForm = () => {
   const router = useRouter();
   const form = useForm<LoginSchemaType>({
@@ -123,12 +124,12 @@ const LoginForm = () => {
           >
             Mot de passe oublié ?
           </a>
-          <a
+          <Link
             className='text-sm font-semibold text-black text-opacity-70'
-            href='d'
+            href='signup'
           >
             Vous n'avez pas de compte ? S'inscrire
-          </a>
+          </Link>
           <Button
             type='submit'
             // disabled={isLoading}

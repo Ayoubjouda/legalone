@@ -23,6 +23,7 @@ import PackForm from '../Forms/PackForm';
 import ContactForm from '../Forms/ContactForm';
 import AutoEntreForm from '../Forms/AutoEntreForm';
 import { useRouter, useSearchParams } from 'next/navigation';
+import FinishFlow from '../Forms/FinishFlow';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
@@ -30,7 +31,6 @@ const steps = [
   { title: 'Third', description: 'PROJET' },
   { title: 'Third', description: 'CHOIX DU PLAN' },
   { title: 'Third', description: 'Headquarter' },
-  { title: 'Third', description: 'Récapitulatif' },
   { title: 'Third', description: 'Récapitulatif' },
 ];
 const AutoEntreStepper: FC<StepperProps> = () => {
@@ -71,9 +71,7 @@ const AutoEntreStepper: FC<StepperProps> = () => {
       case 5:
         return <ContactForm goToNext={handleGoToNext} />;
       case 6:
-        return <PackForm goToNext={handleGoToNext} />;
-      case 7:
-        return <CommandeForm />;
+        return <FinishFlow goToNext={handleGoToNext} />;
     }
   }
   return (
@@ -102,26 +100,27 @@ const AutoEntreStepper: FC<StepperProps> = () => {
         flex={1}
         gap={4}
         width={'max-content'}
-        showLastSeparator
       >
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            className='flex h-10 flex-col  justify-center gap-1 '
-          >
-            <StepSeparator
-              style={{
-                maxHeight: '4px',
-                minWidth: '30px',
-                borderRadius: '3px',
-                margin: '0px',
-              }}
-            />
-            <div className='hidden lg:block'>
-              <Step className='ml-3  flex flex-row items-center justify-center'></Step>
-            </div>
-          </div>
-        ))}
+        {steps.length > activeStep
+          ? steps.map((step, index) => (
+              <div
+                key={index}
+                className='flex h-10 flex-col  justify-center gap-1 '
+              >
+                <StepSeparator
+                  style={{
+                    maxHeight: '4px',
+                    minWidth: '30px',
+                    borderRadius: '3px',
+                    margin: '0px',
+                  }}
+                />
+                <div className='hidden lg:block'>
+                  <Step className='ml-3  flex flex-row items-center justify-center'></Step>
+                </div>
+              </div>
+            ))
+          : null}
       </ChakraStepper>
       <div className='flex w-full items-center justify-center px-3 '>
         {getStepContent(activeStep)}

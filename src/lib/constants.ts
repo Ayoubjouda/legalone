@@ -27,7 +27,7 @@ export const CREATE_COMPANY_DATA = [
   {
     id: 6,
     title: 'Créer mon auto-entreprise',
-    url: '/create?type=AUTOENTREPRENEUR',
+    url: '/create?type=AUTOENTREPRISE',
   },
   {
     id: 7,

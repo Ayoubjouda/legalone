@@ -20,12 +20,12 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
   const handleGoToNext = async () => {
     const isValid = await trigger([
       'companyName',
-      'associerNumber',
+      'associer',
       'shareCapital',
       'accountingExpert',
       'nonAssociateManager',
     ]);
-    console.log(isValid);
+
     if (isValid) {
       goToNext();
     }

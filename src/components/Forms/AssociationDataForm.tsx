@@ -1,4 +1,4 @@
-import { useFormContext } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import {
   FormControl,
   FormField,
@@ -19,6 +19,18 @@ const AssociationDataForm = ({ goToNext }: FormProps) => {
   return (
     <form className='w-full max-w-[650px]'>
       <div className=' flex flex-col gap-4'>
+        <Controller
+          name='managerType'
+          control={control}
+          defaultValue={1}
+          render={({ field }) => (
+            <input
+              className='hidden'
+              defaultValue={1}
+              {...field}
+            />
+          )}
+        />
         <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           information complementaire sur votre Association
         </p>
@@ -102,6 +114,7 @@ const AssociationDataForm = ({ goToNext }: FormProps) => {
               'companyName',
               'desktopComposition',
               'descriptionAssociation',
+              'managerType',
             ]);
             console.log(isValid);
             if (isValid) {

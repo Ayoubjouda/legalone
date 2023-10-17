@@ -21,17 +21,17 @@ const HeadquarterForm = ({ goToNext }: FormProps) => {
   } = useFormContext();
   const { isLoading, data } = useGetHeadQuarter();
 
-  const headquarter = getValues('headquarterId');
+  const headquarter = getValues('headquarter');
   const [selectedHQ, setSelectedHQ] = useState<number | null>(
     headquarter || null
   );
   const handleSetValue = (headquarterId: number) => {
-    setValue('headquarterId', headquarterId);
+    setValue('headquarter', headquarterId);
   };
   const handelSubmitValue = async (value: number) => {
     handleSetValue(value);
     setSelectedHQ(value);
-    const isValid = await trigger(['headquarterId']);
+    const isValid = await trigger(['headquarter']);
     if (isValid) {
       goToNext();
     }
@@ -47,7 +47,7 @@ const HeadquarterForm = ({ goToNext }: FormProps) => {
     <form className='flex flex-col gap-10'>
       <div className='hidden'>
         <Controller
-          name='headquarterId'
+          name='headquarter'
           control={control}
           defaultValue=''
           render={({ field }) => <input {...field} />}
@@ -60,7 +60,7 @@ const HeadquarterForm = ({ goToNext }: FormProps) => {
         </p>
         <ErrorMessage
           errors={errors}
-          name='headquarterId'
+          name='headquarter'
           render={({ message }) => <p>{message}</p>}
         />
       </div>

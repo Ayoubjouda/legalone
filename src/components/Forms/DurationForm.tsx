@@ -56,7 +56,7 @@ const DurationForm = ({ goToNext }: FormProps) => {
         </p>
         <ErrorMessage
           errors={errors}
-          name='creationDelay'
+          name='delay'
           render={({ message }) => <p>{message}</p>}
         />
       </div>

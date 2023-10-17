@@ -64,7 +64,7 @@ const SciDataForm = ({ goToNext }: FormProps) => {
             )}
           />
           <FormField
-            name='sciActivityField'
+            name='taxRegime'
             control={control}
             defaultValue={'one'}
             render={({ field }) => (
@@ -157,14 +157,7 @@ const SciDataForm = ({ goToNext }: FormProps) => {
           type='button'
           size={'lg'}
           onClick={async () => {
-            const isValid = await trigger([
-              'companyName',
-              'associerNumber',
-              'shareCapital',
-              'accountingExpert',
-              'nonAssociateManager',
-            ]);
-            console.log(isValid);
+            const isValid = await trigger(['taxRegime', 'sciActivityField']);
             if (isValid) {
               goToNext();
             }

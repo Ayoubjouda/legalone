@@ -24,7 +24,7 @@ export const ManagerForm = ({ goToNext }: FormProps) => {
   const values = getValues();
 
   const [selectedPresident, setselectedPresident] = useState<number | null>(
-    values?.managerTypeId || null
+    values?.managerType || null
   );
 
   const { isLoading: ManagerLoading, data: ManagerData } = useGetManagerType();
@@ -61,7 +61,7 @@ export const ManagerForm = ({ goToNext }: FormProps) => {
       <div className='flex w-full flex-col  gap-10'>
         <div className='hidden'>
           <Controller
-            name='managerTypeId'
+            name='managerType'
             control={control}
             defaultValue=''
             render={({ field }) => <input {...field} />}

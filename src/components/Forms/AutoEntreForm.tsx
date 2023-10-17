@@ -1,4 +1,4 @@
-import { useFormContext } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import {
   FormControl,
   FormField,
@@ -20,11 +20,25 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
   return (
     <form className='w-full max-w-[650px]'>
       <div className=' flex flex-col gap-4'>
+        <div className='hidden'>
+          <Controller
+            name='managerType'
+            control={control}
+            defaultValue={1}
+            render={({ field }) => (
+              <input
+                {...field}
+                defaultValue={1}
+              />
+            )}
+            rules={{ required: true }}
+          />
+        </div>
         <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           CRÉATION DE MICRO-ENTREPRISE
         </p>
         <FormField
-          name='activityId'
+          name='activity'
           control={control}
           defaultValue={1}
           render={({ field }) => (
@@ -89,7 +103,6 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
         <FormField
           name='exAutoEntrepreneur'
           control={control}
-          defaultValue={''}
           render={({ field: { onChange, value } }) => (
             <FormItem className='flex items-center gap-3 space-y-0 '>
               <FormLabel className='leading-[20px]'>
@@ -172,6 +185,7 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
           size={'lg'}
           onClick={async () => {
             const isValid = await trigger([
+              'activity',
               'adresse',
               'codePostal',
               'ville',

@@ -122,12 +122,12 @@ export const AutoEntreFormSchema = z.object({
   delay: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
-  exAutoEntrepreneur: z.boolean(),
-  artisan: z.boolean(),
-  headquarterId: z
+  exAutoEntrepreneur: z.coerce.boolean(),
+  artisan: z.coerce.boolean(),
+  headquarter: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
-  activityId: z
+  activity: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
   firstName: z
@@ -166,11 +166,9 @@ export const AutoEntreFormSchema = z.object({
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' }),
 
-  managerTypeId: z
+  managerType: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
-
-  pack: z.custom<Package>(),
 });
 export const AssociationFormSchema = z.object({
   delay: z
@@ -179,11 +177,10 @@ export const AssociationFormSchema = z.object({
   companyName: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
-  artisan: z.boolean(),
   headquarterId: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
-  activityId: z
+  activity: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
   firstName: z
@@ -234,7 +231,7 @@ export const AssociationFormSchema = z.object({
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' }),
 
-  managerTypeId: z
+  managerType: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
 
@@ -248,10 +245,10 @@ export const SciFormSchema = z.object({
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
   artisan: z.boolean(),
-  headquarterId: z
+  headquarter: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
-  activityId: z
+  activity: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
   firstName: z
@@ -301,11 +298,9 @@ export const SciFormSchema = z.object({
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' }),
 
-  managerTypeId: z
+  managerType: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
-
-  pack: z.custom<Package>(),
 });
 
 export const UpdateFormSchema = z.object({
@@ -412,24 +407,21 @@ export const DissolutionFormSchema = z.object({
   ),
 });
 export const DomiciliationFormSchema = z.object({
-  companyName: z
-    .string()
-    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
-  companyType: z
-    .number()
-    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
-  lastName: z
-    .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' })
-    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
-  sexManager: z
-    .string()
-    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
   firstName: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
     .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
-  domiciliationBase: z
+  lastName: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
+  phone: z.string().min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  email: z.string().email({ message: 'Doit être une adresse e-mail valide' }),
+  nomSociete: z
+    .string()
+    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
+
+  domiciliationAdress: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
     .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
@@ -437,13 +429,10 @@ export const DomiciliationFormSchema = z.object({
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
     .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
-  expedition: z
+  expeditionFrequency: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
     .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
-
-  phone: z.string().min(2, { message: 'Doit contenir au moins 2 caractères' }),
-  email: z.string().email({ message: 'Doit être une adresse e-mail valide' }),
 });
 
 export type AutoEntreSchemaType = z.infer<typeof AutoEntreFormSchema>;

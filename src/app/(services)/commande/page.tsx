@@ -7,6 +7,7 @@ import { FC, use } from 'react';
 import { useGetOrderById } from '@/hooks/useServices';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
+import { Spinner } from '@nextui-org/react';
 interface pageProps {}
 
 const Page: FC<pageProps> = () => {
@@ -27,7 +28,12 @@ const Page: FC<pageProps> = () => {
   };
 
   console.log(data);
-  if (isLoading || !data) return <div>Loading</div>;
+  if (isLoading || !data)
+    return (
+      <div className=' absolute inset-0 flex h-full flex-col items-center justify-center  '>
+        <Spinner color='warning' />
+      </div>
+    );
   return (
     <div className='flex w-full items-start justify-center gap-3'>
       <div className='flex w-full flex-col items-center justify-between gap-4 md:flex-row md:items-start '>

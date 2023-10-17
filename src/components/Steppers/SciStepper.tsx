@@ -24,6 +24,7 @@ import PackForm from '../Forms/PackForm';
 import ContactForm from '../Forms/ContactForm';
 import { useRouter, useSearchParams } from 'next/navigation';
 import SciDataForm from '../Forms/SciDataForm';
+import FinishFlow from '../Forms/FinishFlow';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
@@ -75,9 +76,7 @@ const SciStepper: FC<StepperProps> = () => {
       case 6:
         return <HeadquarterForm goToNext={handleGoToNext} />;
       case 7:
-        return <PackForm goToNext={handleGoToNext} />;
-      case 8:
-        return <CommandeForm />;
+        return <FinishFlow goToNext={handleGoToNext} />;
     }
   }
   return (
