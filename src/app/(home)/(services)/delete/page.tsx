@@ -1,7 +1,7 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  saasFormSchema,
+  EntrepriseFormSchema,
   AutoEntreFormSchema,
   AssociationFormSchema,
   SciFormSchema,

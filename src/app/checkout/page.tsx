@@ -27,12 +27,12 @@ import Image from 'next/image';
 interface pageProps {}
 
 export default function Page() {
-  const form = useForm();
-  const { Order } = useAppStore();
-  if (!Order) return notFound();
+  // const form = useForm();
+  // const { Order } = useAppStore();
+  // if (!Order) return notFound();
   return (
     <div className='flex justify-center'>
-      <div className='mx-3 my-4 flex w-full max-w-screen-lg flex-col gap-4'>
+      {/* <div className='mx-3 my-4 flex w-full max-w-screen-lg flex-col gap-4'>
         <Accordion
           type='multiple'
           className='cursor-pointer   rounded-md  border bg-white text-lg tracking-tight  text-black '
@@ -145,7 +145,7 @@ export default function Page() {
                   </div>
                 </div>
               </div> */}
-                    {/* <div className="flex w-full justify-between items-start ">
+      {/* <div className="flex w-full justify-between items-start ">
                 <div className="self-stretch flex-col justify-start items-start inline-flex">
                   <div className="text-blue-950 text-sm font-normal font-['Helvetica'] leading-none">
                     Frais de greffe
@@ -157,7 +157,7 @@ export default function Page() {
                   </div>
                 </div>
               </div> */}
-                  </div>
+      {/* </div>
                 </div>
               </div>
             </AccordionContent>
@@ -270,8 +270,7 @@ export default function Page() {
               <Checkout />
             </AccordionContent>
           </AccordionItem>
-        </Accordion>
-      </div>
+        </Accordion> */}
     </div>
   );
 }

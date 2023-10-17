@@ -79,7 +79,11 @@ const PersonalForm = ({ goToNext }: FormProps) => {
             type='button'
             size={'lg'}
             onClick={async () => {
-              const isValid = await trigger(['legalState', 'Rcs']);
+              const isValid = await trigger([
+                'legalState',
+                'Rcs',
+                'raisonSocial',
+              ]);
               if (isValid) {
                 goToNext();
               }

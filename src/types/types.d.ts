@@ -18,6 +18,7 @@ interface Package {
   type: string;
   description: string;
   price: number;
+  packageStripeId: string;
   elements: packElement[];
   extra: packElement[] | null;
   packageDetails: {

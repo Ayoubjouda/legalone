@@ -55,7 +55,16 @@ export const loginSchemaValidator = z.object({
   password: z.string().min(3, 'Must be at least 3 characters in length'),
 });
 
-export const saasFormSchema = z.object({
+export const EntrepriseFormSchema = z.object({
+  companyType: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  delay: z
+    .string()
+    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
+  activity: z
+    .number()
+    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
   firstName: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
@@ -66,11 +75,6 @@ export const saasFormSchema = z.object({
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
     .max(15, { message: 'Doit contenir au maximum 15 caractères' })
     .optional(),
-  email: z.string().email({ message: 'Doit être une adresse e-mail valide' }),
-  phone: z
-    .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' })
-    .optional(),
   sexManager: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' })
@@ -79,30 +83,24 @@ export const saasFormSchema = z.object({
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
     .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
-  companyType: z
+  email: z.string().email({ message: 'Doit être une adresse e-mail valide' }),
+  phone: z
     .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .optional(),
   SocialNumber: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
     .optional(),
 
-  creationDelay: z
-    .string()
-    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
-  activity: z
-    .number()
-    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
-  accountingExpert: z.boolean(),
-  managerTypeId: z
+  accountingExpert: z.coerce.boolean(),
+  managerType: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
   associer: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' }),
-  nonAssociateManager: z
-    .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  nonAssociateManager: z.coerce.boolean(),
   legalState: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
@@ -118,8 +116,6 @@ export const saasFormSchema = z.object({
     .string()
     .min(1, { message: 'Vous devez sélectionner au moins une option' })
     .optional(),
-
-  pack: z.custom<Package>(),
 });
 
 export const AutoEntreFormSchema = z.object({
@@ -463,7 +459,7 @@ export type SciSchemaType = z.infer<typeof SciFormSchema>;
 
 export type AssociationSchemaType = z.infer<typeof AssociationFormSchema>;
 
-export type SaasSchemaType = z.infer<typeof saasFormSchema>;
+export type EntrepriseSchemaType = z.infer<typeof EntrepriseFormSchema>;
 
 export type RegisterSchemaType = z.infer<typeof RegisterSchema>;
 

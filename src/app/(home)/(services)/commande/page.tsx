@@ -1,52 +1,33 @@
 'use client';
-import React from 'react';
-import { useFormContext } from 'react-hook-form';
-
-import { Input } from '../ui/input';
-import { Button } from '../ui/button';
-
-import useAppStore from '@/zustand/store';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
-import { MoveRight } from 'lucide-react';
-import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import api from '@/lib/axiosConfig';
-import { OrderType } from '@/types/order';
+import { MoveRight } from 'lucide-react';
+import { FC, use } from 'react';
+import { useGetOrderById } from '@/hooks/useServices';
+import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
+interface pageProps {}
 
-const CommandeForm = () => {
+const Page: FC<pageProps> = () => {
   const searchParams = useSearchParams();
-  const companyType: CompanyEnum =
-    (searchParams.get('type') as CompanyEnum) || ('SAS' as CompanyEnum);
-  const { getValues } = useFormContext();
-  const pathname = usePathname();
-  const router = useRouter();
-  const { setOrder } = useAppStore();
-  const values = getValues();
-  const selectedPack: Package = values?.pack;
+  const orderID = searchParams.get('order') ?? 0;
+  const { data, isLoading } = useGetOrderById(orderID as number);
 
-  const handleSubmitOrder = async () => {
-    // const accessToken: string | null = localStorage.getItem('accessToken');
-    // if (!accessToken) {
-    //   await localStorage.setItem(
-    //     'intendedDestination',
-    //     pathname + window.location.search
-    //   );
-    //   router.push('/login');
-    // } else {
-    //   api
-    //     .post('/order/company-creation', { description: 'test' })
-    //     .then((res) => {
-    //       console.log(res);
-    //       const Order: OrderType = {
-    //         orderId: Number(res.data.id),
-    //         ...values,
-    //       } as OrderType;
-    //       setOrder(Order);
-    //       router.push(`/checkout`);
-    //     });
-    // }
+  const handlePayment = async () => {
+    api
+      .post('/payment/handlepayment', {
+        currency: 'usd',
+        description: 'test payment',
+        order: orderID as number,
+      })
+      .then((res) => {
+        window.location.assign(res.data.payment.stripeIntent.sessionUrl);
+      });
   };
 
-  if (!values?.pack) return null;
+  console.log(data);
+  if (isLoading || !data) return <div>Loading</div>;
   return (
     <div className='flex w-full items-start justify-center gap-3'>
       <div className='flex w-full flex-col items-center justify-between gap-4 md:flex-row md:items-start '>
@@ -62,7 +43,7 @@ const CommandeForm = () => {
             <div className='inline-flex items-center justify-start gap-2'>
               <div className='inline-flex flex-col items-start justify-start pr-[0.91px]'>
                 <div className="font-['IBM Plex Sans'] text-lg font-semibold leading-normal text-black">
-                  Création de {companyType}
+                  {/* Création de {companyType} */}
                 </div>
               </div>
               <div className='inline-flex flex-col items-start justify-start'>
@@ -72,12 +53,12 @@ const CommandeForm = () => {
             <div className='flex w-full flex-col items-start justify-start gap-[3px]'>
               <div className='flex w-full items-center justify-between'>
                 <div className="font-['Helvetica'] text-base font-bold text-blue-950">
-                  Pack {selectedPack.type}
+                  Pack {data.package.type}
                 </div>
                 <div className='inline-flex flex-col items-start justify-start'>
                   <div className='  flex flex-col items-end justify-start'>
                     <div className="text-right font-['Helvetica'] text-base font-bold text-blue-950">
-                      {selectedPack.price}$
+                      {data.package.price}$
                     </div>
                   </div>
                 </div>
@@ -85,7 +66,7 @@ const CommandeForm = () => {
               <div className='inline-flex w-full items-start justify-between pl-7'>
                 <div className='inline-flex w-full flex-col items-start justify-between'>
                   <div className='flex flex-col items-start justify-start gap-3'>
-                    {selectedPack.packageDetails?.map((elem, index) => (
+                    {data.package.packageDetails?.map((elem, index) => (
                       <div
                         key={index}
                         className='inline-flex justify-start gap-1 pr-[54.46px]'
@@ -128,7 +109,7 @@ const CommandeForm = () => {
                 </div>
                 <div className='inline-flex  flex-col items-start justify-start'>
                   <div className="text-right font-['Helvetica'] text-base font-bold text-blue-950">
-                    {selectedPack.administrativeFees.price}$
+                    {data.package.administrativeFees.price}$
                   </div>
                 </div>
               </div>
@@ -151,7 +132,7 @@ const CommandeForm = () => {
                 </div>
                 <div className=' inline-flex flex-col items-start justify-start'>
                   <div className="font-['Helvetica'] text-base font-normal text-blue-950">
-                    {selectedPack.price + selectedPack.administrativeFees.price}{' '}
+                    {data.package.price + data.package.administrativeFees.price}{' '}
                     €
                   </div>
                 </div>
@@ -165,7 +146,7 @@ const CommandeForm = () => {
                 </div>
                 <div className='inline-flex flex-col items-start justify-start'>
                   <div className="font-['Helvetica'] text-base font-normal text-blue-950">
-                    {selectedPack.price * 0.2}$
+                    {data.package.price * 0.2}$
                   </div>
                 </div>
               </div>
@@ -177,7 +158,7 @@ const CommandeForm = () => {
                 </div>
                 <div className=' inline-flex flex-col items-start justify-start'>
                   <div className="font-['Helvetica'] text-base font-normal text-blue-950">
-                    {selectedPack.price * 1.2}$
+                    {data.package.price * 1.2}$
                   </div>
                 </div>
               </div>
@@ -195,7 +176,7 @@ const CommandeForm = () => {
             </div>
             <Button
               className='  inline-flex w-full cursor-pointer items-center justify-center gap-2 self-stretch rounded-md bg-orange-600 text-base shadow  hover:bg-darkRedish'
-              onClick={handleSubmitOrder}
+              onClick={handlePayment}
               type='button'
             >
               Valider
@@ -213,4 +194,4 @@ const CommandeForm = () => {
   );
 };
 
-export default CommandeForm;
+export default Page;

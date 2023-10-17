@@ -16,6 +16,21 @@ interface FormProps {
 }
 const CompanyDataForm = ({ goToNext }: FormProps) => {
   const { control, trigger } = useFormContext();
+
+  const handleGoToNext = async () => {
+    const isValid = await trigger([
+      'companyName',
+      'associerNumber',
+      'shareCapital',
+      'accountingExpert',
+      'nonAssociateManager',
+    ]);
+    console.log(isValid);
+    if (isValid) {
+      goToNext();
+    }
+  };
+
   return (
     <form className='w-full max-w-[650px]'>
       <div className=' flex flex-col gap-4'>
@@ -58,7 +73,7 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
         <FormField
           name='associer'
           control={control}
-          defaultValue={'one'}
+          defaultValue={''}
           render={({ field }) => (
             <FormItem className='flex items-center gap-3 space-y-0 '>
               <FormLabel className='leading-[20px]'>
@@ -92,7 +107,7 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
         <FormField
           name='accountingExpert'
           control={control}
-          defaultValue={'one'}
+          defaultValue={''}
           render={({ field: { onChange, value } }) => (
             <FormItem className='flex items-center gap-3 space-y-0 '>
               <FormLabel className='leading-[20px]'>
@@ -133,7 +148,7 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
         <FormField
           name='nonAssociateManager'
           control={control}
-          defaultValue={'False'}
+          defaultValue={''}
           render={({ field: { onChange, onBlur, value, ref } }) => (
             <FormItem className='flex items-center gap-3 space-y-0 '>
               <FormLabel className='leading-[20px]'>
@@ -175,21 +190,8 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
           className='flex items-center gap-2 self-end text-base font-semibold  hover:bg-darkRedish'
           type='button'
           size={'lg'}
-          onClick={async () => {
-            const isValid = await trigger([
-              'companyName',
-              'associerNumber',
-              'shareCapital',
-              'accountingExpert',
-              'nonAssociateManager',
-            ]);
-            console.log(isValid);
-            if (isValid) {
-              goToNext();
-            }
-          }}
+          onClick={handleGoToNext}
         >
-          <span></span>
           Continuer
           <MoveRight />
         </Button>

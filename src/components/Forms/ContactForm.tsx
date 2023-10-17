@@ -61,7 +61,6 @@ const ContactForm = ({ goToNext }: FormProps) => {
           size={'lg'}
           onClick={async () => {
             const isValid = await trigger(['phone', 'email']);
-            console.log(isValid);
             if (isValid) {
               goToNext();
             }

@@ -2,7 +2,7 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  saasFormSchema,
+  EntrepriseFormSchema,
   AutoEntreFormSchema,
   AssociationFormSchema,
   SciFormSchema,
@@ -25,20 +25,20 @@ import DomiciliationStepper from '@/components/Steppers/DomiciliationStepper';
 
 type Companys = {
   [key: string]:
-    | typeof saasFormSchema
+    | typeof EntrepriseFormSchema
     | typeof AutoEntreFormSchema
     | typeof AssociationFormSchema
     | typeof DomiciliationFormSchema
     | typeof SciFormSchema;
 };
 const companys: Companys = {
-  SAS: saasFormSchema,
+  SAS: EntrepriseFormSchema,
   AUTOENTREPRENEUR: AutoEntreFormSchema,
   ASSOCIATION: AssociationFormSchema,
   SCI: SciFormSchema,
-  SARL: saasFormSchema,
-  EURL: saasFormSchema,
-  SASU: saasFormSchema,
+  SARL: EntrepriseFormSchema,
+  EURL: EntrepriseFormSchema,
+  SASU: EntrepriseFormSchema,
   DOMICILIATION: DomiciliationFormSchema,
 };
 type Stepper = {
@@ -59,7 +59,7 @@ export default function CreateSaas() {
   const searchParams = useSearchParams();
   const companyType =
     (searchParams.get('type') as CompanyEnum) || ('SAS' as CompanyEnum);
-  const FormSchema = companys[companyType] ?? saasFormSchema;
+  const FormSchema = companys[companyType] ?? EntrepriseFormSchema;
   const SelectedStepper = steppers[companyType] ?? CompanyTypeForm;
 
   const methods = useForm<ConditionalSchemaType<typeof companyType>>({

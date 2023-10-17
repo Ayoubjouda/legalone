@@ -3,6 +3,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import IconBox from '../IconBox';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 interface FormProps {
   goToNext: () => void;
 }
@@ -14,11 +15,14 @@ const DurationForm = ({ goToNext }: FormProps) => {
     formState: { errors },
     getValues,
   } = useFormContext();
-  const creationDelay = getValues('creationDelay');
+  const creationDelay = getValues('delay');
   const [selected, setselected] = useState<string>(creationDelay);
   const handleSetValue = (newValue: string) => {
-    setValue('creationDelay', newValue);
+    setValue('delay', newValue);
   };
+  const searchParams = useSearchParams();
+  const companyType =
+    (searchParams.get('type') as CompanyEnum) || ('SAS' as CompanyEnum);
   const handelSubmitValue = (value: string) => {
     handleSetValue(value);
     setselected(value);
@@ -29,7 +33,16 @@ const DurationForm = ({ goToNext }: FormProps) => {
     <form className='flex flex-col gap-10'>
       <div className='hidden'>
         <Controller
-          name='creationDelay'
+          name='companyType'
+          control={control}
+          defaultValue={companyType}
+          render={({ field }) => <input {...field} />}
+          rules={{ required: true }}
+        />
+      </div>
+      <div className='hidden'>
+        <Controller
+          name='delay'
           control={control}
           defaultValue=''
           render={({ field }) => <input {...field} />}

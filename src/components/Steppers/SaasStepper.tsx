@@ -23,6 +23,7 @@ import useAppStore from '@/zustand/store';
 import PackForm from '../Forms/PackForm';
 import ContactForm from '../Forms/ContactForm';
 import { useRouter, useSearchParams } from 'next/navigation';
+import FinishFlow from '../Forms/FinishFlow';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
@@ -31,7 +32,7 @@ const steps = [
   { title: 'Third', description: 'CHOIX DU PLAN' },
   { title: 'Third', description: 'Headquarter' },
   { title: 'Third', description: 'Récapitulatif' },
-  // { title: 'Third', description: 'Récapitulatif' },
+  { title: 'Third', description: 'Récapitulatif' },
   // { title: 'Third', description: 'Récapitulatif' },
 ];
 const SaasStepper: FC<StepperProps> = () => {
@@ -73,8 +74,8 @@ const SaasStepper: FC<StepperProps> = () => {
         return <ContactForm goToNext={handleGoToNext} />;
       case 6:
         return <HeadquarterForm goToNext={handleGoToNext} />;
-      // case 7:
-      //   return <PackForm goToNext={handleGoToNext} />;
+      case 7:
+        return <FinishFlow goToNext={handleGoToNext} />;
       // case 8:
       //   return <CommandeForm />;
     }

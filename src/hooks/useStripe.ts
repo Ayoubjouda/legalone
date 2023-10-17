@@ -3,7 +3,7 @@ import api from '@/lib/axiosConfig';
 import useAppStore from '@/zustand/store';
 import { isAxiosError } from 'axios';
 import { useFormContext } from 'react-hook-form';
-import { SaasSchemaType } from '@/lib/validators/formValidators';
+import { EntrepriseSchemaType } from '@/lib/validators/formValidators';
 import { Order, OrderType } from '@/types/order';
 import { toast } from 'sonner';
 

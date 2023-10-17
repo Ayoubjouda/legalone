@@ -26,12 +26,12 @@ const ActivityForm = ({ goToNext }: FormProps) => {
   const { isLoading, data: ActivityData } = useGetActivity();
 
   const handleSetValue = (newValue: number) => {
-    setValue('activityField', newValue);
+    setValue('activity', newValue);
   };
   const handelSubmitValue = async (value: number) => {
     handleSetValue(value);
     setselectedDomain(value);
-    const isValid = await trigger(['activityField']);
+    const isValid = await trigger(['activity']);
     if (isValid) {
       goToNext();
     }
@@ -48,7 +48,7 @@ const ActivityForm = ({ goToNext }: FormProps) => {
       <div className='flex w-full flex-col items-center justify-center gap-4'>
         <div className='hidden'>
           <Controller
-            name='activityField'
+            name='activity'
             control={control}
             defaultValue=''
             render={({ field }) => <input {...field} />}

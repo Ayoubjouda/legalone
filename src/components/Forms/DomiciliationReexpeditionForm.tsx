@@ -17,6 +17,7 @@ const Package: Package = {
   name: 'Standard',
   type: 'Standard',
   description: 'This is a sample package description.',
+  packageStripeId: '322',
   price: 30,
   elements: [
     {
@@ -79,26 +80,26 @@ const DomiciliationReexpeditionForm = ({ goToNext }: FormProps) => {
   };
   const handleSubmitOrder = async () => {
     const accessToken: string | null = localStorage.getItem('accessToken');
-    if (!accessToken) {
-      await localStorage.setItem(
-        'intendedDestination',
-        pathname + window.location.search
-      );
-      router.push('/login');
-    } else {
-      api
-        .post('/order/company-creation', { description: 'test' })
-        .then((res) => {
-          console.log(res);
-          setOrder({
-            orderId: res.data.orderId,
-            companyType: 'Domiciliation',
-            pack: Package,
-          } as OrderType);
+    // if (!accessToken) {
+    //   await localStorage.setItem(
+    //     'intendedDestination',
+    //     pathname + window.location.search
+    //   );
+    //   router.push('/login');
+    // } else {
+    //   api
+    //     .post('/order/company-creation', { description: 'test' })
+    //     .then((res) => {
+    //       console.log(res);
+    //       setOrder({
+    //         orderId: res.data.orderId,
+    //         companyType: 'Domiciliation',
+    //         pack: Package,
+    //       } as OrderType);
 
-          router.push(`/checkout`);
-        });
-    }
+    //       router.push(`/checkout`);
+    //     });
+    // }
   };
   const handelSubmitValue = (value: string) => {
     handleSetValue(value);

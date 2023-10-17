@@ -22,6 +22,7 @@ const packs: Package[] = [
     type: 'Standard',
     description: 'This is a sample package description.',
     price: 235,
+    packageStripeId: 'eee',
     elements: [
       {
         text: 'Element 1',
@@ -70,6 +71,8 @@ const packs: Package[] = [
     type: 'Express',
     description: 'This is a sample package description.',
     price: 535,
+    packageStripeId: 'eee',
+
     elements: [
       {
         text: 'Element 1',
@@ -350,7 +353,7 @@ const invoices = [
 ];
 const page: FC<pageProps> = () => {
   return (
-    <div className='min-h-sceen flex flex-col items-center justify-center gap-32 bg-white'>
+    <div className='min-h-sceen flex w-full flex-col items-center justify-center gap-32 bg-white'>
       <section className='flex max-w-[1296px]  flex-col gap-12'>
         <div className='mt-10 inline-flex  max-w-[1296px]  flex-col'>
           <div className='flex  flex-col items-center justify-start gap-[30px] self-stretch'>

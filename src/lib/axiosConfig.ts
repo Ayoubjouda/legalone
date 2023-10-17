@@ -6,11 +6,11 @@ const api = axios.create({
 
 const authInterceptor = async (config: InternalAxiosRequestConfig) => {
   const session = await getSession();
+  console.log(session);
   if (session) {
-    config.headers.common = {
-      Authorization: `Bearer ${session.token}`,
-    };
+    config.headers['Authorization'] = `Bearer ${session.token}`;
   }
+  console.log(config);
   return config;
 };
 

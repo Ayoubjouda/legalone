@@ -18,6 +18,7 @@ export const ManagerForm = ({ goToNext }: FormProps) => {
     control,
     trigger,
     getValues,
+    resetField,
     formState: { errors },
   } = useFormContext();
   const values = getValues();
@@ -29,13 +30,22 @@ export const ManagerForm = ({ goToNext }: FormProps) => {
   const { isLoading: ManagerLoading, data: ManagerData } = useGetManagerType();
 
   const handleSetValue = (newValue: number) => {
-    setValue('managerTypeId', newValue);
+    setValue('managerType', newValue);
   };
   const handelSubmitValue = async (value: number) => {
     handleSetValue(value);
     setselectedPresident(value);
-    const isValid = await trigger(['managerTypeId']);
+    const isValid = await trigger(['managerType']);
     if (isValid) {
+      if (value === 2) {
+        resetField('raisonSocial');
+        resetField('legalState');
+        resetField('Rcs');
+      } else if (value === 1) {
+        resetField('firstName');
+        resetField('lastName');
+        resetField('sexManager');
+      }
       goToNext();
     }
   };
