@@ -4,7 +4,7 @@ interface SponsorsSectionProps {}
 
 const SponsorsSection: FC<SponsorsSectionProps> = () => {
   return (
-    <section className='w-full flex-col items-center justify-center bg-white px-4 md:px-8 lg:px-32 '>
+    <section className='w-full max-w-screen-xl flex-col items-center justify-center bg-white px-4 md:px-8 lg:px-32 '>
       <div className=' flex flex-col items-center justify-center gap-12'>
         <div className="font-['Be Vietnam Pro'] text-xl font-normal leading-[27px] text-slate-500">
           Already chosen by the world leaders

@@ -109,7 +109,7 @@ export const EntrepriseFormSchema = z.object({
   shareCapital: z.coerce
     .number()
     .min(2, { message: 'Doit contenir au moins 2 caractères' }),
-  headquarterId: z
+  headquarter: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
   Rcs: z
@@ -177,12 +177,13 @@ export const AssociationFormSchema = z.object({
   companyName: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
-  headquarterId: z
+  headquarter: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
   activity: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
+
   firstName: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
@@ -234,8 +235,6 @@ export const AssociationFormSchema = z.object({
   managerType: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
-
-  pack: z.custom<Package>(),
 });
 export const SciFormSchema = z.object({
   delay: z
@@ -244,13 +243,16 @@ export const SciFormSchema = z.object({
   companyName: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
-  artisan: z.boolean(),
+  nonAssociateManager: z.coerce.boolean().default(true),
+  accountingExpert: z.coerce.boolean().default(true), // to Remove Later
+
+  shareCapital: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
   headquarter: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
-  activity: z
-    .number()
-    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
+
   firstName: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
@@ -292,9 +294,6 @@ export const SciFormSchema = z.object({
     .optional(),
 
   companyType: z
-    .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
-  descriptionAssociation: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' }),
 

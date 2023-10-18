@@ -6,4 +6,5 @@ type FormalityResponse = {
     id: number;
   };
   HttpStatus: number;
+  type: string;
 };

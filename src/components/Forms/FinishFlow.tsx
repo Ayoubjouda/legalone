@@ -23,18 +23,19 @@ const FinishFlow = ({ goToNext }: FormProps) => {
   const { FormalityMutation, isLoading } = useSubmitFormality();
 
   useEffect(() => {
-    // Check if the button reference is not null
-
     if (buttonRef.current) {
       // Trigger a click on the button
       buttonRef.current.click();
     }
   }, []);
 
-  if (Object.keys(errors).length > 0)
+  if (Object.keys(errors).length > 0) {
     toast.error(
       `Il y a des erreurs dans le formulaire dans : ${Object.keys(errors)}`
     );
+    // router.push('/');
+  }
+
   const onSubmit = async (data: Formality) => {
     if (status === 'unauthenticated') {
       console.log('log');

@@ -20,6 +20,7 @@ import { ChevronLeft } from 'lucide-react';
 import ContactForm from '../Forms/ContactForm';
 import { useRouter, useSearchParams } from 'next/navigation';
 import FinishFlow from '../Forms/FinishFlow';
+import { useFormContext } from 'react-hook-form';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },

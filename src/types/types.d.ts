@@ -64,3 +64,21 @@ type CompanyEnum =
   | 'ASSOCIATION'
   | 'SASU'
   | 'DOMICILIATION';
+
+interface handlePaymentResponse {
+  payment: {
+    stripeIntent: {
+      sessionUrl: string;
+      sessionId: string;
+    };
+    savedPayment: {
+      currency: string;
+      description: string;
+      order: number;
+      packageStripeId: string;
+      id: number;
+      createdAt: string;
+      updatedAt: string;
+    };
+  };
+}

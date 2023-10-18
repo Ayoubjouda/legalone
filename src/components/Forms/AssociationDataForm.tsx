@@ -15,14 +15,14 @@ interface FormProps {
   goToNext: () => void;
 }
 const AssociationDataForm = ({ goToNext }: FormProps) => {
-  const { control, trigger } = useFormContext();
+  const { control, trigger, setValue } = useFormContext();
   return (
     <form className='w-full max-w-[650px]'>
       <div className=' flex flex-col gap-4'>
         <Controller
           name='managerType'
           control={control}
-          defaultValue={1}
+          defaultValue={1 as number}
           render={({ field }) => (
             <input
               className='hidden'
@@ -110,6 +110,7 @@ const AssociationDataForm = ({ goToNext }: FormProps) => {
           type='button'
           size={'lg'}
           onClick={async () => {
+            setValue('managerType', 1);
             const isValid = await trigger([
               'companyName',
               'desktopComposition',

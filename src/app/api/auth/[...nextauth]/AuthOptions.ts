@@ -1,5 +1,18 @@
 import { NextAuthOptions } from 'next-auth';
+import { JWT } from 'next-auth/jwt';
 import CredentialsProvider from 'next-auth/providers/credentials';
+
+async function refreshToken(token: JWT): Promise<JWT> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}auth/refresh`, {
+    method: 'POST',
+  });
+  const response = await res.json();
+  return {
+    ...token,
+    response,
+  };
+}
+
 export const authOption: NextAuthOptions = {
   providers: [
     CredentialsProvider({

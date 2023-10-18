@@ -32,7 +32,6 @@ const PersonalForm = ({ goToNext }: FormProps) => {
           <FormField
             name='raisonSocial'
             control={control}
-            defaultValue={''}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Raison social</FormLabel>
@@ -46,7 +45,6 @@ const PersonalForm = ({ goToNext }: FormProps) => {
           <FormField
             name='legalState'
             control={control}
-            defaultValue={''}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Forme juridique de la Société</FormLabel>
@@ -61,7 +59,6 @@ const PersonalForm = ({ goToNext }: FormProps) => {
           <FormField
             name='Rcs'
             control={control}
-            defaultValue={''}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Numéro RCS(SIREN)</FormLabel>
@@ -110,7 +107,6 @@ const PersonalForm = ({ goToNext }: FormProps) => {
           <FormField
             name='firstName'
             control={control}
-            defaultValue={''}
             render={({ field }) => (
               <FormItem className='w-1/2'>
                 <FormLabel>Nom</FormLabel>
@@ -124,7 +120,6 @@ const PersonalForm = ({ goToNext }: FormProps) => {
           <FormField
             name='lastName'
             control={control}
-            defaultValue={''}
             render={({ field }) => (
               <FormItem className='w-1/2'>
                 <FormLabel>Prénom</FormLabel>
@@ -141,7 +136,6 @@ const PersonalForm = ({ goToNext }: FormProps) => {
         <FormField
           name='sexManager'
           control={control}
-          defaultValue={''}
           render={({ field }) => (
             <FormItem className='flex items-center gap-3 space-y-0 '>
               <FormLabel className='leading-[20px]'>

@@ -20,7 +20,7 @@ const ActivityForm = ({ goToNext }: FormProps) => {
   } = useFormContext();
   const values = getValues();
   const [selectedDomain, setselectedDomain] = useState<number | null>(
-    values?.activityField || null
+    values?.activity || null
   );
 
   const { isLoading, data: ActivityData } = useGetActivity();

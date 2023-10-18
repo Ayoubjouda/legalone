@@ -34,7 +34,6 @@ const steps = [
   { title: 'Third', description: 'Headquarter' },
   { title: 'Third', description: 'Récapitulatif' },
   { title: 'Third', description: 'Récapitulatif' },
-  { title: 'Third', description: 'Récapitulatif' },
 ];
 const SciStepper: FC<StepperProps> = () => {
   const router = useRouter();
@@ -105,7 +104,6 @@ const SciStepper: FC<StepperProps> = () => {
         flex={1}
         gap={4}
         width={'max-content'}
-        showLastSeparator
       >
         {steps.map((step, index) => (
           <div

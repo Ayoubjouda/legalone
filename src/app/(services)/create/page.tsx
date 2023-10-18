@@ -65,6 +65,7 @@ export default function CreateSaas() {
   const methods = useForm<ConditionalSchemaType<typeof companyType>>({
     resolver: zodResolver(FormSchema),
     mode: 'onBlur',
+    defaultValues: {},
   });
   useFormPersist(companyType, {
     ...methods,

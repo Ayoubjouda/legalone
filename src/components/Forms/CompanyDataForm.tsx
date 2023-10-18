@@ -55,7 +55,6 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
         <FormField
           name='shareCapital'
           control={control}
-          defaultValue={''}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Capital social</FormLabel>
@@ -107,7 +106,6 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
         <FormField
           name='accountingExpert'
           control={control}
-          defaultValue={''}
           render={({ field: { onChange, value } }) => (
             <FormItem className='flex items-center gap-3 space-y-0 '>
               <FormLabel className='leading-[20px]'>
@@ -148,7 +146,6 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
         <FormField
           name='nonAssociateManager'
           control={control}
-          defaultValue={''}
           render={({ field: { onChange, onBlur, value, ref } }) => (
             <FormItem className='flex items-center gap-3 space-y-0 '>
               <FormLabel className='leading-[20px]'>

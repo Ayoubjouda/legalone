@@ -27,7 +27,6 @@ const Page: FC<pageProps> = () => {
       });
   };
 
-  console.log(data);
   if (isLoading || !data)
     return (
       <div className=' absolute inset-0 flex h-full flex-col items-center justify-center  '>
@@ -138,8 +137,7 @@ const Page: FC<pageProps> = () => {
                 </div>
                 <div className=' inline-flex flex-col items-start justify-start'>
                   <div className="font-['Helvetica'] text-base font-normal text-blue-950">
-                    {data.package.price + data.package.administrativeFees.price}{' '}
-                    €
+                    {data.package.price} €
                   </div>
                 </div>
               </div>
@@ -152,7 +150,7 @@ const Page: FC<pageProps> = () => {
                 </div>
                 <div className='inline-flex flex-col items-start justify-start'>
                   <div className="font-['Helvetica'] text-base font-normal text-blue-950">
-                    {data.package.price * 0.2}$
+                    {(data.package.price * 0.2).toFixed(2)}$
                   </div>
                 </div>
               </div>
@@ -164,7 +162,7 @@ const Page: FC<pageProps> = () => {
                 </div>
                 <div className=' inline-flex flex-col items-start justify-start'>
                   <div className="font-['Helvetica'] text-base font-normal text-blue-950">
-                    {data.package.price * 1.2}$
+                    {(data.package.price * 1.2).toFixed(2)}$
                   </div>
                 </div>
               </div>
