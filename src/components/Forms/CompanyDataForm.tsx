@@ -20,7 +20,7 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
   const handleGoToNext = async () => {
     const isValid = await trigger([
       'companyName',
-      'associer',
+      'assosier',
       'shareCapital',
       'accountingExpert',
       'nonAssociateManager',
@@ -70,9 +70,8 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
           )}
         />
         <FormField
-          name='associer'
+          name='assosier'
           control={control}
-          defaultValue={''}
           render={({ field }) => (
             <FormItem className='flex items-center gap-3 space-y-0 '>
               <FormLabel className='leading-[20px]'>
@@ -121,7 +120,6 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
                       onChange(false);
                     }
                   }}
-                  defaultValue={value === true ? 'True' : 'False'}
                   className='flex'
                 >
                   <FormItem className='flex items-center space-x-3 space-y-0'>
@@ -160,7 +158,6 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
                       onChange(false);
                     }
                   }}
-                  defaultValue={value === true ? 'True' : 'False'}
                   className='flex'
                 >
                   <FormItem className='flex items-center space-x-3 space-y-0'>

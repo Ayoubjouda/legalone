@@ -196,28 +196,23 @@ export const AssociationFormSchema = z.object({
     .optional(),
   sexManager: z
     .string()
-    .min(1, { message: 'Vous devez sélectionner au moins une option' })
-    .optional(),
+    .min(1, { message: 'Vous devez sélectionner au moins une option' }),
   tresorierFirstName: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
-    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
-    .optional(),
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
   tresorierLastName: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
-    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
-    .optional(),
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
   tresorierSex: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
-    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
-    .optional(),
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
   desktopComposition: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
-    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
-    .optional(),
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
 
   email: z.string().email({ message: 'Doit être une adresse e-mail valide' }),
   phone: z
@@ -243,10 +238,13 @@ export const SciFormSchema = z.object({
   companyName: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
-  nonAssociateManager: z.coerce.boolean().default(true),
-  accountingExpert: z.coerce.boolean().default(true), // to Remove Later
+  nonAssociateManager: z.boolean(),
+  accountingExpert: z.boolean(),
 
   shareCapital: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  assosier: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' }),
   headquarter: z
@@ -267,22 +265,12 @@ export const SciFormSchema = z.object({
     .string()
     .min(1, { message: 'Vous devez sélectionner au moins une option' })
     .optional(),
-  tresorierFirstName: z
-    .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' })
-    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
-    .optional(),
-  tresorierLastName: z
-    .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' })
-    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
-    .optional(),
-  tresorierSex: z
-    .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' })
-    .max(15, { message: 'Doit contenir au maximum 15 caractères' })
-    .optional(),
+
   sciActivityField: z
+    .string()
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
+  taxRegime: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
     .max(15, { message: 'Doit contenir au maximum 15 caractères' }),

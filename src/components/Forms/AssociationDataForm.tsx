@@ -69,7 +69,6 @@ const AssociationDataForm = ({ goToNext }: FormProps) => {
         <FormField
           name='desktopComposition'
           control={control}
-          defaultValue={'one'}
           render={({ field }) => (
             <FormItem className='flex items-center gap-3 space-y-0 '>
               <FormLabel className='leading-[20px]'>

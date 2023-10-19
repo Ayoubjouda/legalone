@@ -117,7 +117,6 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
                       onChange(false);
                     }
                   }}
-                  defaultValue={value === true ? 'True' : 'False'}
                   className='flex'
                 >
                   <FormItem className='flex items-center space-x-3 space-y-0'>
@@ -156,7 +155,6 @@ const AutoEntreForm = ({ goToNext }: FormProps) => {
                       onChange(false);
                     }
                   }}
-                  defaultValue={value === true ? 'True' : 'False'}
                   className='flex'
                 >
                   <FormItem className='flex items-center space-x-3 space-y-0'>

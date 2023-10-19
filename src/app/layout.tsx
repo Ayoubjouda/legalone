@@ -7,6 +7,8 @@ import { Toaster } from 'sonner';
 import { getServerSession } from 'next-auth/next';
 import type { Session } from 'next-auth';
 import { authOption } from './api/auth/[...nextauth]/AuthOptions';
+import { Analytics } from '@vercel/analytics/react';
+
 const inter = Inter({ subsets: ['latin'], variable: '--inter' });
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ['greek'],
@@ -37,6 +39,7 @@ export default async function RootLayout({
           color='#DD6135'
         />
         <Toaster richColors />
+        <Analytics />
       </body>
     </html>
   );

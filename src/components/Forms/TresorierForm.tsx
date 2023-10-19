@@ -101,9 +101,9 @@ const TresorierForm = ({ goToNext }: FormProps) => {
           size={'lg'}
           onClick={async () => {
             const isValid = await trigger([
-              'firstName',
-              'lastName',
-              'sexManager',
+              'tresorierFirstName',
+              'tresorierLastName',
+              'tresorierSex',
             ]);
             if (isValid) {
               goToNext();

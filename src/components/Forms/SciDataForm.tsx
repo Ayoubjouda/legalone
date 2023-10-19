@@ -27,7 +27,6 @@ const SciDataForm = ({ goToNext }: FormProps) => {
           <FormField
             name='sciActivityField'
             control={control}
-            defaultValue={'one'}
             render={({ field }) => (
               <FormItem className='flex flex-col  gap-3 space-y-0 '>
                 <FormLabel className='leading-[20px]'>
@@ -66,7 +65,6 @@ const SciDataForm = ({ goToNext }: FormProps) => {
           <FormField
             name='taxRegime'
             control={control}
-            defaultValue={'one'}
             render={({ field }) => (
               <FormItem className='flex flex-col gap-3 space-y-0 '>
                 <FormLabel className='leading-[20px]'>
@@ -109,47 +107,6 @@ const SciDataForm = ({ goToNext }: FormProps) => {
               </FormItem>
             )}
           />
-          {/* 
-          <FormField
-            name="nonAssociateManager"
-            control={control}
-            defaultValue={'False'}
-            render={({ field: { onChange, onBlur, value, ref } }) => (
-              <FormItem className="flex flex-col gap-3 space-y-0 ">
-                <FormLabel className="leading-[20px]">
-                  Le Président est-il Associé fondateur de la Société ?
-                </FormLabel>
-                <FormControl>
-                  <RadioGroup
-                    onValueChange={(value) => {
-                      if (value === 'True') {
-                        onChange(true);
-                      } else {
-                        onChange(false);
-                      }
-                    }}
-                    defaultValue={value === true ? 'True' : 'False'}
-                    className="flex"
-                  >
-                    <FormItem className="flex items-center space-x-3 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="True" />
-                      </FormControl>
-                      <FormLabel className="font-semibold">Oui</FormLabel>
-                    </FormItem>
-                    <FormItem className="flex items-center space-x-3 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="False" />
-                      </FormControl>
-                      <FormLabel className="font-semibold">Non</FormLabel>
-                    </FormItem>
-                  </RadioGroup>
-                </FormControl>
-
-                <FormMessage />
-              </FormItem>
-            )}
-          /> */}
         </div>
 
         <Button
