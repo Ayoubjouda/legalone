@@ -11,7 +11,7 @@ interface HeroSectionProps {}
 
 const HeroSection: FC<HeroSectionProps> = () => {
   return (
-    <section className=' z-[7] mx-2 mt-8 flex flex-col items-center justify-start  gap-[45px] self-stretch text-center text-base md:gap-12'>
+    <section className=' z-[7] mx-4 mt-8 flex flex-col items-center justify-start  gap-[45px] self-stretch text-center text-base md:gap-12'>
       <div className='flex flex-col items-center gap-6'>
         <div className='inline-flex h-[39.40px] items-center justify-start gap-[11.69px] rounded-[50px] border border-black border-opacity-5 bg-white bg-opacity-40 py-1.5 pl-2 pr-3'>
           <div className='flex items-center justify-center rounded-2xl bg-orange-500 bg-opacity-10 pb-[4.90px] pl-[11.75px] pr-[11.55px] pt-[3.50px]'>
@@ -30,7 +30,7 @@ const HeroSection: FC<HeroSectionProps> = () => {
             </div>
           </div>
         </div>
-        <div className=' relative inline-block max-w-[300px] font-ibmPlexSans  text-[45px] font-medium leading-[45px] tracking-[-0.02em] sm:max-w-[420px] md:max-w-[869px] md:leading-[80px] lg:text-45xl '>
+        <div className=' relative inline-block max-w-[300px] font-ibmPlexSans  text-[45px] font-medium leading-[45px] tracking-[-0.02em] sm:max-w-[420px] md:max-w-[869px] lg:text-45xl lg:leading-[80px] '>
           <p className='m-0'>Une Entreprise sur mesure,</p>
           <p className='m-0'>
             un soutien
@@ -50,7 +50,7 @@ const HeroSection: FC<HeroSectionProps> = () => {
       </div>
 
       <div className='flex max-w-[980px] flex-col  items-center justify-center gap-12 '>
-        <div className='flex flex-col items-end justify-center gap-[48px] md:flex-row'>
+        <div className='flex flex-col items-end justify-center gap-4 md:flex-row lg:gap-12'>
           <ServiceCard
             title="Création d'entreprise"
             image='/icons8company-1.svg'

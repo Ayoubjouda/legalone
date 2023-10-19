@@ -29,6 +29,7 @@ import {
   NavbarMenu,
 } from '@nextui-org/react';
 import Sidebar from './Sidebar';
+import { Menu } from 'lucide-react';
 
 const menuItems = [
   'Profile',
@@ -48,9 +49,10 @@ const DashBoardNavbar: FC<NavBarProps> = () => {
 
   return (
     <Navbar
-      isBordered
-      shouldHideOnScroll
       maxWidth='xl'
+      classNames={{
+        wrapper: 'bg-gray-50 mx-3',
+      }}
     >
       <NavbarContent
         className='lg:hidden'
@@ -58,7 +60,15 @@ const DashBoardNavbar: FC<NavBarProps> = () => {
       >
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant='outline'>Open</Button>
+            <Button
+              variant='link'
+              className=' px-0'
+            >
+              <Menu
+                size={32}
+                color='black'
+              />
+            </Button>
           </SheetTrigger>
           <SheetContent side={'left'}>
             <Sidebar />

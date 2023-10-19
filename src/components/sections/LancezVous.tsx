@@ -5,7 +5,7 @@ interface LancerVousProps {}
 
 const LancerVous: FC<LancerVousProps> = () => {
   return (
-    <section className='w-full max-w-screen-xl'>
+    <section className='w-full max-w-screen-xl px-4'>
       <div className='w-full  items-center justify-center '>
         <div className='w-full shrink grow basis-0  flex-col items-center justify-start '>
           <div className='flex w-full  flex-col items-start justify-start self-stretch'>

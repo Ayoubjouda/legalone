@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/table';
 import Faq from '@/components/sections/Faq';
 import Footer from '@/components/sections/Footer';
-import LancezVous from '@/components/LancezVous';
+import LancezVous from '@/components/sections/LancezVous';
 interface pageProps {}
 
 const packs: Package[] = [

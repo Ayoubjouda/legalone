@@ -11,17 +11,17 @@ const Faq: FC<faqProps> = () => {
   return (
     <section className='z-[20] flex w-full max-w-screen-xl flex-col items-center justify-center gap-12   py-[120px] text-center'>
       <div className='flex flex-col items-center justify-start gap-6'>
-        <div className='px-3 text-3xl font-medium md:text-5xl'>
+        <div className='px-4 text-3xl font-medium md:text-5xl'>
           Frequently asked questions
         </div>
-        <div className='max-w-xl px-3 text-center font-ibmPlexSans text-lg font-normal leading-7  text-neutral-700'>
+        <div className='max-w-xl px-4 text-center font-ibmPlexSans text-lg font-normal leading-7  text-neutral-700'>
           Ask everything you need to know about our products and services.
         </div>
       </div>
       <div className='w-full max-w-screen-lg text-base  '>
         <Accordion
           type='multiple'
-          className='mx-3    cursor-pointer  rounded-md border bg-white text-lg  tracking-tight text-black '
+          className='mx-4    cursor-pointer  rounded-md border bg-white text-lg  tracking-tight text-black '
           defaultValue={['item-1']}
         >
           <AccordionItem

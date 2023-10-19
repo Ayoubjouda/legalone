@@ -5,7 +5,7 @@ interface FooterProps {}
 const Footer: FC<FooterProps> = () => {
   return (
     <section className='w-full'>
-      <div className='inline-flex  w-full flex-col items-center justify-center  bg-stone-900 px-[60.50px] pb-[55px] pt-[85px]'>
+      <div className='inline-flex  w-full flex-col items-center justify-center  bg-stone-900 px-4 pb-[55px] pt-[85px]'>
         <div className='flex w-full max-w-screen-xl flex-col items-start justify-center gap-[83.99px] pb-[0.01px] pt-1'>
           <div className='flex w-full flex-col justify-between gap-y-10 md:flex-row  '>
             <div className=' flex-col items-start justify-center gap-[23px] '>

@@ -5,7 +5,7 @@ interface DashBoardSectionProps {}
 
 const DashBoardSection: FC<DashBoardSectionProps> = () => {
   return (
-    <section className='flex  h-fit w-full max-w-screen-xl flex-col justify-between gap-y-10 px-10 py-32 md:flex-row-reverse'>
+    <section className='flex  h-fit w-full max-w-screen-xl flex-col justify-between gap-y-10 px-4 py-32 md:flex-row-reverse md:px-10'>
       {/* //section content */}
       <div className='space-y-10'>
         <div className='space-y-5'>

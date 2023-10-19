@@ -4,7 +4,7 @@ interface FeaturesSectionProps {}
 
 const FeaturesSection: FC<FeaturesSectionProps> = () => {
   return (
-    <section className='flex h-fit w-full max-w-screen-xl flex-col justify-between gap-y-10 px-10 md:flex-row'>
+    <section className='flex h-fit w-full max-w-screen-xl flex-col justify-between gap-y-10 px-4 md:flex-row md:px-10'>
       {/* //section content */}
       <div className='space-y-10'>
         <div className='space-y-5'>

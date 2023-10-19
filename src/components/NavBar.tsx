@@ -50,7 +50,7 @@ const NavBar: FC<NavBarProps> = () => {
         justify='center'
       >
         <NavbarBrand>
-          <div className='relative inline-block w-[129.82px]'>
+          <div className='relative inline-block '>
             <span>Legal</span>
             <b>Centre</b>
           </div>
@@ -68,51 +68,60 @@ const NavBar: FC<NavBarProps> = () => {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent justify='end'>
-        {status === 'authenticated' ? (
-          <UserNav session={session} />
-        ) : (
-          <>
-            <NavbarItem className='hidden lg:flex '>
-              <Link
-                href={'/'}
-                color='foreground'
-                className=' relative   rounded-md  hover:text-redish'
-              >
-                Accueil
-              </Link>
-            </NavbarItem>
-            <NavbarItem className='hidden lg:flex '>
-              <Link
-                href={'tarifs'}
-                color='foreground'
-                className=' relative   rounded-md  hover:text-redish'
-              >
-                Tarifs
-              </Link>
-            </NavbarItem>
+      <NavbarContent
+        justify='end'
+        className='hidden lg:flex'
+      >
+        <NavbarItem>
+          <Link
+            href={'/'}
+            color='foreground'
+            className=' relative   rounded-md  hover:text-redish'
+          >
+            Accueil
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link
+            href={'tarifs'}
+            color='foreground'
+            className=' relative   rounded-md  hover:text-redish'
+          >
+            Tarifs
+          </Link>
+        </NavbarItem>
 
-            <NavbarItem className='hidden lg:flex '>
-              <Link
-                href={'login'}
-                color='foreground'
-                className=' relative   rounded-md  hover:text-redish'
-              >
-                Connexion
-              </Link>
-            </NavbarItem>
-            <NavbarItem>
-              <Link
-                href={'signup'}
-                className=' relative rounded-md bg-redish px-3 py-2 font-semibold text-white'
-              >
-                Lancez-vous
-              </Link>
-            </NavbarItem>
-          </>
-        )}
+        <NavbarItem>
+          <Link
+            href={'login'}
+            color='foreground'
+            className=' relative   rounded-md  hover:text-redish'
+          >
+            Connexion
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link
+            href={'signup'}
+            className=' relative rounded-md bg-redish px-3 py-2 font-semibold text-white'
+          >
+            Lancez-vous
+          </Link>
+        </NavbarItem>
       </NavbarContent>
-
+      <NavbarContent
+        justify='end'
+        className='lg:hidden'
+      >
+        <NavbarItem>
+          <Link
+            href={'login'}
+            className=' relative rounded-md bg-redish px-3 py-2 font-semibold text-white'
+          >
+            Connexion
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>

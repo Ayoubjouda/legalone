@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import Faq from '@/components/sections/Faq';
-import LancezVous from '@/components/LancezVous';
+import LancezVous from '@/components/sections/LancezVous';
 
 import ServiceCard from '@/components/ServiceCard';
 import { ArrowRight } from 'lucide-react';
