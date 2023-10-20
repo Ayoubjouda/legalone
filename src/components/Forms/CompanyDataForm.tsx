@@ -70,8 +70,9 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
           )}
         />
         <FormField
-          name='assosier'
+          name='associer'
           control={control}
+          defaultValue={''}
           render={({ field }) => (
             <FormItem className='flex items-center gap-3 space-y-0 '>
               <FormLabel className='leading-[20px]'>
@@ -80,7 +81,13 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  defaultValue={
+                    field.value === 'one'
+                      ? 'one'
+                      : field.value === 'many'
+                      ? 'many'
+                      : ''
+                  }
                   className='flex'
                 >
                   <FormItem className='flex items-center space-x-3 space-y-0'>
@@ -113,14 +120,9 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
               </FormLabel>
               <FormControl>
                 <RadioGroup
-                  onValueChange={(value) => {
-                    if (value === 'True') {
-                      onChange(true);
-                    } else {
-                      onChange(false);
-                    }
-                  }}
+                  onValueChange={onChange}
                   className='flex'
+                  defaultValue={value === true ? 'True' : 'False'}
                 >
                   <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
@@ -151,14 +153,9 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
               </FormLabel>
               <FormControl>
                 <RadioGroup
-                  onValueChange={(value) => {
-                    if (value === 'True') {
-                      onChange(true);
-                    } else {
-                      onChange(false);
-                    }
-                  }}
+                  onValueChange={onChange}
                   className='flex'
+                  defaultValue={value === true ? 'True' : 'False'}
                 >
                   <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>

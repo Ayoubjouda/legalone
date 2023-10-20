@@ -99,7 +99,7 @@ export const EntrepriseFormSchema = z.object({
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
   associer: z
     .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+    .min(1, { message: 'Doit contenir au moins 2 caractères' }),
   nonAssociateManager: z.coerce.boolean(),
   legalState: z
     .string()
