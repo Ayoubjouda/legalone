@@ -26,6 +26,7 @@ import { ChevronDownIcon } from './ChevronDownIcon';
 import { SearchIcon } from './SearchIcon';
 import { columns, users, statusOptions } from './data';
 import { capitalize } from './utils';
+import { Settings2 } from 'lucide-react';
 
 const statusColorMap: Record<string, ChipProps['color']> = {
   active: 'success',
@@ -51,8 +52,9 @@ export default function TableN() {
     column: 'age',
     direction: 'ascending',
   });
-
   const [page, setPage] = React.useState(1);
+
+  const pages = Math.ceil(users.length / rowsPerPage);
 
   const hasSearchFilter = Boolean(filterValue);
 
@@ -84,8 +86,6 @@ export default function TableN() {
     return filteredUsers;
   }, [users, filterValue, statusFilter]);
 
-  const pages = Math.ceil(filteredItems.length / rowsPerPage);
-
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
@@ -110,7 +110,10 @@ export default function TableN() {
       case 'name':
         return (
           <User
-            avatarProps={{ radius: 'sm', src: user.avatar }}
+            avatarProps={{ radius: 'sm', size: 'sm', src: user.avatar }}
+            classNames={{
+              description: 'text-default-500',
+            }}
             description={user.email}
             name={cellValue}
           >
@@ -121,7 +124,7 @@ export default function TableN() {
         return (
           <div className='flex flex-col'>
             <p className='text-bold text-small capitalize'>{cellValue}</p>
-            <p className='text-bold text-tiny capitalize text-default-400'>
+            <p className='text-bold text-tiny capitalize text-default-500'>
               {user.team}
             </p>
           </div>
@@ -129,10 +132,10 @@ export default function TableN() {
       case 'status':
         return (
           <Chip
-            className='capitalize'
+            className='gap-1 border-none capitalize text-default-600'
             color={statusColorMap[user.status]}
             size='sm'
-            variant='flat'
+            variant='dot'
           >
             {cellValue}
           </Chip>
@@ -140,20 +143,21 @@ export default function TableN() {
       case 'actions':
         return (
           <div className='relative flex items-center justify-end gap-2'>
-            <Dropdown>
+            <Dropdown className='border-1 border-default-200 bg-background'>
               <DropdownTrigger>
                 <Button
                   isIconOnly
+                  radius='full'
                   size='sm'
                   variant='light'
                 >
-                  <VerticalDotsIcon className='text-default-300' />
+                  <VerticalDotsIcon className='text-default-400' />
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
                 <DropdownItem>View</DropdownItem>
                 <DropdownItem>Edit</DropdownItem>
-                <DropdownItem>Delete</DropdownItem>
+                <DropdownItem color='danger'>Delete</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
@@ -162,18 +166,6 @@ export default function TableN() {
         return cellValue;
     }
   }, []);
-
-  const onNextPage = React.useCallback(() => {
-    if (page < pages) {
-      setPage(page + 1);
-    }
-  }, [page, pages]);
-
-  const onPreviousPage = React.useCallback(() => {
-    if (page > 1) {
-      setPage(page - 1);
-    }
-  }, [page]);
 
   const onRowsPerPageChange = React.useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -192,30 +184,32 @@ export default function TableN() {
     }
   }, []);
 
-  const onClear = React.useCallback(() => {
-    setFilterValue('');
-    setPage(1);
-  }, []);
-
   const topContent = React.useMemo(() => {
     return (
-      <div className='flex flex-col gap-4 '>
+      <div className='flex flex-col gap-4'>
         <div className='flex items-end justify-between gap-3'>
           <Input
             isClearable
-            className='w-full sm:max-w-[44%]'
+            classNames={{
+              base: 'w-full sm:max-w-[44%]',
+              inputWrapper: 'border-1',
+            }}
             placeholder='Search by name...'
-            startContent={<SearchIcon />}
+            size='sm'
+            startContent={<SearchIcon className='text-default-300' />}
             value={filterValue}
-            onClear={() => onClear()}
+            variant='bordered'
+            onClear={() => setFilterValue('')}
             onValueChange={onSearchChange}
           />
           <div className='flex gap-3'>
-            <Dropdown>
+            {/* <Dropdown>
               <DropdownTrigger className='hidden sm:flex'>
                 <Button
                   endContent={<ChevronDownIcon className='text-small' />}
+                  size='sm'
                   variant='flat'
+                  radius='sm'
                 >
                   Status
                 </Button>
@@ -237,14 +231,16 @@ export default function TableN() {
                   </DropdownItem>
                 ))}
               </DropdownMenu>
-            </Dropdown>
+            </Dropdown> */}
             <Dropdown>
               <DropdownTrigger className='hidden sm:flex'>
                 <Button
-                  endContent={<ChevronDownIcon className='text-small' />}
+                  startContent={<Settings2 size={16} />}
+                  size='sm'
+                  radius='sm'
                   variant='flat'
                 >
-                  Columns
+                  View
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
@@ -266,9 +262,10 @@ export default function TableN() {
               </DropdownMenu>
             </Dropdown>
             <Button
-              color='primary'
-              startContent={<PlusIcon />}
-              className='font-semibold'
+              className='bg-redish text-background '
+              startContent={<PlusIcon size={16} />}
+              size='sm'
+              radius='sm'
             >
               Ajouter
             </Button>
@@ -305,53 +302,61 @@ export default function TableN() {
   const bottomContent = React.useMemo(() => {
     return (
       <div className='flex items-center justify-between px-2 py-2'>
-        <span className='w-[30%] text-small text-default-400'>
-          {selectedKeys === 'all'
-            ? 'All items selected'
-            : `${selectedKeys.size} of ${filteredItems.length} selected`}
-        </span>
         <Pagination
-          isCompact
           showControls
-          showShadow
-          color='primary'
+          classNames={{
+            cursor: 'bg-foreground text-background',
+          }}
+          color='default'
+          isDisabled={hasSearchFilter}
           page={page}
           total={pages}
+          variant='light'
           onChange={setPage}
         />
-        <div className='hidden w-[30%] justify-end gap-2 sm:flex'>
-          <Button
-            isDisabled={pages === 1}
-            size='sm'
-            variant='flat'
-            onPress={onPreviousPage}
-          >
-            Previous
-          </Button>
-          <Button
-            isDisabled={pages === 1}
-            size='sm'
-            variant='flat'
-            onPress={onNextPage}
-          >
-            Next
-          </Button>
-        </div>
+        {/* <span className='text-small text-default-400'>
+          {selectedKeys === 'all'
+            ? 'All items selected'
+            : `${selectedKeys.size} of ${items.length} selected`}
+        </span> */}
       </div>
     );
   }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
+  const classNames = React.useMemo(
+    () => ({
+      wrapper: ['max-h-[382px]', 'max-w-3xl'],
+      th: ['bg-transparent', 'text-default-500', 'border-b', 'border-divider'],
+      td: [
+        // changing the rows border radius
+        // first
+        'group-data-[first=true]:first:before:rounded-none',
+        'group-data-[first=true]:last:before:rounded-none',
+        // middle
+        'group-data-[middle=true]:before:rounded-none',
+        // last
+        'group-data-[last=true]:first:before:rounded-none',
+        'group-data-[last=true]:last:before:rounded-none',
+      ],
+    }),
+    []
+  );
+
   return (
     <Table
+      isCompact
+      removeWrapper
+      className='rounded-md border-1 border-gray-200 bg-white px-2 py-4'
       aria-label='Example table with custom cells, pagination and sorting'
-      isHeaderSticky
       bottomContent={bottomContent}
       bottomContentPlacement='outside'
-      classNames={{
-        wrapper: 'max-h-[382px]',
+      checkboxesProps={{
+        classNames: {
+          wrapper: 'after:bg-foreground after:text-background text-background',
+        },
       }}
+      classNames={classNames}
       selectedKeys={selectedKeys}
-      // selectionMode='multiple'
       sortDescriptor={sortDescriptor}
       topContent={topContent}
       topContentPlacement='outside'

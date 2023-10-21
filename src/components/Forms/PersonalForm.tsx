@@ -9,6 +9,7 @@ import {
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
+import { ChevronRight } from 'lucide-react';
 interface FormProps {
   goToNext: () => void;
 }
@@ -31,6 +32,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
 
           <FormField
             name='raisonSocial'
+            defaultValue={''}
             control={control}
             render={({ field }) => (
               <FormItem>
@@ -45,6 +47,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
           <FormField
             name='legalState'
             control={control}
+            defaultValue={''}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Forme juridique de la Société</FormLabel>
@@ -58,6 +61,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
           />
           <FormField
             name='Rcs'
+            defaultValue={''}
             control={control}
             render={({ field }) => (
               <FormItem>
@@ -72,9 +76,9 @@ const PersonalForm = ({ goToNext }: FormProps) => {
           />
 
           <Button
-            className='self-end text-lg font-semibold hover:bg-darkRedish'
+            className='self-end bg-black font-semibold hover:bg-black/80 '
             type='button'
-            size={'lg'}
+            size={'sm'}
             onClick={async () => {
               const isValid = await trigger([
                 'legalState',
@@ -87,6 +91,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
             }}
           >
             Continuer
+            <ChevronRight size={16} />
           </Button>
         </div>
       </form>
@@ -107,6 +112,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
           <FormField
             name='firstName'
             control={control}
+            defaultValue={''}
             render={({ field }) => (
               <FormItem className='w-1/2'>
                 <FormLabel>Nom</FormLabel>
@@ -120,6 +126,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
           <FormField
             name='lastName'
             control={control}
+            defaultValue={''}
             render={({ field }) => (
               <FormItem className='w-1/2'>
                 <FormLabel>Prénom</FormLabel>
@@ -136,6 +143,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
         <FormField
           name='sexManager'
           control={control}
+          defaultValue={''}
           render={({ field }) => (
             <FormItem className='flex items-center gap-3 space-y-0 '>
               <FormLabel className='leading-[20px]'>
@@ -168,9 +176,9 @@ const PersonalForm = ({ goToNext }: FormProps) => {
         />
 
         <Button
-          className='self-end text-lg font-semibold hover:bg-darkRedish'
+          className='self-end bg-black font-semibold hover:bg-black/80 '
           type='button'
-          size={'lg'}
+          size={'sm'}
           onClick={async () => {
             const isValid = await trigger([
               'firstName',
@@ -183,6 +191,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
           }}
         >
           Continuer
+          <ChevronRight size={16} />
         </Button>
       </div>
     </form>

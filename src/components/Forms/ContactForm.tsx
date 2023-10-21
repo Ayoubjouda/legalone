@@ -9,13 +9,19 @@ import {
 import { Input } from '../ui/input';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 import { Button } from '../ui/button';
-import { MoveRight } from 'lucide-react';
+import { ChevronRight, MoveRight } from 'lucide-react';
 
 interface FormProps {
   goToNext: () => void;
 }
 const ContactForm = ({ goToNext }: FormProps) => {
   const { control, trigger } = useFormContext();
+  const handleGoToNext = async () => {
+    const isValid = await trigger(['phone', 'email']);
+    if (isValid) {
+      goToNext();
+    }
+  };
   return (
     <form className='w-full max-w-[650px]'>
       <div className=' flex flex-col gap-4'>
@@ -56,19 +62,13 @@ const ContactForm = ({ goToNext }: FormProps) => {
           )}
         />
         <Button
-          className='flex items-center gap-2 self-end text-base font-semibold  hover:bg-darkRedish'
+          className='self-end bg-black font-semibold hover:bg-black/80 '
           type='button'
-          size={'lg'}
-          onClick={async () => {
-            const isValid = await trigger(['phone', 'email']);
-            if (isValid) {
-              goToNext();
-            }
-          }}
+          size={'sm'}
+          onClick={handleGoToNext}
         >
-          <span></span>
           Continuer
-          <MoveRight />
+          <ChevronRight size={16} />
         </Button>
       </div>
     </form>

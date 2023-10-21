@@ -45,7 +45,7 @@ function SidebarContent() {
           <span>Legal</span>
           <b>Centre</b>
         </div>
-        <ul className='mt-6 flex flex-col gap-2'>
+        <ul className='mt-6 flex flex-col gap-1'>
           {routes.map((route, index) => {
             // if (routes) {
             //   return (

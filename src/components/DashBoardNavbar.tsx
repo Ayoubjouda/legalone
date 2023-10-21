@@ -1,86 +1,37 @@
 'use client';
 import { FC } from 'react';
-import { UserNav } from './user-nav';
-import { useSession } from 'next-auth/react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
 
 interface NavBarProps {}
 
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Link,
-  NavbarMenuToggle,
-  NavbarMenuItem,
-  NavbarMenu,
-} from '@nextui-org/react';
-import Sidebar from './Sidebar';
-import { Menu } from 'lucide-react';
-
-const menuItems = [
-  'Profile',
-  'Dashboard',
-  'Activity',
-  'Analytics',
-  'System',
-  'Deployments',
-  'My Settings',
-  'Team Settings',
-  'Help & Feedback',
-  'Log Out',
-];
+import { ChevronRight, Menu } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 const DashBoardNavbar: FC<NavBarProps> = () => {
-  const { data: session, status } = useSession();
+  const pathName = usePathname();
+  const pathArray = pathName.slice(1).split('/');
+  const formattedPathArray = pathArray.map((word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
 
   return (
-    <Navbar
-      maxWidth='xl'
-      classNames={{
-        wrapper: 'bg-gray-50 mx-3',
-      }}
-    >
-      <NavbarContent
-        className='lg:hidden'
-        justify='start'
-      >
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              variant='link'
-              className=' px-0'
-            >
-              <Menu
-                size={32}
-                color='black'
+    <div className='flex items-center border-b px-4 py-2 '>
+      {formattedPathArray.map((item, index) => (
+        <div
+          key={item}
+          className='flex items-center gap-x-0'
+        >
+          <p className='font-semibold'>{item}</p>
+          {index !== formattedPathArray.length - 1 ? (
+            <div className='ml-2'>
+              <ChevronRight
+                size={20}
+                className='py-0'
               />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side={'left'}>
-            <Sidebar />
-            {/* <SheetFooter>
-              <SheetClose asChild>
-                <Button type='submit'>Save changes</Button>
-              </SheetClose>
-            </SheetFooter> */}
-          </SheetContent>
-        </Sheet>
-      </NavbarContent>
-    </Navbar>
+            </div>
+          ) : null}
+        </div>
+      ))}
+    </div>
   );
 };
 

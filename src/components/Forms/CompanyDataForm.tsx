@@ -9,7 +9,7 @@ import {
 import { Input } from '../ui/input';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 import { Button } from '../ui/button';
-import { MoveRight } from 'lucide-react';
+import { ChevronRight, MoveRight } from 'lucide-react';
 
 interface FormProps {
   goToNext: () => void;
@@ -122,7 +122,9 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
                 <RadioGroup
                   onValueChange={onChange}
                   className='flex'
-                  defaultValue={value === true ? 'True' : 'False'}
+                  defaultValue={
+                    value === true ? 'True' : value === false ? 'False' : ''
+                  }
                 >
                   <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
@@ -155,7 +157,9 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
                 <RadioGroup
                   onValueChange={onChange}
                   className='flex'
-                  defaultValue={value === true ? 'True' : 'False'}
+                  defaultValue={
+                    value === true ? 'True' : value === false ? 'False' : ''
+                  }
                 >
                   <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
@@ -176,15 +180,14 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
             </FormItem>
           )}
         />
-
         <Button
-          className='flex items-center gap-2 self-end text-base font-semibold  hover:bg-darkRedish'
+          className='self-end bg-black font-semibold hover:bg-black/80 '
           type='button'
-          size={'lg'}
+          size={'sm'}
           onClick={handleGoToNext}
         >
           Continuer
-          <MoveRight />
+          <ChevronRight size={16} />
         </Button>
       </div>
     </form>

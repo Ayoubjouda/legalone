@@ -88,7 +88,7 @@ export const EntrepriseFormSchema = z.object({
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
     .optional(),
-  SocialNumber: z
+  raisonSocial: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
     .optional(),

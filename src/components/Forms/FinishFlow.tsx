@@ -38,8 +38,8 @@ const FinishFlow = ({ goToNext }: FormProps) => {
 
   const onSubmit = async (data: Formality) => {
     if (status === 'unauthenticated') {
-      console.log('log');
       localStorage.setItem('intendedDestination', `${window.location.href}`);
+      toast.message('Vous devez vous connecter pour continuer');
       router.push('login');
     } else {
       FormalityMutation(data);
@@ -60,12 +60,14 @@ const FinishFlow = ({ goToNext }: FormProps) => {
       </button>
       <div>
         {isLoading && (
-          <div className='flex flex-col'>
+          <div className='flex flex-col gap-4'>
             <Spinner
               color='warning'
               size='lg'
             />
-            <p>Submitting Formality</p>
+            <p className='font-semibold'>
+              Votre dossier est en cours de traitement
+            </p>
           </div>
         )}
       </div>
