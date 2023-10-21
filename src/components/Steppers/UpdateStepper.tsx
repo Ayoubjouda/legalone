@@ -17,11 +17,9 @@ import {
   CommandeForm,
 } from '@/components/Forms';
 import { ChevronLeft } from 'lucide-react';
-import { useFormContext } from 'react-hook-form';
 import PackForm from '../Forms/PackForm';
 import ContactForm from '../Forms/ContactForm';
 import { useRouter, useSearchParams } from 'next/navigation';
-import SciDataForm from '../Forms/SciDataForm';
 import RequestedUpdates from '../Forms/RequestedUpdates';
 import DeclarationForm from '../Forms/DeclarationForm';
 import Companyinfo from '../Forms/Companyinfo';

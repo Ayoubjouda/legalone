@@ -1,8 +1,7 @@
 'use client';
 import { FC } from 'react';
-import { UserNav } from './user-nav';
 import { useSession } from 'next-auth/react';
-
+import Link from 'next/link';
 interface NavBarProps {}
 
 import {
@@ -10,7 +9,6 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Link,
   NavbarMenuToggle,
   NavbarMenuItem,
   NavbarMenu,
@@ -135,7 +133,6 @@ const NavBar: FC<NavBarProps> = () => {
                   : 'foreground'
               }
               href='#'
-              size='lg'
             >
               {item}
             </Link>

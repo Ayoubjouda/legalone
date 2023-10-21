@@ -6,7 +6,7 @@ import { useMutation, useQuery } from 'react-query';
 import { toast } from 'sonner';
 
 //Formality
-const postFormality = async (
+const postCreationFormality = async (
   formalityData: Formality
 ): Promise<FormalityResponse> => {
   const { data: response } = await api.post(`company`, formalityData);
@@ -14,10 +14,10 @@ const postFormality = async (
   return { ...response, type: formalityData.companyType };
 };
 
-export const useSubmitFormality = () => {
+export const useSubmitCreateFormality = () => {
   const router = useRouter();
   const {
-    mutate: FormalityMutation,
+    mutate: FormalityCreationMutation,
     isLoading,
     data: FormalityData,
   } = useMutation<
@@ -25,7 +25,7 @@ export const useSubmitFormality = () => {
     AxiosError,
     { email: string; password: string },
     unknown
-  >((postData) => postFormality(postData), {
+  >((postData) => postCreationFormality(postData), {
     onSuccess(data) {
       toast('Formality created successfully');
       localStorage.removeItem(data.type);
@@ -40,7 +40,11 @@ export const useSubmitFormality = () => {
       }
     },
   });
-  return { FormalityMutation, isLoading, FormalityData };
+  return {
+    FormalityCreationMutation,
+    isLoading,
+    FormalityData,
+  };
 };
 
 // Order
@@ -88,3 +92,43 @@ export const useHandlePayment = () => {
   );
   return { PaymentMutation, isLoading, PaymentData };
 };
+
+const postUpdateFormality = async (
+  formalityData: Formality,
+  type: string
+): Promise<FormalityResponse> => {
+  const { data: response } = await api.post(`company`, formalityData);
+  setTimeout(() => {}, 2000);
+  return { ...response, type: formalityData.companyType };
+};
+
+// export const useSubmitUpdateFormality = () => {
+//   const router = useRouter();
+//   const {
+//     mutate: FormalityCreationMutation,
+//     isLoading,
+//     data: FormalityData,
+//   } = useMutation<FormalityResponse, AxiosError, unknown>(
+//     (postData) => postUpdateFormality(postData.data, postData.type),
+//     {
+//       onSuccess(data) {
+//         toast('Formality created successfully');
+//         localStorage.removeItem(data.type);
+
+//         router.push(`/packages?formality=${data.createdFormality.id}`);
+//       },
+//       onError(err: Error | AxiosError) {
+//         if (isAxiosError(err)) {
+//           toast('Invalid Credentials');
+//         } else {
+//           toast('Something went wrong');
+//         }
+//       },
+//     }
+//   );
+//   return {
+//     FormalityCreationMutation,
+//     isLoading,
+//     FormalityData,
+//   };
+// };

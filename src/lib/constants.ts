@@ -49,17 +49,17 @@ export const UPDATE_COMPANY_DATA = [
   {
     id: 1,
     title: 'Transfert de siège',
-    url: '/update?type=Transfert',
+    url: '/update?type=relocation',
   },
   {
     id: 2,
     title: 'Changement de gérant',
-    url: '/update?type=Changement',
+    url: '/update?type=manager-modification',
   },
   {
     id: 2,
     title: 'Modification de statuts',
-    url: '/update?type=Modification',
+    url: '/update?type=status',
   },
 ];
 export const DELETE_COMPANY_DATA = [

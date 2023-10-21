@@ -2,7 +2,7 @@
 import { useFormContext } from 'react-hook-form';
 import { Spinner } from '@nextui-org/react';
 import { useRef, useEffect } from 'react';
-import { useSubmitFormality } from '@/hooks/useServices';
+import { useSubmitCreateFormality } from '@/hooks/useServices';
 import { useRouter } from 'next/navigation';
 import useAppStore from '@/zustand/store';
 import { Formality } from '@/types/order';
@@ -20,7 +20,7 @@ const FinishFlow = ({ goToNext }: FormProps) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const router = useRouter();
   const { status } = useSession();
-  const { FormalityMutation, isLoading } = useSubmitFormality();
+  const { FormalityCreationMutation, isLoading } = useSubmitCreateFormality();
 
   useEffect(() => {
     if (buttonRef.current) {
@@ -42,7 +42,7 @@ const FinishFlow = ({ goToNext }: FormProps) => {
       toast.message('Vous devez vous connecter pour continuer');
       router.push('login');
     } else {
-      FormalityMutation(data);
+      FormalityCreationMutation(data);
     }
   };
 
