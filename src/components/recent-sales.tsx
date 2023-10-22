@@ -2,8 +2,8 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 export function RecentSales() {
   return (
-    <div className='space-y-8'>
-      <div className='flex items-center'>
+    <div className='space-y-2'>
+      <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100'>
         <Avatar className='h-9 w-9'>
           <AvatarImage
             src='/avatars/01.png'
@@ -19,7 +19,7 @@ export function RecentSales() {
         </div>
         <div className='ml-auto font-medium text-green-500'>+$1,999.00</div>
       </div>
-      <div className='flex items-center'>
+      <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100 '>
         <Avatar className='flex h-9 w-9 items-center justify-center space-y-0 border'>
           <AvatarImage
             src='/avatars/02.png'
@@ -33,7 +33,7 @@ export function RecentSales() {
         </div>
         <div className='ml-auto font-medium text-red-500'>-$39.00</div>
       </div>
-      <div className='flex items-center'>
+      <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100 '>
         <Avatar className='h-9 w-9'>
           <AvatarImage
             src='/avatars/03.png'
@@ -49,7 +49,7 @@ export function RecentSales() {
         </div>
         <div className='ml-auto font-medium text-red-500'>-$299.00</div>
       </div>
-      <div className='flex items-center'>
+      <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100 '>
         <Avatar className='h-9 w-9'>
           <AvatarImage
             src='/avatars/04.png'
@@ -63,7 +63,7 @@ export function RecentSales() {
         </div>
         <div className='ml-auto font-medium text-green-500'>+$99.00</div>
       </div>
-      <div className='flex items-center'>
+      <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100 '>
         <Avatar className='h-9 w-9'>
           <AvatarImage
             src='/avatars/05.png'

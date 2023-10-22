@@ -27,6 +27,18 @@ import { SearchIcon } from './SearchIcon';
 import { columns, users, statusOptions } from './data';
 import { capitalize } from './utils';
 import { Settings2 } from 'lucide-react';
+import { Label } from '../ui/label';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '../ui/dialog';
+import SignUpForm from '../SignUpForm';
 
 const statusColorMap: Record<string, ChipProps['color']> = {
   active: 'success',
@@ -261,14 +273,22 @@ export default function TableN() {
                 ))}
               </DropdownMenu>
             </Dropdown>
-            <Button
-              className='bg-redish text-background '
-              startContent={<PlusIcon size={16} />}
-              size='sm'
-              radius='sm'
-            >
-              Ajouter
-            </Button>
+
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  className='bg-redish text-background '
+                  startContent={<PlusIcon size={16} />}
+                  size='sm'
+                  radius='sm'
+                >
+                  Ajouter
+                </Button>
+              </DialogTrigger>
+              <DialogContent className='sm:max-w-lg'>
+                <SignUpForm />
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
         <div className='flex items-center justify-between'>

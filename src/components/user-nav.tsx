@@ -36,12 +36,11 @@ export function UserNav({ session }: UserNavProps) {
           radius: 'sm',
           src: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
         }}
-        isFocusable
         classNames={{
           description: 'text-gray-500',
           name: 'font-semibold',
         }}
-        className=' transition-transform '
+        className='transition-transform '
         description={session?.user?.email}
         name={`${session?.user?.firstName} ${session?.user?.lastName}`}
       />
