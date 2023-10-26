@@ -95,6 +95,27 @@ export const useGetFormalities = () => {
     getFormalities()
   );
 };
+const deleteFormality = async (id: number): Promise<void> => {
+  const { data } = await api.delete(`formality/${id}`);
+  return data;
+};
+
+export const useDeleteFormality = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, number>(
+    'deleteFormality',
+    (id) => deleteFormality(id),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('formalities');
+        toast.success('Dossier deleted successfully');
+      },
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }
+  );
+};
 
 interface SignUpCredentials {
   firstName: string;

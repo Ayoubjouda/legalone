@@ -5,6 +5,9 @@ import {
   StepSeparator,
   Stepper as ChakraStepper,
   useSteps,
+  StepIndicator,
+  StepStatus,
+  StepIcon,
 } from '@chakra-ui/react';
 import { Button } from '../ui/button';
 import {
@@ -95,28 +98,28 @@ const AssociationStepper: FC<StepperProps> = () => {
 
       <ChakraStepper
         index={activeStep}
-        colorScheme={'red'}
+        colorScheme={'orange'}
         flex={1}
-        gap={4}
+        gap={0}
         width={'max-content'}
       >
         {steps.length > activeStep
           ? steps.map((step, index) => (
               <div
                 key={index}
-                className='flex h-10 flex-col  justify-center gap-1 '
+                className='flex h-10 items-center  justify-center '
               >
-                <StepSeparator
-                  style={{
-                    maxHeight: '4px',
-                    minWidth: '30px',
-                    borderRadius: '3px',
-                    margin: '0px',
-                  }}
-                />
-                <div className='hidden lg:block'>
-                  <Step className='ml-3  flex flex-row items-center justify-center'></Step>
+                <div className=' lg:block'>
+                  <Step className=' flex flex-row items-center justify-center'>
+                    <StepIndicator>
+                      <StepStatus complete={<StepIcon />} />
+                    </StepIndicator>
+                  </Step>
                 </div>
+                <StepSeparator
+                  className='max-h-[4px] min-w-[20px] rounded-[3px] md:min-w-[60px] lg:min-w-[100px]'
+                  style={{ margin: 0 }}
+                />
               </div>
             ))
           : null}

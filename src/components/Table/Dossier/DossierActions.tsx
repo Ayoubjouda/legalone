@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
+import DeleteFormalityModal from './DeleteFormalityModal';
 
 interface dossierActions {
   dossier: FormalitiesResponse;
@@ -45,12 +46,12 @@ const DossierActions: FC<dossierActions> = ({ dossier }) => {
           </DropdownMenuContent>
         </DropdownMenuPortal>
       </DropdownMenu>
-      {/* <DeleteModal
-        user={user}
+      <DeleteFormalityModal
+        dossier={dossier}
         setOpen={() => setDeleteModalOpen(!deleteModalOpen)}
         open={deleteModalOpen}
       />
-      <EditModal
+      {/* <EditModal
         setOpen={() => setEditModalOpen(!editModalOpen)}
         open={editModalOpen}
         user={user}
