@@ -18,7 +18,7 @@ const CompanyTypeForm = ({ goToNext }: FormProps) => {
   const { isLoading, data: CompanyType } = useGetCompanyType();
 
   const companyType = getValues('companyType');
-
+  console.log(companyType);
   const handleSetValue = (id: number) => {
     setValue('companyType', id);
   };

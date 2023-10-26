@@ -5,10 +5,13 @@ import {
   SciSchemaType,
   AssociationSchemaType,
 } from '@/lib/validators/formValidators';
+
 type Order = {
+  id: number;
   description: string;
   formality: number;
   package: number;
+  status: OrderStatus;
 };
 
 type OrderType = EntrepriseSchemaType | AutoEntreSchemaType;

@@ -49,8 +49,9 @@ const modifications = [
 ];
 
 const RequestedUpdates = ({ goToNext }: FormProps) => {
-  const { control, trigger, watch, getValues } = useFormContext();
+  const { control, trigger, getValues } = useFormContext();
   const vals = getValues();
+  console.log(vals);
   return (
     <form className='w-full max-w-[650px]'>
       <div className=' flex flex-col gap-4'>
@@ -60,7 +61,7 @@ const RequestedUpdates = ({ goToNext }: FormProps) => {
 
         <FormField
           control={control}
-          name='modifications'
+          name='modification'
           render={() => (
             <FormItem>
               <div className='mb-4'>
@@ -72,7 +73,8 @@ const RequestedUpdates = ({ goToNext }: FormProps) => {
                 <FormField
                   key={item.id}
                   control={control}
-                  name='modifications'
+                  name='modification'
+                  defaultValue={[]}
                   render={({ field: { value, onChange } }) => {
                     return (
                       <FormItem
@@ -107,7 +109,7 @@ const RequestedUpdates = ({ goToNext }: FormProps) => {
         />
         <p className='font-bold'>Autres :</p>
         <FormField
-          name='modificationAutres'
+          name='otherModification'
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -130,8 +132,8 @@ const RequestedUpdates = ({ goToNext }: FormProps) => {
           size={'lg'}
           onClick={async () => {
             const isValid = await trigger([
-              'modificationAutres',
-              'modifications',
+              'otherModification',
+              'modification',
             ]);
             console.log(isValid);
             if (isValid) {

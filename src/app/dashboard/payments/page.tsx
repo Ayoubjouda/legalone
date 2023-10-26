@@ -1,10 +1,14 @@
-import TableN from '@/components/Tables/TableN';
+'use client';
+import { columns } from '@/components/Table/Payments/columns';
+import { DataTable } from '@/components/Table/data-table';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useGetPayments } from '@/hooks/useAdmin';
 import { FC } from 'react';
 
 interface pageProps {}
 
-const page: FC<pageProps> = () => {
+const Page: FC<pageProps> = () => {
+  const { data, isLoading } = useGetPayments();
   return (
     <div className='h-full w-full space-y-8 bg-gray-50 px-4'>
       <div className='space-y-4 pt-6 '>
@@ -120,10 +124,16 @@ const page: FC<pageProps> = () => {
             </CardContent>
           </Card>
         </div>
-        <TableN />
+        <div className='rounded-md border bg-white p-4'>
+          <DataTable
+            data={isLoading ? [] : data}
+            columns={columns}
+            isLoading={isLoading}
+          />
+        </div>
       </div>
     </div>
   );
 };
 
-export default page;
+export default Page;

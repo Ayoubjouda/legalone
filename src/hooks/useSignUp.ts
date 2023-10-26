@@ -68,7 +68,7 @@ export function useSignUp() {
         } else {
           router.push('/');
         }
-        toast('login successful');
+        toast('Sign up successful');
       },
       onError(err: Error | AxiosError) {
         console.log(err);

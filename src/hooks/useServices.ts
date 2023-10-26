@@ -1,7 +1,7 @@
 import api from '@/lib/axiosConfig';
 import { Formality, OrderByIdResponse } from '@/types/order';
 import { AxiosError, isAxiosError } from 'axios';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useMutation, useQuery } from 'react-query';
 import { toast } from 'sonner';
 
@@ -97,38 +97,40 @@ const postUpdateFormality = async (
   formalityData: Formality,
   type: string
 ): Promise<FormalityResponse> => {
-  const { data: response } = await api.post(`company`, formalityData);
+  const { data: response } = await api.post(`${type}`, formalityData);
   setTimeout(() => {}, 2000);
   return { ...response, type: formalityData.companyType };
 };
 
-// export const useSubmitUpdateFormality = () => {
-//   const router = useRouter();
-//   const {
-//     mutate: FormalityCreationMutation,
-//     isLoading,
-//     data: FormalityData,
-//   } = useMutation<FormalityResponse, AxiosError, unknown>(
-//     (postData) => postUpdateFormality(postData.data, postData.type),
-//     {
-//       onSuccess(data) {
-//         toast('Formality created successfully');
-//         localStorage.removeItem(data.type);
+export const useSubmitUpdateFormality = () => {
+  const router = useRouter();
+  const getParams = useSearchParams();
+  const type = getParams.get('type') || '';
+  const {
+    mutate: FormalityUpdateMutation,
+    isLoading,
+    data: FormalityData,
+  } = useMutation<FormalityResponse, AxiosError, unknown>(
+    (postData) => postUpdateFormality(postData, type),
+    {
+      onSuccess(data) {
+        toast('Formality created successfully');
+        localStorage.removeItem(data.type);
 
-//         router.push(`/packages?formality=${data.createdFormality.id}`);
-//       },
-//       onError(err: Error | AxiosError) {
-//         if (isAxiosError(err)) {
-//           toast('Invalid Credentials');
-//         } else {
-//           toast('Something went wrong');
-//         }
-//       },
-//     }
-//   );
-//   return {
-//     FormalityCreationMutation,
-//     isLoading,
-//     FormalityData,
-//   };
-// };
+        router.push(`/packages?formality=${data.createdFormality.id}`);
+      },
+      onError(err: Error | AxiosError) {
+        if (isAxiosError(err)) {
+          toast('Invalid Credentials');
+        } else {
+          toast('Something went wrong');
+        }
+      },
+    }
+  );
+  return {
+    FormalityUpdateMutation,
+    isLoading,
+    FormalityData,
+  };
+};

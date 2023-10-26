@@ -291,19 +291,20 @@ export const SciFormSchema = z.object({
 });
 
 export const UpdateFormSchema = z.object({
-  modifications: z
+  modification: z
     .array(z.string())
     .refine((value) => value?.some((item) => item), {
       message: 'You have to select at least one item.',
     }),
+  otherModification: z.string().optional(),
+  declaration: z.coerce.boolean(),
 
-  creationDelay: z
+  delay: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
   companyName: z
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
-  declaration: z.boolean(),
 
   firstName: z
     .string()
@@ -321,12 +322,6 @@ export const UpdateFormSchema = z.object({
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
     .optional(),
-
-  companyType: z
-    .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
-
-  pack: z.custom<Package>(),
 });
 const AssociateSchema = z.object({
   associateSex: z.string(),
@@ -335,7 +330,7 @@ const AssociateSchema = z.object({
 });
 const CompanyAssociateSchema = z.object({
   companyNameAssociate: z.string(),
-  companyAssociateType: z.string(),
+  companyAssociateType: z.number(),
 });
 export const DissolutionFormSchema = z.object({
   delay: z
@@ -348,7 +343,6 @@ export const DissolutionFormSchema = z.object({
     .string()
     .min(2, { message: 'Vous devez sélectionner au moins une option' }),
   rcs: z.string().min(2, { message: 'Doit contenir au moins 2 caractères' }),
-  declaration: z.boolean(),
   lastName: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
@@ -359,10 +353,7 @@ export const DissolutionFormSchema = z.object({
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
     .max(15, { message: 'Doit contenir au maximum 15 caractères' })
     .optional(),
-  civilite: z
-    .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' })
-    .optional(),
+
   phone: z.string().min(2, { message: 'Doit contenir au moins 2 caractères' }),
   email: z.string().email({ message: 'Doit être une adresse e-mail valide' }),
   liquidatorType: z
@@ -374,18 +365,21 @@ export const DissolutionFormSchema = z.object({
     .min(1, { message: 'Doit contenir au moins 2 caractères' })
     .optional(),
   companyLiquidatorType: z
-    .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .number()
+    .min(1, { message: 'Doit contenir au moins 2 caractères' })
     .optional(),
   LiquidatorfirstName: z
     .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .optional(),
   LiquidatorlastName: z
     .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .optional(),
   Liquidatorsex: z
     .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .optional(),
   associates: z.array(
     z.object({
       type: z.number(),

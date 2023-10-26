@@ -24,9 +24,32 @@ interface FormProps {
   goToNext: () => void;
 }
 const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
-  const { control, trigger, getValues } = useFormContext();
+  const { control, trigger, getValues, setValue, resetField } =
+    useFormContext();
   const values = getValues();
   const { data: CompanyTypes, isLoading } = useGetCompanyType();
+
+  const handelSubmitValue = async () => {
+    let isvalid;
+    if (values.liquidatorType === 1) {
+      isvalid = await trigger(['firstName', 'lastName', 'Liquidatorsex']);
+      if (isvalid) {
+        goToNext();
+        isvalid = false;
+      }
+    }
+    if (values.liquidatorType === 2) {
+      isvalid = await trigger([
+        'companyLiquidatorType',
+        'companyNameLiquidator',
+      ]);
+
+      if (isvalid) {
+        goToNext();
+        isvalid = false;
+      }
+    }
+  };
   if (isLoading)
     return (
       <div className='flex h-full min-h-[300px] w-full items-center justify-center'>
@@ -87,7 +110,8 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
         <FormField
           name='liquidatorType'
           control={control}
-          render={({ field: { onChange, onBlur, value, ref } }) => (
+          defaultValue={1}
+          render={({ field: { onChange, value } }) => (
             <FormItem className='flex flex-col gap-3 space-y-0 '>
               <FormLabel className='leading-[20px]'>
                 Le liquidateur tiers est :
@@ -95,18 +119,23 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
               <FormControl>
                 <RadioGroup
                   onValueChange={(value) => {
-                    if (value === 'True') {
+                    if (value === '1') {
+                      resetField('companyNameLiquidator');
+                      resetField('companyLiquidatorType');
                       onChange(1);
                     } else {
+                      resetField('firstName');
+                      resetField('lastName');
+                      resetField('Liquidatorsex');
                       onChange(2);
                     }
                   }}
-                  defaultValue={value === true ? 'True' : 'False'}
+                  defaultValue={value === 1 ? '1' : value === 2 ? '2' : ''}
                   className='flex'
                 >
                   <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value='True' />
+                      <RadioGroupItem value='1' />
                     </FormControl>
                     <FormLabel className='font-semibold'>
                       Un particulier (le plus fréquent)
@@ -114,7 +143,7 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
                   </FormItem>
                   <FormItem className='flex items-center space-x-3 space-y-0'>
                     <FormControl>
-                      <RadioGroupItem value='False' />
+                      <RadioGroupItem value='2' />
                     </FormControl>
                     <FormLabel className='font-semibold'>Une société</FormLabel>
                   </FormItem>
@@ -160,7 +189,8 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
             </div>
             <FormField
               control={control}
-              name='civilite'
+              name='Liquidatorsex'
+              defaultValue={''}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Civilité</FormLabel>
@@ -204,12 +234,12 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
               control={control}
               name='companyLiquidatorType'
               defaultValue={''}
-              render={({ field }) => (
+              render={({ field: { onChange, value } }) => (
                 <FormItem>
                   <FormLabel>Forme Social</FormLabel>
                   <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    onValueChange={(value) => onChange(Number(value))}
+                    defaultValue={value}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -220,7 +250,7 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
                       {CompanyTypes?.map((item) => (
                         <SelectItem
                           key={item.id}
-                          value={item.name}
+                          value={String(item.id)}
                         >
                           {item.name}
                         </SelectItem>
@@ -239,12 +269,7 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
           className='self-end text-lg font-semibold hover:bg-darkRedish'
           type='button'
           size={'lg'}
-          onClick={async () => {
-            const isValid = await trigger([]);
-            if (isValid) {
-              goToNext();
-            }
-          }}
+          onClick={handelSubmitValue}
         >
           Continuer
         </Button>

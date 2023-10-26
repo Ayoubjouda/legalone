@@ -82,3 +82,37 @@ interface handlePaymentResponse {
     };
   };
 }
+
+interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+  birthDate: string;
+  createdAt: string;
+  status: UserStatus;
+  role: string;
+  email: string;
+}
+
+enum UserStatus {
+  BANNED = 'BANNED',
+  ACTIVE = 'ACTIVE',
+  SUSPENDED = 'SUSPENDED',
+}
+
+type FormalitiesResponse = {
+  id: number;
+  dossier: string;
+  status: string;
+  type: string;
+};
+
+type Payment = {
+  id: number;
+  currency: string;
+  description: string;
+  createdAt: string; // You might want to use a Date type here if you parse the string to a Date object
+  updatedAt: string; // You might want to use a Date type here if you parse the string to a Date object
+  status: null | string; // Status can be null or a string
+  order: Order;
+};

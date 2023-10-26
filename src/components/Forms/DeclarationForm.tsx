@@ -31,7 +31,7 @@ const DeclarationForm = ({ goToNext }: FormProps) => {
         <FormField
           name='declaration'
           control={control}
-          render={({ field: { onChange, onBlur, value, ref } }) => (
+          render={({ field: { onChange, value } }) => (
             <FormItem className='flex flex-col gap-3 space-y-0 '>
               <FormLabel className='leading-[20px]'>
                 Avez-vous déjà effectué la Déclaration de Bénéficiaires
@@ -42,11 +42,13 @@ const DeclarationForm = ({ goToNext }: FormProps) => {
                   onValueChange={(value) => {
                     if (value === 'True') {
                       onChange(true);
-                    } else {
+                    } else if (value === 'False') {
                       onChange(false);
                     }
                   }}
-                  defaultValue={value === true ? 'True' : 'False'}
+                  defaultValue={
+                    value === true ? 'True' : value === false ? 'False' : ''
+                  }
                   className='flex'
                 >
                   <FormItem className='flex items-center space-x-3 space-y-0'>
@@ -74,11 +76,7 @@ const DeclarationForm = ({ goToNext }: FormProps) => {
           type='button'
           size={'lg'}
           onClick={async () => {
-            const isValid = await trigger([
-              'firstName',
-              'lastName',
-              'declaration',
-            ]);
+            const isValid = await trigger(['declaration']);
             if (isValid) {
               goToNext();
             }

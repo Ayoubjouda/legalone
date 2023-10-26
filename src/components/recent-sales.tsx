@@ -17,7 +17,9 @@ export function RecentSales() {
             olivia.martin@email.com
           </p>
         </div>
-        <div className='ml-auto font-medium text-green-500'>+$1,999.00</div>
+        <div className='md:text-md ml-auto text-sm font-medium text-green-500'>
+          +$1,999.00
+        </div>
       </div>
       <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100 '>
         <Avatar className='flex h-9 w-9 items-center justify-center space-y-0 border'>
@@ -31,7 +33,7 @@ export function RecentSales() {
           <p className='text-sm font-medium leading-none'>Jackson Lee</p>
           <p className='text-sm text-muted-foreground'>jackson.lee@email.com</p>
         </div>
-        <div className='ml-auto font-medium text-red-500'>-$39.00</div>
+        <div className='ml-auto text-sm font-medium text-red-500'>-$39.00</div>
       </div>
       <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100 '>
         <Avatar className='h-9 w-9'>
@@ -47,9 +49,9 @@ export function RecentSales() {
             isabella.nguyen@email.com
           </p>
         </div>
-        <div className='ml-auto font-medium text-red-500'>-$299.00</div>
+        <div className='ml-auto text-sm font-medium text-red-500'>-$299.00</div>
       </div>
-      <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100 '>
+      {/* <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100 '>
         <Avatar className='h-9 w-9'>
           <AvatarImage
             src='/avatars/04.png'
@@ -62,8 +64,8 @@ export function RecentSales() {
           <p className='text-sm text-muted-foreground'>will@email.com</p>
         </div>
         <div className='ml-auto font-medium text-green-500'>+$99.00</div>
-      </div>
-      <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100 '>
+      </div> */}
+      {/* <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100 '>
         <Avatar className='h-9 w-9'>
           <AvatarImage
             src='/avatars/05.png'
@@ -76,7 +78,7 @@ export function RecentSales() {
           <p className='text-sm text-muted-foreground'>sofia.davis@email.com</p>
         </div>
         <div className='ml-auto font-medium text-green-500'>+$39.00</div>
-      </div>
+      </div> */}
     </div>
   );
 }

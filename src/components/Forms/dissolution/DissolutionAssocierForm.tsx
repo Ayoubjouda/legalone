@@ -220,7 +220,7 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
                     <FormItem>
                       <FormLabel>Forme Social</FormLabel>
                       <Select
-                        onValueChange={onChange}
+                        onValueChange={(value) => onChange(Number(value))}
                         defaultValue={value}
                       >
                         <FormControl>
@@ -232,7 +232,7 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
                           {CompanyTypes?.map((item) => (
                             <SelectItem
                               key={item.id}
-                              value={item.name}
+                              value={String(item.id)}
                             >
                               {item.name}
                             </SelectItem>

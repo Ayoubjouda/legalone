@@ -5,7 +5,7 @@ interface NavBarProps {}
 
 import { ChevronRight, Cog } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { Button } from '@nextui-org/react';
+import { Button } from './ui/button';
 
 const DashBoardNavbar: FC<NavBarProps> = () => {
   const pathName = usePathname();
@@ -37,11 +37,13 @@ const DashBoardNavbar: FC<NavBarProps> = () => {
 
       <div>
         <Button
-          className='bg-black  text-white'
-          radius='sm'
+          className='bg-black text-white  hover:bg-black'
           size='sm'
-          startContent={<Cog size={16} />}
         >
+          <Cog
+            size={16}
+            className='mr-2'
+          />
           Settings
         </Button>
       </div>

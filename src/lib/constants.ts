@@ -66,11 +66,11 @@ export const DELETE_COMPANY_DATA = [
   {
     id: 1,
     title: 'Radiation de société',
-    url: '/delete?type=Radiation',
+    url: '/delete?type=radiation',
   },
   {
     id: 2,
     title: 'Dissolution de société',
-    url: '/delete?type=Dissolution',
+    url: '/delete?type=dissolution',
   },
 ];

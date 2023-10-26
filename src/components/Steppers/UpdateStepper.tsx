@@ -23,14 +23,14 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import RequestedUpdates from '../Forms/RequestedUpdates';
 import DeclarationForm from '../Forms/DeclarationForm';
 import Companyinfo from '../Forms/Companyinfo';
+import FinishFlow from '../Forms/FinishFlow';
+import FinishUpdateFlow from '../Forms/FinishUpdateFlow';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
   { title: 'Second', description: 'CRÉATION DE SASU' },
   { title: 'Third', description: 'PROJET' },
   { title: 'Third', description: 'CHOIX DU PLAN' },
-  { title: 'Third', description: 'Headquarter' },
-  { title: 'Third', description: 'Headquarter' },
   { title: 'Third', description: 'Headquarter' },
 ];
 const UpdateStepper: FC<StepperProps> = () => {
@@ -67,9 +67,7 @@ const UpdateStepper: FC<StepperProps> = () => {
       case 4:
         return <ContactForm goToNext={handleGoToNext} />;
       case 5:
-        return <PackForm goToNext={handleGoToNext} />;
-      case 6:
-        return <CommandeForm />;
+        return <FinishUpdateFlow />;
     }
   }
   return (
@@ -98,7 +96,6 @@ const UpdateStepper: FC<StepperProps> = () => {
         flex={1}
         gap={4}
         width={'max-content'}
-        showLastSeparator
       >
         {steps.map((step, index) => (
           <div

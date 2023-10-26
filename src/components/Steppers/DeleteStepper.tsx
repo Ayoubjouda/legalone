@@ -29,6 +29,7 @@ import CompanyTypeForm from '../Forms/CompanyTypeForm';
 import DissolutionCompanyDataForm from '../Forms/DissolutionCompanyDataForm';
 import DissolutionLiquidateurForm from '../Forms/dissolution/DissolutionLiquidateurForm';
 import DissolutionAssocierForm from '../Forms/dissolution/DissolutionAssocierForm';
+import FinishUpdateFlow from '../Forms/FinishUpdateFlow';
 interface StepperProps {}
 const steps = [
   { title: 'First', description: 'CHOIX DES STATUTS' },
@@ -74,9 +75,9 @@ const DeleteStepper: FC<StepperProps> = () => {
       case 5:
         return <DissolutionAssocierForm goToNext={handleGoToNext} />;
       case 6:
-        return <PackForm goToNext={handleGoToNext} />;
+        return <PersonalForm goToNext={handleGoToNext} />;
       case 7:
-        return <CommandeForm />;
+        return <FinishUpdateFlow />;
     }
   }
   return (
@@ -105,7 +106,6 @@ const DeleteStepper: FC<StepperProps> = () => {
         flex={1}
         gap={4}
         width={'max-content'}
-        showLastSeparator
       >
         {steps.map((step, index) => (
           <div
