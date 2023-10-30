@@ -3,34 +3,33 @@ import React from 'react';
 import SidebarSubmenu from './SidebarSubmenu';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { IconProps } from '../Icon';
-import Icon from '../Icon';
 import { UserNav } from '../user-nav';
 import { useSession } from 'next-auth/react';
+import { Icons, Icon } from '@/components/Icons';
 type routes = {
   name: string;
-  icon: IconProps['name'];
+  icon: keyof typeof Icons;
   routes: {
     name: string;
   };
 }[];
 
 const routes: routes = [
-  { name: 'DashBoard', icon: 'Home', routes: { name: '/dashboard' } },
-  { name: 'Users', icon: 'Users', routes: { name: '/dashboard/users' } },
+  { name: 'DashBoard', icon: 'home', routes: { name: '/dashboard' } },
+  { name: 'Users', icon: 'users', routes: { name: '/dashboard/users' } },
   {
     name: 'Services',
-    icon: 'Folder',
+    icon: 'folder',
     routes: { name: '/dashboard/services' },
   },
   {
     name: 'Orders',
-    icon: 'ShoppingCart',
+    icon: 'shoppingCart',
     routes: { name: '/dashboard/orders' },
   },
   {
     name: 'Payments',
-    icon: 'BadgeDollarSign',
+    icon: 'badgeDollarSign',
     routes: { name: '/dashboard/payments' },
   },
 ];
@@ -55,6 +54,7 @@ function SidebarContent() {
             //     />
             //   );
             // } else {
+            const Icon = Icons[route.icon || 'arrowRight'];
             return (
               <Link
                 href={route.routes.name}
@@ -71,10 +71,7 @@ function SidebarContent() {
                   aria-hidden='true'
                 ></span>
               )} */}
-                <Icon
-                  name={route.icon}
-                  size={16}
-                />
+                <Icon size={16} />
                 <span className='ml-4 text-base'>{route.name}</span>
               </Link>
             );

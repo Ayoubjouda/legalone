@@ -244,13 +244,12 @@ export const SciFormSchema = z.object({
   shareCapital: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' }),
-  assosier: z
+  associer: z
     .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+    .min(1, { message: 'Doit contenir au moins 2 caractères' }),
   headquarter: z
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
-
   firstName: z
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })

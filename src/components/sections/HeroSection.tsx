@@ -53,19 +53,19 @@ const HeroSection: FC<HeroSectionProps> = () => {
         <div className='flex flex-col items-end justify-center gap-4 md:flex-row lg:gap-12'>
           <ServiceCard
             title="Création d'entreprise"
-            image='/icons8company-1.svg'
+            icon='building'
             links={CREATE_COMPANY_DATA}
             description='SAS, SARL, Auto-entreprise'
           />
           <ServiceCard
             title='Modification de status'
-            image='/icons8settings-1-11.svg'
+            icon='cog'
             links={UPDATE_COMPANY_DATA}
             description='Transfert de siège, changement ...'
           />
           <ServiceCard
             title="Fermeture d'entreprise"
-            image='/vector1.svg'
+            icon='folderX'
             links={DELETE_COMPANY_DATA}
             description='Dissolution, liquidation et radiation'
           />

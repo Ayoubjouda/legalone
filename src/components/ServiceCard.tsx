@@ -2,13 +2,14 @@
 import { FC } from 'react';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hover-card';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import { Icons } from './Icons';
 interface ServiceCardProps {
   title: string;
   description: string;
-  image: string;
+  icon: keyof typeof Icons;
+
   links: Links[];
 }
 interface ServicesContentProps {
@@ -40,11 +41,12 @@ const ServicesContent = ({ Links }: ServicesContentProps) => {
 
 const ServiceCard: FC<ServiceCardProps> = ({
   title,
-  image,
   links,
   description,
+  icon,
 }: ServiceCardProps) => {
   const router = useRouter();
+  const Icon = Icons[icon || 'arrowRight'];
   return (
     <div>
       <div className='hidden md:flex'>
@@ -54,15 +56,11 @@ const ServiceCard: FC<ServiceCardProps> = ({
               className='box-border flex cursor-pointer items-center  justify-center gap-4 overflow-hidden rounded-md border-[1px] border-solid bg-white px-4 py-3 hover:border-redish'
               onClick={() => router.push('/createcompany')}
             >
-              <Image
-                className='relative h-[30px] w-[30px] shrink-0 overflow-hidden'
-                alt=''
-                src={image}
-                width={0}
-                height={0}
-                sizes='100vw'
-                loading='eager'
+              <Icon
+                size={26}
+                className='stroke-redish'
               />
+
               <div className='flex w-full flex-col'>
                 <div className='flex flex-row '>
                   <b className='relative inline-block  shrink-0'>{title}</b>
@@ -87,14 +85,8 @@ const ServiceCard: FC<ServiceCardProps> = ({
         <Popover>
           <PopoverTrigger asChild>
             <div className='box-border flex cursor-pointer   items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5 hover:border-sandybrown-100'>
-              <Image
-                className='relative h-[30px] w-[30px] shrink-0 overflow-hidden'
-                alt=''
-                src={image}
-                width={0}
-                height={0}
-                sizes='100vw'
-              />
+              <Icon size={26} />
+
               <div className='flex w-full flex-col'>
                 <div className='flex flex-row '>
                   <b className='relative inline-block  shrink-0'>{title}</b>

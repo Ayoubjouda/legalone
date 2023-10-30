@@ -10,13 +10,14 @@ import { Input } from '../ui/input';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 import { Button } from '../ui/button';
 import { ChevronRight, MoveRight } from 'lucide-react';
+import { el } from 'date-fns/locale';
 
 interface FormProps {
   goToNext: () => void;
 }
 const CompanyDataForm = ({ goToNext }: FormProps) => {
-  const { control, trigger } = useFormContext();
-
+  const { control, trigger, watch } = useFormContext();
+  const field = watch();
   const handleGoToNext = async () => {
     const isValid = await trigger([
       'companyName',
@@ -25,7 +26,7 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
       'accountingExpert',
       'nonAssociateManager',
     ]);
-
+    console.log(field);
     if (isValid) {
       goToNext();
     }
@@ -80,7 +81,7 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
               </FormLabel>
               <FormControl>
                 <RadioGroup
-                  onValueChange={field.onChange}
+                  onValueChange={(val) => field.onChange(val)}
                   defaultValue={
                     field.value === 'one'
                       ? 'one'
@@ -120,7 +121,13 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
               </FormLabel>
               <FormControl>
                 <RadioGroup
-                  onValueChange={onChange}
+                  onValueChange={(val) => {
+                    if (val === 'True') {
+                      onChange(true);
+                    } else if (val === 'False') {
+                      onChange(false);
+                    }
+                  }}
                   className='flex'
                   defaultValue={
                     value === true ? 'True' : value === false ? 'False' : ''
@@ -155,7 +162,13 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
               </FormLabel>
               <FormControl>
                 <RadioGroup
-                  onValueChange={onChange}
+                  onValueChange={(val) => {
+                    if (val === 'True') {
+                      onChange(true);
+                    } else if (val === 'False') {
+                      onChange(false);
+                    }
+                  }}
                   className='flex'
                   defaultValue={
                     value === true ? 'True' : value === false ? 'False' : ''
