@@ -1,5 +1,5 @@
 import { FC } from 'react';
-
+import Image from 'next/image';
 interface InovateSectionProps {}
 
 const InovateSection: FC<InovateSectionProps> = () => {
@@ -21,9 +21,13 @@ const InovateSection: FC<InovateSectionProps> = () => {
         <div className='inline-flex flex-col items-center justify-between gap-10 self-stretch lg:flex-row lg:items-start'>
           <div className='inline-flex flex-col items-start justify-start'>
             <div className=' flex flex-col items-center justify-start gap-8'>
-              <img
+              <Image
+                alt='image'
                 className='relative h-[61px] w-[60px]'
                 src='https://via.placeholder.com/60x61'
+                width={0}
+                height={0}
+                sizes='100vw'
               />
               <div className='flex  flex-col items-center justify-center gap-4 self-stretch'>
                 <div className=' flex flex-col items-center justify-start'>
@@ -42,9 +46,13 @@ const InovateSection: FC<InovateSectionProps> = () => {
           </div>
           <div className='inline-flex flex-col items-start justify-start'>
             <div className=' flex flex-col items-center justify-start gap-8'>
-              <img
+              <Image
+                alt='image'
                 className='relative h-[61px] w-[60px]'
                 src='https://via.placeholder.com/60x61'
+                width={0}
+                height={0}
+                sizes='100vw'
               />
               <div className='flex  flex-col items-center justify-center gap-4 self-stretch'>
                 <div className=' flex flex-col items-center justify-start'>
@@ -63,9 +71,13 @@ const InovateSection: FC<InovateSectionProps> = () => {
           </div>
           <div className='inline-flex flex-col items-start justify-start'>
             <div className=' flex flex-col items-center justify-start gap-8'>
-              <img
+              <Image
+                alt='image'
                 className='relative h-[61px] w-[60px]'
                 src='https://via.placeholder.com/60x61'
+                width={0}
+                height={0}
+                sizes='100vw'
               />
               <div className='flex  flex-col items-center justify-center gap-4 self-stretch'>
                 <div className=' flex flex-col items-center justify-start'>

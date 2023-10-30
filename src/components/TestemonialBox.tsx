@@ -1,5 +1,5 @@
 import { FC } from 'react';
-
+import Image from 'next/image';
 interface TestemonialBoxProps {}
 
 const TestemonialBox: FC<TestemonialBoxProps> = () => {
@@ -24,9 +24,13 @@ const TestemonialBox: FC<TestemonialBoxProps> = () => {
                 Co-Founder, CEO
               </div>
             </div>
-            <img
+            <Image
+              alt='image'
               className='relative h-[42px] w-[42px] rounded-[500px]'
               src='https://via.placeholder.com/42x42'
+              height={0}
+              width={0}
+              sizes='100vw'
             />
           </div>
         </div>
