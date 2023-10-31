@@ -1,6 +1,5 @@
 'use client';
 import { FC } from 'react';
-import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 interface NavBarProps {}
 
@@ -28,8 +27,6 @@ const menuItems = [
 ];
 
 const NavBar: FC<NavBarProps> = () => {
-  const { data: session, status } = useSession();
-
   return (
     <Navbar
       isBordered
@@ -48,10 +45,13 @@ const NavBar: FC<NavBarProps> = () => {
         justify='center'
       >
         <NavbarBrand>
-          <div className='relative inline-block '>
+          <Link
+            href={'/'}
+            className='relative inline-block '
+          >
             <span>Legal</span>
             <b>Centre</b>
-          </div>
+          </Link>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent
@@ -59,10 +59,13 @@ const NavBar: FC<NavBarProps> = () => {
         justify='start'
       >
         <NavbarBrand>
-          <div className='relative inline-block w-[129.82px]'>
+          <Link
+            href={'/'}
+            className='relative inline-block w-[129.82px]'
+          >
             <span>Legal</span>
             <b>Centre</b>
-          </div>
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 

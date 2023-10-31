@@ -1,6 +1,6 @@
 'use client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useGetUsers } from '@/hooks/useAdmin';
+import { useGetUsers } from '@/hooks/useUser';
 import { FC } from 'react';
 import { columns } from '@/components/Table/Users/columns';
 import { DataTable } from '@/components/Table/data-table';

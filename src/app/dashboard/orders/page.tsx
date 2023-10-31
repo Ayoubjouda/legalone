@@ -2,7 +2,7 @@
 import { columns } from '@/components/Table/Orders/columns';
 import { DataTable } from '@/components/Table/data-table';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useGetOrders } from '@/hooks/useAdmin';
+import { useGetOrders } from '@/hooks/useOrder';
 import { FC } from 'react';
 
 interface pageProps {}

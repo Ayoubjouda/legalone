@@ -1,5 +1,4 @@
-import AddUserForm from '@/components/Forms/adminForms/AddUserForm';
-import EditUserForm from '@/components/Forms/adminForms/EditUserForm';
+import AddUserForm from '@/components/Forms/userForms/AddUserForm';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -9,7 +8,6 @@ import {
   DialogPortal,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { useDeleteUser } from '@/hooks/useAdmin';
 import { Plus } from 'lucide-react';
 import { useState } from 'react';
 

@@ -6,15 +6,14 @@ import {
   AutoEntreFormSchema,
   AssociationFormSchema,
   SciFormSchema,
-  DomiciliationFormSchema,
-} from '@/lib/validators/formValidators';
+} from '@/lib/validators/creation';
+import { DomiciliationFormSchema } from '@/lib/validators/domiciliation/domiciliation';
 import { useSearchParams } from 'next/navigation';
 import SaasStepper from '@/components/Steppers/SaasStepper';
 import React from 'react';
 import { ConditionalSchemaType } from '@/types/schema.types';
 import AutoEntreStepper from '@/components/Steppers/AutoEntreStepper';
-import CompanyTypeForm from '@/components/Forms/CompanyType';
-import { ZodObject } from 'zod';
+import CompanyTypeForm from '@/components/Forms/services/common/CompanyType';
 import useFormPersist from 'react-hook-form-persist';
 import AssociationStepper from '@/components/Steppers/AssociationStepper';
 import SciStepper from '@/components/Steppers/SciStepper';

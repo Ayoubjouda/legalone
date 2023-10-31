@@ -1,7 +1,7 @@
 'use client';
 import { DataTable } from '@/components/Table/data-table';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useGetFormalities } from '@/hooks/useAdmin';
+import { useGetFormalities } from '@/hooks/useDossier';
 import { FC } from 'react';
 import { columns } from '@/components/Table/Dossier/columns';
 interface pageProps {}

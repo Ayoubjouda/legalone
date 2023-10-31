@@ -8,8 +8,7 @@ import {
   DialogHeader,
   DialogPortal,
 } from '@/components/ui/dialog';
-import { useDeleteFormality } from '@/hooks/useAdmin';
-import { Order } from '@/types/order';
+import { useDeleteFormality } from '@/hooks/useDossier';
 import { Loader2 } from 'lucide-react';
 
 const DeleteFormalityModal = ({

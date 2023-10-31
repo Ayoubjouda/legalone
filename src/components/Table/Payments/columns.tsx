@@ -6,7 +6,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import PaymentActions from './PaymentActions';
 import { cn } from '@/lib/utils';
-import { Order } from '@/types/order';
 import { format } from 'date-fns';
 export enum OrderStatus {
   PENDING = 'PENDING',

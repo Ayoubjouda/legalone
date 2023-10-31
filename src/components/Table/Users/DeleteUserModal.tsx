@@ -8,8 +8,7 @@ import {
   DialogHeader,
   DialogPortal,
 } from '@/components/ui/dialog';
-import { useDeleteUser } from '@/hooks/useAdmin';
-import { de } from 'date-fns/locale';
+import { useDeleteUser } from '@/hooks/useUser';
 import { Loader2 } from 'lucide-react';
 
 const DeleteUserModal = ({

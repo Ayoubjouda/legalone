@@ -20,18 +20,19 @@ import {
 } from '@/components/Forms';
 import { ChevronLeft } from 'lucide-react';
 
-import ContactForm from '../Forms/ContactForm';
+import ContactForm from '../Forms/services/common/ContactForm';
 import { useRouter, useSearchParams } from 'next/navigation';
-import FinishFlow from '../Forms/FinishFlow';
+import FinishFlow from '../Forms/services/common/FinishFlow';
 interface StepperProps {}
 const steps = [
-  { title: 'First', description: 'CHOIX DES STATUTS' },
-  { title: 'Second', description: 'CRÉATION DE SASU' },
-  { title: 'Third', description: 'PROJET' },
-  { title: 'Third', description: 'CHOIX DU PLAN' },
-  { title: 'Third', description: 'Headquarter' },
-  { title: 'Third', description: 'Récapitulatif' },
-  { title: 'Third', description: 'Récapitulatif' },
+  { title: 'First', description: 'CHOIX DES STATUTS', component: DurationForm },
+  { title: 'Second', description: 'CRÉATION DE SASU', component: ActivityForm },
+  { title: 'Second', description: 'CRÉATION DE SASU', component: ManagerForm },
+  { title: 'Third', description: 'CHOIX DU PLAN', component: PersonalForm },
+  { title: 'Third', description: 'PROJET', component: CompanyDataForm },
+  { title: 'Third', description: 'Headquarter', component: HeadquarterForm },
+  { title: 'Third', description: 'Récapitulatif', component: ContactForm },
+  { title: 'Third', description: 'Récapitulatif', component: FinishFlow },
 ];
 const SaasStepper: FC<StepperProps> = () => {
   const router = useRouter();
@@ -54,28 +55,7 @@ const SaasStepper: FC<StepperProps> = () => {
     goToPrevious();
   };
 
-  function getStepContent(step: number) {
-    switch (step) {
-      case 0:
-        return <DurationForm goToNext={handleGoToNext} />;
-      case 1:
-        return <ActivityForm goToNext={handleGoToNext} />;
-      case 2:
-        return <ManagerForm goToNext={handleGoToNext} />;
-      case 3:
-        return <PersonalForm goToNext={handleGoToNext} />;
-      case 4:
-        return <CompanyDataForm goToNext={handleGoToNext} />;
-      case 5:
-        return <ContactForm goToNext={handleGoToNext} />;
-      case 6:
-        return <HeadquarterForm goToNext={handleGoToNext} />;
-      case 7:
-        return <FinishFlow goToNext={handleGoToNext} />;
-      // case 8:
-      //   return <CommandeForm />;
-    }
-  }
+  const StepComponent = steps[activeStep].component;
   return (
     <div className='flex w-full   max-w-screen-xl flex-col items-center justify-center gap-5'>
       <div className=' w-full sm:max-w-lg lg:max-w-3xl'>
@@ -125,7 +105,7 @@ const SaasStepper: FC<StepperProps> = () => {
           : null}
       </ChakraStepper>
       <div className='flex w-full items-center justify-center px-3 '>
-        {getStepContent(activeStep)}
+        <StepComponent goToNext={handleGoToNext} />
       </div>
     </div>
   );

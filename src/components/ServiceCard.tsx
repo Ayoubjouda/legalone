@@ -53,7 +53,7 @@ const ServiceCard: FC<ServiceCardProps> = ({
         <HoverCard openDelay={100}>
           <HoverCardTrigger>
             <div
-              className='box-border flex cursor-pointer items-center  justify-center gap-4 overflow-hidden rounded-md border-[1px] border-solid bg-white px-4 py-3 hover:border-redish'
+              className='box-border flex min-w-[256px] cursor-pointer items-center  justify-center gap-4 overflow-hidden rounded-md border-[1px] border-solid bg-white px-4 py-3 hover:border-redish'
               onClick={() => router.push('/createcompany')}
             >
               <Icon
@@ -84,8 +84,11 @@ const ServiceCard: FC<ServiceCardProps> = ({
       <div className='md:hidden'>
         <Popover>
           <PopoverTrigger asChild>
-            <div className='box-border flex cursor-pointer   items-center justify-center gap-[7px] overflow-hidden rounded-md border-[1px] border-solid bg-white px-[18px] py-2.5 hover:border-sandybrown-100'>
-              <Icon size={26} />
+            <div className='box-border  flex min-w-[256px]   cursor-pointer items-center justify-center gap-4 overflow-hidden rounded-md border-[1px] border-solid bg-white px-4 py-3 hover:border-sandybrown-100'>
+              <Icon
+                size={26}
+                className='stroke-redish'
+              />
 
               <div className='flex w-full flex-col'>
                 <div className='flex flex-row '>

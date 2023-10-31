@@ -1,4 +1,4 @@
-import EditUserForm from '@/components/Forms/adminForms/EditUserForm';
+import EditUserForm from '@/components/Forms/userForms/EditUserForm';
 import {
   Dialog,
   DialogContent,
@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogPortal,
 } from '@/components/ui/dialog';
-import { useDeleteUser } from '@/hooks/useAdmin';
+import { useDeleteUser } from '@/hooks/useUser';
 
 const EditModal = ({
   setOpen,

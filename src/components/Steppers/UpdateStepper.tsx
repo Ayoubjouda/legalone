@@ -10,31 +10,26 @@ import {
   StepIcon,
 } from '@chakra-ui/react';
 import { Button } from '../ui/button';
-import {
-  PersonalForm,
-  DurationForm,
-  ActivityForm,
-  ManagerForm,
-  CompanyDataForm,
-  HeadquarterForm,
-  CommandeForm,
-} from '@/components/Forms';
+import { DurationForm } from '@/components/Forms';
 import { ChevronLeft } from 'lucide-react';
-import PackForm from '../Forms/PackForm';
-import ContactForm from '../Forms/ContactForm';
+import ContactForm from '../Forms/services/common/ContactForm';
 import { useRouter, useSearchParams } from 'next/navigation';
-import RequestedUpdates from '../Forms/RequestedUpdates';
-import DeclarationForm from '../Forms/DeclarationForm';
-import Companyinfo from '../Forms/Companyinfo';
-import FinishFlow from '../Forms/FinishFlow';
-import FinishUpdateFlow from '../Forms/FinishUpdateFlow';
+import RequestedUpdates from '../Forms/services/modification/RequestedUpdates';
+import DeclarationForm from '../Forms/services/modification/DeclarationForm';
+import Companyinfo from '../Forms/services/modification/Companyinfo';
+import FinishUpdateFlow from '../Forms/services/modification/FinishUpdateFlow';
 interface StepperProps {}
 const steps = [
-  { title: 'First', description: 'CHOIX DES STATUTS' },
-  { title: 'Second', description: 'CRÉATION DE SASU' },
-  { title: 'Third', description: 'PROJET' },
-  { title: 'Third', description: 'CHOIX DU PLAN' },
-  { title: 'Third', description: 'Headquarter' },
+  { title: 'First', description: 'CHOIX DES STATUTS', component: DurationForm },
+  {
+    title: 'Second',
+    description: 'CRÉATION DE SASU',
+    component: RequestedUpdates,
+  },
+  { title: 'Third', description: 'PROJET', component: DeclarationForm },
+  { title: 'Third', description: 'CHOIX DU PLAN', component: Companyinfo },
+  { title: 'Third', description: 'Headquarter', component: ContactForm },
+  { title: 'Third', description: 'Headquarter', component: FinishUpdateFlow },
 ];
 const UpdateStepper: FC<StepperProps> = () => {
   const router = useRouter();
@@ -56,23 +51,8 @@ const UpdateStepper: FC<StepperProps> = () => {
     router.push(`/update?type=${companyType}&step=${activeStep - 1}`);
     goToPrevious();
   };
+  const StepComponent = steps[activeStep].component;
 
-  function getStepContent(step: number) {
-    switch (step) {
-      case 0:
-        return <DurationForm goToNext={handleGoToNext} />;
-      case 1:
-        return <RequestedUpdates goToNext={handleGoToNext} />;
-      case 2:
-        return <DeclarationForm goToNext={handleGoToNext} />;
-      case 3:
-        return <Companyinfo goToNext={handleGoToNext} />;
-      case 4:
-        return <ContactForm goToNext={handleGoToNext} />;
-      case 5:
-        return <FinishUpdateFlow />;
-    }
-  }
   return (
     <div className='flex w-full  max-w-screen-xl flex-col items-center justify-center gap-5'>
       <div className=' relative w-full sm:max-w-lg lg:max-w-3xl'>
@@ -122,7 +102,7 @@ const UpdateStepper: FC<StepperProps> = () => {
           : null}
       </ChakraStepper>
       <div className='flex w-full items-center justify-center px-3 '>
-        {getStepContent(activeStep)}
+        <StepComponent goToNext={handleGoToNext} />
       </div>
     </div>
   );

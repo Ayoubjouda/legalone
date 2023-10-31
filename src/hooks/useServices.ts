@@ -10,7 +10,6 @@ const postCreationFormality = async (
   formalityData: Formality
 ): Promise<FormalityResponse> => {
   const { data: response } = await api.post(`company`, formalityData);
-  setTimeout(() => {}, 2000);
   return { ...response, type: formalityData.companyType };
 };
 
@@ -50,8 +49,6 @@ export const useSubmitCreateFormality = () => {
 // Order
 const getOrderById = async (id: number): Promise<OrderByIdResponse> => {
   const { data } = await api.get(`order/${id}`);
-  setTimeout(() => {}, 2000);
-
   return data;
 };
 export const useGetOrderById = (id: number) => {

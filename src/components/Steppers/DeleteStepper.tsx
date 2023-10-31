@@ -10,38 +10,42 @@ import {
   StepIcon,
 } from '@chakra-ui/react';
 import { Button } from '../ui/button';
-import {
-  PersonalForm,
-  DurationForm,
-  ActivityForm,
-  ManagerForm,
-  CompanyDataForm,
-  HeadquarterForm,
-  CommandeForm,
-} from '@/components/Forms';
+import { PersonalForm, DurationForm } from '@/components/Forms';
 import { ChevronLeft } from 'lucide-react';
-import { useFormContext } from 'react-hook-form';
-import PackForm from '../Forms/PackForm';
-import ContactForm from '../Forms/ContactForm';
+
+import ContactForm from '../Forms/services/common/ContactForm';
 import { useRouter, useSearchParams } from 'next/navigation';
-import SciDataForm from '../Forms/SciDataForm';
-import RequestedUpdates from '../Forms/RequestedUpdates';
-import DeclarationForm from '../Forms/DeclarationForm';
-import Companyinfo from '../Forms/Companyinfo';
-import CompanyTypeForm from '../Forms/CompanyTypeForm';
-import DissolutionCompanyDataForm from '../Forms/DissolutionCompanyDataForm';
-import DissolutionLiquidateurForm from '../Forms/dissolution/DissolutionLiquidateurForm';
-import DissolutionAssocierForm from '../Forms/dissolution/DissolutionAssocierForm';
-import FinishUpdateFlow from '../Forms/FinishUpdateFlow';
+
+import CompanyTypeForm from '../Forms/services/dissolution/CompanyTypeForm';
+import DissolutionCompanyDataForm from '../Forms/services/dissolution/DissolutionCompanyDataForm';
+import DissolutionLiquidateurForm from '../Forms/services/dissolution/DissolutionLiquidateurForm';
+import DissolutionAssocierForm from '../Forms/services/dissolution/DissolutionAssocierForm';
+
 interface StepperProps {}
 const steps = [
-  { title: 'First', description: 'CHOIX DES STATUTS' },
-  { title: 'Second', description: 'CRÉATION DE SASU' },
-  { title: 'Third', description: 'PROJET' },
-  { title: 'Third', description: 'CHOIX DU PLAN' },
-  { title: 'Third', description: 'Headquarter' },
-  { title: 'Third', description: 'Headquarter' },
-  { title: 'Third', description: 'Headquarter' },
+  { title: 'First', description: 'CHOIX DES STATUTS', component: DurationForm },
+  {
+    title: 'Second',
+    description: 'CRÉATION DE SASU',
+    component: CompanyTypeForm,
+  },
+  {
+    title: 'Third',
+    description: 'PROJET',
+    component: DissolutionCompanyDataForm,
+  },
+  {
+    title: 'Third',
+    description: 'CHOIX DU PLAN',
+    component: DissolutionLiquidateurForm,
+  },
+  {
+    title: 'Third',
+    description: 'Headquarter',
+    component: DissolutionAssocierForm,
+  },
+  { title: 'Third', description: 'Headquarter', component: ContactForm },
+  { title: 'Third', description: 'Headquarter', component: PersonalForm },
 ];
 const DeleteStepper: FC<StepperProps> = () => {
   const router = useRouter();
@@ -63,26 +67,7 @@ const DeleteStepper: FC<StepperProps> = () => {
     goToPrevious();
   };
 
-  function getStepContent(step: number) {
-    switch (step) {
-      case 0:
-        return <DurationForm goToNext={handleGoToNext} />;
-      case 1:
-        return <CompanyTypeForm goToNext={handleGoToNext} />;
-      case 2:
-        return <DissolutionCompanyDataForm goToNext={handleGoToNext} />;
-      case 3:
-        return <DissolutionLiquidateurForm goToNext={handleGoToNext} />;
-      case 4:
-        return <ContactForm goToNext={handleGoToNext} />;
-      case 5:
-        return <DissolutionAssocierForm goToNext={handleGoToNext} />;
-      case 6:
-        return <PersonalForm goToNext={handleGoToNext} />;
-      case 7:
-        return <FinishUpdateFlow />;
-    }
-  }
+  const StepComponent = steps[activeStep].component;
   return (
     <div className='flex w-full  max-w-screen-xl flex-col items-center justify-center gap-5'>
       <div className=' relative w-full sm:max-w-lg lg:max-w-3xl'>
@@ -132,7 +117,7 @@ const DeleteStepper: FC<StepperProps> = () => {
           : null}
       </ChakraStepper>
       <div className='flex w-full items-center justify-center px-3 '>
-        {getStepContent(activeStep)}
+        <StepComponent goToNext={handleGoToNext} />
       </div>
     </div>
   );

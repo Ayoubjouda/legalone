@@ -1,5 +1,5 @@
 'use client';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import {
   Step,
   StepSeparator,
@@ -13,30 +13,26 @@ import { Button } from '../ui/button';
 import {
   PersonalForm,
   DurationForm,
-  ActivityForm,
   ManagerForm,
   CompanyDataForm,
   HeadquarterForm,
-  CommandeForm,
 } from '@/components/Forms';
 import { ChevronLeft } from 'lucide-react';
-import useFormPersist from 'react-hook-form-persist';
-import { useFormContext } from 'react-hook-form';
-import useAppStore from '@/zustand/store';
-import PackForm from '../Forms/PackForm';
-import ContactForm from '../Forms/ContactForm';
+
+import ContactForm from '../Forms/services/common/ContactForm';
 import { useRouter, useSearchParams } from 'next/navigation';
-import SciDataForm from '../Forms/SciDataForm';
-import FinishFlow from '../Forms/FinishFlow';
+import SciDataForm from '../Forms/services/creation/sci/SciDataForm';
+import FinishFlow from '../Forms/services/common/FinishFlow';
 interface StepperProps {}
 const steps = [
-  { title: 'First', description: 'CHOIX DES STATUTS' },
-  { title: 'Second', description: 'CRÉATION DE SASU' },
-  { title: 'Third', description: 'PROJET' },
-  { title: 'Third', description: 'CHOIX DU PLAN' },
-  { title: 'Third', description: 'Headquarter' },
-  { title: 'Third', description: 'Récapitulatif' },
-  { title: 'Third', description: 'Récapitulatif' },
+  { title: 'First', description: 'CHOIX DES STATUTS', component: DurationForm },
+  { title: 'Second', description: 'CRÉATION DE SASU', component: ManagerForm },
+  { title: 'Third', description: 'PROJET', component: PersonalForm },
+  { title: 'Third', description: 'CHOIX DU PLAN', component: CompanyDataForm },
+  { title: 'Third', description: 'Headquarter', component: SciDataForm },
+  { title: 'Third', description: 'Récapitulatif', component: ContactForm },
+  { title: 'Third', description: 'Récapitulatif', component: HeadquarterForm },
+  { title: 'Third', description: 'Récapitulatif', component: FinishFlow },
 ];
 const SciStepper: FC<StepperProps> = () => {
   const router = useRouter();
@@ -50,8 +46,6 @@ const SciStepper: FC<StepperProps> = () => {
     count: steps.length,
   });
 
-  const { watch, setValue } = useFormContext();
-
   const handleGoToNext = () => {
     router.push(`/create?type=${companyType}&step=${activeStep + 1}`);
     goToNext();
@@ -61,26 +55,8 @@ const SciStepper: FC<StepperProps> = () => {
     goToPrevious();
   };
 
-  function getStepContent(step: number) {
-    switch (step) {
-      case 0:
-        return <DurationForm goToNext={handleGoToNext} />;
-      case 1:
-        return <ManagerForm goToNext={handleGoToNext} />;
-      case 2:
-        return <PersonalForm goToNext={handleGoToNext} />;
-      case 3:
-        return <CompanyDataForm goToNext={handleGoToNext} />;
-      case 4:
-        return <SciDataForm goToNext={handleGoToNext} />;
-      case 5:
-        return <ContactForm goToNext={handleGoToNext} />;
-      case 6:
-        return <HeadquarterForm goToNext={handleGoToNext} />;
-      case 7:
-        return <FinishFlow goToNext={handleGoToNext} />;
-    }
-  }
+  const StepComponent = steps[activeStep].component;
+
   return (
     <div className='flex w-full  max-w-screen-xl flex-col items-center justify-center gap-5'>
       <div className=' relative w-full sm:max-w-lg lg:max-w-3xl'>
@@ -130,7 +106,7 @@ const SciStepper: FC<StepperProps> = () => {
           : null}
       </ChakraStepper>
       <div className='flex w-full items-center justify-center px-3 '>
-        {getStepContent(activeStep)}
+        <StepComponent goToNext={handleGoToNext} />
       </div>
     </div>
   );

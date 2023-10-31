@@ -38,7 +38,7 @@ function SidebarContent() {
   const pathname = usePathname();
   const { data: session, status } = useSession();
   return (
-    <div className='flex h-full max-w-full flex-col justify-between px-3 py-4 '>
+    <div className='flex h-full  flex-col justify-between px-3 py-4 '>
       <div>
         <div className='relative  inline-block  pl-6 text-white'>
           <span>Legal</span>

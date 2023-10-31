@@ -1,4 +1,3 @@
-'use client';
 import { FC } from 'react';
 import {
   Step,
@@ -15,26 +14,31 @@ import {
   DurationForm,
   ActivityForm,
   HeadquarterForm,
-  CommandeForm,
 } from '@/components/Forms';
 import { ChevronLeft } from 'lucide-react';
-import PackForm from '../Forms/PackForm';
-import ContactForm from '../Forms/ContactForm';
-import AutoEntreForm from '../Forms/AutoEntreForm';
+import ContactForm from '../Forms/services/common/ContactForm';
 import { useRouter, useSearchParams } from 'next/navigation';
-import TresorierForm from '../Forms/TresorierForm';
-import AssociationDataForm from '../Forms/AssociationDataForm';
-import FinishFlow from '../Forms/FinishFlow';
+import TresorierForm from '../Forms/services/creation/assosiation/TresorierForm';
+import AssociationDataForm from '../Forms/services/creation/assosiation/AssociationDataForm';
+import FinishFlow from '../Forms/services/common/FinishFlow';
+
 interface StepperProps {}
+
 const steps = [
-  { title: 'First', description: 'CHOIX DES STATUTS' },
-  { title: 'Second', description: 'CRÉATION DE SASU' },
-  { title: 'Third', description: 'PROJET' },
-  { title: 'Third', description: 'CHOIX DU PLAN' },
-  { title: 'Third', description: 'Headquarter' },
-  { title: 'Third', description: 'Récapitulatif' },
-  { title: 'Third', description: 'Récapitulatif' },
+  { title: 'First', description: 'CHOIX DES STATUTS', component: DurationForm },
+  { title: 'Second', description: 'CRÉATION DE SASU', component: ActivityForm },
+  { title: 'Third', description: 'PROJET', component: AssociationDataForm },
+  { title: 'Fourth', description: 'CHOIX DU PLAN', component: PersonalForm },
+  { title: 'Fifth', description: 'Headquarter', component: TresorierForm },
+  {
+    title: 'Sixth',
+    description: 'Récapitulatif 1',
+    component: HeadquarterForm,
+  },
+  { title: 'Seventh', description: 'Récapitulatif 2', component: ContactForm },
+  { title: 'Eighth', description: 'Finish', component: FinishFlow },
 ];
+
 const AssociationStepper: FC<StepperProps> = () => {
   const searchParams = useSearchParams();
   const companyType =
@@ -56,26 +60,8 @@ const AssociationStepper: FC<StepperProps> = () => {
     goToPrevious();
   };
 
-  function getStepContent(step: number) {
-    switch (step) {
-      case 0:
-        return <DurationForm goToNext={handleGoToNext} />;
-      case 1:
-        return <ActivityForm goToNext={handleGoToNext} />;
-      case 2:
-        return <AssociationDataForm goToNext={handleGoToNext} />;
-      case 3:
-        return <PersonalForm goToNext={handleGoToNext} />;
-      case 4:
-        return <TresorierForm goToNext={handleGoToNext} />;
-      case 5:
-        return <HeadquarterForm goToNext={handleGoToNext} />;
-      case 6:
-        return <ContactForm goToNext={handleGoToNext} />;
-      case 7:
-        return <FinishFlow goToNext={handleGoToNext} />;
-    }
-  }
+  const StepComponent = steps[activeStep].component;
+
   return (
     <div className='flex w-full  max-w-screen-xl flex-col items-center justify-center gap-5'>
       <div className=' relative w-full sm:max-w-lg lg:max-w-3xl'>
@@ -125,7 +111,7 @@ const AssociationStepper: FC<StepperProps> = () => {
           : null}
       </ChakraStepper>
       <div className='flex w-full items-center justify-center px-3 '>
-        {getStepContent(activeStep)}
+        <StepComponent goToNext={handleGoToNext} />
       </div>
     </div>
   );

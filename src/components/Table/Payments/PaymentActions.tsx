@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
-import DeleteOrderModal from './DeleteOrderModal';
+import DeleteOrderModal from './DeletePaymentModal';
 import { Order } from '@/types/order';
 
 interface paymentActionProps {

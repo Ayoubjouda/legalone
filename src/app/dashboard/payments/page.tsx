@@ -2,7 +2,7 @@
 import { columns } from '@/components/Table/Payments/columns';
 import { DataTable } from '@/components/Table/data-table';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useGetPayments } from '@/hooks/useAdmin';
+import { useGetPayments } from '@/hooks/usePayment';
 import { FC } from 'react';
 
 interface pageProps {}
