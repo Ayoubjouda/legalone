@@ -25,12 +25,8 @@ export const DashboardRoutes: routes[] = [
   {
     name: 'Dossier',
     icon: 'folder',
-    route: '/dashboard',
-    routes: [
-      { name: 'Creation', route: '/dashboard/services' },
-      { name: 'Modification', route: '/dashboard/services' },
-      { name: 'Fermeture', route: '/dashboard/services' },
-    ],
+    route: '/dashboard/dossier',
+    routes: [],
   },
   {
     name: 'Orders',

@@ -38,3 +38,83 @@ export const useDeleteOrder = () => {
     }
   );
 };
+
+type TotalOrders = {
+  totalOrders: number;
+};
+
+const getTotalOrders = async (): Promise<TotalOrders> => {
+  const { data } = await api.get(`order/total`);
+  return data;
+};
+
+export const useGetTotalOrders = () => {
+  return useQuery<TotalOrders, Error>('totalOrders', () => getTotalOrders(), {
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+};
+
+type TotalCompletedOrders = {
+  completedOrders: number;
+};
+
+const getTotalCompletedOrders = async (): Promise<TotalCompletedOrders> => {
+  const { data } = await api.get(`order/completed`);
+  return data;
+};
+
+export const useGetTotalCompletedOrders = () => {
+  return useQuery<TotalCompletedOrders, Error>(
+    'totalCompletedOrders',
+    () => getTotalCompletedOrders(),
+    {
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }
+  );
+};
+
+type TotalPendingOrders = {
+  pendingOrders: number;
+};
+
+const getTotalPendingOrders = async (): Promise<TotalPendingOrders> => {
+  const { data } = await api.get(`order/pending`);
+  return data;
+};
+
+export const useGetTotalPendingOrders = () => {
+  return useQuery<TotalPendingOrders, Error>(
+    'totalPendingOrders',
+    () => getTotalPendingOrders(),
+    {
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }
+  );
+};
+
+type TotalCanceledOrders = {
+  canceledOrders: number;
+};
+
+const getTotalCanceledOrders = async (): Promise<TotalCanceledOrders> => {
+  const { data } = await api.get(`order/canceled`);
+  return data;
+};
+
+export const useGetTotalCanceledOrders = () => {
+  return useQuery<TotalCanceledOrders, Error>(
+    'totalCanceledOrders',
+    () => getTotalCanceledOrders(),
+    {
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }
+  );
+};
