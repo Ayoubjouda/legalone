@@ -1,55 +1,47 @@
 import { Icons } from '@/components/Icons';
-
-export type NavItem = {
-  title: string;
-  href: string;
-  disabled?: boolean;
+type routes = {
+  name: string;
+  icon: keyof typeof Icons;
+  route: string;
+  routes: {
+    name: string;
+    route: string;
+  }[];
 };
 
-export type MainNavItem = NavItem;
-
-export type SidebarNavItem = {
-  title: string;
-  disabled?: boolean;
-  icon?: keyof typeof Icons;
-} & (
-  | {
-      href: string;
-      items?: never;
-    }
-  | {
-      href?: string;
-      items: [];
-    }
-);
-
-export const dashboardConfig = {
-  mainNav: [
-    {
-      title: 'Documentation',
-      href: '/docs',
-    },
-    {
-      title: 'Support',
-      href: '/support',
-      disabled: true,
-    },
-  ],
-  sidebarNav: [
-    {
-      title: 'Posts',
-      href: '/dashboard',
-      icon: 'post',
-    },
-    {
-      title: 'Billing',
-      href: '/dashboard/billing',
-      icon: 'billing',
-    },
-    {
-      title: 'Settings',
-      href: '/dashboard/settings',
-      icon: 'settings',
-    },
-  ],
-};
+export const DashboardRoutes: routes[] = [
+  {
+    name: 'DashBoard',
+    icon: 'home',
+    route: '/dashboard',
+    routes: [],
+  },
+  {
+    name: 'Users',
+    icon: 'users',
+    route: '/dashboard/users',
+    routes: [],
+  },
+  {
+    name: 'Dossier',
+    icon: 'folder',
+    route: '/dashboard',
+    routes: [
+      { name: 'Creation', route: '/dashboard/services' },
+      { name: 'Modification', route: '/dashboard/services' },
+      { name: 'Fermeture', route: '/dashboard/services' },
+    ],
+  },
+  {
+    name: 'Orders',
+    icon: 'shoppingCart',
+    route: '/dashboard/orders',
+    routes: [],
+  },
+  {
+    name: 'Payments',
+    icon: 'badgeDollarSign',
+    route: '/dashboard/payments',
+    routes: [],
+  },
+];

@@ -5,34 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { UserNav } from '../user-nav';
 import { useSession } from 'next-auth/react';
-import { Icons, Icon } from '@/components/Icons';
-type routes = {
-  name: string;
-  icon: keyof typeof Icons;
-  routes: {
-    name: string;
-  };
-}[];
-
-const routes: routes = [
-  { name: 'DashBoard', icon: 'home', routes: { name: '/dashboard' } },
-  { name: 'Users', icon: 'users', routes: { name: '/dashboard/users' } },
-  {
-    name: 'Services',
-    icon: 'folder',
-    routes: { name: '/dashboard/services' },
-  },
-  {
-    name: 'Orders',
-    icon: 'shoppingCart',
-    routes: { name: '/dashboard/orders' },
-  },
-  {
-    name: 'Payments',
-    icon: 'badgeDollarSign',
-    routes: { name: '/dashboard/payments' },
-  },
-];
+import { Icons } from '@/components/Icons';
+import { DashboardRoutes } from '@/config/dashboard';
 
 function SidebarContent() {
   const pathname = usePathname();
@@ -45,38 +19,36 @@ function SidebarContent() {
           <b>Centre</b>
         </div>
         <ul className='mt-6 flex flex-col gap-1'>
-          {routes.map((route, index) => {
-            // if (routes) {
-            //   return (
-            //     <SidebarSubmenu
-            //       route={route}
-            //       key={route.name}
-            //     />
-            //   );
-            // } else {
+          {DashboardRoutes.map((route, index) => {
             const Icon = Icons[route.icon || 'arrowRight'];
-            return (
-              <Link
-                href={route.routes.name}
-                key={route.name}
-                className={` relative   flex items-center rounded-md px-2 py-2 font-semibold  ${
-                  pathname === route.routes.name
-                    ? 'bg-gray-100 text-gray-800 dark:text-gray-100'
-                    : 'text-white hover:bg-gray-50/30 hover:text-white dark:text-gray-400'
-                }`}
-              >
-                {/* {pathname === route.routes.name && (
-                <span
-                  className='absolute inset-y-0 left-0 w-1 rounded-br-lg rounded-tr-lg bg-redish'
-                  aria-hidden='true'
-                ></span>
-              )} */}
-                <Icon size={16} />
-                <span className='ml-4 text-base'>{route.name}</span>
-              </Link>
-            );
 
-            // }
+            if (route?.routes.length > 0) {
+              return (
+                <>
+                  <SidebarSubmenu
+                    route={route.routes}
+                    icon={route.icon}
+                    name={route.name}
+                    key={route.name}
+                  />
+                </>
+              );
+            } else {
+              return (
+                <Link
+                  href={route.route}
+                  key={route.name}
+                  className={` relative   flex items-center rounded-md px-2 py-2 font-semibold  ${
+                    pathname === route.route
+                      ? 'bg-gray-100 text-gray-800 dark:text-gray-100'
+                      : 'text-white hover:bg-gray-50/30 hover:text-white dark:text-gray-400'
+                  }`}
+                >
+                  <Icon size={16} />
+                  <span className='ml-4 text-base'>{route.name}</span>
+                </Link>
+              );
+            }
           })}
         </ul>
       </div>
