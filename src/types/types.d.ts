@@ -116,3 +116,10 @@ type Payment = {
   status: null | string; // Status can be null or a string
   order: Order;
 };
+interface RecentSallesResponse {
+  paymentId: number;
+  paymentAmount: number | null;
+  userFirstName: string;
+  userLastName: string;
+  userEmail: string;
+}

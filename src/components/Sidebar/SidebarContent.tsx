@@ -52,8 +52,6 @@ function SidebarContent() {
           })}
         </ul>
       </div>
-
-      {status === 'authenticated' ? <UserNav session={session} /> : null}
     </div>
   );
 }

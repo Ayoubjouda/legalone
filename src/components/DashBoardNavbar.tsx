@@ -6,6 +6,8 @@ interface NavBarProps {}
 import { ChevronRight, Cog } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { Button } from './ui/button';
+import { UserNav } from './user-nav';
+import { useSession } from 'next-auth/react';
 
 const DashBoardNavbar: FC<NavBarProps> = () => {
   const pathName = usePathname();
@@ -13,7 +15,7 @@ const DashBoardNavbar: FC<NavBarProps> = () => {
   const formattedPathArray = pathArray.map((word) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   });
-
+  const { data: session, status } = useSession();
   return (
     <div className='flex w-full items-center justify-between border-b px-4 py-2 '>
       <div className='flex'>
@@ -36,7 +38,8 @@ const DashBoardNavbar: FC<NavBarProps> = () => {
       </div>
 
       <div>
-        <Button
+        {status === 'authenticated' ? <UserNav session={session} /> : null}
+        {/* <Button
           className='bg-black text-white  hover:bg-black'
           size='sm'
         >
@@ -45,7 +48,7 @@ const DashBoardNavbar: FC<NavBarProps> = () => {
             className='mr-2'
           />
           Settings
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

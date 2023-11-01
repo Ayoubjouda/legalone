@@ -1,84 +1,75 @@
+'use client';
+import { useGetRecentSalles } from '@/hooks/usePayment';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Skeleton } from './ui/skeleton';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from './ui/card';
+
+interface SaleProps extends RecentSallesResponse {}
+
+const Sale = ({
+  userEmail,
+  userFirstName,
+  userLastName,
+  paymentAmount,
+}: SaleProps) => (
+  <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100'>
+    <Avatar className='h-9 w-9'>
+      <AvatarImage
+        src='/avatars/01.png'
+        alt='Avatar'
+      />
+      <AvatarFallback>OM</AvatarFallback>
+    </Avatar>
+    <div className='ml-4 space-y-1'>
+      <p className='text-sm font-medium leading-none'>
+        {userFirstName}
+        {userLastName}
+      </p>
+      <p className='text-sm text-muted-foreground'>{userEmail}</p>
+    </div>
+    <div className='md:text-md ml-auto text-sm font-medium text-green-500'>
+      +${paymentAmount}
+    </div>
+  </div>
+);
 
 export function RecentSales() {
+  const { data, isLoading } = useGetRecentSalles();
   return (
-    <div className='space-y-2'>
-      <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100'>
-        <Avatar className='h-9 w-9'>
-          <AvatarImage
-            src='/avatars/01.png'
-            alt='Avatar'
-          />
-          <AvatarFallback>OM</AvatarFallback>
-        </Avatar>
-        <div className='ml-4 space-y-1'>
-          <p className='text-sm font-medium leading-none'>Olivia Martin</p>
-          <p className='text-sm text-muted-foreground'>
-            olivia.martin@email.com
-          </p>
+    <Card className='col-span-3'>
+      <CardHeader>
+        <CardTitle>Recent Sales</CardTitle>
+        <CardDescription>You made 265 sales this month.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className='space-y-2'>
+          {isLoading
+            ? [1, 2, 3, 4, 5].map((_, i) => (
+                <div
+                  key={Math.random()}
+                  className='flex items-center space-x-4 py-2'
+                >
+                  <Skeleton className='h-12 w-12 rounded-full  px-3' />
+                  <div className='w-full space-y-2'>
+                    <Skeleton className='h-4 w-full' />
+                    <Skeleton className='h-4 w-full' />
+                  </div>
+                </div>
+              ))
+            : data?.map((sale) => (
+                <Sale
+                  key={sale.paymentId}
+                  {...sale}
+                />
+              ))}
         </div>
-        <div className='md:text-md ml-auto text-sm font-medium text-green-500'>
-          +$1,999.00
-        </div>
-      </div>
-      <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100 '>
-        <Avatar className='flex h-9 w-9 items-center justify-center space-y-0 border'>
-          <AvatarImage
-            src='/avatars/02.png'
-            alt='Avatar'
-          />
-          <AvatarFallback>JL</AvatarFallback>
-        </Avatar>
-        <div className='ml-4 space-y-1'>
-          <p className='text-sm font-medium leading-none'>Jackson Lee</p>
-          <p className='text-sm text-muted-foreground'>jackson.lee@email.com</p>
-        </div>
-        <div className='ml-auto text-sm font-medium text-red-500'>-$39.00</div>
-      </div>
-      <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100 '>
-        <Avatar className='h-9 w-9'>
-          <AvatarImage
-            src='/avatars/03.png'
-            alt='Avatar'
-          />
-          <AvatarFallback>IN</AvatarFallback>
-        </Avatar>
-        <div className='ml-4 space-y-1'>
-          <p className='text-sm font-medium leading-none'>Isabella Nguyen</p>
-          <p className='text-sm text-muted-foreground'>
-            isabella.nguyen@email.com
-          </p>
-        </div>
-        <div className='ml-auto text-sm font-medium text-red-500'>-$299.00</div>
-      </div>
-      {/* <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100 '>
-        <Avatar className='h-9 w-9'>
-          <AvatarImage
-            src='/avatars/04.png'
-            alt='Avatar'
-          />
-          <AvatarFallback>WK</AvatarFallback>
-        </Avatar>
-        <div className='ml-4 space-y-1'>
-          <p className='text-sm font-medium leading-none'>William Kim</p>
-          <p className='text-sm text-muted-foreground'>will@email.com</p>
-        </div>
-        <div className='ml-auto font-medium text-green-500'>+$99.00</div>
-      </div> */}
-      {/* <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100 '>
-        <Avatar className='h-9 w-9'>
-          <AvatarImage
-            src='/avatars/05.png'
-            alt='Avatar'
-          />
-          <AvatarFallback>SD</AvatarFallback>
-        </Avatar>
-        <div className='ml-4 space-y-1'>
-          <p className='text-sm font-medium leading-none'>Sofia Davis</p>
-          <p className='text-sm text-muted-foreground'>sofia.davis@email.com</p>
-        </div>
-        <div className='ml-auto font-medium text-green-500'>+$39.00</div>
-      </div> */}
-    </div>
+      </CardContent>
+    </Card>
   );
 }

@@ -149,3 +149,16 @@ export function useAddUser() {
 
   return { addUserMutation, isLoading };
 }
+
+type weeklyClient = {
+  users: number;
+};
+
+const getWeeklyClient = async (): Promise<weeklyClient> => {
+  const { data } = await api.get(`users/new-weekly`);
+  return data;
+};
+
+export const useGetWeeklyClient = () => {
+  return useQuery<weeklyClient, Error>('weeklyClient', () => getWeeklyClient());
+};

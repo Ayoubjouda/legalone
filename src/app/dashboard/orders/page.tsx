@@ -30,7 +30,7 @@ const Page: FC<pageProps> = () => {
       <div className='space-y-4 pt-6 '>
         <h2 className='text-3xl font-bold tracking-tight'>Orders</h2>
         <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
-          <Card>
+          <Card className='h-fit'>
             {isTotalOrdersLoading ? (
               <div className='space-y-2 p-3'>
                 <Skeleton className='h-3 w-full p-2 ' />
@@ -53,7 +53,7 @@ const Page: FC<pageProps> = () => {
               </>
             )}
           </Card>
-          <Card>
+          <Card className='h-fit'>
             {isTotalCompletedLoading ? (
               <div className='space-y-2 p-3'>
                 <Skeleton className='h-3 w-full p-2 ' />
@@ -76,7 +76,7 @@ const Page: FC<pageProps> = () => {
               </>
             )}
           </Card>
-          <Card>
+          <Card className='h-fit'>
             {isTotalPendingLoading ? (
               <div className='space-y-2 p-3'>
                 <Skeleton className='h-3 w-full p-2 ' />
@@ -99,7 +99,7 @@ const Page: FC<pageProps> = () => {
               </>
             )}
           </Card>
-          <Card>
+          <Card className='h-fit'>
             {isTotalCancledLoading ? (
               <div className='space-y-2 p-3'>
                 <Skeleton className='h-4 w-full p-2 ' />
