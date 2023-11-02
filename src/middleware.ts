@@ -21,6 +21,9 @@ export default withAuth(
     if (!isAuth?.User && isAccessingSensitiveRoute) {
       return NextResponse.redirect(new URL('/login', req.url));
     }
+    // if (isAuth?.User.role !== 'ADMIN' && isAccessingSensitiveRoute) {
+    //   return NextResponse.redirect(new URL('/', req.url));
+    // }
     if (isAuth?.User && !isAccessingSensitiveRoute) {
       return NextResponse.redirect(new URL('/dashboard', req.url));
     }

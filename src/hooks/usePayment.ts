@@ -1,5 +1,5 @@
 import api from '@/lib/axiosConfig';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { toast } from 'sonner';
 
 const getPayments = async (): Promise<Payment[]> => {
@@ -90,6 +90,23 @@ export const useGetMonthlyKpiPayment = () => {
   return useQuery<MonthlyKpiPayment, Error>(
     'monthlyKpiPayment',
     () => getMonthlyKpiPayment(),
+    {
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }
+  );
+};
+
+const postVerifyPayment = async (stripeCheckoutId: string): Promise<void> => {
+  const { data } = await api.get(`payment/monthlyPaymentKpi`);
+  return data;
+};
+
+export const useVerifyPayment = () => {
+  return useMutation<void, Error, string>(
+    'verifyPayment',
+    (stripeCheckoutId) => postVerifyPayment(stripeCheckoutId),
     {
       onError: (error) => {
         toast.error(error.message);

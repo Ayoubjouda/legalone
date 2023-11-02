@@ -32,11 +32,18 @@ import {
   FolderX,
   X,
   type LucideIcon,
+  Boxes,
+  PackageCheck,
+  PackageX,
 } from 'lucide-react';
 
 export type Icon = LucideIcon;
 
 export const Icons = {
+  packageX: PackageX,
+  packagePlus: PackageCheck,
+  packageCheck: PackageCheck,
+  boxes: Boxes,
   users: Users,
   building: Building2,
   cog: Cog,

@@ -14,7 +14,13 @@ interface ProvidersProps {
 }
 
 const Providers: FC<ProvidersProps> = ({ children, session }) => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        suspense: true,
+      },
+    },
+  });
 
   return (
     <>

@@ -4,7 +4,6 @@ import { Spinner } from '@nextui-org/react';
 import { useRef, useEffect } from 'react';
 import { useSubmitCreateFormality } from '@/hooks/useServices';
 import { useRouter } from 'next/navigation';
-import useAppStore from '@/zustand/store';
 import { Formality } from '@/types/order';
 import { useSession } from 'next-auth/react';
 import { toast } from 'sonner';
@@ -30,10 +29,12 @@ const FinishFlow = ({ goToNext }: FormProps) => {
   }, []);
 
   if (Object.keys(errors).length > 0) {
-    toast.error(
-      `Il y a des erreurs dans le formulaire dans : ${Object.keys(errors)}`
-    );
-    // router.push('/');
+    router.push('/');
+
+    // Only in Dev Mode to Detect Form Errors before submit
+    // toast.error(
+    //   `Il y a des erreurs dans le formulaire dans : ${Object.keys(errors)}`
+    // );
   }
 
   const onSubmit = async (data: Formality) => {
