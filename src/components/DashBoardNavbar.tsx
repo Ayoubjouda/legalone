@@ -3,12 +3,11 @@ import { FC } from 'react';
 
 interface NavBarProps {}
 
-import { ChevronRight, Cog } from 'lucide-react';
-import { usePathname } from 'next/navigation';
-import { Button } from './ui/button';
-import { UserNav } from './user-nav';
+import { ChevronRight } from 'lucide-react';
 import { useSession } from 'next-auth/react';
-
+import { usePathname } from 'next/navigation';
+import MobileSidebar from './Sidebar/MobileSidebar';
+import { UserNav } from './user-nav';
 const DashBoardNavbar: FC<NavBarProps> = () => {
   const pathName = usePathname();
   const pathArray = pathName.slice(1).split('/');
@@ -18,6 +17,8 @@ const DashBoardNavbar: FC<NavBarProps> = () => {
   const { data: session, status } = useSession();
   return (
     <div className='flex w-full items-center justify-between border-b px-4 py-2 '>
+      <MobileSidebar />
+
       <div className='flex'>
         {formattedPathArray.map((item, index) => (
           <div

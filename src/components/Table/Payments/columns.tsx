@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import PaymentActions from './PaymentActions';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
-export enum OrderStatus {
+export enum Status {
   PENDING = 'PENDING',
   COMPLETED = 'COMPLETED',
   CANCELLED = 'CANCELLED',
@@ -29,17 +29,10 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => <div className='lowercase'>{row.getValue('id')}</div>,
   },
   {
-    accessorKey: 'description',
-    header: 'Description',
+    accessorKey: 'amount',
+    header: 'Amount',
     cell: ({ row }) => (
-      <div className='capitalize'>{`${row.getValue('description')} `}</div>
-    ),
-  },
-  {
-    accessorKey: 'createdAt',
-    header: 'Date de création',
-    cell: ({ row }) => (
-      <p>{format(new Date(row.getValue('createdAt')), 'MM/dd/yyyy')}</p>
+      <div className='capitalize'>{`${row.getValue('amount')} `}</div>
     ),
   },
   {
@@ -52,22 +45,19 @@ export const columns: ColumnDef<Payment>[] = [
             variant='secondary'
             className={cn({
               'bg-red-100 text-red-500':
-                row.getValue('status') === OrderStatus.CANCELLED,
+                row.getValue('status') === Status.CANCELLED,
               'bg-emerald-100 text-green-600':
-                row.getValue('status') === OrderStatus.COMPLETED,
+                row.getValue('status') === Status.COMPLETED,
               'bg-orange-100 text-orange-500':
-                row.getValue('status') === OrderStatus.PENDING,
+                row.getValue('status') === Status.PENDING,
             })}
           >
             <div className='flex items-center gap-2'>
               <p
                 className={cn('h-2 w-2 rounded-full bg-red-400', {
-                  ' bg-red-500':
-                    row.getValue('status') === OrderStatus.CANCELLED,
-                  ' bg-green-600':
-                    row.getValue('status') === OrderStatus.COMPLETED,
-                  ' bg-orange-500':
-                    row.getValue('status') === OrderStatus.PENDING,
+                  ' bg-red-500': row.getValue('status') === Status.CANCELLED,
+                  ' bg-green-600': row.getValue('status') === Status.COMPLETED,
+                  ' bg-orange-500': row.getValue('status') === Status.PENDING,
                 })}
               ></p>
               <p className=''>{row.getValue('status')}</p>
@@ -75,6 +65,20 @@ export const columns: ColumnDef<Payment>[] = [
           </Badge>
         </div>
       ) : null,
+  },
+  {
+    accessorKey: 'order',
+    accessorFn: (payment) => payment.order.id,
+    header: 'Order Id',
+    cell: ({ row }) => <p>{row.getValue('order')}</p>,
+  },
+
+  {
+    accessorKey: 'createdAt',
+    header: 'Date de création',
+    cell: ({ row }) => (
+      <p>{format(new Date(row.getValue('createdAt')), 'MM/dd/yyyy')}</p>
+    ),
   },
   {
     id: 'actions',

@@ -30,7 +30,7 @@ export default async function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={` ${inter.variable} debug-screens ${ibmPlexSans.variable} max-w-screen relative  w-full overflow-clip`}
+        className={` ${inter.variable} debug-screens ${ibmPlexSans.variable} max-w-screen no-scrollbar  relative   w-full overflow-clip `}
       >
         <Providers session={session}>{children}</Providers>
         <NextTopLoader

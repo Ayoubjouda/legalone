@@ -1,7 +1,6 @@
 'use client';
 import { Metadata } from 'next';
 
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { Overview } from '@/components/overview';
@@ -28,7 +27,7 @@ export default function DashboardPage() {
     useGetWeeklyClient();
   return (
     <>
-      <div className=' h-full w-full flex-col bg-gray-50 md:flex'>
+      <div className=' w-full flex-col  bg-gray-50 md:flex'>
         <div className='flex-1 space-y-4 p-4 pt-6'>
           <div className='flex items-center justify-between space-y-2'>
             <h2 className='text-3xl font-bold tracking-tight'>Dashboard</h2>
@@ -146,7 +145,7 @@ export default function DashboardPage() {
                     </CardHeader>
                     <CardContent>
                       <div className='text-2xl font-bold'>
-                        {monthlyKpiPayment?.kpi.currentTotalAmount}
+                        {monthlyKpiPayment?.monthlyPayment}
                       </div>
                     </CardContent>
                   </>

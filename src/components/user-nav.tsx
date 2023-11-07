@@ -44,7 +44,7 @@ export function UserNav({ session }: UserNavProps) {
           </DropdownItem>
 
           <DropdownItem key='settings'>
-            <Link href='settings'>My Settings</Link>
+            <Link href='/dashboard/settings'>My Settings</Link>
           </DropdownItem>
 
           <DropdownItem

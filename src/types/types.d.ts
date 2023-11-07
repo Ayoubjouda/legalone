@@ -100,6 +100,12 @@ enum UserStatus {
   SUSPENDED = 'SUSPENDED',
 }
 
+enum Status {
+  PENDING = 'PENDING',
+  COMPLETED = 'COMPLETED',
+  CAMCELLED = 'CAMCELLED',
+}
+
 type FormalitiesResponse = {
   id: number;
   dossier: string;
@@ -112,8 +118,9 @@ type Payment = {
   currency: string;
   description: string;
   createdAt: string; // You might want to use a Date type here if you parse the string to a Date object
-  updatedAt: string; // You might want to use a Date type here if you parse the string to a Date object
-  status: null | string; // Status can be null or a string
+  updatedAt: string;
+  amount: number; // You might want to use a Date type here if you parse the string to a Date object
+  status: Status; // Status can be null or a string
   order: Order;
 };
 interface RecentSallesResponse {

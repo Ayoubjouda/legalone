@@ -29,20 +29,17 @@ export const columns: ColumnDef<Order>[] = [
     },
     cell: ({ row }) => <div className='lowercase'>{row.getValue('id')}</div>,
   },
+
   {
-    accessorKey: 'description',
-    header: 'Description',
+    accessorKey: 'user',
+    accessorFn: (order) => `${order.user.email}`,
+
+    header: 'Client',
     cell: ({ row }) => (
-      <div className='capitalize'>{`${row.getValue('description')} `}</div>
+      <div className='capitalize'>{`${row.getValue('user')} `}</div>
     ),
   },
-  {
-    accessorKey: 'createdAt',
-    header: 'Date de création',
-    cell: ({ row }) => (
-      <p>{format(new Date(row.getValue('createdAt')), 'MM/dd/yyyy')}</p>
-    ),
-  },
+
   {
     accessorKey: 'status',
     header: 'Status',
@@ -76,6 +73,22 @@ export const columns: ColumnDef<Order>[] = [
           </Badge>
         </div>
       ) : null,
+  },
+  {
+    accessorKey: 'dossier',
+    header: 'Description',
+    accessorFn: (order) => `${order.formality.dossier}`,
+
+    cell: ({ row }) => <div>{`${row.getValue('dossier')} `}</div>,
+  },
+  {
+    accessorKey: 'createdAt',
+    header: 'Date de création',
+    cell: ({ row }) => (
+      <p className='text-xs'>
+        {format(new Date(row.getValue('createdAt')), 'MM/dd/yyyy')}
+      </p>
+    ),
   },
   {
     id: 'actions',

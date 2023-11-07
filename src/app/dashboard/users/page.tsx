@@ -9,9 +9,8 @@ interface pageProps {}
 
 const Page: FC<pageProps> = () => {
   const { data, isLoading } = useGetUsers();
-  console.log(data);
   return (
-    <div className='h-full w-full space-y-8 bg-gray-50 px-4'>
+    <div className=' w-full space-y-8 bg-gray-50 px-4'>
       <div className='space-y-4 pt-6 '>
         <h2 className='text-3xl font-bold tracking-tight'>Users</h2>
         <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>

@@ -13,11 +13,11 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className=' grid min-h-screen w-full	 grid-cols-12'>
+    <section className='grid min-h-screen	 w-full grid-cols-12'>
       <div className='relative hidden lg:col-span-2 lg:grid'>
         <Sidebar />
       </div>
-      <div className='relative col-span-12 lg:col-span-10'>
+      <div className='relative col-span-12 max-h-screen overflow-y-auto lg:col-span-10'>
         <DashBoardNavbar />
         {children}
       </div>

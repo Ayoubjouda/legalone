@@ -12,7 +12,7 @@ export default function HomeLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className='min-h-full'>
+    <section className='min-h-full '>
       <NavBar />
       {children}
     </section>

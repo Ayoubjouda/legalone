@@ -35,11 +35,19 @@ import {
   Boxes,
   PackageCheck,
   PackageX,
+  Euro,
+  LineChart,
+  RotateCcw,
+  Menu,
 } from 'lucide-react';
 
 export type Icon = LucideIcon;
 
 export const Icons = {
+  menu: Menu,
+  rotateCcw: RotateCcw,
+  lineChart: LineChart,
+  euro: Euro,
   packageX: PackageX,
   packagePlus: PackageCheck,
   packageCheck: PackageCheck,

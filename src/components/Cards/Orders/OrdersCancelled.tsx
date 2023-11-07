@@ -1,6 +1,6 @@
 import { useGetTotalCanceledOrders } from '@/hooks/useOrder';
 import { FC } from 'react';
-import DashboardCard from './DashboardCard';
+import DashboardCard from '../DashboardCard';
 
 interface OrdersCancelledProps {}
 

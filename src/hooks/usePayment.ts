@@ -74,11 +74,8 @@ export const useGetRecentSalles = () => {
 };
 
 type MonthlyKpiPayment = {
-  kpi: {
-    currentTotalAmount: number;
-    lastTotalAmount: string;
-    status: string;
-  };
+  monthlyPayment: number;
+  growth: number | null;
 };
 
 const getMonthlyKpiPayment = async (): Promise<MonthlyKpiPayment> => {

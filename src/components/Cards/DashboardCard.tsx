@@ -13,7 +13,10 @@ const DashboardCard: FC<DashboardCardProps> = ({ title, icon, content }) => {
     <Card className='h-fit'>
       <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
         <CardTitle className='text-sm font-medium'>{title}</CardTitle>
-        <Icon />
+        <Icon
+          size={20}
+          className='stroke-slate-500'
+        />
       </CardHeader>
       <CardContent>
         <div className='text-2xl font-bold'>{content}</div>

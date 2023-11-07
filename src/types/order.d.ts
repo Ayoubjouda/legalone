@@ -9,9 +9,10 @@ import {
 type Order = {
   id: number;
   description: string;
-  formality: number;
+  formality: FormalitiesResponse;
   package: number;
   status: OrderStatus;
+  user: User;
 };
 
 type OrderType = EntrepriseSchemaType | AutoEntreSchemaType;

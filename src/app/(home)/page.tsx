@@ -16,7 +16,7 @@ import SponsorsSection from '@/components/sections/SponsorsSection';
 import TestemonialSection from '@/components/sections/TestemonialSection';
 export default function Home() {
   return (
-    <div className='max-w-screen relative  z-0 flex  w-full flex-col items-center justify-start gap-32 overflow-hidden bg-white text-left   text-29xl text-black '>
+    <div className='max-w-screen relative z-0 flex w-full  flex-col items-center justify-start gap-32   bg-white text-left   text-29xl text-black '>
       <HeroSection />
       <SponsorsSection />
       <InovateSection />

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useGetTotalOrders } from '@/hooks/useOrder';
-import DashboardCard from './DashboardCard';
+import DashboardCard from '../DashboardCard';
 
 interface OrdersTotalProps {}
 
