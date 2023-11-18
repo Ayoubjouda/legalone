@@ -1,11 +1,11 @@
 'use client';
-import { useFormContext } from 'react-hook-form';
-import { Spinner } from '@nextui-org/react';
-import { useRef, useEffect } from 'react';
+import { Icons } from '@/components/Icons';
 import { useSubmitCreateFormality } from '@/hooks/useServices';
-import { useRouter } from 'next/navigation';
 import { Formality } from '@/types/order';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useRef } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { toast } from 'sonner';
 
 interface FormProps {
@@ -62,9 +62,9 @@ const FinishFlow = ({ goToNext }: FormProps) => {
       <div>
         {isLoading && (
           <div className='flex flex-col gap-4'>
-            <Spinner
-              color='warning'
-              size='lg'
+            <Icons.spinner
+              size={64}
+              className='animate-spin'
             />
             <p className='font-semibold'>
               Votre dossier est en cours de traitement

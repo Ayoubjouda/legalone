@@ -16,26 +16,28 @@ const DashBoardNavbar: FC<NavBarProps> = () => {
   });
   const { data: session, status } = useSession();
   return (
-    <div className='flex w-full items-center justify-between border-b px-4 py-2 '>
-      <MobileSidebar />
+    <div className='sticky inset-0 z-10 flex w-full items-center justify-between border-b bg-white px-4 py-2 '>
+      <div className='flex gap-3'>
+        <MobileSidebar />
 
-      <div className='flex'>
-        {formattedPathArray.map((item, index) => (
-          <div
-            key={item}
-            className='flex items-center gap-x-0'
-          >
-            <p className='font-semibold'>{item}</p>
-            {index !== formattedPathArray.length - 1 ? (
-              <div className='ml-2'>
-                <ChevronRight
-                  size={20}
-                  className='py-0'
-                />
-              </div>
-            ) : null}
-          </div>
-        ))}
+        <div className='flex'>
+          {formattedPathArray.map((item, index) => (
+            <div
+              key={item}
+              className='flex items-center gap-x-0'
+            >
+              <p className='font-semibold'>{item}</p>
+              {index !== formattedPathArray.length - 1 ? (
+                <div className='ml-2'>
+                  <ChevronRight
+                    size={20}
+                    className='py-0'
+                  />
+                </div>
+              ) : null}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div>

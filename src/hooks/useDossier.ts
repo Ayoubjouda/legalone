@@ -1,14 +1,15 @@
 import api from '@/lib/axiosConfig';
+import { FormalitiesResponse } from '@/types/order';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { toast } from 'sonner';
 
-const getFormalities = async (): Promise<FormalitiesResponse[]> => {
+const getFormalities = async (): Promise<FormalitiesResponse> => {
   const { data } = await api.get(`formalities`);
   return data;
 };
 
 export const useGetFormalities = () => {
-  return useQuery<FormalitiesResponse[], Error>('formalities', () =>
+  return useQuery<FormalitiesResponse, Error>('formalities', () =>
     getFormalities()
   );
 };
@@ -27,6 +28,22 @@ export const useDeleteFormality = () => {
         queryClient.invalidateQueries('formalities');
         toast.success('Dossier deleted successfully');
       },
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }
+  );
+};
+
+const getCurrentUserFormality = async (): Promise<FormalitiesResponse> => {
+  const { data } = await api.get(`formalities/logged`);
+  return data;
+};
+export const useGetCurrentUserFormality = () => {
+  return useQuery<FormalitiesResponse, Error>(
+    'currentUserFormalities',
+    () => getCurrentUserFormality(),
+    {
       onError: (error) => {
         toast.error(error.message);
       },

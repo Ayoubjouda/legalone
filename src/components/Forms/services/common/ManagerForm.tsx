@@ -44,7 +44,7 @@ export const ManagerForm = ({ goToNext }: FormProps) => {
       } else if (value === 1) {
         resetField('firstName');
         resetField('lastName');
-        resetField('sexManager');
+        resetField('sex');
       }
       goToNext();
     }

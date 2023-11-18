@@ -5,45 +5,90 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import DossierActions from './DossierActions';
+import { format } from 'date-fns';
+import { Dossier } from '@/types/order';
+import { cn } from '@/lib/utils';
 
-export const columns: ColumnDef<FormalitiesResponse>[] = [
+enum DossierStatus {
+  INPROGRESS = 'INPROGRESS',
+  DONE = 'DONE',
+  WAITINGFORPAYMENT = 'WAITINGFORPAYMENT',
+  CANCELLED = 'CANCELLED',
+}
+
+export const columns: ColumnDef<Dossier>[] = [
+  {
+    accessorKey: 'formalityId',
+    header: 'Dossier N°',
+    cell: ({ row }) =>
+      row?.getValue('formalityId') ? (
+        <div className='lowercase'>{row?.getValue('formalityId')}</div>
+      ) : null,
+  },
   {
     accessorKey: 'dossier',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant='ghost'
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Dossier
-          <CaretSortIcon className='ml-2 h-4 w-4' />
-        </Button>
-      );
-    },
+    header: 'Dossier',
     cell: ({ row }) => (
-      <div className='lowercase'>{row.getValue('dossier')}</div>
+      <div className='text-sm  '>{row.getValue('dossier')}</div>
     ),
   },
-
+  {
+    accessorKey: 'client',
+    accessorFn: (row) => row?.user?.email,
+    header: 'client',
+    cell: ({ row }) =>
+      row.getValue('client') ? (
+        <div className='lowercase'>{row.getValue('client')}</div>
+      ) : null,
+  },
   {
     accessorKey: 'status',
     header: 'Status',
     cell: ({ row }) =>
       row.getValue('status') ? (
         <div>
-          <Badge variant='secondary'> {row.getValue('status')}</Badge>
+          <Badge
+            variant='secondary'
+            className={cn({
+              'bg-red-100 text-red-500':
+                row.getValue('status') === DossierStatus.CANCELLED,
+              'bg-emerald-100 text-green-600':
+                row.getValue('status') === DossierStatus.DONE,
+              'bg-orange-100 text-orange-500':
+                row.getValue('status') === DossierStatus.INPROGRESS,
+              'bg-gray-100 text-gray-500':
+                row.getValue('status') === DossierStatus.WAITINGFORPAYMENT,
+            })}
+          >
+            <div className='flex items-center gap-2'>
+              <p
+                className={cn('h-2 w-2 rounded-full bg-red-400', {
+                  ' bg-red-500':
+                    row.getValue('status') === DossierStatus.CANCELLED,
+                  ' bg-green-600':
+                    row.getValue('status') === DossierStatus.DONE,
+                  ' bg-orange-500':
+                    row.getValue('status') === DossierStatus.INPROGRESS,
+                  'bg-gray-500':
+                    row.getValue('status') === DossierStatus.WAITINGFORPAYMENT,
+                })}
+              ></p>
+              <p className=''>{row.getValue('status')}</p>
+            </div>
+          </Badge>
         </div>
       ) : null,
   },
-  {
-    accessorKey: 'type',
-    header: 'Type',
-    cell: ({ row }) => (
-      <div className='text-sm font-semibold capitalize'>
-        {row.getValue('type')}
-      </div>
-    ),
-  },
+
+  // {
+  //   accessorKey: 'createdAt',
+  //   header: 'Créé le',
+  //   cell: ({ row }) => (
+  //     <div className='text-sm  '>
+  //       {format(new Date(row.getValue('createdAt')), 'PPp')}
+  //     </div>
+  //   ),
+  // },
   {
     id: 'actions',
     enableHiding: false,

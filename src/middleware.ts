@@ -9,7 +9,7 @@ export default withAuth(
     const isAuth = await getToken({ req });
     const isLoginPage = pathname.startsWith('/login');
     const sensitiveRoutes = ['/dashboard'];
-
+    const isNotAdmin = isAuth?.User.role !== 'ADMIN';
     const isAccessingSensitiveRoute = sensitiveRoutes.some((route) =>
       pathname.startsWith(route)
     );
@@ -21,9 +21,9 @@ export default withAuth(
     if (!isAuth?.User && isAccessingSensitiveRoute) {
       return NextResponse.redirect(new URL('/login', req.url));
     }
-    // if (isAuth?.User.role !== 'ADMIN' && isAccessingSensitiveRoute) {
-    //   return NextResponse.redirect(new URL('/', req.url));
-    // }
+    if (isNotAdmin && isAccessingSensitiveRoute) {
+      return NextResponse.redirect(new URL('/account', req.url));
+    }
     if (isAuth?.User && !isAccessingSensitiveRoute) {
       return NextResponse.redirect(new URL('/dashboard', req.url));
     }

@@ -35,14 +35,12 @@ import { Loader2 } from 'lucide-react';
 export function DataTable({
   data,
   columns,
-  isLoading,
   children,
 }: {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   data: any;
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   columns: any;
-  isLoading: boolean;
   children?: React.ReactNode;
 }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -157,21 +155,12 @@ export function DataTable({
               ))
             ) : (
               <TableRow>
-                {isLoading ? (
-                  <TableCell
-                    colSpan={columns.length}
-                    className='h-24 w-full '
-                  >
-                    <Loader2 className='mx-auto animate-spin' />
-                  </TableCell>
-                ) : (
-                  <TableCell
-                    colSpan={columns.length}
-                    className='h-24 text-center'
-                  >
-                    No results.
-                  </TableCell>
-                )}
+                <TableCell
+                  colSpan={columns.length}
+                  className='h-24 text-center'
+                >
+                  No results.
+                </TableCell>
               </TableRow>
             )}
           </TableBody>

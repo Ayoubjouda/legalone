@@ -1,3 +1,4 @@
+'use client';
 import { FC } from 'react';
 import DashboardCard from '../DashboardCard';
 import { useGetMonthlyKpiPayment } from '@/hooks/usePayment';

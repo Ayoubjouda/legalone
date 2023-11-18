@@ -18,6 +18,8 @@ const Providers: FC<ProvidersProps> = ({ children, session }) => {
     defaultOptions: {
       queries: {
         suspense: true,
+        refetchOnWindowFocus: false,
+        refetchInterval: false,
       },
     },
   });

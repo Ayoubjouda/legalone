@@ -1,14 +1,20 @@
 'use client';
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-  User,
-} from '@nextui-org/react';
+
 import { signOut } from 'next-auth/react';
 import type { Session } from 'next-auth';
 import Link from 'next/link';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from './ui/dropdown-menu';
+import { Button } from './ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 interface UserNavProps {
   session: Session | null;
@@ -16,46 +22,56 @@ interface UserNavProps {
 
 export function UserNav({ session }: UserNavProps) {
   return (
-    <div className='flex items-center gap-4 overflow-hidden rounded-md bg-white px-3 py-1'>
-      <Dropdown placement='bottom-start'>
-        <DropdownTrigger>
-          <User
-            as='button'
-            avatarProps={{
-              isBordered: true,
-              size: 'sm',
-              src: 'https://i.pravatar.cc/150?u=a042581f4e29026024d',
-            }}
-            className='transition-transform'
-            description=''
-            name=''
-          />
-        </DropdownTrigger>
-        <DropdownMenu
-          aria-label='User Actions'
-          variant='flat'
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant='ghost'
+          className='relative h-8 w-8 rounded-full'
         >
-          <DropdownItem
-            key='profile'
-            className='h-14 gap-2'
-          >
-            <p className='font-bold'>Signed in as</p>
-            <p className='font-bold'>@{session?.user.lastName}</p>
-          </DropdownItem>
-
-          <DropdownItem key='settings'>
+          <Avatar className='h-9 w-9'>
+            <AvatarImage
+              src='/avatars/03.png'
+              alt='@shadcn'
+            />
+            <AvatarFallback>SC</AvatarFallback>
+          </Avatar>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        className='w-56'
+        align='end'
+        forceMount
+      >
+        <DropdownMenuLabel className='font-normal'>
+          <div className='flex flex-col space-y-1'>
+            <p className='text-sm font-medium leading-none'>
+              @{session?.user.firstName}
+            </p>
+            <p className='text-xs leading-none text-muted-foreground'>
+              @{session?.user.email}
+            </p>
+          </div>
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          {/* <DropdownMenuItem>
+            Profile
+            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+          </DropdownMenuItem> */}
+          {/* <DropdownMenuItem>
+            Billing
+            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+          </DropdownMenuItem> */}
+          <DropdownMenuItem asChild>
             <Link href='/dashboard/settings'>My Settings</Link>
-          </DropdownItem>
-
-          <DropdownItem
-            key='logout'
-            color='danger'
-            onClick={() => signOut()}
-          >
-            Log Out
-          </DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
-    </div>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={() => signOut()}>
+          Log out
+          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

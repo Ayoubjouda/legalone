@@ -1,4 +1,5 @@
 import NavBar from '@/components/NavBar';
+import NavBarClean from '@/components/NavBarClean';
 import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'LegalCenter',
@@ -12,7 +13,7 @@ export default function ServicesLayout({
 }) {
   return (
     <section className='relative h-full min-h-screen'>
-      <NavBar />
+      <NavBarClean />
       {children}
     </section>
   );

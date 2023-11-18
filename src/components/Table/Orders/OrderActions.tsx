@@ -35,7 +35,7 @@ const OrderActions: FC<orderActionProps> = ({ order }) => {
         <DropdownMenuPortal>
           <DropdownMenuContent align='end'>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
+            {/* <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(String(order.id))}
             >
               Copy User ID
@@ -43,7 +43,7 @@ const OrderActions: FC<orderActionProps> = ({ order }) => {
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => setEditModalOpen(true)}>
               Edit
-            </DropdownMenuItem>
+            </DropdownMenuItem> */}
 
             <DropdownMenuItem onClick={() => setDeleteModalOpen(true)}>
               Delete

@@ -6,8 +6,8 @@ interface CardSkeletonProps {}
 
 const CardSkeleton: FC<CardSkeletonProps> = () => {
   return (
-    <Card>
-      <div className='space-y-2 p-3'>
+    <Card className=''>
+      <div className=' space-y-2 p-3'>
         <Skeleton className='h-3 w-full p-2 ' />
         <Skeleton className='h-3 w-full p-2 ' />
         <Skeleton className='h-3 w-full p-2 ' />

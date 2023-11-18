@@ -111,3 +111,16 @@ export const useVerifyPayment = () => {
     }
   );
 };
+
+const getClientPayments = async (): Promise<Payment[]> => {
+  const { data } = await api.get(`/payment/logged`);
+  return data;
+};
+
+export const useGetClientPayments = () => {
+  return useQuery<Payment[], Error>('payment', () => getClientPayments(), {
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+};

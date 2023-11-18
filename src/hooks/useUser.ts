@@ -40,7 +40,6 @@ const updateUser = async (
   userId: string
 ): Promise<void> => {
   if (!user.password) delete user.password;
-  console.log(user);
   const { data } = await api.patch(`users/${userId}`, { ...user });
   return data;
 };
@@ -53,6 +52,8 @@ export const useUpdateUser = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries('Users');
+        queryClient.invalidateQueries('clients');
+
         toast.success('User Updated successfully');
       },
       onError: (error) => {
@@ -161,4 +162,13 @@ const getWeeklyClient = async (): Promise<weeklyClient> => {
 
 export const useGetWeeklyClient = () => {
   return useQuery<weeklyClient, Error>('weeklyClient', () => getWeeklyClient());
+};
+
+const getClients = async (): Promise<User[]> => {
+  const { data } = await api.get(`users/client`);
+  return data;
+};
+
+export const useGetClients = () => {
+  return useQuery<User[], Error>('clients', () => getClients());
 };

@@ -77,7 +77,7 @@ export const columns: ColumnDef<Order>[] = [
   {
     accessorKey: 'dossier',
     header: 'Description',
-    accessorFn: (order) => `${order.formality.dossier}`,
+    accessorFn: (order) => `${order?.formality?.dossier}`,
 
     cell: ({ row }) => <div>{`${row.getValue('dossier')} `}</div>,
   },

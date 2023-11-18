@@ -7,7 +7,7 @@ import { FC, use } from 'react';
 import { useGetOrderById } from '@/hooks/useServices';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
-import { Spinner } from '@nextui-org/react';
+import { Icons } from '@/components/Icons';
 interface pageProps {}
 
 const Page: FC<pageProps> = () => {
@@ -30,7 +30,10 @@ const Page: FC<pageProps> = () => {
   if (isLoading || !data)
     return (
       <div className=' absolute inset-0 flex h-full flex-col items-center justify-center  '>
-        <Spinner color='warning' />
+        <Icons.spinner
+          size={64}
+          className='animate-spin'
+        />
       </div>
     );
   return (

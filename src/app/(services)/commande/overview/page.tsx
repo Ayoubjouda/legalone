@@ -1,8 +1,7 @@
 'use client';
-import api from '@/lib/axiosConfig';
-import { FC, use, useEffect } from 'react';
+import { Icons } from '@/components/Icons';
 import { useSearchParams } from 'next/navigation';
-import { Spinner } from '@nextui-org/react';
+import { FC } from 'react';
 
 interface pageProps {}
 
@@ -18,7 +17,10 @@ const Page: FC<pageProps> = () => {
   // }, []);
   return (
     <div className='h-full w-full'>
-      <Spinner />
+      <Icons.spinner
+        size={64}
+        className='animate-spin'
+      />
     </div>
   );
 };

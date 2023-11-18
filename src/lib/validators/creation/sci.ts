@@ -29,7 +29,7 @@ export const SciFormSchema = z.object({
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
     .max(15, { message: 'Doit contenir au maximum 15 caractères' })
     .optional(),
-  sexManager: z
+  sex: z
     .string()
     .min(1, { message: 'Vous devez sélectionner au moins une option' })
     .optional(),

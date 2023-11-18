@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from './ui/card';
+import { ChevronRightIcon } from 'lucide-react';
 
 interface SaleProps extends RecentSallesResponse {}
 
@@ -44,7 +45,16 @@ export function RecentSales() {
   return (
     <Card className='col-span-3'>
       <CardHeader>
-        <CardTitle>Recent Sales</CardTitle>
+        <CardTitle className='flex justify-between'>
+          <div>Recent Sales</div>
+          <div className='flex cursor-pointer items-center text-xs hover:underline'>
+            Show all
+            <ChevronRightIcon
+              className=' text-gray-400'
+              size={16}
+            />
+          </div>
+        </CardTitle>
         <CardDescription>You made 265 sales this month.</CardDescription>
       </CardHeader>
       <CardContent>

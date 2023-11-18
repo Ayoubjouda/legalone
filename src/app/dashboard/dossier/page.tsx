@@ -1,14 +1,12 @@
-'use client';
-import { DataTable } from '@/components/Table/data-table';
+import TableDossier from '@/components/Table/Dossier/TableDossier';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useGetFormalities } from '@/hooks/useDossier';
-import { FC } from 'react';
-import { columns } from '@/components/Table/Dossier/columns';
+import { Loader2 } from 'lucide-react';
+import { FC, Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+
 interface pageProps {}
 
 const Page: FC<pageProps> = () => {
-  const { data: DossierData, isLoading } = useGetFormalities();
-
   return (
     <div className='h-full w-full space-y-8 bg-gray-50 px-4'>
       <div className='space-y-4 pt-6 '>
@@ -124,13 +122,17 @@ const Page: FC<pageProps> = () => {
             </CardContent>
           </Card>
         </div>
-        <div className='rounded-md border bg-white p-4'>
-          <DataTable
-            data={isLoading ? [] : DossierData}
-            columns={columns}
-            isLoading={isLoading}
-          />
-        </div>
+        <ErrorBoundary fallback={<div>error</div>}>
+          <Suspense
+            fallback={
+              <Card className='flex h-48 w-full items-center justify-center '>
+                <Loader2 className='h-8 w-8  animate-spin text-redish' />
+              </Card>
+            }
+          >
+            <TableDossier />
+          </Suspense>
+        </ErrorBoundary>
       </div>
     </div>
   );

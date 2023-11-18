@@ -11,7 +11,7 @@ import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'], variable: '--inter' });
 const ibmPlexSans = IBM_Plex_Sans({
-  subsets: ['greek'],
+  subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--ibmPlexSans',
 });

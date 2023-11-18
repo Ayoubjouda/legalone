@@ -99,7 +99,7 @@ const PricingComponent: FC<PricingComponentProps> = ({
                     <div className='inline-flex shrink grow basis-0 items-center justify-center self-stretch'>
                       <div className='relative flex h-4 w-4 flex-col items-start justify-start'>
                         <Image
-                          src='/svg-719665980_594.svg'
+                          src='/valid.svg'
                           alt=''
                           width={16}
                           height={16}

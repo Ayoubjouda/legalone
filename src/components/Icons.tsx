@@ -39,11 +39,13 @@ import {
   LineChart,
   RotateCcw,
   Menu,
+  UserCog,
 } from 'lucide-react';
 
 export type Icon = LucideIcon;
 
 export const Icons = {
+  userCog: UserCog,
   menu: Menu,
   rotateCcw: RotateCcw,
   lineChart: LineChart,

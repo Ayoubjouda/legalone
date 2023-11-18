@@ -36,7 +36,6 @@ export const columns: ColumnDef<User>[] = [
       <div className='capitalize'>{`${row.getValue('firstName')} `}</div>
     ),
   },
-
   {
     accessorKey: 'status',
     header: 'Status',

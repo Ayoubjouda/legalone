@@ -16,11 +16,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { loginSchemaValidator, LoginSchemaType } from '@/lib/validators/auth';
 import { signIn } from 'next-auth/react';
+import { useState } from 'react';
 
 interface LoginFormProps {}
 
 const LoginForm = () => {
   const router = useRouter();
+  const [isLoginLoading, setisLoginLoading] = useState<boolean>(false);
   const form = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchemaValidator),
     defaultValues: {
@@ -28,7 +30,8 @@ const LoginForm = () => {
       password: '',
     },
   });
-  const promise = async (values: LoginSchemaType) => {
+  const Login = async (values: LoginSchemaType) => {
+    setisLoginLoading(true);
     const res = await signIn('credentials', {
       redirect: false,
       email: values.email,
@@ -36,17 +39,18 @@ const LoginForm = () => {
       callbackUrl: `/`,
     });
     if (res?.ok) {
+      setisLoginLoading(false);
+
       return `Login successful`;
-      // toast.success('login successful');
-      // return router.push('/dashboard');
     } else {
-      throw new Error('Login Faild');
-      // return toast.error('login Failed');
+      setisLoginLoading(false);
+
+      throw new Error('Login Failed');
     }
   };
 
   const onSubmit = async (values: LoginSchemaType) => {
-    toast.promise(promise(values), {
+    toast.promise(Login(values), {
       loading: 'Loading...',
       success: (data) => {
         const intendedDestination = localStorage.getItem('intendedDestination');
@@ -60,7 +64,7 @@ const LoginForm = () => {
 
         return `Login successful`;
       },
-      error: 'Login Faild',
+      error: 'Login Failed',
     });
   };
   return (
@@ -121,12 +125,10 @@ const LoginForm = () => {
           </Link>
           <Button
             type='submit'
-            // disabled={isLoading}
             className='bg-black  font-inter font-semibold text-white hover:bg-black hover:bg-opacity-80'
+            disabled={isLoginLoading}
           >
-            {/* {isLoading ? <Spinner /> : 'Se connecter'}
-             */}
-            se conecter
+            se connecter
           </Button>
         </div>
       </form>

@@ -76,4 +76,7 @@ export const authOption: NextAuthOptions = {
       return `${baseUrl}`;
     },
   },
+  pages: {
+    signIn: '/login',
+  },
 };

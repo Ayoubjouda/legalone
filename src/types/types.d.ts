@@ -106,13 +106,6 @@ enum Status {
   CAMCELLED = 'CAMCELLED',
 }
 
-type FormalitiesResponse = {
-  id: number;
-  dossier: string;
-  status: string;
-  type: string;
-};
-
 type Payment = {
   id: number;
   currency: string;

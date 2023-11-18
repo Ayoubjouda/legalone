@@ -6,18 +6,15 @@ import OrdersPending from '@/components/Cards/Orders/OrdersPending';
 import OrdersTotal from '@/components/Cards/Orders/OrdersTotal';
 import Error from '@/components/Error';
 import ErrorCard from '@/components/ErrorCard';
-import { columns } from '@/components/Table/Orders/columns';
-import { DataTable } from '@/components/Table/data-table';
-import { Button } from '@/components/ui/button';
+import TableOrders from '@/components/Table/Orders/TableOrders';
 import { Card } from '@/components/ui/card';
-import { useGetOrders } from '@/hooks/useOrder';
+import { Loader2 } from 'lucide-react';
 import { FC, Suspense } from 'react';
-import { ErrorBoundary, useErrorBoundary } from 'react-error-boundary';
+import { ErrorBoundary } from 'react-error-boundary';
 
 interface pageProps {}
 
 const Page: FC<pageProps> = () => {
-  const { data, isLoading } = useGetOrders();
   return (
     <div className=' w-full space-y-8 bg-gray-50 px-4'>
       <div className='space-y-4 pt-6 '>
@@ -62,13 +59,23 @@ const Page: FC<pageProps> = () => {
             </Suspense>
           </ErrorBoundary>
         </div>
-        <div className='rounded-md border bg-white p-4'>
-          <DataTable
-            data={isLoading ? [] : data}
-            columns={columns}
-            isLoading={isLoading}
-          />
-        </div>
+        <ErrorBoundary
+          fallback={
+            <Card className='flex h-52 w-full items-center justify-center'>
+              <Error text='Error Loading Orders' />
+            </Card>
+          }
+        >
+          <Suspense
+            fallback={
+              <Card className='flex h-48 w-full items-center justify-center '>
+                <Loader2 className='h-8 w-8  animate-spin text-redish' />
+              </Card>
+            }
+          >
+            <TableOrders />
+          </Suspense>
+        </ErrorBoundary>
       </div>
     </div>
   );

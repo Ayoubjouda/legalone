@@ -9,6 +9,7 @@ import {
   DialogPortal,
 } from '@/components/ui/dialog';
 import { useDeleteFormality } from '@/hooks/useDossier';
+import { Dossier, FormalitiesResponse } from '@/types/order';
 import { Loader2 } from 'lucide-react';
 
 const DeleteFormalityModal = ({
@@ -18,7 +19,7 @@ const DeleteFormalityModal = ({
 }: {
   setOpen: () => void;
   open: boolean;
-  dossier: FormalitiesResponse;
+  dossier: Dossier;
 }) => {
   const { mutate: deleteFormality, isLoading } = useDeleteFormality();
 
@@ -52,7 +53,7 @@ const DeleteFormalityModal = ({
             <Button
               type='submit'
               className='bg-red-500 hover:bg-red-600'
-              onClick={() => handleDeleteOrder(dossier.id)}
+              onClick={() => handleDeleteOrder(1)}
               disabled={isLoading}
             >
               {isLoading ? <Loader2 className='animate-spin' /> : 'Delete'}

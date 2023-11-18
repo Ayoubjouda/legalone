@@ -1,14 +1,12 @@
-'use client';
+import TableDossier from '@/components/Table/Dossier/TableDossier';
+import TableUsers from '@/components/Table/Users/TableUsers';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useGetUsers } from '@/hooks/useUser';
-import { FC } from 'react';
-import { columns } from '@/components/Table/Users/columns';
-import { DataTable } from '@/components/Table/data-table';
-import AddModal from '@/components/Table/Users/AddModal';
+import { Loader2 } from 'lucide-react';
+import { FC, Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 interface pageProps {}
 
 const Page: FC<pageProps> = () => {
-  const { data, isLoading } = useGetUsers();
   return (
     <div className=' w-full space-y-8 bg-gray-50 px-4'>
       <div className='space-y-4 pt-6 '>
@@ -124,15 +122,17 @@ const Page: FC<pageProps> = () => {
             </CardContent>
           </Card>
         </div>
-        <div className='rounded-md border bg-white p-4'>
-          <DataTable
-            data={isLoading ? [] : data}
-            columns={columns}
-            isLoading={isLoading}
+        <ErrorBoundary fallback={<div>error</div>}>
+          <Suspense
+            fallback={
+              <Card className='flex h-48 w-full items-center justify-center '>
+                <Loader2 className='h-8 w-8  animate-spin text-redish' />
+              </Card>
+            }
           >
-            <AddModal />
-          </DataTable>
-        </div>
+            <TableUsers />
+          </Suspense>
+        </ErrorBoundary>
       </div>
     </div>
   );

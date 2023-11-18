@@ -141,7 +141,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
         </div>
 
         <FormField
-          name='sexManager'
+          name='sex'
           control={control}
           defaultValue={''}
           render={({ field }) => (
@@ -180,11 +180,7 @@ const PersonalForm = ({ goToNext }: FormProps) => {
           type='button'
           size={'sm'}
           onClick={async () => {
-            const isValid = await trigger([
-              'firstName',
-              'lastName',
-              'sexManager',
-            ]);
+            const isValid = await trigger(['firstName', 'lastName', 'sex']);
             if (isValid) {
               goToNext();
             }

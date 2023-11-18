@@ -1,20 +1,16 @@
-'use client';
+import CardSkeleton from '@/components/CardSkeleton';
 import PaymentsMonthly from '@/components/Cards/Payments/PaymentsMonthly';
 import PaymentsTotal from '@/components/Cards/Payments/PaymentsTotal';
-import { columns } from '@/components/Table/Payments/columns';
-import { DataTable } from '@/components/Table/data-table';
+import Error from '@/components/Error';
+import TablePayments from '@/components/Table/Payments/TablePayments';
 import { Card } from '@/components/ui/card';
-import { useGetPayments } from '@/hooks/usePayment';
+import { Loader2 } from 'lucide-react';
 import { FC, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import Error from '@/components/Error';
-import CardSkeleton from '@/components/CardSkeleton';
 
 interface pageProps {}
 
 const Page: FC<pageProps> = () => {
-  const { data, isLoading } = useGetPayments();
-
   return (
     <div className='h-full w-full space-y-8 bg-gray-50 px-4'>
       <div className='space-y-4 pt-6 '>
@@ -43,13 +39,17 @@ const Page: FC<pageProps> = () => {
             </Suspense>
           </ErrorBoundary>
         </div>
-        <div className='rounded-md border bg-white p-4'>
-          <DataTable
-            data={isLoading ? [] : data}
-            columns={columns}
-            isLoading={isLoading}
-          />
-        </div>
+        <ErrorBoundary fallback={<div>error</div>}>
+          <Suspense
+            fallback={
+              <Card className='flex h-48 w-full items-center justify-center '>
+                <Loader2 className='h-8 w-8  animate-spin text-redish' />
+              </Card>
+            }
+          >
+            <TablePayments />
+          </Suspense>
+        </ErrorBoundary>
       </div>
     </div>
   );

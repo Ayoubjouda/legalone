@@ -1,14 +1,8 @@
-import { useFormContext } from 'react-hook-form';
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import EmailField from '@/components/Fields/EmailField';
+import { NumberField } from '@/components/Fields';
 import { Button } from '@/components/ui/button';
-import { ChevronRight, MoveRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
+import { useFormContext } from 'react-hook-form';
 
 interface FormProps {
   goToNext: () => void;
@@ -27,39 +21,12 @@ const ContactForm = ({ goToNext }: FormProps) => {
         <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
           Email & numero de telephone
         </p>
-        <FormField
+        <NumberField
+          control={control}
           name='phone'
-          control={control}
-          defaultValue={''}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Numero de telephone</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  type='number'
-                />
-              </FormControl>
-
-              <FormMessage />
-            </FormItem>
-          )}
+          label='Numero de Telephone'
         />
-        <FormField
-          name='email'
-          control={control}
-          defaultValue={''}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <EmailField control={control} />
         <Button
           className='self-end bg-black font-semibold hover:bg-black/80 '
           type='button'
