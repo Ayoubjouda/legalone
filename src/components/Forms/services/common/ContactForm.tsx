@@ -26,7 +26,11 @@ const ContactForm = ({ goToNext }: FormProps) => {
           name='phone'
           label='Numero de Telephone'
         />
-        <EmailField control={control} />
+        <EmailField
+          control={control}
+          name='email'
+          label='Email'
+        />
         <Button
           className='self-end bg-black font-semibold hover:bg-black/80 '
           type='button'

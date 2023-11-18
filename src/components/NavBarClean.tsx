@@ -12,6 +12,7 @@ import {
   NavbarMenuItem,
   NavbarMenu,
 } from '@nextui-org/react';
+import { Button } from './ui/button';
 
 const menuItems = [
   'Profile',
@@ -63,15 +64,12 @@ const NavBarClean: FC<NavBarProps> = () => {
 
       <NavbarContent
         justify='end'
-        className='lg:hidden'
+        className='hidden lg:flex'
       >
         <NavbarItem>
-          <Link
-            href={'login'}
-            className=' relative rounded-md bg-redish px-3 py-2 font-semibold text-white'
-          >
-            Connexion
-          </Link>
+          <Button className=' hover:bg- relative rounded-md bg-redish px-3 py-2 font-semibold text-white'>
+            33 09577584
+          </Button>
         </NavbarItem>
       </NavbarContent>
       {/* <NavbarMenu>

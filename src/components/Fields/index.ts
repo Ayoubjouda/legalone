@@ -6,3 +6,4 @@ export { default as EmailField } from './EmailField';
 export { default as HeadQuarterField } from './HeadQuarterField';
 export { default as CompanyTypeField } from './CompanyTypeField';
 export { default as ActivityField } from './ActivityField';
+export { default as PhoneField } from './PhoneField';

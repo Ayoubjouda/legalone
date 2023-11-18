@@ -1,3 +1,13 @@
+import {
+  ActivityField,
+  EmailField,
+  HeadQuarterField,
+  NumberField,
+  PhoneField,
+  RadioField,
+  SelectField,
+} from '@/components/Fields';
+import CompanyTypeField from '@/components/Fields/CompanyTypeField';
 import TextField from '@/components/Fields/TextField';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
@@ -27,34 +37,132 @@ const EditEntrepriseForm: FC<EditEntrepriseFormProps> = ({ dossier }) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='grid grid-cols-2 gap-4 '
+          className='space-y-4'
         >
-          <TextField
-            control={form.control}
-            name='companyName'
-            label='Company Name'
-          />
-          {/* <CompanyNameField control={form.control} />
-          <CompanyTypeField control={form.control} />
-          <DelayField control={form.control} />
-          <ActivityField control={form.control} />
-          <FirstNameField control={form.control} />
-          <LastNameField control={form.control} />
-          <SexField control={form.control} />
-          <EmailField control={form.control} />
-          <PhoneField control={form.control} />
-          <AssocierField control={form.control} />
-          <LegalStateField control={form.control} />
-          <ShareCapitalField control={form.control} />
-          <HeadQuarterField control={form.control} />
-          <RcsField control={form.control} />
-          <AccountingExpertField control={form.control} /> */}
+          <div className='grid grid-cols-2 gap-4 '>
+            <TextField
+              control={form.control}
+              name='companyName'
+              label='Company Name'
+            />
+            <CompanyTypeField control={form.control} />
 
+            <EmailField
+              control={form.control}
+              name='email'
+              label='Email'
+            />
+            {dossier.managerType === 1 ? (
+              <>
+                <TextField
+                  control={form.control}
+                  name='firstName'
+                  label='First Name'
+                />
+                <TextField
+                  control={form.control}
+                  name='lastName'
+                  label='Last name'
+                />
+                <SelectField
+                  control={form.control}
+                  name='sex'
+                  label='le sexe'
+                  values={[
+                    {
+                      value: 'Male',
+                      label: 'Male',
+                    },
+                    {
+                      value: 'Female',
+                      label: 'Female',
+                    },
+                  ]}
+                />
+              </>
+            ) : (
+              <>
+                <TextField
+                  control={form.control}
+                  name='raisonSocial'
+                  label='Raison social'
+                />
+                <TextField
+                  control={form.control}
+                  name='Rcs'
+                  label='RCS'
+                />
+                <TextField
+                  control={form.control}
+                  name='legalState'
+                  label='Forme juridique de la Société'
+                />
+              </>
+            )}
+
+            <PhoneField
+              control={form.control}
+              name='phone'
+              label='Phone Number'
+            />
+            <ActivityField control={form.control} />
+            <HeadQuarterField control={form.control} />
+            <NumberField
+              control={form.control}
+              name='shareCapital'
+              label='Capital'
+            />
+            <SelectField
+              control={form.control}
+              name='associer'
+              label='Associer'
+              values={[
+                {
+                  value: 'one',
+                  label: 'One',
+                },
+                {
+                  value: 'many',
+                  label: 'Many',
+                },
+              ]}
+            />
+            <RadioField
+              control={form.control}
+              values={[
+                {
+                  value: 'true',
+                  label: 'Oui',
+                },
+                {
+                  value: 'false',
+                  label: 'Non',
+                },
+              ]}
+              name='nonAssociateManager'
+              label='Le Président est-il Associé fondateur de la Société ?'
+            />
+            <RadioField
+              control={form.control}
+              values={[
+                {
+                  value: 'true',
+                  label: 'Oui',
+                },
+                {
+                  value: 'false',
+                  label: 'Non',
+                },
+              ]}
+              name='accountingExpert'
+              label='Avez-vous déjà mandaté un expert comptable pour effectuer votre comptabilité annuelle ?'
+            />
+          </div>
           <Button
             className='grid-span-2'
             type='submit'
           >
-            Submit
+            Sauvgarder
           </Button>
         </form>
       </Form>

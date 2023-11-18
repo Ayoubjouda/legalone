@@ -30,7 +30,17 @@ const Page: FC<pageProps> = () => {
         formality: formalityId,
         package: id,
       });
-      if (data.status === 200) console.log(data);
+      console.log(data.data);
+      if (!data.data) throw Error('no data');
+      api
+        .post('/payment/handlepayment', {
+          currency: 'usd',
+          description: 'test payment',
+          order: data?.data?.id as number,
+        })
+        .then((res) => {
+          window.location.assign(res.data.payment.stripeIntent.sessionUrl);
+        });
     } catch (e) {
       console.log(e);
     }

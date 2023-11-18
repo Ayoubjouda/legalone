@@ -4,11 +4,15 @@ import { AxiosError, isAxiosError } from 'axios';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useMutation, useQuery } from 'react-query';
 import { toast } from 'sonner';
-
+import { FormalitiesResponse } from '@/types/order';
 //Formality
+
+interface FormalityCheckout extends FormalitiesResponse {
+  formalityId: number;
+}
 const postCreationFormality = async (
   formalityData: Formality
-): Promise<FormalityResponse> => {
+): Promise<FormalityCheckout> => {
   const { data: response } = await api.post(`company`, formalityData);
   return { ...response, type: formalityData.companyType };
 };
@@ -20,16 +24,17 @@ export const useSubmitCreateFormality = () => {
     isLoading,
     data: FormalityData,
   } = useMutation<
-    FormalityResponse,
+    FormalityCheckout,
     AxiosError,
     { email: string; password: string },
     unknown
   >((postData) => postCreationFormality(postData), {
     onSuccess(data) {
       toast('Formality created successfully');
-      localStorage.removeItem(data.type);
+      // localStorage.removeItem(data.type);
+      const selectedFormalityId = Object(data.formalities)?.formalityId;
 
-      router.push(`/packages?formality=${data.createdFormality.id}`);
+      router.push(`/packages?formality=${selectedFormalityId}`);
     },
     onError(err: Error | AxiosError) {
       if (isAxiosError(err)) {

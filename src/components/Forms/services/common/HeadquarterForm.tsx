@@ -42,6 +42,9 @@ const HeadquarterForm = ({ goToNext }: FormProps) => {
         <Spinner color='orange.500' />
       </div>
     );
+  if (!data) {
+    return <div>Error Loading HQ</div>;
+  }
 
   return (
     <form className='flex flex-col gap-10'>

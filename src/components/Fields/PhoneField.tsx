@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { Control, FieldValues } from 'react-hook-form';
 import {
   FormControl,
   FormDescription,
@@ -7,18 +7,14 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form';
-import { Control, FieldValues } from 'react-hook-form';
 import { Input } from '../ui/input';
-import { EntrepriseSchemaType } from '@/lib/validators/creation/entreprise';
-import { AssociationSchemaType } from '@/lib/validators/creation/association';
-import { DissolutionFormSchemaType } from '@/lib/validators/fermeture/dissolution';
-interface EmailFieldProps<T> {
+interface PhoneFieldProps<T> {
   control?: T;
   name: string;
   label: string;
 }
 
-const EmailField = <T,>({ control, name, label }: EmailFieldProps<T>) => {
+const PhoneField = <T,>({ control, label, name }: PhoneFieldProps<T>) => {
   return (
     <FormField
       control={control as Control<FieldValues>}
@@ -29,7 +25,7 @@ const EmailField = <T,>({ control, name, label }: EmailFieldProps<T>) => {
           <FormControl>
             <Input
               placeholder='shadcn'
-              type='email'
+              type='tel'
               {...field}
             />
           </FormControl>
@@ -43,4 +39,4 @@ const EmailField = <T,>({ control, name, label }: EmailFieldProps<T>) => {
   );
 };
 
-export default EmailField;
+export default PhoneField;
