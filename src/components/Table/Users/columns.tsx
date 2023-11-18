@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import UserActions from './UserActions';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 enum UserStatus {
   BANNED = 'BANNED',
   ACTIVE = 'ACTIVE',
@@ -25,7 +26,28 @@ export const columns: ColumnDef<User>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className='lowercase'>{row.getValue('email')}</div>,
+    cell: ({ row }) => {
+      const user = row.original;
+      return (
+        <div className='lowercase'>
+          <div className='flex items-center gap-4'>
+            <Image
+              className='h-10 w-10 rounded-full'
+              src={`https://i.pravatar.cc/300?img={${Math.random()}}`}
+              alt=''
+              height={24}
+              width={24}
+            />
+            <div className='font-medium dark:text-white'>
+              <div> {user.email}</div>
+              <div className='text-sm text-gray-500 dark:text-gray-400'>
+                {user.firstName} {user.lastName}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    },
   },
   {
     accessorKey: 'firstName',

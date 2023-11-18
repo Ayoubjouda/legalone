@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogPortal } from '@/components/ui/dialog';
 import { useDeleteFormality } from '@/hooks/useDossier';
 import { Dossier } from '@/types/order';
 
-const ViewDossierModal = ({
+const EditDossierModal = ({
   setOpen,
   open,
   dossier,
@@ -36,7 +36,7 @@ const ViewDossierModal = ({
           {isRadiation || isDissolution ? (
             <EditDissolutionForm dossier={dossier.data} />
           ) : null}
-          {isSAS ? <DataCard dossier={dossier.data} /> : null}
+          {isSAS ? <EditEntrepriseForm dossier={dossier.data} /> : null}
           {/* {dossier?.service?.companies?.companyType === 'SAS' ? (
             <EditEntrepriseForm dossier={dossier?.service?.companies} />
           ) : null} */}
@@ -46,4 +46,4 @@ const ViewDossierModal = ({
   );
 };
 
-export default ViewDossierModal;
+export default EditDossierModal;

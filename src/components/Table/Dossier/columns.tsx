@@ -8,7 +8,7 @@ import DossierActions from './DossierActions';
 import { format } from 'date-fns';
 import { Dossier } from '@/types/order';
 import { cn } from '@/lib/utils';
-
+import Image from 'next/image';
 enum DossierStatus {
   INPROGRESS = 'INPROGRESS',
   DONE = 'DONE',
@@ -34,12 +34,29 @@ export const columns: ColumnDef<Dossier>[] = [
   },
   {
     accessorKey: 'client',
-    accessorFn: (row) => row?.user?.email,
     header: 'client',
-    cell: ({ row }) =>
-      row.getValue('client') ? (
-        <div className='lowercase'>{row.getValue('client')}</div>
-      ) : null,
+    cell: ({ row }) => {
+      const user = row.original;
+      return (
+        <div className='lowercase'>
+          <div className='flex items-center gap-4'>
+            <Image
+              className='h-10 w-10 rounded-full'
+              src={`https://i.pravatar.cc/300?img={${Math.random()}}`}
+              alt=''
+              height={24}
+              width={24}
+            />
+            <div className='font-medium dark:text-white'>
+              <div> {user.user.email}</div>
+              <div className='text-sm text-gray-500 dark:text-gray-400'>
+                {user.user.firstName} {user.user.lastName}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    },
   },
   {
     accessorKey: 'status',

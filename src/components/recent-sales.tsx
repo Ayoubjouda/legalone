@@ -22,7 +22,7 @@ const Sale = ({
   <div className='flex cursor-pointer items-center rounded-md px-2 py-4 hover:bg-gray-100'>
     <Avatar className='h-9 w-9'>
       <AvatarImage
-        src='/avatars/01.png'
+        src={`https://i.pravatar.cc/300?img={${Math.random()}}`}
         alt='Avatar'
       />
       <AvatarFallback>OM</AvatarFallback>

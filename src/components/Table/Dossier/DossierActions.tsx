@@ -13,6 +13,7 @@ import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import DeleteFormalityModal from './DeleteFormalityModal';
 import ViewDossierModal from './ViewDossierModal';
 import { Dossier } from '@/types/order';
+import EditDossierModal from './EditDossierModal';
 
 interface dossierActions {
   dossier: Dossier;
@@ -61,6 +62,11 @@ const DossierActions: FC<dossierActions> = ({ dossier }) => {
         dossier={dossier}
         setOpen={() => setViewModalOpen(!viewModalOpen)}
         open={viewModalOpen}
+      />
+      <EditDossierModal
+        dossier={dossier}
+        setOpen={() => setEditModalOpen(!editModalOpen)}
+        open={editModalOpen}
       />
       {/* <EditModal
         setOpen={() => setEditModalOpen(!editModalOpen)}
