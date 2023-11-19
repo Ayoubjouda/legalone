@@ -1,17 +1,11 @@
-import React from 'react';
-import Image from 'next/image';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import Faq from '@/components/sections/Faq';
 import LancezVous from '@/components/sections/LancezVous';
 
-import ServiceCard from '@/components/ServiceCard';
-import { ArrowRight } from 'lucide-react';
-
+import DashBoardSection from '@/components/sections/DashBoardSection';
+import FeaturesSection from '@/components/sections/FeaturesSection';
 import Footer from '@/components/sections/Footer';
 import HeroSection from '@/components/sections/HeroSection';
 import InovateSection from '@/components/sections/InovateSection';
-import FeaturesSection from '@/components/sections/FeaturesSection';
-import DashBoardSection from '@/components/sections/DashBoardSection';
 import SponsorsSection from '@/components/sections/SponsorsSection';
 import TestemonialSection from '@/components/sections/TestemonialSection';
 export default function Home() {
