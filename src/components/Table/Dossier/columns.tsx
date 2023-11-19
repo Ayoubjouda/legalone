@@ -59,6 +59,14 @@ export const columns: ColumnDef<Dossier>[] = [
     },
   },
   {
+    accessorKey: 'companyName',
+    header: 'Nom de la société',
+    accessorFn: (dossier) => dossier.data.companyName,
+    cell: ({ row }) => (
+      <div className='text-sm'>{row.getValue('companyName')}</div>
+    ),
+  },
+  {
     accessorKey: 'status',
     header: 'Status',
     cell: ({ row }) =>

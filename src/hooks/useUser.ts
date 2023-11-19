@@ -172,3 +172,15 @@ const getClients = async (): Promise<User[]> => {
 export const useGetClients = () => {
   return useQuery<User[], Error>('clients', () => getClients());
 };
+
+type totalClient = {
+  users: number;
+};
+const getTotalClients = async (): Promise<totalClient> => {
+  const { data } = await api.get(`users/total`);
+  return data;
+};
+
+export const useGetTotalClients = () => {
+  return useQuery<totalClient, Error>('totalClients', () => getTotalClients());
+};

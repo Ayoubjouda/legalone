@@ -96,7 +96,7 @@ export const useGetMonthlyKpiPayment = () => {
 };
 
 const postVerifyPayment = async (stripeCheckoutId: string): Promise<void> => {
-  const { data } = await api.get(`payment/monthlyPaymentKpi`);
+  const { data } = await api.get(`payment/verifyPayment/${stripeCheckoutId}`);
   return data;
 };
 
