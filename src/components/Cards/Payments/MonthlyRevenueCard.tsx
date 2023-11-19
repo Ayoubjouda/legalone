@@ -3,9 +3,9 @@ import { FC } from 'react';
 import DashboardCard from '../DashboardCard';
 import { useGetMonthlyKpiPayment } from '@/hooks/usePayment';
 
-interface PaymentsMonthlyProps {}
+interface MonthlyRevenueProps {}
 
-const PaymentsMonthly: FC<PaymentsMonthlyProps> = () => {
+const MonthlyRevenueCard: FC<MonthlyRevenueProps> = () => {
   const { data: monthlyKpiPayment } = useGetMonthlyKpiPayment();
   return (
     <DashboardCard
@@ -16,4 +16,4 @@ const PaymentsMonthly: FC<PaymentsMonthlyProps> = () => {
   );
 };
 
-export default PaymentsMonthly;
+export default MonthlyRevenueCard;

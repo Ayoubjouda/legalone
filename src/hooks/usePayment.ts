@@ -124,3 +124,44 @@ export const useGetClientPayments = () => {
     },
   });
 };
+
+type WeeklyRevenue = {
+  weeklyRevenue: string;
+};
+
+const getWeeklyRevenue = async (): Promise<WeeklyRevenue> => {
+  const { data } = await api.get(`payment/weekly-revenue`);
+  return data;
+};
+
+export const useGetWeeklyRevenue = () => {
+  return useQuery<WeeklyRevenue, Error>(
+    'WeeklyRevenue',
+    () => getWeeklyRevenue(),
+    {
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }
+  );
+};
+
+type DailyRevenue = {
+  dailyRevenue: string;
+};
+const getDailyRevenue = async (): Promise<DailyRevenue> => {
+  const { data } = await api.get(`payment/daily-revenue`);
+  return data;
+};
+
+export const useGetDailyRevenue = () => {
+  return useQuery<DailyRevenue, Error>(
+    'DailyRevenue',
+    () => getDailyRevenue(),
+    {
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }
+  );
+};

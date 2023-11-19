@@ -1,6 +1,8 @@
 import CardSkeleton from '@/components/CardSkeleton';
-import PaymentsMonthly from '@/components/Cards/Payments/PaymentsMonthly';
-import PaymentsTotal from '@/components/Cards/Payments/PaymentsTotal';
+import DailyRevenueCard from '@/components/Cards/Payments/DailyRevenueCard';
+import MonthlyRevenueCard from '@/components/Cards/Payments/MonthlyRevenueCard';
+import TotalRevenueCard from '@/components/Cards/Payments/TotalRevenueCard';
+import WeeklyRevenueCard from '@/components/Cards/Payments/WeeklyRevenueCard';
 import Error from '@/components/Error';
 import TablePayments from '@/components/Table/Payments/TablePayments';
 import { Card } from '@/components/ui/card';
@@ -24,7 +26,7 @@ const Page: FC<pageProps> = () => {
             }
           >
             <Suspense fallback={<CardSkeleton />}>
-              <PaymentsTotal />
+              <TotalRevenueCard />
             </Suspense>
           </ErrorBoundary>
           <ErrorBoundary
@@ -35,7 +37,29 @@ const Page: FC<pageProps> = () => {
             }
           >
             <Suspense fallback={<CardSkeleton />}>
-              <PaymentsMonthly />
+              <MonthlyRevenueCard />
+            </Suspense>
+          </ErrorBoundary>
+          <ErrorBoundary
+            fallback={
+              <Card>
+                <Error text='Error Fetching Monthly Revenue' />
+              </Card>
+            }
+          >
+            <Suspense fallback={<CardSkeleton />}>
+              <WeeklyRevenueCard />
+            </Suspense>
+          </ErrorBoundary>
+          <ErrorBoundary
+            fallback={
+              <Card>
+                <Error text='Error Fetching Monthly Revenue' />
+              </Card>
+            }
+          >
+            <Suspense fallback={<CardSkeleton />}>
+              <DailyRevenueCard />
             </Suspense>
           </ErrorBoundary>
         </div>

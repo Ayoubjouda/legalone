@@ -49,15 +49,7 @@ export const columns: ColumnDef<User>[] = [
       );
     },
   },
-  {
-    accessorKey: 'firstName',
-    accessorFn: (user) => `${user.firstName} ${user.lastName}`,
-    enableGrouping: true,
-    header: 'Name',
-    cell: ({ row }) => (
-      <div className='capitalize'>{`${row.getValue('firstName')} `}</div>
-    ),
-  },
+
   {
     accessorKey: 'status',
     header: 'Status',

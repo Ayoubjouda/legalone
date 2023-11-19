@@ -7,8 +7,8 @@ import { RecentSales } from '@/components/recent-sales';
 
 import CardSkeleton from '@/components/CardSkeleton';
 import NewClientsCard from '@/components/Cards/Clients/NewClientsCard';
-import PaymentsMonthly from '@/components/Cards/Payments/PaymentsMonthly';
-import PaymentsTotal from '@/components/Cards/Payments/PaymentsTotal';
+import MonthlyRevenueCard from '@/components/Cards/Payments/MonthlyRevenueCard';
+import TotalRevenueCard from '@/components/Cards/Payments/TotalRevenueCard';
 import ErrorCard from '@/components/ErrorCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Suspense } from 'react';
@@ -32,7 +32,7 @@ export default function DashboardPage() {
           <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
             <ErrorBoundary FallbackComponent={ErrorCard}>
               <Suspense fallback={<CardSkeleton />}>
-                <PaymentsTotal />
+                <TotalRevenueCard />
               </Suspense>
             </ErrorBoundary>
             <ErrorBoundary FallbackComponent={ErrorCard}>
@@ -42,7 +42,7 @@ export default function DashboardPage() {
             </ErrorBoundary>
             <ErrorBoundary FallbackComponent={ErrorCard}>
               <Suspense fallback={<CardSkeleton />}>
-                <PaymentsMonthly />
+                <MonthlyRevenueCard />
               </Suspense>
             </ErrorBoundary>
           </div>

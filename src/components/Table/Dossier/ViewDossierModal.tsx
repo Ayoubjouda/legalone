@@ -33,13 +33,7 @@ const ViewDossierModal = ({
     >
       <DialogPortal>
         <DialogContent className='max-h-[80%] overflow-y-auto sm:max-w-[800px]'>
-          {isRadiation || isDissolution ? (
-            <EditDissolutionForm dossier={dossier.data} />
-          ) : null}
-          {isSAS ? <DataCard dossier={dossier.data} /> : null}
-          {/* {dossier?.service?.companies?.companyType === 'SAS' ? (
-            <EditEntrepriseForm dossier={dossier?.service?.companies} />
-          ) : null} */}
+          <DataCard dossier={dossier.data} />
         </DialogContent>
       </DialogPortal>
     </Dialog>

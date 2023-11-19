@@ -3,9 +3,9 @@ import { FC } from 'react';
 import DashboardCard from '../DashboardCard';
 import { useGetTotalRevenue } from '@/hooks/usePayment';
 
-interface PaymentsTotalProps {}
+interface TotalRevenueProps {}
 
-const PaymentsTotal: FC<PaymentsTotalProps> = () => {
+const TotalRevenueCard: FC<TotalRevenueProps> = () => {
   const { data: totalRevenue } = useGetTotalRevenue();
   return (
     <DashboardCard
@@ -16,4 +16,4 @@ const PaymentsTotal: FC<PaymentsTotalProps> = () => {
   );
 };
 
-export default PaymentsTotal;
+export default TotalRevenueCard;
