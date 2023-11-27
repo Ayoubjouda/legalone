@@ -1,13 +1,13 @@
 'use client';
-import React from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import useFormPersist from 'react-hook-form-persist';
-import { FormProvider, useForm } from 'react-hook-form';
-import DeleteStepper from '@/components/Steppers/DeleteStepper';
+import { createStepper } from '@/components/Steppers/CreateStepper';
+import { deleteStepper } from '@/components/Steppers/Steps';
 import {
   DissolutionFormSchema,
   DissolutionFormSchemaType,
 } from '@/lib/validators/fermeture/dissolution';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FormProvider, useForm } from 'react-hook-form';
+import useFormPersist from 'react-hook-form-persist';
 
 export default function Delete() {
   const methods = useForm<DissolutionFormSchemaType>({
@@ -19,12 +19,11 @@ export default function Delete() {
     ...methods,
     storage: window.localStorage, // default window.sessionStorage
   });
+  const DeleteStepper = createStepper({ steps: deleteStepper, path: 'delete' });
 
   return (
     <div className='mx-auto my-12 flex  max-w-screen-xl flex-col items-center justify-center gap-2 overflow-hidden'>
-      <FormProvider {...methods}>
-        <DeleteStepper />
-      </FormProvider>
+      <FormProvider {...methods}>{<DeleteStepper />}</FormProvider>
     </div>
   );
 }

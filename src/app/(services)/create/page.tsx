@@ -1,24 +1,26 @@
 'use client';
-import { FormProvider, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import CompanyTypeForm from '@/components/Forms/services/common/CompanyType';
+import { createStepper } from '@/components/Steppers/CreateStepper';
 import {
-  EntrepriseFormSchema,
-  AutoEntreFormSchema,
+  associationSteps,
+  autoEntreSteps,
+  domiciliationSteps,
+  saasSteps,
+  sciSteps,
+} from '@/components/Steppers/Steps';
+import {
   AssociationFormSchema,
+  AutoEntreFormSchema,
+  EntrepriseFormSchema,
   SciFormSchema,
 } from '@/lib/validators/creation';
 import { DomiciliationFormSchema } from '@/lib/validators/domiciliation/domiciliation';
-import { useSearchParams } from 'next/navigation';
-import SaasStepper from '@/components/Steppers/SaasStepper';
-import React from 'react';
 import { ConditionalSchemaType } from '@/types/schema.types';
-import AutoEntreStepper from '@/components/Steppers/AutoEntreStepper';
-import CompanyTypeForm from '@/components/Forms/services/common/CompanyType';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useSearchParams } from 'next/navigation';
+import React from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import useFormPersist from 'react-hook-form-persist';
-import AssociationStepper from '@/components/Steppers/AssociationStepper';
-import SciStepper from '@/components/Steppers/SciStepper';
-import DomiciliationStepper from '@/components/Steppers/DomiciliationStepper';
-
 type Companys = {
   [key: string]:
     | typeof EntrepriseFormSchema
@@ -40,15 +42,16 @@ const companys: Companys = {
 type Stepper = {
   [key: string]: React.ComponentType;
 };
+const PATH = 'create';
 const steppers: Stepper = {
-  SAS: SaasStepper,
-  AUTOENTREPRISE: AutoEntreStepper,
-  ASSOCIATION: AssociationStepper,
-  SCI: SciStepper,
-  SARL: SaasStepper,
-  EURL: SaasStepper,
-  SASU: SaasStepper,
-  DOMICILIATION: DomiciliationStepper,
+  SAS: createStepper({ steps: saasSteps, path: PATH }),
+  AUTOENTREPRISE: createStepper({ steps: autoEntreSteps, path: PATH }),
+  ASSOCIATION: createStepper({ steps: associationSteps, path: PATH }),
+  SCI: createStepper({ steps: sciSteps, path: PATH }),
+  SARL: createStepper({ steps: saasSteps, path: PATH }),
+  EURL: createStepper({ steps: saasSteps, path: PATH }),
+  SASU: createStepper({ steps: saasSteps, path: PATH }),
+  DOMICILIATION: createStepper({ steps: domiciliationSteps, path: PATH }),
 };
 
 export default function CreateSaas() {
