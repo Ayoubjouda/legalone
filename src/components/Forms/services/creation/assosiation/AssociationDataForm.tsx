@@ -1,21 +1,36 @@
-import { Controller, useFormContext } from 'react-hook-form';
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { RadioField, TextField } from '@/components/Fields';
+import TextAreaField from '@/components/Fields/TextAreaField';
 import { Button } from '@/components/ui/button';
-import { MoveRight } from 'lucide-react';
-import { Textarea } from '@/components/ui/textarea';
+import { ChevronRight } from 'lucide-react';
+import { Controller, useFormContext } from 'react-hook-form';
 interface FormProps {
   goToNext: () => void;
 }
+
+const DESKTOP_COMPOSITION_VALUES = [
+  {
+    label: 'Un président et un trésorier (le plus fréquent)',
+    value: 'one',
+  },
+  {
+    label: 'Un président, un trésorier et un secrétaire',
+    value: 'many',
+  },
+];
 const AssociationDataForm = ({ goToNext }: FormProps) => {
   const { control, trigger, setValue } = useFormContext();
+  const handleGoToNext = async () => {
+    setValue('managerType', 1);
+    const isValid = await trigger([
+      'companyName',
+      'desktopComposition',
+      'descriptionAssociation',
+      'managerType',
+    ]);
+    if (isValid) {
+      goToNext();
+    }
+  };
   return (
     <form className='w-full max-w-[650px]'>
       <div className=' flex flex-col gap-4'>
@@ -31,100 +46,31 @@ const AssociationDataForm = ({ goToNext }: FormProps) => {
             />
           )}
         />
-        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
-          information complementaire sur votre Association
-        </p>
-        <FormField
+        <TextField
           name='companyName'
+          label='Nom de votre association'
           control={control}
-          defaultValue={''}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nom de votre association</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-
-              <FormMessage />
-            </FormItem>
-          )}
         />
-
-        <FormField
+        <TextAreaField
           name='descriptionAssociation'
+          label="Quelle est l'activité de l'association ? "
           control={control}
-          defaultValue={''}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Quelle est l'activité de l'association ?</FormLabel>
-              <FormControl>
-                <Textarea {...field} />
-              </FormControl>
-
-              <FormMessage />
-            </FormItem>
-          )}
         />
-
-        <FormField
+        <RadioField
           name='desktopComposition'
           control={control}
-          render={({ field }) => (
-            <FormItem className='flex items-center gap-3 space-y-0 '>
-              <FormLabel className='leading-[20px]'>
-                De combien de membres sera composé le bureau ?
-              </FormLabel>
-              <FormControl>
-                <RadioGroup
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  className='flex'
-                >
-                  <FormItem className='flex items-center space-x-3 space-y-0'>
-                    <FormControl>
-                      <RadioGroupItem value='one' />
-                    </FormControl>
-                    <FormLabel className='font-semibold'>
-                      Un président et un trésorier (le plus fréquent)
-                    </FormLabel>
-                  </FormItem>
-                  <FormItem className='flex items-center space-x-3 space-y-0'>
-                    <FormControl>
-                      <RadioGroupItem value='many' />
-                    </FormControl>
-                    <FormLabel className='font-semibold'>
-                      Un président, un trésorier et un secrétaire
-                    </FormLabel>
-                  </FormItem>
-                </RadioGroup>
-              </FormControl>
-
-              <FormMessage />
-            </FormItem>
-          )}
+          values={DESKTOP_COMPOSITION_VALUES}
+          label='De combien de membres sera composé le bureau ?'
         />
 
         <Button
-          className='flex items-center gap-2 self-end text-base font-semibold  hover:bg-darkRedish'
+          className='self-end bg-black font-semibold hover:bg-black/80 '
           type='button'
-          size={'lg'}
-          onClick={async () => {
-            setValue('managerType', 1);
-            const isValid = await trigger([
-              'companyName',
-              'desktopComposition',
-              'descriptionAssociation',
-              'managerType',
-            ]);
-            console.log(isValid);
-            if (isValid) {
-              goToNext();
-            }
-          }}
+          size={'sm'}
+          onClick={handleGoToNext}
         >
-          <span></span>
           Continuer
-          <MoveRight />
+          <ChevronRight size={16} />
         </Button>
       </div>
     </form>

@@ -41,13 +41,6 @@ export const columns: ColumnDef<Order>[] = [
       return (
         <div className='lowercase'>
           <div className='flex items-center gap-4'>
-            <Image
-              className='h-10 w-10 rounded-full'
-              src={`https://i.pravatar.cc/300?img={${Math.random()}}`}
-              alt=''
-              height={24}
-              width={24}
-            />
             <div className='font-medium dark:text-white'>
               <div> {user.user.email}</div>
               <div className='text-sm text-gray-500 dark:text-gray-400'>

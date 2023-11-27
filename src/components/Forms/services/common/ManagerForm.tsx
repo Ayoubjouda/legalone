@@ -68,9 +68,6 @@ export const ManagerForm = ({ goToNext }: FormProps) => {
             rules={{ required: true }}
           />
         </div>
-        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
-          Qui sera président de la société ?
-        </p>
 
         <div className='flex w-full  flex-wrap   justify-center gap-10'>
           {ManagerData ? (

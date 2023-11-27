@@ -61,13 +61,14 @@ const FinishFlow = ({ goToNext }: FormProps) => {
       </button>
       <div>
         {isLoading && (
-          <div className='flex flex-col gap-4'>
+          <div className='flex flex-col items-center justify-center gap-4'>
             <Icons.spinner
-              size={64}
+              size={48}
               className='animate-spin'
             />
-            <p className='font-semibold'>
-              Votre dossier est en cours de traitement
+            <p className='max-w-screen-sm text-center font-semibold'>
+              Votre dossier est en cours de traitement, vous allez être redirigé
+              dans quelques instants
             </p>
           </div>
         )}

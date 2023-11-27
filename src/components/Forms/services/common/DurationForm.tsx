@@ -7,6 +7,25 @@ import { useSearchParams } from 'next/navigation';
 interface FormProps {
   goToNext: () => void;
 }
+
+const DurationsValues = [
+  {
+    title: 'Dans un mois',
+    image: '/fast.svg',
+    value: 'WEEKLY',
+  },
+  {
+    title: 'Dans la Semaine',
+    image: '/calander.svg',
+    value: 'MONTHLY',
+  },
+  {
+    title: 'Je ne sais pas encore',
+    image: '/doubt.svg',
+    value: 'je ne sais pas',
+  },
+];
+
 const DurationForm = ({ goToNext }: FormProps) => {
   const {
     setValue,
@@ -51,9 +70,6 @@ const DurationForm = ({ goToNext }: FormProps) => {
       </div>
 
       <div className='flex justify-center font-semibold text-red-500'>
-        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
-          Dans quel délai souhaitez-vous créer votre société ?
-        </p>
         <ErrorMessage
           errors={errors}
           name='delay'
@@ -62,30 +78,17 @@ const DurationForm = ({ goToNext }: FormProps) => {
       </div>
 
       <div className=' flex flex-col flex-wrap items-center gap-10 md:flex-row'>
-        <IconBox
-          title='Dans un mois'
-          image={'/fast.svg'}
-          onClick={() => {
-            handelSubmitValue('WEEKLY');
-          }}
-          className={cn({ 'border-orange-500': selected === 'WEEKLY' })}
-        />
-        <IconBox
-          title='Dans la Semaine'
-          image={'/calander.svg'}
-          onClick={() => {
-            handelSubmitValue('MONTHLY');
-          }}
-          className={cn({ 'border-orange-500': selected === 'MONTHLY' })}
-        />
-        <IconBox
-          title='Je ne sais pas encore'
-          image={'/doubt.svg'}
-          onClick={() => {
-            handelSubmitValue('je ne sais pas');
-          }}
-          className={cn({ 'border-orange-500': selected === 'je ne sais pas' })}
-        />
+        {DurationsValues.map((item) => (
+          <IconBox
+            key={item.value}
+            title={item.title}
+            image={item.image}
+            onClick={() => {
+              handelSubmitValue(item.value);
+            }}
+            className={cn({ 'border-orange-500': selected === item.value })}
+          />
+        ))}
       </div>
     </form>
   );

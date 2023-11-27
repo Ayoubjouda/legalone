@@ -25,18 +25,43 @@ import FinishFlow from '../Forms/services/common/FinishFlow';
 interface StepperProps {}
 
 const steps = [
-  { title: 'First', description: 'CHOIX DES STATUTS', component: DurationForm },
-  { title: 'Second', description: 'CRÉATION DE SASU', component: ActivityForm },
-  { title: 'Third', description: 'PROJET', component: AssociationDataForm },
-  { title: 'Fourth', description: 'CHOIX DU PLAN', component: PersonalForm },
-  { title: 'Fifth', description: 'Headquarter', component: TresorierForm },
   {
-    title: 'Sixth',
-    description: 'Récapitulatif 1',
+    title: 'Dans quel délai souhaitez-vous créer votre société ?',
+    description: '',
+    component: DurationForm,
+  },
+  {
+    title: "Quel est votre domaine d'activité ?",
+    description: '',
+    component: ActivityForm,
+  },
+  {
+    title: 'Informations sur votre Association',
+    description:
+      'Ces informations nous permettront de vous assister au cours de votre processus de création, et seront nécessaires pour constituer votre dossier.',
+    component: AssociationDataForm,
+  },
+  {
+    title: 'information personnel',
+    description: '',
+    component: PersonalForm,
+  },
+  {
+    title: "Quelle est l'identité du trésorier ?",
+    description: '',
+    component: TresorierForm,
+  },
+  {
+    title: 'Où sera fixé le siège social de la Société ?',
+    description: '',
     component: HeadquarterForm,
   },
-  { title: 'Seventh', description: 'Récapitulatif 2', component: ContactForm },
-  { title: 'Eighth', description: 'Finish', component: FinishFlow },
+  {
+    title: 'Email & numero de telephone',
+    description: '',
+    component: ContactForm,
+  },
+  { title: 'Traitement Dossier', description: '', component: FinishFlow },
 ];
 
 const AssociationStepper: FC<StepperProps> = () => {
@@ -110,7 +135,15 @@ const AssociationStepper: FC<StepperProps> = () => {
             ))
           : null}
       </ChakraStepper>
-      <div className='flex w-full items-center justify-center px-3 '>
+      <div className='flex w-full flex-col items-center justify-center gap-6 px-3 '>
+        <div className='flex flex-col justify-center gap-4 font-semibold text-red-500'>
+          <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
+            {steps[activeStep].title}
+          </p>
+          <p className='max-w-lg text-center text-sm font-normal leading-tight text-slate-500'>
+            {steps[activeStep].description}
+          </p>
+        </div>
         <StepComponent goToNext={handleGoToNext} />
       </div>
     </div>

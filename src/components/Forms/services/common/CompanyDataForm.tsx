@@ -1,4 +1,6 @@
+import { ChevronRight } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
+import { Button } from '../../../ui/button';
 import {
   FormControl,
   FormField,
@@ -8,9 +10,6 @@ import {
 } from '../../../ui/form';
 import { Input } from '../../../ui/input';
 import { RadioGroup, RadioGroupItem } from '../../../ui/radio-group';
-import { Button } from '../../../ui/button';
-import { ChevronRight, MoveRight } from 'lucide-react';
-import { el } from 'date-fns/locale';
 
 interface FormProps {
   goToNext: () => void;
@@ -26,7 +25,6 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
       'accountingExpert',
       'nonAssociateManager',
     ]);
-    console.log(field);
     if (isValid) {
       goToNext();
     }
@@ -35,9 +33,6 @@ const CompanyDataForm = ({ goToNext }: FormProps) => {
   return (
     <form className='w-full max-w-[650px]'>
       <div className=' flex flex-col gap-4'>
-        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
-          information complementaire sur votre société
-        </p>
         <FormField
           name='companyName'
           control={control}

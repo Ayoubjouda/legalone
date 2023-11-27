@@ -57,9 +57,9 @@ const FinishUpdateFlow = () => {
       </button>
       <div>
         {isLoading && (
-          <div className='flex flex-col gap-4'>
+          <div className='flex flex-col items-center justify-center gap-4'>
             <Icons.spinner
-              size={64}
+              size={48}
               className='animate-spin'
             />
             <p className='font-semibold'>

@@ -9,7 +9,7 @@ import {
 import { Input } from '../../../../ui/input';
 import { RadioGroup, RadioGroupItem } from '../../../../ui/radio-group';
 import { Button } from '../../../../ui/button';
-import { MoveRight } from 'lucide-react';
+import { ChevronRight, MoveRight } from 'lucide-react';
 
 interface FormProps {
   goToNext: () => void;
@@ -19,10 +19,6 @@ const SciDataForm = ({ goToNext }: FormProps) => {
   return (
     <form className='w-full max-w-[650px]'>
       <div className=' flex flex-col gap-4'>
-        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
-          information complementaire sur votre SCI
-        </p>
-
         <div className='flex flex-col gap-8'>
           <FormField
             name='sciActivityField'
@@ -110,9 +106,9 @@ const SciDataForm = ({ goToNext }: FormProps) => {
         </div>
 
         <Button
-          className='flex items-center gap-2 self-end text-base font-semibold  hover:bg-darkRedish'
+          className='self-end bg-black font-semibold hover:bg-black/80 '
           type='button'
-          size={'lg'}
+          size={'sm'}
           onClick={async () => {
             const isValid = await trigger(['taxRegime', 'sciActivityField']);
             if (isValid) {
@@ -120,9 +116,8 @@ const SciDataForm = ({ goToNext }: FormProps) => {
             }
           }}
         >
-          <span></span>
           Continuer
-          <MoveRight />
+          <ChevronRight size={16} />
         </Button>
       </div>
     </form>

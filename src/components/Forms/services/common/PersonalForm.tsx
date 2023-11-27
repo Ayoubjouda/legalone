@@ -19,17 +19,8 @@ const PersonalForm = ({ goToNext }: FormProps) => {
 
   if (values.managerType === 2)
     return (
-      <form className='max-w-[650px]'>
+      <form className='w-full max-w-[650px]'>
         <div className='my-5 flex flex-col  gap-4'>
-          <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
-            Informations sur votre société
-          </p>
-          <p className='text-center text-sm font-normal leading-tight text-slate-500'>
-            Ces informations nous permettront de vous assister au cours de votre
-            processus de création, et seront nécessaires pour constituer votre
-            dossier.
-          </p>
-
           <FormField
             name='raisonSocial'
             defaultValue={''}
@@ -97,17 +88,8 @@ const PersonalForm = ({ goToNext }: FormProps) => {
       </form>
     );
   return (
-    <form className='max-w-[650px]'>
+    <form className='w-full max-w-[650px]'>
       <div className='my-5 flex flex-col  gap-4'>
-        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
-          Informations personnelles
-        </p>
-        <p className='text-center text-sm font-normal leading-tight text-slate-500'>
-          Ces informations nous permettront de vous assister au cours de votre
-          processus de création, et seront nécessaires pour constituer votre
-          dossier.
-        </p>
-
         <div className='flex w-full gap-2 '>
           <FormField
             name='firstName'

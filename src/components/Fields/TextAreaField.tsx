@@ -8,29 +8,23 @@ import {
   FormMessage,
 } from '../ui/form';
 import { Input } from '../ui/input';
-import { cn } from '@/lib/utils';
+import { Textarea } from '../ui/textarea';
 interface TextFieldProps<T> {
   control?: T;
   name: string;
   label: string;
-  className?: string;
 }
 
-const TextField = <T,>({
-  control,
-  label,
-  name,
-  className,
-}: TextFieldProps<T>) => {
+const TextAreaField = <T,>({ control, label, name }: TextFieldProps<T>) => {
   return (
     <FormField
       control={control as Control<FieldValues>}
       name={name}
       render={({ field }) => (
-        <FormItem className={cn('grid-span-1', className)}>
+        <FormItem className='grid-span-1'>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input
+            <Textarea
               placeholder='shadcn'
               {...field}
             />
@@ -45,4 +39,4 @@ const TextField = <T,>({
   );
 };
 
-export default TextField;
+export default TextAreaField;

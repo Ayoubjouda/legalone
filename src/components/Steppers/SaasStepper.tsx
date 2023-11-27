@@ -25,14 +25,43 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import FinishFlow from '../Forms/services/common/FinishFlow';
 interface StepperProps {}
 const steps = [
-  { title: 'First', description: 'CHOIX DES STATUTS', component: DurationForm },
-  { title: 'Second', description: 'CRÉATION DE SASU', component: ActivityForm },
-  { title: 'Second', description: 'CRÉATION DE SASU', component: ManagerForm },
-  { title: 'Third', description: 'CHOIX DU PLAN', component: PersonalForm },
-  { title: 'Third', description: 'PROJET', component: CompanyDataForm },
-  { title: 'Third', description: 'Headquarter', component: HeadquarterForm },
-  { title: 'Third', description: 'Récapitulatif', component: ContactForm },
-  { title: 'Third', description: 'Récapitulatif', component: FinishFlow },
+  {
+    title: 'Dans quel délai souhaitez-vous créer votre société ?',
+    description: '',
+    component: DurationForm,
+  },
+  {
+    title: "Quel est votre domaine d'activité ?",
+    description: '',
+    component: ActivityForm,
+  },
+  {
+    title: 'Qui sera président de la société ?',
+    description: '',
+    component: ManagerForm,
+  },
+  {
+    title: 'Informations sur votre société',
+    description:
+      'Ces informations nous permettront de vous assister au cours de votre processus de création, et seront nécessaires pour constituer votre dossier.',
+    component: PersonalForm,
+  },
+  {
+    title: 'information complementaire sur votre société',
+    description: '',
+    component: CompanyDataForm,
+  },
+  {
+    title: 'Où sera fixé le siège social de la Société ?',
+    description: '',
+    component: HeadquarterForm,
+  },
+  {
+    title: 'Email & numero de telephone',
+    description: '',
+    component: ContactForm,
+  },
+  { title: 'Traitement Dossier', description: '', component: FinishFlow },
 ];
 const SaasStepper: FC<StepperProps> = () => {
   const router = useRouter();
@@ -62,6 +91,7 @@ const SaasStepper: FC<StepperProps> = () => {
         <p className=' text-center text-lg font-medium leading-[31px] text-black'>
           Création de {companyType}
         </p>
+
         {activeStep !== 0 && (
           <div className='absolute left-0 top-0 flex w-full  max-w-screen-md'>
             <Button
@@ -104,7 +134,15 @@ const SaasStepper: FC<StepperProps> = () => {
             ))
           : null}
       </ChakraStepper>
-      <div className='flex w-full items-center justify-center px-3 '>
+      <div className='flex w-full flex-col items-center justify-center gap-6 px-3 '>
+        <div className='flex flex-col justify-center gap-4 font-semibold text-red-500'>
+          <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
+            {steps[activeStep].title}
+          </p>
+          <p className='max-w-lg text-center text-sm font-normal leading-tight text-slate-500'>
+            {steps[activeStep].description}
+          </p>
+        </div>
         <StepComponent goToNext={handleGoToNext} />
       </div>
     </div>

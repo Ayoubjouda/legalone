@@ -46,9 +46,6 @@ const CompanyTypeForm = ({ goToNext }: FormProps) => {
       </div>
 
       <div className='flex justify-center font-semibold text-red-500'>
-        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
-          Dans quel délai souhaitez-vous créer votre société ?
-        </p>
         <ErrorMessage
           errors={errors}
           name='creationDelay'

@@ -20,32 +20,49 @@ import CompanyTypeForm from '../Forms/services/dissolution/CompanyTypeForm';
 import DissolutionCompanyDataForm from '../Forms/services/dissolution/DissolutionCompanyDataForm';
 import DissolutionLiquidateurForm from '../Forms/services/dissolution/DissolutionLiquidateurForm';
 import DissolutionAssocierForm from '../Forms/services/dissolution/DissolutionAssocierForm';
+import FinishFlow from '../Forms/services/common/FinishFlow';
 
 interface StepperProps {}
 const steps = [
-  { title: 'First', description: 'CHOIX DES STATUTS', component: DurationForm },
   {
-    title: 'Second',
-    description: 'CRÉATION DE SASU',
+    title: 'Dans quel délai souhaitez-vous créer votre société ?',
+    description: '',
+    component: DurationForm,
+  },
+  {
+    title: 'Quel est le type de votre société ?',
+    description: '',
     component: CompanyTypeForm,
   },
   {
-    title: 'Third',
-    description: 'PROJET',
+    title: 'Informations sur votre société',
+    description: '',
     component: DissolutionCompanyDataForm,
   },
   {
-    title: 'Third',
-    description: 'CHOIX DU PLAN',
+    title: 'Le liquidateur',
+    description:
+      'Ces informations nous permettront de vous assister au cours de votre processus de création, et seront nécessaires pour constituer votre dossier.',
     component: DissolutionLiquidateurForm,
   },
   {
-    title: 'Third',
-    description: 'Headquarter',
+    title: 'Les associés',
+    description:
+      'Ces informations nous permettront de vous assister au cours de votre processus de création, et seront nécessaires pour constituer votre dossier.',
     component: DissolutionAssocierForm,
   },
-  { title: 'Third', description: 'Headquarter', component: ContactForm },
-  { title: 'Third', description: 'Headquarter', component: PersonalForm },
+  {
+    title: 'Informations personnelles',
+    description: '',
+    component: PersonalForm,
+  },
+
+  {
+    title: 'Email & numero de telephone',
+    description: '',
+    component: ContactForm,
+  },
+  { title: 'Traitement Dossier', description: '', component: FinishFlow },
 ];
 const DeleteStepper: FC<StepperProps> = () => {
   const router = useRouter();
@@ -116,7 +133,15 @@ const DeleteStepper: FC<StepperProps> = () => {
             ))
           : null}
       </ChakraStepper>
-      <div className='flex w-full items-center justify-center px-3 '>
+      <div className='flex w-full flex-col items-center justify-center gap-6 px-3 '>
+        <div className='flex flex-col justify-center gap-4 font-semibold text-red-500'>
+          <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
+            {steps[activeStep].title}
+          </p>
+          <p className='max-w-lg text-center text-sm font-normal leading-tight text-slate-500'>
+            {steps[activeStep].description}
+          </p>
+        </div>
         <StepComponent goToNext={handleGoToNext} />
       </div>
     </div>

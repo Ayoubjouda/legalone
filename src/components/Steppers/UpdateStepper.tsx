@@ -20,16 +20,33 @@ import Companyinfo from '../Forms/services/modification/Companyinfo';
 import FinishUpdateFlow from '../Forms/services/modification/FinishUpdateFlow';
 interface StepperProps {}
 const steps = [
-  { title: 'First', description: 'CHOIX DES STATUTS', component: DurationForm },
   {
-    title: 'Second',
-    description: 'CRÉATION DE SASU',
+    title: 'Dans quel délai souhaitez-vous créer modifier votre société ?',
+    description: '',
+    component: DurationForm,
+  },
+  {
+    title: 'information complementaire',
+    description: '',
     component: RequestedUpdates,
   },
-  { title: 'Third', description: 'PROJET', component: DeclarationForm },
-  { title: 'Third', description: 'CHOIX DU PLAN', component: Companyinfo },
-  { title: 'Third', description: 'Headquarter', component: ContactForm },
-  { title: 'Third', description: 'Headquarter', component: FinishUpdateFlow },
+  {
+    title: 'Bénéficiaires Effectifs',
+    description: '',
+    component: DeclarationForm,
+  },
+  {
+    title: ' La société',
+    description:
+      'Ces informations nous permettront de vous assister au cours de votre processus de création, et seront nécessaires pour constituer votre dossier.',
+    component: Companyinfo,
+  },
+  {
+    title: 'Email & numero de telephone',
+    description: '',
+    component: ContactForm,
+  },
+  { title: 'Traitement Dossier', description: '', component: FinishUpdateFlow },
 ];
 const UpdateStepper: FC<StepperProps> = () => {
   const router = useRouter();
@@ -101,7 +118,15 @@ const UpdateStepper: FC<StepperProps> = () => {
             ))
           : null}
       </ChakraStepper>
-      <div className='flex w-full items-center justify-center px-3 '>
+      <div className='flex w-full flex-col items-center justify-center gap-6 px-3 '>
+        <div className='flex flex-col justify-center gap-4 font-semibold text-red-500'>
+          <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
+            {steps[activeStep].title}
+          </p>
+          <p className='max-w-lg text-center text-sm font-normal leading-tight text-slate-500'>
+            {steps[activeStep].description}
+          </p>
+        </div>
         <StepComponent goToNext={handleGoToNext} />
       </div>
     </div>

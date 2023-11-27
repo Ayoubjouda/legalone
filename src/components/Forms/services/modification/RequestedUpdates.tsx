@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/form';
 
 import { Button } from '@/components/ui/button';
-import { MoveRight } from 'lucide-react';
+import { ChevronRight, MoveRight } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 interface FormProps {
@@ -48,16 +48,17 @@ const modifications = [
 ];
 
 const RequestedUpdates = ({ goToNext }: FormProps) => {
-  const { control, trigger, getValues } = useFormContext();
-  const vals = getValues();
-  console.log(vals);
+  const { control, trigger } = useFormContext();
+  const handleGoToNext = async () => {
+    const isValid = await trigger(['otherModification', 'modification']);
+    console.log(isValid);
+    if (isValid) {
+      goToNext();
+    }
+  };
   return (
     <form className='w-full max-w-[650px]'>
       <div className=' flex flex-col gap-4'>
-        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
-          information complementaire
-        </p>
-
         <FormField
           control={control}
           name='modification'
@@ -124,25 +125,14 @@ const RequestedUpdates = ({ goToNext }: FormProps) => {
             </FormItem>
           )}
         />
-
         <Button
-          className='flex items-center gap-2 self-end text-base font-semibold  hover:bg-darkRedish'
+          className='self-end bg-black font-semibold hover:bg-black/80 '
           type='button'
-          size={'lg'}
-          onClick={async () => {
-            const isValid = await trigger([
-              'otherModification',
-              'modification',
-            ]);
-            console.log(isValid);
-            if (isValid) {
-              goToNext();
-            }
-          }}
+          size={'sm'}
+          onClick={handleGoToNext}
         >
-          <span></span>
           Continuer
-          <MoveRight />
+          <ChevronRight size={16} />
         </Button>
       </div>
     </form>

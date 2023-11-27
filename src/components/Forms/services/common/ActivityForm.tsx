@@ -54,9 +54,7 @@ const ActivityForm = ({ goToNext }: FormProps) => {
             rules={{ required: true }}
           />
         </div>
-        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
-          Quel est votre domaine d'activité ?
-        </p>
+
         <div className='flex justify-center font-semibold text-red-500'>
           <ErrorMessage
             errors={errors}

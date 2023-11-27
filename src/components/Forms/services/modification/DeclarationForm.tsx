@@ -9,25 +9,21 @@ import {
 import { Input } from '../../../ui/input';
 import { Button } from '../../../ui/button';
 import { RadioGroup, RadioGroupItem } from '../../../ui/radio-group';
+import { ChevronRight } from 'lucide-react';
 interface FormProps {
   goToNext: () => void;
 }
 const DeclarationForm = ({ goToNext }: FormProps) => {
-  const { control, trigger, getValues } = useFormContext();
-  const values = getValues();
-
+  const { control, trigger } = useFormContext();
+  const handleGoToNext = async () => {
+    const isValid = await trigger(['declaration']);
+    if (isValid) {
+      goToNext();
+    }
+  };
   return (
     <form className='max-w-[650px]'>
       <div className='my-5 flex flex-col  gap-4'>
-        <p className='text-center text-xl font-medium leading-[31px] text-slate-500'>
-          Bénéficiaires Effectifs
-        </p>
-        <p className='text-center text-sm font-normal leading-tight text-slate-500'>
-          Ces informations nous permettront de vous assister au cours de votre
-          processus de création, et seront nécessaires pour constituer votre
-          dossier.
-        </p>
-
         <FormField
           name='declaration'
           control={control}
@@ -70,19 +66,14 @@ const DeclarationForm = ({ goToNext }: FormProps) => {
             </FormItem>
           )}
         />
-
         <Button
-          className='self-end text-lg font-semibold hover:bg-darkRedish'
+          className='self-end bg-black font-semibold hover:bg-black/80 '
           type='button'
-          size={'lg'}
-          onClick={async () => {
-            const isValid = await trigger(['declaration']);
-            if (isValid) {
-              goToNext();
-            }
-          }}
+          size={'sm'}
+          onClick={handleGoToNext}
         >
           Continuer
+          <ChevronRight size={16} />
         </Button>
       </div>
     </form>
