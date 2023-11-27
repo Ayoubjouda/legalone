@@ -18,9 +18,6 @@ import useFormPersist from 'react-hook-form-persist';
 import AssociationStepper from '@/components/Steppers/AssociationStepper';
 import SciStepper from '@/components/Steppers/SciStepper';
 import DomiciliationStepper from '@/components/Steppers/DomiciliationStepper';
-// type CompanyForms = {
-//   [key: string]: typeof saasFormSchema;
-// };
 
 type Companys = {
   [key: string]:

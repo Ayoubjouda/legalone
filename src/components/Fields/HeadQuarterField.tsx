@@ -1,9 +1,6 @@
 'use client';
-import {
-  useGetActivity,
-  useGetCompanyType,
-  useGetHeadQuarter,
-} from '@/hooks/useCompany';
+import { useGetHeadQuarter } from '@/hooks/useCompany';
+import { useState } from 'react';
 import { Control, FieldValues } from 'react-hook-form';
 import {
   FormControl,
@@ -20,7 +17,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
-import { useState } from 'react';
 interface EmailFieldProps<T> {
   control?: T;
 }

@@ -50,3 +50,19 @@ export const useGetCurrentUserFormality = () => {
     }
   );
 };
+
+const getCurrentUserDoneFormality = async (): Promise<FormalitiesResponse> => {
+  const { data } = await api.get(`formalities/done`);
+  return data;
+};
+export const useGetCurrentUserDoneFormality = () => {
+  return useQuery<FormalitiesResponse, Error>(
+    'currentUserDoneFormalities',
+    () => getCurrentUserDoneFormality(),
+    {
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }
+  );
+};

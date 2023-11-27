@@ -1,21 +1,5 @@
 'use client';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import { CalendarIcon, CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
-import { format } from 'date-fns';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-import { toast } from 'sonner';
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Calendar } from '@/components/ui/calendar';
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from '@/components/ui/command';
 import {
   Form,
   FormControl,
@@ -26,12 +10,11 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
+import { useUpdateProfile } from '@/hooks/useUser';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useSession } from 'next-auth/react';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
 
 const accountFormSchema = z.object({
   firstName: z
@@ -50,9 +33,6 @@ const accountFormSchema = z.object({
     .max(30, {
       message: 'Name must not be longer than 30 characters.',
     }),
-  dob: z.date({
-    required_error: 'A date of birth is required.',
-  }),
   password: z.string({
     required_error: 'Please select a language.',
   }),
@@ -61,20 +41,16 @@ const accountFormSchema = z.object({
 type AccountFormValues = z.infer<typeof accountFormSchema>;
 
 // This can come from your database or API.
-const defaultValues: Partial<AccountFormValues> = {
-  // name: "Your name",
-  // dob: new Date("2023-01-23"),
-};
 
 export function AccountForm() {
   const { data: session } = useSession();
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
-    defaultValues,
   });
+  const { mutate: updateUser } = useUpdateProfile();
 
-  function onSubmit(data: AccountFormValues) {
-    toast('Dats');
+  async function onSubmit(data: AccountFormValues) {
+    updateUser(data);
   }
 
   return (
@@ -128,53 +104,6 @@ export function AccountForm() {
           />
         </div>
 
-        <FormField
-          control={form.control}
-          name='dob'
-          render={({ field }) => (
-            <FormItem className='flex flex-col'>
-              <FormLabel>Date of birth</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant={'outline'}
-                      className={cn(
-                        'w-[240px] pl-3 text-left font-normal',
-                        !field.value && 'text-muted-foreground'
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value, 'PPP')
-                      ) : (
-                        <span>Pick a date</span>
-                      )}
-                      <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent
-                  className='w-auto p-0'
-                  align='start'
-                >
-                  <Calendar
-                    mode='single'
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) =>
-                      date > new Date() || date < new Date('1900-01-01')
-                    }
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-              <FormDescription>
-                Your date of birth is used to calculate your age.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <FormField
           control={form.control}
           name='password'

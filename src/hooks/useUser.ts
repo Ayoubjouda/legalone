@@ -184,3 +184,29 @@ const getTotalClients = async (): Promise<totalClient> => {
 export const useGetTotalClients = () => {
   return useQuery<totalClient, Error>('totalClients', () => getTotalClients());
 };
+
+interface UpdateProfileType {
+  firstName: string;
+  lastName: string;
+  password: string;
+}
+
+const updateProfile = async (user: UpdateProfileType): Promise<void> => {
+  const { data } = await api.patch(`users/profile`, { ...user });
+  return data;
+};
+
+export const useUpdateProfile = () => {
+  return useMutation<void, Error, UpdateProfileType>(
+    'updateUser',
+    (user) => updateProfile(user),
+    {
+      onSuccess: () => {
+        toast.success('Profile Updated successfully');
+      },
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }
+  );
+};
