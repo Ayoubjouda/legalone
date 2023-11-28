@@ -9,7 +9,7 @@ const getFormalities = async (): Promise<FormalitiesResponse> => {
 };
 
 export const useGetFormalities = () => {
-  return useQuery<FormalitiesResponse, Error>('formalities', () =>
+  return useQuery<FormalitiesResponse, Error>('Getformalities', () =>
     getFormalities()
   );
 };
@@ -25,7 +25,7 @@ export const useDeleteFormality = () => {
     (id) => deleteFormality(id),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries('formalities');
+        queryClient.invalidateQueries('Getformalities');
         toast.success('Dossier deleted successfully');
       },
       onError: (error) => {

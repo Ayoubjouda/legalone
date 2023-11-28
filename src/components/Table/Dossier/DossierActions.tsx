@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -22,7 +22,7 @@ const DossierActions: FC<dossierActions> = ({ dossier }) => {
   const [deleteModalOpen, setDeleteModalOpen] = React.useState(false);
   const [editModalOpen, setEditModalOpen] = React.useState(false);
   const [viewModalOpen, setViewModalOpen] = React.useState(false);
-
+  console.log('test');
   return (
     <>
       <DropdownMenu>
@@ -77,4 +77,4 @@ const DossierActions: FC<dossierActions> = ({ dossier }) => {
   );
 };
 
-export default DossierActions;
+export default memo(DossierActions);

@@ -13,14 +13,12 @@ import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import DeleteFormalityModal from './DeleteFormalityModal';
 import ViewDossierModal from './ViewDossierModal';
 import { Dossier } from '@/types/order';
-import EditDossierModal from './EditDossierModal';
 
 interface dossierActions {
   dossier: Dossier;
 }
 const DossierActions: FC<dossierActions> = ({ dossier }) => {
   const [deleteModalOpen, setDeleteModalOpen] = React.useState(false);
-  const [editModalOpen, setEditModalOpen] = React.useState(false);
   const [viewModalOpen, setViewModalOpen] = React.useState(false);
 
   return (
@@ -43,9 +41,6 @@ const DossierActions: FC<dossierActions> = ({ dossier }) => {
             <DropdownMenuItem onClick={() => setViewModalOpen(true)}>
               View
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setEditModalOpen(true)}>
-              Edit
-            </DropdownMenuItem>
 
             <DropdownMenuItem onClick={() => setDeleteModalOpen(true)}>
               Delete
@@ -63,16 +58,6 @@ const DossierActions: FC<dossierActions> = ({ dossier }) => {
         setOpen={() => setViewModalOpen(!viewModalOpen)}
         open={viewModalOpen}
       />
-      <EditDossierModal
-        dossier={dossier}
-        setOpen={() => setEditModalOpen(!editModalOpen)}
-        open={editModalOpen}
-      />
-      {/* <EditModal
-        setOpen={() => setEditModalOpen(!editModalOpen)}
-        open={editModalOpen}
-        user={user}
-      /> */}
     </>
   );
 };

@@ -20,6 +20,7 @@ const Providers: FC<ProvidersProps> = ({ children, session }) => {
         suspense: true,
         refetchOnWindowFocus: false,
         refetchInterval: false,
+        retry: false,
       },
     },
   });

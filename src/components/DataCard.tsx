@@ -1,23 +1,28 @@
 import { useGetHeadQuarter, useGetManagerType } from '@/hooks/useCompany';
 import { EntrepriseSchemaType } from '@/lib/validators/creation/entreprise';
 import { FC } from 'react';
+
+interface DossierCreation extends EntrepriseSchemaType {
+  companyId: number;
+}
 interface EditEntrepriseFormProps {
-  dossier: EntrepriseSchemaType;
+  dossier: DossierCreation;
 }
 
 const DataCard: FC<EditEntrepriseFormProps> = ({ dossier }) => {
   const { data } = useGetManagerType();
   const { data: HqData } = useGetHeadQuarter();
   if (!dossier && !data) return;
-  const managerType = data?.find((id) => id.id === dossier.managerType)?.type;
+  const managerType = data?.find(
+    (manager) => manager.id === dossier.managerType
+  )?.type;
   const headquarter = HqData?.find((id) => id.id === dossier.headquarter)
     ?.headquarter;
-  console.log(managerType);
   const arrayOfInformations = Object.entries({
     ...dossier,
-    managerType: managerType,
-    headquarter: headquarter,
-  });
+    ...(dossier.managerType ? { managerType: managerType } : {}),
+    ...(dossier.headquarter ? { headquarter: headquarter } : {}),
+  }).slice(1);
   const objectexample: { [key: string]: string | number } = {
     companyId: 34,
     delay: 'Délai de Creation de la  société',
@@ -70,6 +75,30 @@ const DataCard: FC<EditEntrepriseFormProps> = ({ dossier }) => {
               </dd>
             </div>
           ))}
+          <div className='bg-white px-4 py-5 even:bg-gray-50 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6'>
+            <dt className='col-span-2 text-sm font-medium text-gray-500'>
+              Upload Document
+            </dt>
+            <dd className='mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
+              <form>
+                <label className='block'>
+                  <span className='sr-only'>Choose profile photo</span>
+                  <input
+                    type='file'
+                    className='block w-full text-sm text-gray-500
+      file:me-4 file:cursor-pointer file:rounded-lg
+      file:border-0 file:bg-black
+      file:px-4 file:py-2 file:text-sm
+      file:font-semibold file:text-white
+      hover:file:bg-black
+      file:disabled:pointer-events-none file:disabled:opacity-50
+      dark:file:bg-black
+    '
+                  />
+                </label>
+              </form>
+            </dd>
+          </div>
         </dl>
       </div>
     </div>

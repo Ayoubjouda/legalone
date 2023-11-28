@@ -33,6 +33,8 @@
     "@radix-ui/react-toast": "^1.1.4",
     "@stripe/react-stripe-js": "^2.3.0",
     "@stripe/stripe-js": "^2.1.6",
+    "@tanstack/react-query": "4.5",
+    "@tanstack/react-query-devtools": "^5.8.9",
     "@tanstack/react-table": "^8.10.7",
     "@types/node": "^20.6.2",
     "@types/react": "^18.2.22",

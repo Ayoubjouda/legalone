@@ -4,7 +4,10 @@ import EditEntrepriseForm from '@/components/Forms/Admin/dossier/creation/EditEn
 import { Dialog, DialogContent, DialogPortal } from '@/components/ui/dialog';
 import { useDeleteFormality } from '@/hooks/useDossier';
 import { Dossier } from '@/types/order';
-
+import { Loader2 } from 'lucide-react';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import Error from '@/components/Error';
 const ViewDossierModal = ({
   setOpen,
   open,
@@ -33,7 +36,20 @@ const ViewDossierModal = ({
     >
       <DialogPortal>
         <DialogContent className='max-h-[80%] overflow-y-auto sm:max-w-[800px]'>
-          <DataCard dossier={dossier.data} />
+          <ErrorBoundary fallback={<Error text='Failed To Load Dossier' />}>
+            <Suspense
+              fallback={
+                <div className='flex h-full w-full items-center justify-center '>
+                  <Loader2
+                    size={49}
+                    className='animate-spin'
+                  />
+                </div>
+              }
+            >
+              <DataCard dossier={dossier.data} />
+            </Suspense>
+          </ErrorBoundary>
         </DialogContent>
       </DialogPortal>
     </Dialog>
