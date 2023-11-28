@@ -1,13 +1,14 @@
 'use client';
+import { Icons } from '@/components/Icons';
+import Footer from '@/components/sections/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useGetOrderById } from '@/hooks/useServices';
 import api from '@/lib/axiosConfig';
 import { MoveRight } from 'lucide-react';
-import { FC, use } from 'react';
-import { useGetOrderById } from '@/hooks/useServices';
-import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
-import { Icons } from '@/components/Icons';
+import { useSearchParams } from 'next/navigation';
+import { FC } from 'react';
 interface pageProps {}
 
 const Page: FC<pageProps> = () => {
@@ -37,8 +38,8 @@ const Page: FC<pageProps> = () => {
       </div>
     );
   return (
-    <div className='flex w-full items-start justify-center gap-3'>
-      <div className='flex w-full flex-col items-center justify-between gap-4 md:flex-row md:items-start '>
+    <div className='mx-auto flex min-h-screen flex-col items-center justify-between gap-4'>
+      <div className='mx-3 flex w-full max-w-screen-xl flex-col items-center justify-between gap-4 md:flex-row md:items-start lg:mt-10'>
         <div className='inline-flex w-full flex-col items-start justify-start rounded-lg border border-gray-200'>
           <div className='flex h-[66px] flex-col items-start justify-start gap-2.5 self-stretch rounded-tl-lg rounded-tr-lg bg-black px-8 py-2'>
             <div className='inline-flex items-start justify-between'>
@@ -197,6 +198,7 @@ const Page: FC<pageProps> = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

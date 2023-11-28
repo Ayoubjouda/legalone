@@ -31,16 +31,17 @@ const Page: FC<pageProps> = () => {
         package: id,
       });
       console.log(data.data);
+      router.push(`/commande?order=${data.data.id}`);
       if (!data.data) throw Error('no data');
-      api
-        .post('/payment/handlepayment', {
-          currency: 'usd',
-          description: 'test payment',
-          order: data?.data?.id as number,
-        })
-        .then((res) => {
-          window.location.assign(res.data.payment.stripeIntent.sessionUrl);
-        });
+      // api
+      //   .post('/payment/handlepayment', {
+      //     currency: 'usd',
+      //     description: 'test payment',
+      //     order: data?.data?.id as number,
+      //   })
+      //   .then((res) => {
+      //     window.location.assign(res.data.payment.stripeIntent.sessionUrl);
+      //   });
     } catch (e) {
       console.log(e);
     }
