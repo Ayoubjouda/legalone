@@ -63,7 +63,7 @@ export const authOption: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) return { ...token, ...user };
-      if (new Date().getTime() > token.expiresIn) return token;
+      if (new Date().getTime() < token.expiresIn) return token;
       return refreshToken(token);
     },
     async session({ token, session }) {

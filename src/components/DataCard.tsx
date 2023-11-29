@@ -1,4 +1,8 @@
-import { useGetHeadQuarter, useGetManagerType } from '@/hooks/useCompany';
+import {
+  useGetCompanyType,
+  useGetHeadQuarter,
+  useGetManagerType,
+} from '@/hooks/useCompany';
 import { EntrepriseSchemaType } from '@/lib/validators/creation/entreprise';
 import { FC } from 'react';
 
@@ -12,16 +16,21 @@ interface EditEntrepriseFormProps {
 const DataCard: FC<EditEntrepriseFormProps> = ({ dossier }) => {
   const { data } = useGetManagerType();
   const { data: HqData } = useGetHeadQuarter();
+  const { data: companyTypes } = useGetCompanyType();
   if (!dossier && !data) return;
   const managerType = data?.find(
     (manager) => manager.id === dossier.managerType
   )?.type;
+  const companyType = companyTypes?.find(
+    (company) => company.id === +dossier?.companyType
+  )?.name;
   const headquarter = HqData?.find((id) => id.id === dossier.headquarter)
     ?.headquarter;
   const arrayOfInformations = Object.entries({
     ...dossier,
     ...(dossier.managerType ? { managerType: managerType } : {}),
     ...(dossier.headquarter ? { headquarter: headquarter } : {}),
+    ...(dossier.companyType ? { companyType: companyType } : {}),
   }).slice(1);
   const objectexample: { [key: string]: string | number } = {
     companyId: 34,
@@ -31,7 +40,7 @@ const DataCard: FC<EditEntrepriseFormProps> = ({ dossier }) => {
     nonAssociateManager:
       'Le Président est-il Associé fondateur de la Société ?',
     shareCapital: 'Capital social',
-    companyType: 'SARL',
+    companyType: 'Type de société',
     accountingExpert: 'Déjà mandaté un expert comptable',
     email: 'Email',
     phone: 'Numero de telephone',
@@ -49,6 +58,21 @@ const DataCard: FC<EditEntrepriseFormProps> = ({ dossier }) => {
     exAutoEntrepreneur: 'Est ce que vous etes ex auto entrepreneur ?',
     descriptionAssociation: "Quelle est l'activité de l'association ?",
     desktopComposition: 'De combien de membres sera composé le bureau ?',
+    otherModification: 'Autre modification',
+    declaration: 'Declaration',
+    modification: 'Modification Demandé',
+    domiciliationAdress: 'Adresse de domiciliation',
+    expeditionFrequency: 'Fréquence d’expédition ',
+    domiciliationId: 'dossier Numero',
+    nom: 'Nom',
+    prenom: 'Prenom',
+    associate: 'associés',
+    rcs: 'RCS',
+    LiquidatorfirstName: 'Prenom du liquidateur',
+    LiquidatorlastName: 'Nom du liquidateur',
+    Liquidatorsex: 'Sex du liquidateur',
+    associateFirstName: 'Prenom de l associé',
+    associateLastName: 'Nom de l associé',
   };
   return (
     <div className=' overflow-hidden bg-white shadow sm:rounded-lg'>
@@ -71,10 +95,16 @@ const DataCard: FC<EditEntrepriseFormProps> = ({ dossier }) => {
                 {objectexample[value[0]]}
               </dt>
               <dd className='mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
-                {value[1]?.toString()}
+                {Array.isArray(value[1])
+                  ? value[1]
+                      ?.toString()
+                      .split(',')
+                      .map((modif, key) => <p key={key}>{modif}rr</p>)
+                  : value[1]?.toString()}
               </dd>
             </div>
           ))}
+
           <div className='bg-white px-4 py-5 even:bg-gray-50 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6'>
             <dt className='col-span-2 text-sm font-medium text-gray-500'>
               Upload Document

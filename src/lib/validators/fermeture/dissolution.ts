@@ -57,7 +57,7 @@ export const DissolutionFormSchema = z.object({
     .string()
     .min(2, { message: 'Doit contenir au moins 2 caractères' })
     .optional(),
-  associates: z.array(
+  associate: z.array(
     z.object({
       type: z.number(),
       dto: z.union([AssociateSchema, CompanyAssociateSchema]),

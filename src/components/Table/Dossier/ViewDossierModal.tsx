@@ -5,6 +5,7 @@ import { Loader2 } from 'lucide-react';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import Error from '@/components/Error';
+import FermetureDetail from '@/components/FermetureDetail';
 
 const ViewDossierModal = ({
   setOpen,
@@ -16,6 +17,9 @@ const ViewDossierModal = ({
   dossier: Dossier;
 }) => {
   //! Lazy Loading
+
+  const isDissolution = dossier.formalityType === 'dissolution';
+  const isRadiation = dossier.formalityType === 'radiation';
   return (
     <Dialog
       open={open}
@@ -34,7 +38,11 @@ const ViewDossierModal = ({
                 </div>
               }
             >
-              <DataCard dossier={dossier.data} />
+              {isDissolution || isRadiation ? (
+                <FermetureDetail dossier={dossier.data} />
+              ) : (
+                <DataCard dossier={dossier.data} />
+              )}
             </Suspense>
           </ErrorBoundary>
         </DialogContent>

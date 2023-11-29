@@ -84,7 +84,7 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
         {values.associates.map((item: MyInterface, index: number) => (
           <div key={item.type}>
             <FormField
-              name={`associates.${index}.type`}
+              name={`associate.${index}.type`}
               control={control}
               render={({ field: { onChange, onBlur, value, ref } }) => (
                 <FormItem className='flex flex-col gap-3 space-y-0 '>
