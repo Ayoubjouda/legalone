@@ -1,16 +1,26 @@
 import api from '@/lib/axiosConfig';
 import { FormalitiesResponse } from '@/types/order';
+import { useSearchParams } from 'next/navigation';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { toast } from 'sonner';
 
-const getFormalities = async (): Promise<FormalitiesResponse> => {
-  const { data } = await api.get(`formalities`);
+interface getFormalityParams {
+  page?: number;
+  status?: string;
+}
+
+const getFormalities = async (
+  params: getFormalityParams
+): Promise<FormalitiesResponse> => {
+  const { data } = await api.get(
+    `formalities?page=${params.page}&limit=20&statusFilter=${params.status}`
+  );
   return data;
 };
 
-export const useGetFormalities = () => {
-  return useQuery<FormalitiesResponse, Error>('Getformalities', () =>
-    getFormalities()
+export const useGetFormalities = (params: getFormalityParams) => {
+  return useQuery<FormalitiesResponse, Error>(['Getformalities', params], () =>
+    getFormalities(params)
   );
 };
 const deleteFormality = async (id: number): Promise<void> => {

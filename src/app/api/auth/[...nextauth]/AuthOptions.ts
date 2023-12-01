@@ -12,7 +12,7 @@ async function refreshToken(token: JWT): Promise<JWT> {
   const response = await res.json();
   return {
     ...token,
-    response,
+    ...response,
   };
 }
 
@@ -61,10 +61,11 @@ export const authOption: NextAuthOptions = {
 
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger }) {
+      if (trigger === 'update') return { ...(await refreshToken(token)) };
       if (user) return { ...token, ...user };
       if (new Date().getTime() < token.expiresIn) return token;
-      return refreshToken(token);
+      return { ...(await refreshToken(token)) };
     },
     async session({ token, session }) {
       session.user = token.User;

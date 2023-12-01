@@ -1,5 +1,5 @@
 import DataCard from '@/components/DataCard';
-import EditDissolutionForm from '@/components/Forms/Admin/dossier/EditDissolutionForm';
+import EditFermetureForm from '@/components/Forms/Admin/dossier/EditFermetureForm';
 import EditEntrepriseForm from '@/components/Forms/Admin/dossier/creation/EditEntrepriseForm';
 import { Dialog, DialogContent, DialogPortal } from '@/components/ui/dialog';
 import { useDeleteFormality } from '@/hooks/useDossier';

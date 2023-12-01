@@ -1,5 +1,5 @@
 import DataCard from '@/components/DataCard';
-import EditDissolutionForm from '@/components/Forms/Admin/dossier/EditDissolutionForm';
+import EditFermetureForm from '@/components/Forms/Admin/dossier/EditFermetureForm';
 import EditEntrepriseForm from '@/components/Forms/Admin/dossier/creation/EditEntrepriseForm';
 import { Dialog, DialogContent, DialogPortal } from '@/components/ui/dialog';
 import { useDeleteFormality } from '@/hooks/useDossier';
@@ -34,7 +34,7 @@ const EditDossierModal = ({
       <DialogPortal>
         <DialogContent className='max-h-[80%] overflow-y-auto sm:max-w-[800px]'>
           {isRadiation || isDissolution ? (
-            <EditDissolutionForm dossier={dossier.data} />
+            <EditFermetureForm dossier={dossier.data} />
           ) : null}
           {isSAS ? <EditEntrepriseForm dossier={dossier.data} /> : null}
           {/* {dossier?.service?.companies?.companyType === 'SAS' ? (

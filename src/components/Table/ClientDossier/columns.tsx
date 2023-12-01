@@ -4,7 +4,7 @@ import { CaretSortIcon } from '@radix-ui/react-icons';
 import { ColumnDef } from '@tanstack/react-table';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import DossierActions from './DossierActions';
+import DossierClientActions from './DossierClientActions';
 import { format } from 'date-fns';
 import { Dossier } from '@/types/order';
 import { cn } from '@/lib/utils';
@@ -112,7 +112,7 @@ export const columns: ColumnDef<Dossier>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const dossier = row.original;
-      return <DossierActions dossier={dossier} />;
+      return <DossierClientActions dossier={dossier} />;
     },
   },
 ];

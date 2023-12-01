@@ -1,8 +1,4 @@
-import {
-  useGetCompanyType,
-  useGetHeadQuarter,
-  useGetManagerType,
-} from '@/hooks/useCompany';
+import { useGetHeadQuarter, useGetManagerType } from '@/hooks/useCompany';
 import { EntrepriseSchemaType } from '@/lib/validators/creation/entreprise';
 import { FC } from 'react';
 
@@ -16,21 +12,17 @@ interface EditEntrepriseFormProps {
 const DataCard: FC<EditEntrepriseFormProps> = ({ dossier }) => {
   const { data } = useGetManagerType();
   const { data: HqData } = useGetHeadQuarter();
-  const { data: companyTypes } = useGetCompanyType();
   if (!dossier && !data) return;
   const managerType = data?.find(
     (manager) => manager.id === dossier.managerType
   )?.type;
-  const companyType = companyTypes?.find(
-    (company) => company.id === +dossier?.companyType
-  )?.name;
+
   const headquarter = HqData?.find((id) => id.id === dossier.headquarter)
     ?.headquarter;
   const arrayOfInformations = Object.entries({
     ...dossier,
     ...(dossier.managerType ? { managerType: managerType } : {}),
     ...(dossier.headquarter ? { headquarter: headquarter } : {}),
-    ...(dossier.companyType ? { companyType: companyType } : {}),
   }).slice(1);
   const objectexample: { [key: string]: string | number } = {
     companyId: 34,

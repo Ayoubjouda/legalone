@@ -17,7 +17,7 @@ import { Dossier } from '@/types/order';
 interface dossierActions {
   dossier: Dossier;
 }
-const DossierActions: FC<dossierActions> = ({ dossier }) => {
+const DossierClientActions: FC<dossierActions> = ({ dossier }) => {
   const [deleteModalOpen, setDeleteModalOpen] = React.useState(false);
   const [viewModalOpen, setViewModalOpen] = React.useState(false);
 
@@ -62,4 +62,4 @@ const DossierActions: FC<dossierActions> = ({ dossier }) => {
   );
 };
 
-export default DossierActions;
+export default DossierClientActions;

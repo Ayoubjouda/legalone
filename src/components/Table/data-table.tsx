@@ -11,6 +11,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  type PaginationState,
   useReactTable,
 } from '@tanstack/react-table';
 import { Plus, Settings2 } from 'lucide-react';
@@ -31,10 +32,11 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Loader2 } from 'lucide-react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 export function DataTable({
   data,
   columns,
+  pageCount,
   children,
 }: {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
@@ -42,6 +44,7 @@ export function DataTable({
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   columns: any;
   children?: React.ReactNode;
+  pageCount?: number;
 }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -50,11 +53,75 @@ export function DataTable({
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const page = searchParams?.get('page') ?? '1';
+  const per_page = searchParams?.get('limit') ?? '10';
+  const perPageAsNumber = Number(per_page);
+  const fallbackPerPage = isNaN(perPageAsNumber) ? 10 : perPageAsNumber;
+  const pageAsNumber = Number(page);
+  const fallbackPage =
+    isNaN(pageAsNumber) || pageAsNumber < 1 ? 1 : pageAsNumber;
+
+  const createQueryString = React.useCallback(
+    (params: Record<string, string | number | null>) => {
+      const newSearchParams = new URLSearchParams(searchParams?.toString());
+
+      for (const [key, value] of Object.entries(params)) {
+        if (value === null) {
+          newSearchParams.delete(key);
+        } else {
+          newSearchParams.set(key, String(value));
+        }
+      }
+
+      return newSearchParams.toString();
+    },
+    [searchParams]
+  );
+
+  const [{ pageIndex, pageSize }, setPagination] =
+    React.useState<PaginationState>({
+      pageIndex: fallbackPage - 1,
+      pageSize: fallbackPerPage,
+    });
+
+  const pagination = React.useMemo(
+    () => ({
+      pageIndex,
+      pageSize,
+    }),
+    [pageIndex, pageSize]
+  );
+
+  React.useEffect(() => {
+    setPagination({
+      pageIndex: fallbackPage - 1,
+      pageSize: fallbackPerPage,
+    });
+  }, [fallbackPage, fallbackPerPage]);
+
+  React.useEffect(() => {
+    router.push(
+      `${pathname}?${createQueryString({
+        page: pageIndex + 1,
+        per_page: pageSize,
+      })}`,
+      {
+        scroll: false,
+      }
+    );
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pageIndex, pageSize]);
 
   const table = useReactTable({
     data,
     columns,
+    pageCount: pageCount ?? -1,
     onSortingChange: setSorting,
+    onPaginationChange: setPagination,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -62,12 +129,13 @@ export function DataTable({
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
-
+    manualPagination: true,
     state: {
       sorting,
       columnFilters,
       columnVisibility,
       rowSelection,
+      pagination,
     },
   });
 

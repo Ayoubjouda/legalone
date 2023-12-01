@@ -1,5 +1,5 @@
 'use client';
-import { columns } from '@/components/Table/Dossier/columns';
+import { columns } from '@/components/Table/ClientDossier/columns';
 import { useGetCurrentUserDoneFormality } from '@/hooks/useDossier';
 import { FC } from 'react';
 import { DataTable } from '../data-table';

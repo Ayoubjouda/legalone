@@ -43,14 +43,15 @@ type AccountFormValues = z.infer<typeof accountFormSchema>;
 // This can come from your database or API.
 
 export function AccountForm() {
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
   });
   const { mutate: updateUser } = useUpdateProfile();
 
   async function onSubmit(data: AccountFormValues) {
-    updateUser(data);
+    await updateUser(data);
+    await update();
   }
 
   return (

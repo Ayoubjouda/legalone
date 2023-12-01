@@ -9,13 +9,12 @@ import {
   DialogPortal,
 } from '@/components/ui/dialog';
 import { useDeleteFormality } from '@/hooks/useDossier';
-import { Dossier, FormalitiesResponse } from '@/types/order';
+import { Dossier } from '@/types/order';
 import { Loader2 } from 'lucide-react';
 
 const DeleteFormalityModal = ({
   setOpen,
   open,
-  dossier,
 }: {
   setOpen: () => void;
   open: boolean;
