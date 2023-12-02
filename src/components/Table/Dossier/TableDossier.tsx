@@ -3,13 +3,13 @@ import { FC } from 'react';
 import { DataTable } from '../data-table';
 import { useGetFormalities } from '@/hooks/useDossier';
 import { columns } from '@/components/Table/Dossier/columns';
-import FilteringButton from './FilteringButton';
+import FilteringButton from '../FilteringButton';
 import { useSearchParams } from 'next/navigation';
 interface TableDossierProps {}
 
 const TableDossier: FC<TableDossierProps> = () => {
   const getParams = useSearchParams();
-  const status = getParams.get('status');
+  const status = getParams.get('status') || '';
   const page = getParams.get('page');
   const { data: DossierData } = useGetFormalities({
     page: page ? parseInt(page) : 1,
@@ -21,7 +21,7 @@ const TableDossier: FC<TableDossierProps> = () => {
       <DataTable
         data={DossierData?.formalities}
         columns={columns}
-        pageCount={3}
+        pageCount={DossierData?.totalPages}
       >
         <FilteringButton
           values={[

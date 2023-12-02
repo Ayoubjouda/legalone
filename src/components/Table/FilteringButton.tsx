@@ -19,7 +19,9 @@ const FilteringButton: FC<FilteringButtonProps> = ({ values, queryKey }) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams()!;
-  const status = searchParams.get('status');
+  const status = searchParams.get('status') || '';
+  const page = searchParams?.get('page') ?? '1';
+
   const QueryClient = useQueryClient();
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -45,19 +47,30 @@ const FilteringButton: FC<FilteringButtonProps> = ({ values, queryKey }) => {
           <SlidersHorizontal className='mr-2 h-4 w-4' /> Filter
         </Button>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent align='end'>
-        {values.map((column) => {
-          return (
-            <DropdownMenuCheckboxItem
-              key={column}
-              className='capitalize'
-              checked={status === column}
-              onCheckedChange={() => handleFilter(column)}
-            >
-              {column}
-            </DropdownMenuCheckboxItem>
-          );
-        })}
+        <>
+          <DropdownMenuCheckboxItem
+            key='ALl'
+            className='capitalize'
+            checked={status === ''}
+            onCheckedChange={() => handleFilter('')}
+          >
+            ALL
+          </DropdownMenuCheckboxItem>
+          {values.map((column) => {
+            return (
+              <DropdownMenuCheckboxItem
+                key={column}
+                className='capitalize'
+                checked={status === column}
+                onCheckedChange={() => handleFilter(column)}
+              >
+                {column}
+              </DropdownMenuCheckboxItem>
+            );
+          })}
+        </>
       </DropdownMenuContent>
     </DropdownMenu>
   );

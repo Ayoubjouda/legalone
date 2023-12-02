@@ -13,7 +13,7 @@ const getFormalities = async (
   params: getFormalityParams
 ): Promise<FormalitiesResponse> => {
   const { data } = await api.get(
-    `formalities?page=${params.page}&limit=20&statusFilter=${params.status}`
+    `formalities?page=${params.page}&limit=10&statusFilter=${params.status}`
   );
   return data;
 };

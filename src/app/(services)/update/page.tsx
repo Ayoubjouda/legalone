@@ -10,6 +10,7 @@ import {
 } from '@/lib/validators/modification/modification';
 import { createStepper } from '@/components/Steppers/CreateStepper';
 import { updateStepper } from '@/components/Steppers/Steps';
+const UpdateStepper = createStepper({ steps: updateStepper, path: 'update' });
 
 export default function Update() {
   const methods = useForm<UpdateFormSchemaType>({
@@ -21,10 +22,9 @@ export default function Update() {
     ...methods,
     storage: window.localStorage, // default window.sessionStorage
   });
-  const UpdateStepper = createStepper({ steps: updateStepper, path: 'update' });
 
   return (
-    <div className='mx-auto my-12 flex  max-w-screen-xl flex-col items-center justify-center gap-2 overflow-hidden'>
+    <div className='relative mx-auto my-12 flex  max-w-screen-xl flex-col items-center justify-center gap-2 overflow-hidden'>
       <FormProvider {...methods}>
         <UpdateStepper />
       </FormProvider>

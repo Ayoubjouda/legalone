@@ -52,7 +52,7 @@ export function createStepper({ steps, path }: StepperProps) {
             Création de {type}
           </p>
 
-          {activeStep !== 0 && (
+          {activeStep !== 0 ? (
             <div className='absolute left-0 top-0 flex w-full  max-w-screen-md'>
               <Button
                 className='px-0 text-black hover:no-underline'
@@ -63,7 +63,7 @@ export function createStepper({ steps, path }: StepperProps) {
                 Retour
               </Button>
             </div>
-          )}
+          ) : null}
         </div>
 
         <ChakraStepper

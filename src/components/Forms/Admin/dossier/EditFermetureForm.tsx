@@ -23,14 +23,14 @@ import {
   DissolutionFormSchemaType,
 } from '@/lib/validators/fermeture/dissolution';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { X } from 'lucide-react';
+import { Plus, X } from 'lucide-react';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 
 interface AssociateDto {
   associateFirstName: string;
   associateLastName: string;
-  associateSex: string;
+  sex: string;
 }
 
 interface CompanyAssociateDto {
@@ -55,13 +55,16 @@ const EditFermetureForm: FC<DissolutionAdminFormProps> = ({ dossier }) => {
     },
   });
   const { data: CompanyTypes, isLoading } = useGetCompanyType();
-  if (!dossier) return;
+
+  if (!dossier || !CompanyTypes) return;
   const values = form.getValues();
+  console.log(values.associate);
   const handleAddField = () => {
-    form.setValue('associate', [
-      ...values.associate,
-      { type: 1, dto: {} } as MyInterface,
-    ]);
+    form.setValue(
+      'associate',
+      [...values.associate, { type: 1, dto: {} } as MyInterface],
+      { shouldValidate: true }
+    );
   };
   if (!values.associate) {
     form.setValue('associate', [{ type: 1, dto: {} } as MyInterface]);
@@ -70,7 +73,7 @@ const EditFermetureForm: FC<DissolutionAdminFormProps> = ({ dossier }) => {
   const handleDeleteItem = (index: number) => {
     const newCount = [...values.associate];
     newCount.splice(index, 1);
-    form.setValue('associate', newCount);
+    form.setValue('associate', newCount, { shouldValidate: true });
   };
 
   if (isLoading)
@@ -105,8 +108,11 @@ const EditFermetureForm: FC<DissolutionAdminFormProps> = ({ dossier }) => {
             name='email'
             label='email'
           />
-          {dossier.associate.map((item: MyInterface, index: number) => (
-            <div key={item.type}>
+          {values.associate.map((item: MyInterface, index: number) => (
+            <div
+              key={item.type}
+              className='col-span-2 gap-y-2'
+            >
               <FormField
                 name={`associate.${index}.type`}
                 control={form.control}
@@ -114,7 +120,7 @@ const EditFermetureForm: FC<DissolutionAdminFormProps> = ({ dossier }) => {
                   <FormItem className='flex flex-col gap-3 space-y-0 '>
                     <FormLabel className='relative leading-[20px]'>
                       Cet associé est :
-                      {dossier.associate.length > 1 ? (
+                      {values.associate.length > 1 ? (
                         <div
                           className='absolute right-0 cursor-pointer'
                           onClick={() => handleDeleteItem(index)}
@@ -158,9 +164,9 @@ const EditFermetureForm: FC<DissolutionAdminFormProps> = ({ dossier }) => {
                   </FormItem>
                 )}
               />
-              {dossier.associate[index].type === 1 ? (
+              {values.associate[index].type === 1 ? (
                 <>
-                  <div className='flex w-full gap-2 '>
+                  <div className='col-span-2 flex w-full gap-2 '>
                     <FormField
                       name={`associate.${index}.dto.associateFirstName`}
                       control={form.control}
@@ -193,7 +199,7 @@ const EditFermetureForm: FC<DissolutionAdminFormProps> = ({ dossier }) => {
                   </div>
                   <FormField
                     control={form.control}
-                    name={`associate.${index}.dto.associateSex`}
+                    name={`associate.${index}.dto.sex`}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Civilité</FormLabel>
@@ -268,6 +274,15 @@ const EditFermetureForm: FC<DissolutionAdminFormProps> = ({ dossier }) => {
               )}
             </div>
           ))}
+          <Button
+            className='gap-2  self-start font-semibold hover:bg-darkRedish'
+            type='button'
+            size={'sm'}
+            onClick={handleAddField}
+          >
+            <Plus size={16} />
+            Ajouter
+          </Button>
 
           <Button
             className='grid-span-2'

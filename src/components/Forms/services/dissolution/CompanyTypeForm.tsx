@@ -16,9 +16,7 @@ const CompanyTypeForm = ({ goToNext }: FormProps) => {
   } = useFormContext();
 
   const { isLoading, data: CompanyType } = useGetCompanyType();
-
   const companyType = getValues('companyType');
-  console.log(companyType);
   const handleSetValue = (id: number) => {
     setValue('companyType', id);
   };
@@ -26,7 +24,7 @@ const CompanyTypeForm = ({ goToNext }: FormProps) => {
     handleSetValue(id);
     goToNext();
   };
-  if (isLoading)
+  if (isLoading || !CompanyType)
     return (
       <div className='flex h-full min-h-[300px] w-full items-center justify-center'>
         <Spinner color='orange.500' />

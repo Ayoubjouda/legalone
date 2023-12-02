@@ -58,6 +58,8 @@ export function DataTable({
   const router = useRouter();
   const page = searchParams?.get('page') ?? '1';
   const per_page = searchParams?.get('limit') ?? '10';
+  const status = searchParams?.get('status');
+
   const perPageAsNumber = Number(per_page);
   const fallbackPerPage = isNaN(perPageAsNumber) ? 10 : perPageAsNumber;
   const pageAsNumber = Number(page);
@@ -105,8 +107,20 @@ export function DataTable({
   React.useEffect(() => {
     router.push(
       `${pathname}?${createQueryString({
+        page: 1,
+      })}`,
+      {
+        scroll: false,
+      }
+    );
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status]);
+
+  React.useEffect(() => {
+    router.push(
+      `${pathname}?${createQueryString({
         page: pageIndex + 1,
-        per_page: pageSize,
       })}`,
       {
         scroll: false,

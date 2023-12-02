@@ -4,17 +4,34 @@ import { toast } from 'sonner';
 
 import { Order } from '@/types/order';
 
-const getOrders = async (): Promise<Order[]> => {
-  const { data } = await api.get(`order`);
+interface getOrdersParams {
+  page?: number;
+  status?: string;
+}
+interface getOrdersResponse {
+  orders: Order[];
+  totalPages: number;
+}
+
+const getOrders = async (
+  params: getOrdersParams
+): Promise<getOrdersResponse> => {
+  const { data } = await api.get(
+    `order?page=${params.page}&limit=10&statusFilter=${params.status}`
+  );
   return data;
 };
 
-export const useGetOrders = () => {
-  return useQuery<Order[], Error>('Orders', () => getOrders(), {
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
+export const useGetOrders = (params: getOrdersParams) => {
+  return useQuery<getOrdersResponse, Error>(
+    ['Orders', params],
+    () => getOrders(params),
+    {
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }
+  );
 };
 
 const deleteOrder = async (id: number): Promise<void> => {

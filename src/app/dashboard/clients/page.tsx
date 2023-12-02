@@ -7,6 +7,7 @@ import Error from '@/components/Error';
 import CardSkeleton from '@/components/CardSkeleton';
 import NewClientsCard from '@/components/Cards/Clients/NewClientsCard';
 import TotalClientsCard from '@/components/Cards/Clients/TotalClientsCard';
+
 interface pageProps {}
 
 const Page: FC<pageProps> = () => {
@@ -38,7 +39,13 @@ const Page: FC<pageProps> = () => {
             </Suspense>
           </ErrorBoundary>
         </div>
-        <ErrorBoundary fallback={<div>error</div>}>
+        <ErrorBoundary
+          fallback={
+            <Card className='flex h-52 w-full items-center justify-center'>
+              <Error text='Error Loading Clients' />
+            </Card>
+          }
+        >
           <Suspense
             fallback={
               <Card className='flex h-48 w-full items-center justify-center '>

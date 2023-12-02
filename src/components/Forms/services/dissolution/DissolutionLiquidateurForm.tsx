@@ -1,4 +1,8 @@
+import { useGetCompanyType } from '@/hooks/useCompany';
+import { Spinner } from '@chakra-ui/react';
+import { ChevronRight } from 'lucide-react';
 import { useFormContext } from 'react-hook-form';
+import { Button } from '../../../ui/button';
 import {
   FormControl,
   FormField,
@@ -7,33 +11,30 @@ import {
   FormMessage,
 } from '../../../ui/form';
 import { Input } from '../../../ui/input';
-import { Button } from '../../../ui/button';
 import { RadioGroup, RadioGroupItem } from '../../../ui/radio-group';
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '../../../ui/select';
-import { useGetCompanyType } from '@/hooks/useCompany';
-import { Spinner } from '@chakra-ui/react';
-import { ChevronRight } from 'lucide-react';
 interface FormProps {
   goToNext: () => void;
 }
 const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
-  const { control, trigger, getValues, setValue, resetField } =
-    useFormContext();
+  const { control, trigger, getValues, resetField } = useFormContext();
   const values = getValues();
   const { data: CompanyTypes, isLoading } = useGetCompanyType();
+
+  const selectedType =
+    CompanyTypes?.find((item) => item.id === values.companyLiquidatorType)
+      ?.id || values.companyLiquidatorType;
 
   const handelSubmitValue = async () => {
     let isvalid;
     if (values.liquidatorType === 1) {
-      isvalid = await trigger(['firstName', 'lastName', 'Liquidatorsex']);
+      isvalid = await trigger(['firstName', 'lastName', 'liquidatorsex']);
       if (isvalid) {
         goToNext();
         isvalid = false;
@@ -51,7 +52,7 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
       }
     }
   };
-  if (isLoading)
+  if (isLoading || !CompanyTypes)
     return (
       <div className='flex h-full min-h-[300px] w-full items-center justify-center'>
         <Spinner color='orange.500' />
@@ -118,7 +119,7 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
                     } else {
                       resetField('firstName');
                       resetField('lastName');
-                      resetField('Liquidatorsex');
+                      resetField('liquidatorsex');
                       onChange(2);
                     }
                   }}
@@ -181,7 +182,7 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
             </div>
             <FormField
               control={control}
-              name='Liquidatorsex'
+              name='liquidatorsex'
               defaultValue={''}
               render={({ field }) => (
                 <FormItem>
@@ -225,13 +226,12 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
             <FormField
               control={control}
               name='companyLiquidatorType'
-              defaultValue={''}
               render={({ field: { onChange, value } }) => (
                 <FormItem>
                   <FormLabel>Forme Social</FormLabel>
                   <Select
                     onValueChange={(value) => onChange(Number(value))}
-                    defaultValue={value}
+                    value={String(selectedType)}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -241,7 +241,7 @@ const DissolutionLiquidateurForm = ({ goToNext }: FormProps) => {
                     <SelectContent>
                       {CompanyTypes?.map((item) => (
                         <SelectItem
-                          key={item.id}
+                          key={item.name}
                           value={String(item.id)}
                         >
                           {item.name}

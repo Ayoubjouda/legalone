@@ -136,3 +136,44 @@ export const useSubmitUpdateFormality = () => {
     FormalityData,
   };
 };
+
+const postFermetureFormality = async (
+  formalityData: Formality,
+  type: string
+): Promise<FormalityResponse> => {
+  const { data: response } = await api.post(`${type}`, formalityData);
+  return { ...response, type: formalityData.companyType };
+};
+
+export const useSubmitFermetureFormality = () => {
+  const router = useRouter();
+  const getParams = useSearchParams();
+  const type = getParams.get('type') || '';
+  const {
+    mutate: FormalityDissolutionMutation,
+    isLoading,
+    data: FormalityData,
+  } = useMutation<FormalityResponse, AxiosError, unknown>(
+    (postData) => postFermetureFormality(postData, type),
+    {
+      onSuccess(data) {
+        toast('Formality created successfully');
+        localStorage.removeItem(data.type);
+
+        router.push(`/packages?formality=${data.createdFormality.id}`);
+      },
+      onError(err: Error | AxiosError) {
+        if (isAxiosError(err)) {
+          toast('Invalid Credentials');
+        } else {
+          toast('Something went wrong');
+        }
+      },
+    }
+  );
+  return {
+    FormalityDissolutionMutation,
+    isLoading,
+    FormalityData,
+  };
+};

@@ -44,6 +44,7 @@ type OrderByIdResponse = {
 
 type FormalitiesResponse = {
   formalities: Dossier[];
+  totalPages: number;
 };
 interface Dossier {
   formalityId: number;

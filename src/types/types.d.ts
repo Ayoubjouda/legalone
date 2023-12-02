@@ -103,7 +103,7 @@ enum UserStatus {
 enum Status {
   PENDING = 'PENDING',
   COMPLETED = 'COMPLETED',
-  CAMCELLED = 'CAMCELLED',
+  CANCELLED = 'CANCELLED',
 }
 
 type Payment = {

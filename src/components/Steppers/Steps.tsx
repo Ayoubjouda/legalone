@@ -14,6 +14,7 @@ import CompanyTypeForm from '../Forms/services/dissolution/CompanyTypeForm';
 import DissolutionAssocierForm from '../Forms/services/dissolution/DissolutionAssocierForm';
 import DissolutionCompanyDataForm from '../Forms/services/dissolution/DissolutionCompanyDataForm';
 import DissolutionLiquidateurForm from '../Forms/services/dissolution/DissolutionLiquidateurForm';
+import FinishFermetureFlow from '../Forms/services/dissolution/FinishFermetureFlow';
 import Companyinfo from '../Forms/services/modification/Companyinfo';
 import DeclarationForm from '../Forms/services/modification/DeclarationForm';
 import FinishUpdateFlow from '../Forms/services/modification/FinishUpdateFlow';
@@ -265,5 +266,9 @@ export const deleteStepper = [
     description: '',
     component: ContactForm,
   },
-  { title: 'Traitement Dossier', description: '', component: FinishFlow },
+  {
+    title: 'Traitement Dossier',
+    description: '',
+    component: FinishFermetureFlow,
+  },
 ];

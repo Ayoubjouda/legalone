@@ -1,14 +1,19 @@
 import api from '@/lib/axiosConfig';
 import { useMutation, useQuery } from 'react-query';
 import { toast } from 'sonner';
-
-const getPayments = async (): Promise<Payment[]> => {
-  const { data } = await api.get(`payment`);
+interface getPaymentParams {
+  page?: number;
+  status?: string;
+}
+const getPayments = async (params: getPaymentParams): Promise<Payment[]> => {
+  const { data } = await api.get(
+    `payment?page=${params.page}&limit=10&statusFilter=${params.status}`
+  );
   return data;
 };
 
-export const useGetPayments = () => {
-  return useQuery<Payment[], Error>('payment', () => getPayments(), {
+export const useGetPayments = (params: getPaymentParams) => {
+  return useQuery<Payment[], Error>('payment', () => getPayments(params), {
     onError: (error) => {
       toast.error(error.message);
     },

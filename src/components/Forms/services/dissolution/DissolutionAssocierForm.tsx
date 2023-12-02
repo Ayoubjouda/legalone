@@ -29,7 +29,7 @@ interface FormProps {
 interface AssociateDto {
   associateFirstName: string;
   associateLastName: string;
-  associateSex: string;
+  sex: string;
 }
 
 interface CompanyAssociateDto {
@@ -48,28 +48,34 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
   const values = getValues();
   const { data: CompanyTypes, isLoading } = useGetCompanyType();
   const handleAddField = () => {
-    setValue('associates', [
-      ...values.associates,
+    setValue('associate', [
+      ...values.associate,
       { type: 1, dto: {} } as MyInterface,
     ]);
   };
-  if (!values.associates) {
-    setValue('associates', [{ type: 1, dto: {} } as MyInterface]);
+  if (!values.associate) {
+    setValue('associate', [{ type: 1, dto: {} } as MyInterface]);
   }
+  // ! Fix Bug Here of  CompanyType input dose not show on refresh
+  const handleCompanyType = (id: number) => {
+    const selectedType =
+      CompanyTypes?.find((item) => item.id === id)?.id ||
+      values.companyLiquidatorType;
+  };
 
   const handleDeleteItem = (index: number) => {
-    const newCount = [...values.associates];
+    const newCount = [...values.associate];
     newCount.splice(index, 1);
-    setValue('associates', newCount);
+    setValue('associate', newCount);
   };
   const handleGoToNext = async () => {
-    const isValid = await trigger(['associates']);
+    const isValid = await trigger(['associate']);
     if (isValid) {
       goToNext();
     }
   };
 
-  if (isLoading)
+  if (isLoading || !CompanyTypes || !values.associate)
     return (
       <div className='flex h-full min-h-[300px] w-full items-center justify-center'>
         <Spinner color='orange.500' />
@@ -81,7 +87,7 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
   return (
     <form className='w-full max-w-[650px]'>
       <div className='my-5 flex flex-col  gap-4'>
-        {values.associates.map((item: MyInterface, index: number) => (
+        {values?.associate.map((item: MyInterface, index: number) => (
           <div key={item.type}>
             <FormField
               name={`associate.${index}.type`}
@@ -90,7 +96,7 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
                 <FormItem className='flex flex-col gap-3 space-y-0 '>
                   <FormLabel className='relative leading-[20px]'>
                     Cet associé est :
-                    {values.associates.length > 1 ? (
+                    {values.associate.length > 1 ? (
                       <div
                         className='absolute right-0 cursor-pointer'
                         onClick={() => handleDeleteItem(index)}
@@ -134,11 +140,11 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
                 </FormItem>
               )}
             />
-            {values.associates[index].type === 1 ? (
+            {values.associate[index].type === 1 ? (
               <>
                 <div className='flex w-full gap-2 '>
                   <FormField
-                    name={`associates.${index}.dto.associateFirstName`}
+                    name={`associate.${index}.dto.associateFirstName`}
                     control={control}
                     defaultValue={''}
                     render={({ field }) => (
@@ -152,7 +158,7 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
                     )}
                   />
                   <FormField
-                    name={`associates.${index}.dto.associateLastName`}
+                    name={`associate.${index}.dto.associateLastName`}
                     control={control}
                     defaultValue={''}
                     render={({ field }) => (
@@ -169,7 +175,7 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
                 </div>
                 <FormField
                   control={control}
-                  name={`associates.${index}.dto.associateSex`}
+                  name={`associate.${index}.dto.sex`}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Civilité</FormLabel>
@@ -196,7 +202,7 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
             ) : (
               <div>
                 <FormField
-                  name={`associates.${index}.dto.companyNameAssociate`}
+                  name={`associate.${index}.dto.companyNameAssociate`}
                   control={control}
                   defaultValue={''}
                   render={({ field }) => (
@@ -211,7 +217,7 @@ const DissolutionAssocierForm = ({ goToNext }: FormProps) => {
                 />
                 <FormField
                   control={control}
-                  name={`associates.${index}.dto.companyAssociateType`}
+                  name={`associate.${index}.dto.companyAssociateType`}
                   render={({ field: { onChange, value } }) => (
                     <FormItem>
                       <FormLabel>Forme Social</FormLabel>

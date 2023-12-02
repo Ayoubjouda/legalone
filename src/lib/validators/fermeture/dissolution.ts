@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const AssociateSchema = z.object({
-  associateSex: z.string(),
+  sex: z.string(),
   associateFirstName: z.string(),
   associateLastName: z.string(),
 });
