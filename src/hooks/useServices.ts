@@ -98,10 +98,9 @@ export const useHandlePayment = () => {
 const postUpdateFormality = async (
   formalityData: Formality,
   type: string
-): Promise<FormalityResponse> => {
+): Promise<FormalityCheckout> => {
   const { data: response } = await api.post(`${type}`, formalityData);
-  setTimeout(() => {}, 2000);
-  return { ...response, type: formalityData.companyType };
+  return { ...response, type: type };
 };
 
 export const useSubmitUpdateFormality = () => {
@@ -112,14 +111,14 @@ export const useSubmitUpdateFormality = () => {
     mutate: FormalityUpdateMutation,
     isLoading,
     data: FormalityData,
-  } = useMutation<FormalityResponse, AxiosError, unknown>(
+  } = useMutation<FormalityCheckout, AxiosError, unknown>(
     (postData) => postUpdateFormality(postData, type),
     {
       onSuccess(data) {
         toast('Formality created successfully');
-        localStorage.removeItem(data.type);
-
-        router.push(`/packages?formality=${data.createdFormality.id}`);
+        localStorage.removeItem(type);
+        const selectedFormalityId = Object(data.formalities)?.formalityId;
+        router.push(`/packages?formality=${selectedFormalityId}`);
       },
       onError(err: Error | AxiosError) {
         if (isAxiosError(err)) {
@@ -140,7 +139,7 @@ export const useSubmitUpdateFormality = () => {
 const postFermetureFormality = async (
   formalityData: Formality,
   type: string
-): Promise<FormalityResponse> => {
+): Promise<FormalityCheckout> => {
   const { data: response } = await api.post(`${type}`, formalityData);
   return { ...response, type: formalityData.companyType };
 };
@@ -153,14 +152,15 @@ export const useSubmitFermetureFormality = () => {
     mutate: FormalityDissolutionMutation,
     isLoading,
     data: FormalityData,
-  } = useMutation<FormalityResponse, AxiosError, unknown>(
+  } = useMutation<FormalityCheckout, AxiosError, unknown>(
     (postData) => postFermetureFormality(postData, type),
     {
       onSuccess(data) {
         toast('Formality created successfully');
-        localStorage.removeItem(data.type);
+        localStorage.removeItem(type);
+        const selectedFormalityId = Object(data.formalities)?.formalityId;
 
-        router.push(`/packages?formality=${data.createdFormality.id}`);
+        router.push(`/packages?formality=${selectedFormalityId}`);
       },
       onError(err: Error | AxiosError) {
         if (isAxiosError(err)) {

@@ -86,27 +86,32 @@ const EditFermetureForm: FC<DissolutionAdminFormProps> = ({ dossier }) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='grid grid-cols-2 gap-4 '
+          className='grid grid-cols-2 gap-4'
         >
           <TextField
             name='companyName'
             label='Company Name'
+            control={form.control}
           />
           <TextField
             name='rcs'
             label='RCS'
+            control={form.control}
           />
           <TextField
             name='firstName'
             label='prenom'
+            control={form.control}
           />
           <TextField
             name='lastName'
             label='nom'
+            control={form.control}
           />
           <TextField
             name='email'
             label='email'
+            control={form.control}
           />
           {values.associate.map((item: MyInterface, index: number) => (
             <div

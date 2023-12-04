@@ -53,7 +53,7 @@ const DeleteFormalityModal = ({
             <Button
               type='submit'
               className='bg-red-500 hover:bg-red-600'
-              onClick={() => handleDeleteOrder(1)}
+              onClick={() => handleDeleteOrder(dossier.formalityId)}
               disabled={isLoading}
             >
               {isLoading ? <Loader2 className='animate-spin' /> : 'Delete'}

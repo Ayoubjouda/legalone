@@ -154,11 +154,7 @@ export const autoEntreSteps = [
     description: '',
     component: HeadquarterForm,
   },
-  {
-    title: 'Informations sur votre société',
-    description: '',
-    component: CompanyDataForm,
-  },
+
   {
     title: 'Email & numero de telephone',
     description: '',

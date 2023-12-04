@@ -11,27 +11,41 @@ import {
 } from '@/components/Fields';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
+import { useUpdateEntrepriseFormality } from '@/hooks/useUpdate';
 import {
   AutoEntreFormSchema,
   AutoEntreSchemaType,
 } from '@/lib/validators/creation/autoEntreprise';
+import { Dossier } from '@/types/order';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
+
+interface EditAutoEntreSchemaType extends AutoEntreSchemaType {
+  id: number;
+}
 interface EditSciFormProps {
-  dossier: AutoEntreSchemaType;
+  dossier: EditAutoEntreSchemaType;
+  formalitie: Dossier;
 }
 
-const EditAutoEntreForm: FC<EditSciFormProps> = ({ dossier }) => {
+const EditAutoEntreForm: FC<EditSciFormProps> = ({ dossier, formalitie }) => {
   const form = useForm<AutoEntreSchemaType>({
     resolver: zodResolver(AutoEntreFormSchema),
     defaultValues: {
       ...dossier,
     },
   });
+  const { mutate: updateEntreprise } = useUpdateEntrepriseFormality();
 
   if (!dossier) return;
-  const onSubmit = (data: AutoEntreSchemaType) => {};
+  const onSubmit = (data: AutoEntreSchemaType) => {
+    updateEntreprise({
+      companyId: dossier.id,
+      dossierId: formalitie.formalityId,
+      formalities: { ...formalitie, data: data },
+    });
+  };
   return (
     <div>
       <Form {...form}>
@@ -40,18 +54,6 @@ const EditAutoEntreForm: FC<EditSciFormProps> = ({ dossier }) => {
           className='space-y-4'
         >
           <div className='grid grid-cols-2 gap-4 '>
-            <TextField
-              control={form.control}
-              name='companyName'
-              label='Company Name'
-            />
-            <CompanyTypeField control={form.control} />
-
-            <EmailField
-              control={form.control}
-              name='email'
-              label='Email'
-            />
             {dossier.managerType === 1 ? (
               <>
                 <TextField
@@ -99,6 +101,29 @@ const EditAutoEntreForm: FC<EditSciFormProps> = ({ dossier }) => {
                 />
               </>
             )}
+            <CompanyTypeField control={form.control} />
+
+            <EmailField
+              control={form.control}
+              name='email'
+              label='Email'
+            />
+
+            <TextField
+              name='domicile'
+              label='Domicile'
+              control={form.control}
+            />
+            <NumberField
+              name='postalCode'
+              label='Code postal'
+              control={form.control}
+            />
+            <NumberField
+              name='city'
+              label='Ville'
+              control={form.control}
+            />
 
             <PhoneField
               control={form.control}
@@ -107,56 +132,6 @@ const EditAutoEntreForm: FC<EditSciFormProps> = ({ dossier }) => {
             />
             <ActivityField control={form.control} />
             <HeadQuarterField control={form.control} />
-            <NumberField
-              control={form.control}
-              name='shareCapital'
-              label='Capital'
-            />
-            <SelectField
-              control={form.control}
-              name='associer'
-              label='Associer'
-              values={[
-                {
-                  value: 'one',
-                  label: 'One',
-                },
-                {
-                  value: 'many',
-                  label: 'Many',
-                },
-              ]}
-            />
-            <RadioField
-              control={form.control}
-              values={[
-                {
-                  value: 'true',
-                  label: 'Oui',
-                },
-                {
-                  value: 'false',
-                  label: 'Non',
-                },
-              ]}
-              name='nonAssociateManager'
-              label='Le Président est-il Associé fondateur de la Société ?'
-            />
-            <RadioField
-              control={form.control}
-              values={[
-                {
-                  value: 'true',
-                  label: 'Oui',
-                },
-                {
-                  value: 'false',
-                  label: 'Non',
-                },
-              ]}
-              name='accountingExpert'
-              label='Avez-vous déjà mandaté un expert comptable pour effectuer votre comptabilité annuelle ?'
-            />
 
             {/* 
           
@@ -165,6 +140,24 @@ const EditAutoEntreForm: FC<EditSciFormProps> = ({ dossier }) => {
           <ShareCapitalField control={form.control} />
           <RcsField control={form.control} />
           <AccountingExpertField control={form.control} /> */}
+          </div>
+          <div className='flex w-full flex-col'>
+            <RadioField
+              name='exAutoEntrepreneur'
+              label='Avez vous déjà été auto-entrepreneur ?'
+              values={[
+                { value: 'true', label: 'Oui' },
+                { value: 'false', label: 'Non' },
+              ]}
+            />
+            <RadioField
+              name='artisan'
+              label='Votre activité est-elle artisanale ?'
+              values={[
+                { value: 'true', label: 'Oui' },
+                { value: 'false', label: 'Non' },
+              ]}
+            />
           </div>
           <Button
             className='grid-span-2'

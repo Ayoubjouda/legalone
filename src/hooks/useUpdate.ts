@@ -39,3 +39,47 @@ export const useUpdateEntrepriseFormality = () => {
     }
   );
 };
+
+interface updateModificationParams {
+  companyId: number;
+  dossierId: number;
+  formalities: Dossier;
+}
+
+const updateModification = async ({
+  companyId,
+  dossierId,
+  formalities,
+}: updateModificationParams): Promise<void> => {
+  const { user, order, formalityId, ...newObj } = formalities;
+  console.log(newObj);
+
+  const endpointType =
+    formalities.formalityType === 'managerModification'
+      ? 'manager-modification/update-manager-modification-formality'
+      : formalities.formalityType === 'statusModification'
+      ? 'status/update-status-formality'
+      : 'relocation/update-relocation-formality';
+  const { data } = await api.patch(
+    `${endpointType}/${companyId}/${dossierId}`,
+    { formalities: newObj }
+  );
+  return data;
+};
+
+export const useUpdateModificationFormality = () => {
+  const queryClient = useQueryClient();
+  return useMutation<void, Error, updateModificationParams>(
+    'deleteFormality',
+    (params) => updateModification(params),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('Getformalities');
+        toast.success('Dossier Updated successfully');
+      },
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }
+  );
+};

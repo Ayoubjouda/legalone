@@ -24,14 +24,14 @@ export const useGetFormalities = (params: getFormalityParams) => {
   );
 };
 const deleteFormality = async (id: number): Promise<void> => {
-  const { data } = await api.delete(`formality/${id}`);
+  const { data } = await api.delete(`formalities/${id}`);
   return data;
 };
 
 export const useDeleteFormality = () => {
   const queryClient = useQueryClient();
   return useMutation<void, Error, number>(
-    'deleteFormality',
+    ['deleteFormality'],
     (id) => deleteFormality(id),
     {
       onSuccess: () => {

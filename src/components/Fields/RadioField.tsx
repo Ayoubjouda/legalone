@@ -33,7 +33,7 @@ const RadioField = <T,>({
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <RadioGroup
-              onValueChange={field.onChange}
+              onValueChange={(val) => field.onChange(val)}
               defaultValue={String(field.value)}
               className='flex flex-col space-y-1'
             >
