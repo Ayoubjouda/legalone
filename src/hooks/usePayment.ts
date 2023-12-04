@@ -5,7 +5,13 @@ interface getPaymentParams {
   page?: number;
   status?: string;
 }
-const getPayments = async (params: getPaymentParams): Promise<Payment[]> => {
+interface PaymentsResponse {
+  payments: Payment[];
+  totalPages: number;
+}
+const getPayments = async (
+  params: getPaymentParams
+): Promise<PaymentsResponse> => {
   const { data } = await api.get(
     `payment?page=${params.page}&limit=10&statusFilter=${params.status}`
   );
@@ -13,11 +19,15 @@ const getPayments = async (params: getPaymentParams): Promise<Payment[]> => {
 };
 
 export const useGetPayments = (params: getPaymentParams) => {
-  return useQuery<Payment[], Error>('payment', () => getPayments(params), {
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
+  return useQuery<PaymentsResponse, Error>(
+    ['payment', params],
+    () => getPayments(params),
+    {
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }
+  );
 };
 
 type monthlyRevenue = {
@@ -117,17 +127,26 @@ export const useVerifyPayment = () => {
   );
 };
 
-const getClientPayments = async (): Promise<Payment[]> => {
-  const { data } = await api.get(`/payment/logged`);
+const getClientPayments = async (
+  params: getPaymentParams
+): Promise<PaymentsResponse> => {
+  const { data } = await api.get(
+    `payment/logged?page=${params.page}&limit=10&statusFilter=${params.status}`
+  );
+  console.log(data);
   return data;
 };
 
-export const useGetClientPayments = () => {
-  return useQuery<Payment[], Error>('payment', () => getClientPayments(), {
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
+export const useGetClientPayments = (params: getPaymentParams) => {
+  return useQuery<PaymentsResponse, Error>(
+    ['currentUserPayment', params],
+    () => getClientPayments(params),
+    {
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    }
+  );
 };
 
 type WeeklyRevenue = {

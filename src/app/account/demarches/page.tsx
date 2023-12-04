@@ -14,7 +14,7 @@ const Page: FC<pageProps> = () => {
         <ErrorBoundary
           fallback={
             <Card className='flex h-52 w-full items-center justify-center'>
-              <Error text='Error Loading Orders' />
+              <Error text='Error Loading Démarches' />
             </Card>
           }
         >

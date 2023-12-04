@@ -45,14 +45,19 @@ export const useDeleteFormality = () => {
   );
 };
 
-const getCurrentUserFormality = async (): Promise<FormalitiesResponse> => {
-  const { data } = await api.get(`formalities/logged`);
+const getCurrentUserFormality = async (
+  params: getFormalityParams
+): Promise<FormalitiesResponse> => {
+  const { data } = await api.get(
+    `formalities/logged?page=${params.page}&limit=10&statusFilter=${params.status}`
+  );
+  console.log(data);
   return data;
 };
-export const useGetCurrentUserFormality = () => {
+export const useGetCurrentUserFormality = (params: getFormalityParams) => {
   return useQuery<FormalitiesResponse, Error>(
-    'currentUserFormalities',
-    () => getCurrentUserFormality(),
+    ['currentUserFormalities', params],
+    () => getCurrentUserFormality(params),
     {
       onError: (error) => {
         toast.error(error.message);
@@ -61,14 +66,19 @@ export const useGetCurrentUserFormality = () => {
   );
 };
 
-const getCurrentUserDoneFormality = async (): Promise<FormalitiesResponse> => {
-  const { data } = await api.get(`formalities/done`);
+const getCurrentUserDoneFormality = async ({
+  status,
+  page,
+}: getFormalityParams): Promise<FormalitiesResponse> => {
+  const { data } = await api.get(
+    `formalities/logged?page=${page}&limit=10&statusFilter=${status}`
+  );
   return data;
 };
-export const useGetCurrentUserDoneFormality = () => {
+export const useGetCurrentUserDoneFormality = (params: getFormalityParams) => {
   return useQuery<FormalitiesResponse, Error>(
-    'currentUserDoneFormalities',
-    () => getCurrentUserDoneFormality(),
+    ['currentUserDoneFormalities', params],
+    () => getCurrentUserDoneFormality(params),
     {
       onError: (error) => {
         toast.error(error.message);

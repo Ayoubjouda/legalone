@@ -20,8 +20,9 @@ const TablePayments: FC<TablePaymentsProps> = () => {
   return (
     <div className='rounded-md border bg-white p-4'>
       <DataTable
-        data={PaymentsData}
+        data={PaymentsData?.payments}
         columns={columns}
+        pageCount={PaymentsData?.totalPages}
       >
         <FilteringButton
           values={['PENDING', 'COMPLETED', 'CANCELED']}

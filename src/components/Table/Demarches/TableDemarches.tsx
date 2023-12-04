@@ -1,22 +1,30 @@
 'use client';
+import { Button } from '@/components/ui/button';
+import { useGetCurrentUserFormality } from '@/hooks/useDossier';
+import { Plus } from 'lucide-react';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { FC } from 'react';
 import { DataTable } from '../data-table';
 import { columns } from './columns';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { Plus } from 'lucide-react';
-import { useGetCurrentUserFormality } from '@/hooks/useDossier';
 
 interface TableDemarchesProps {}
 
 const TableDemarches: FC<TableDemarchesProps> = () => {
-  const { data: DossierData } = useGetCurrentUserFormality();
+  const getParams = useSearchParams();
+  const status = getParams.get('status') || '';
+  const page = getParams.get('page');
+  const { data: DossierData } = useGetCurrentUserFormality({
+    page: page ? parseInt(page) : 1,
+    status: status ? status : '',
+  });
 
   return (
     <div className='rounded-md border bg-white p-4'>
       <DataTable
         data={DossierData?.formalities}
         columns={columns}
+        pageCount={DossierData?.totalPages}
       >
         <Link href='/create'>
           <Button

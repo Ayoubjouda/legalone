@@ -21,6 +21,11 @@ interface EmailFieldProps<T> {
 
 const ActivityField = <T,>({ control }: EmailFieldProps<T>) => {
   const { data: Activitys } = useGetActivity();
+  const handleActivity = (id: number) => {
+    return Activitys?.find(
+      (activity) => activity.id === id
+    )?.name.toUpperCase();
+  };
 
   return (
     <FormField
@@ -29,10 +34,13 @@ const ActivityField = <T,>({ control }: EmailFieldProps<T>) => {
       render={({ field }) => (
         <FormItem className='grid-span-1'>
           <FormLabel>Activity</FormLabel>
-          <Select onValueChange={field.onChange}>
+          <Select
+            onValueChange={field.onChange}
+            defaultValue={handleActivity(field.value)}
+          >
             <FormControl>
               <SelectTrigger>
-                <SelectValue defaultValue={field.value} />
+                <SelectValue defaultValue={handleActivity(field.value)} />
               </SelectTrigger>
             </FormControl>
             <SelectContent>

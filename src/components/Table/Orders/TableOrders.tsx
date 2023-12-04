@@ -26,7 +26,7 @@ const TableOrders: FC<TableOrdersProps> = () => {
       >
         <FilteringButton
           values={['PENDING', 'COMPLETED', 'CANCELLED']}
-          queryKey='Orders'
+          queryKey='payment'
         />
       </DataTable>
     </div>

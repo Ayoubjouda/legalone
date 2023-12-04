@@ -34,7 +34,7 @@ const RadioField = <T,>({
           <FormControl>
             <RadioGroup
               onValueChange={field.onChange}
-              defaultValue={field.value}
+              defaultValue={String(field.value)}
               className='flex flex-col space-y-1'
             >
               {values.map((value) => (

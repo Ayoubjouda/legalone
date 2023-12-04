@@ -4,13 +4,25 @@ import { toast } from 'sonner';
 import { EditUserSchemaType } from '@/lib/validators/admin/user';
 import { AxiosError, isAxiosError } from 'axios';
 
-const fetchUsers = async (): Promise<User[]> => {
-  const { data } = await api.get(`users`);
+interface getUsersParams {
+  page?: number;
+  status?: string;
+}
+interface getUserResponse {
+  users: User[];
+  totalPages: number;
+}
+const fetchUsers = async (params: getUsersParams): Promise<getUserResponse> => {
+  const { data } = await api.get(
+    `users?page=${params.page}&limit=10&statusFilter=${params.status}`
+  );
   return data;
 };
 
-export const useGetUsers = () => {
-  return useQuery<User[], Error>('Users', () => fetchUsers());
+export const useGetUsers = (params: getUsersParams) => {
+  return useQuery<getUserResponse, Error>(['getUsers', params], () =>
+    fetchUsers(params)
+  );
 };
 
 const deleteUser = async (id: string): Promise<void> => {
@@ -26,7 +38,7 @@ export const useDeleteUser = () => {
     {
       onSuccess: () => {
         toast.success('User deleted successfully');
-        queryClient.invalidateQueries('Users');
+        queryClient.invalidateQueries('getUsers');
       },
       onError: (error) => {
         toast.error(error.message);
@@ -51,8 +63,8 @@ export const useUpdateUser = () => {
     ({ user, userId }) => updateUser(user, userId),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries('Users');
-        queryClient.invalidateQueries('clients');
+        queryClient.invalidateQueries('getUsers');
+        queryClient.invalidateQueries('getClients');
 
         toast.success('User Updated successfully');
       },
@@ -75,7 +87,7 @@ export const useGetUserById = () => {
     (id) => getUserById(id),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries('Users');
+        queryClient.invalidateQueries('getUsers');
       },
       onError: (error) => {
         toast.error(error.message);
@@ -134,7 +146,7 @@ export function useAddUser() {
 
     {
       onSuccess() {
-        queryClient.invalidateQueries('Users');
+        queryClient.invalidateQueries('getUsers');
         toast.success('User added successfully');
       },
       onError(err: Error | AxiosError) {
@@ -163,14 +175,27 @@ const getWeeklyClient = async (): Promise<weeklyClient> => {
 export const useGetWeeklyClient = () => {
   return useQuery<weeklyClient, Error>('weeklyClient', () => getWeeklyClient());
 };
-
-const getClients = async (): Promise<User[]> => {
-  const { data } = await api.get(`users/client`);
+interface getClientsParams {
+  page?: number;
+  status?: string;
+}
+interface getClientsResponse {
+  users: User[];
+  totalPages: number;
+}
+const getClients = async (
+  params: getClientsParams
+): Promise<getClientsResponse> => {
+  const { data } = await api.get(
+    `users/client?page=${params.page}&limit=10&statusFilter=${params.status}`
+  );
   return data;
 };
 
-export const useGetClients = () => {
-  return useQuery<User[], Error>('clients', () => getClients());
+export const useGetClients = (params: getClientsParams) => {
+  return useQuery<getClientsResponse, Error>(['getClients', params], () =>
+    getClients(params)
+  );
 };
 
 type totalClient = {

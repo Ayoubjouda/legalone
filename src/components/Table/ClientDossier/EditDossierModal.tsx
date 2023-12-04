@@ -3,8 +3,11 @@ import EditFermetureForm from '@/components/Forms/Admin/dossier/EditFermetureFor
 import EditEntrepriseForm from '@/components/Forms/Admin/dossier/creation/EditEntrepriseForm';
 import { Dialog, DialogContent, DialogPortal } from '@/components/ui/dialog';
 import { useDeleteFormality } from '@/hooks/useDossier';
+import { EntrepriseSchemaType } from '@/lib/validators/creation/entreprise';
 import { Dossier } from '@/types/order';
-
+interface EditEntrepriseSchemaType extends EntrepriseSchemaType {
+  id: number;
+}
 const EditDossierModal = ({
   setOpen,
   open,
@@ -36,7 +39,12 @@ const EditDossierModal = ({
           {isRadiation || isDissolution ? (
             <EditFermetureForm dossier={dossier.data} />
           ) : null}
-          {isSAS ? <EditEntrepriseForm dossier={dossier.data} /> : null}
+          {isSAS ? (
+            <EditEntrepriseForm
+              dossier={dossier.data as EditEntrepriseSchemaType}
+              formalitie={dossier}
+            />
+          ) : null}
           {/* {dossier?.service?.companies?.companyType === 'SAS' ? (
             <EditEntrepriseForm dossier={dossier?.service?.companies} />
           ) : null} */}

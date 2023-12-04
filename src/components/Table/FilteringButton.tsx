@@ -20,7 +20,6 @@ const FilteringButton: FC<FilteringButtonProps> = ({ values, queryKey }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams()!;
   const status = searchParams.get('status') || '';
-  const page = searchParams?.get('page') ?? '1';
 
   const QueryClient = useQueryClient();
   const createQueryString = useCallback(

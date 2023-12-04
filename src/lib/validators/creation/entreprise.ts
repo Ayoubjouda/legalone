@@ -54,7 +54,7 @@ export const EntrepriseFormSchema = z.object({
   shareCapital: z.coerce
     .number()
     .min(2, { message: 'Doit contenir au moins 2 caractères' }),
-  headquarter: z
+  headquarter: z.coerce
     .number()
     .min(1, { message: 'Vous devez sélectionner au moins une option' }),
   Rcs: z

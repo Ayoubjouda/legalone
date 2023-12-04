@@ -4,7 +4,13 @@ import EditEntrepriseForm from '@/components/Forms/Admin/dossier/creation/EditEn
 import { Dialog, DialogContent, DialogPortal } from '@/components/ui/dialog';
 import { useDeleteFormality } from '@/hooks/useDossier';
 import { Dossier } from '@/types/order';
-
+import {
+  EntrepriseFormSchema,
+  EntrepriseSchemaType,
+} from '@/lib/validators/creation/entreprise';
+interface EditEntrepriseSchemaType extends EntrepriseSchemaType {
+  id: number;
+}
 const EditDossierModal = ({
   setOpen,
   open,
@@ -24,7 +30,12 @@ const EditDossierModal = ({
   const isRadiation = dossier?.formalityType === 'radiation';
   const isSAS =
     dossier?.formalityType === 'companies' &&
-    dossier?.data?.companyType === ('SARL' || 'EURL' || 'SASU' || 'SAS');
+    (dossier?.data?.companyType === 'SAS' ||
+      dossier?.data?.companyType === 'SCI' ||
+      dossier?.data?.companyType === 'SARL' ||
+      dossier?.data?.companyType === 'SASU' ||
+      dossier?.data?.companyType === 'EURL');
+
   //! Lazy Loading
   return (
     <Dialog
@@ -36,7 +47,12 @@ const EditDossierModal = ({
           {isRadiation || isDissolution ? (
             <EditFermetureForm dossier={dossier.data} />
           ) : null}
-          {isSAS ? <EditEntrepriseForm dossier={dossier.data} /> : null}
+          {isSAS ? (
+            <EditEntrepriseForm
+              dossier={dossier.data as EditEntrepriseSchemaType}
+              formalitie={dossier}
+            />
+          ) : null}
           {/* {dossier?.service?.companies?.companyType === 'SAS' ? (
             <EditEntrepriseForm dossier={dossier?.service?.companies} />
           ) : null} */}

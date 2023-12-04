@@ -23,7 +23,12 @@ interface EmailFieldProps<T> {
 
 const HeadQuarterField = <T,>({ control }: EmailFieldProps<T>) => {
   const { data: headquarters } = useGetHeadQuarter();
-  const [ddd, setddd] = useState<boolean>();
+  const handleHeadQuarter = (id: number) => {
+    const selectedHQ = headquarters
+      ?.find((hq) => hq.id === id)
+      ?.headquarter.toUpperCase();
+    return selectedHQ;
+  };
 
   return (
     <FormField
@@ -34,18 +39,18 @@ const HeadQuarterField = <T,>({ control }: EmailFieldProps<T>) => {
           <FormLabel>headquarter</FormLabel>
           <Select
             onValueChange={field.onChange}
-            defaultValue={field.value}
+            defaultValue={String(field.value)}
           >
             <FormControl>
               <SelectTrigger>
-                <SelectValue defaultValue={field.value} />
+                <SelectValue defaultValue={String(field.value)} />
               </SelectTrigger>
             </FormControl>
             <SelectContent>
               {headquarters?.map((hq) => (
                 <SelectItem
                   key={hq.headquarter}
-                  value={hq.headquarter.toUpperCase()}
+                  value={String(hq.id)}
                 >
                   {hq.headquarter.toUpperCase()}
                 </SelectItem>

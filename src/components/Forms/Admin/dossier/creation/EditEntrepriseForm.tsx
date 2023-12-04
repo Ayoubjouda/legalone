@@ -11,27 +11,47 @@ import CompanyTypeField from '@/components/Fields/CompanyTypeField';
 import TextField from '@/components/Fields/TextField';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
+import { useUpdateEntrepriseFormality } from '@/hooks/useUpdate';
 import {
   EntrepriseFormSchema,
   EntrepriseSchemaType,
 } from '@/lib/validators/creation/entreprise';
+import { Dossier } from '@/types/order';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-interface EditEntrepriseFormProps {
-  dossier: EntrepriseSchemaType;
+
+interface EditEntrepriseSchemaType extends EntrepriseSchemaType {
+  id: number;
 }
 
-const EditEntrepriseForm: FC<EditEntrepriseFormProps> = ({ dossier }) => {
+interface EditEntrepriseFormProps {
+  dossier: EditEntrepriseSchemaType;
+  formalitie: Dossier;
+}
+
+const EditEntrepriseForm: FC<EditEntrepriseFormProps> = ({
+  dossier,
+  formalitie,
+}) => {
   const form = useForm<EntrepriseSchemaType>({
     resolver: zodResolver(EntrepriseFormSchema),
     defaultValues: {
       ...dossier,
     },
   });
+  const { mutate: updateEntreprise } = useUpdateEntrepriseFormality();
 
   if (!dossier) return;
-  const onSubmit = (data: EntrepriseSchemaType) => {};
+  const values = form.getValues();
+  console.log(values);
+  const onSubmit = (data: EntrepriseSchemaType) => {
+    updateEntreprise({
+      companyId: dossier.id,
+      dossierId: formalitie.formalityId,
+      formalities: { ...formalitie, data: data },
+    });
+  };
   return (
     <div>
       <Form {...form}>
