@@ -40,11 +40,17 @@ import {
   RotateCcw,
   Menu,
   UserCog,
+  FolderCheck,
+  FolderClock,
+  FolderKanban,
 } from 'lucide-react';
 
 export type Icon = LucideIcon;
 
 export const Icons = {
+  folderKanban: FolderKanban,
+  folderClock: FolderClock,
+  folderCheck: FolderCheck,
   userCog: UserCog,
   menu: Menu,
   rotateCcw: RotateCcw,

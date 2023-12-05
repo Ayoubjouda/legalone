@@ -86,3 +86,56 @@ export const useGetCurrentUserDoneFormality = (params: getFormalityParams) => {
     }
   );
 };
+
+interface TotalFormalityKPIResponse {
+  total: number;
+}
+
+const getTotalFormalities = async (): Promise<TotalFormalityKPIResponse> => {
+  const { data } = await api.get(`formalities/total-count`);
+  return data;
+};
+
+export const useGetTotalFormalities = () => {
+  return useQuery<TotalFormalityKPIResponse, Error>('totalFormalities', () =>
+    getTotalFormalities()
+  );
+};
+
+const getTotalDoneFormalities =
+  async (): Promise<TotalFormalityKPIResponse> => {
+    const { data } = await api.get(`formalities/count-with-status/DONE`);
+    return data;
+  };
+
+export const useGetTotalDoneFormalities = () => {
+  return useQuery<TotalFormalityKPIResponse, Error>(
+    'totalDoneFormalities',
+    () => getTotalDoneFormalities()
+  );
+};
+
+const getTotalInProgressFormalities =
+  async (): Promise<TotalFormalityKPIResponse> => {
+    const { data } = await api.get(`formalities/count-with-status/DONE`);
+    return data;
+  };
+
+export const useGetTotalInProgressFormalities = () => {
+  return useQuery<TotalFormalityKPIResponse, Error>(
+    'totalInProgressFormalities',
+    () => getTotalInProgressFormalities()
+  );
+};
+const getTotalInCancelledFormalities =
+  async (): Promise<TotalFormalityKPIResponse> => {
+    const { data } = await api.get(`formalities/count-with-status/DONE`);
+    return data;
+  };
+
+export const useGetTotalCancelledFormalities = () => {
+  return useQuery<TotalFormalityKPIResponse, Error>(
+    'totalCancelledFormalities',
+    () => getTotalInCancelledFormalities()
+  );
+};
