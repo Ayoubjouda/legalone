@@ -14,7 +14,7 @@ import {
   type PaginationState,
   useReactTable,
 } from '@tanstack/react-table';
-import { Plus, Settings2 } from 'lucide-react';
+import { Loader2, Plus, Settings2 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -33,18 +33,25 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-export function DataTable({
+import { useDebounce } from '@/hooks/useDebounce';
+import { useQueryClient } from 'react-query';
+export function DataTable<TData>({
   data,
   columns,
   pageCount,
+  searchableColumns = [],
+  isFetching,
+
   children,
 }: {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   data: any;
+  searchableColumns?: DataTableSearchableColumn<TData>[];
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   columns: any;
   children?: React.ReactNode;
   pageCount?: number;
+  isFetching?: boolean;
 }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -65,7 +72,7 @@ export function DataTable({
   const pageAsNumber = Number(page);
   const fallbackPage =
     isNaN(pageAsNumber) || pageAsNumber < 1 ? 1 : pageAsNumber;
-
+  const queryClient = useQueryClient();
   const createQueryString = React.useCallback(
     (params: Record<string, string | number | null>) => {
       const newSearchParams = new URLSearchParams(searchParams?.toString());
@@ -130,6 +137,52 @@ export function DataTable({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageIndex, pageSize]);
 
+  const debouncedSearchableColumnFilters = JSON.parse(
+    useDebounce(
+      JSON.stringify(
+        columnFilters.filter((filter) => {
+          return searchableColumns.find((column) => column.id === filter.id);
+        })
+      ),
+      500
+    )
+  ) as ColumnFiltersState;
+
+  // const filterableColumnFilters = columnFilters.filter((filter) => {
+  //   return filterableColumns.find((column) => column.id === filter.id);
+  // });
+
+  React.useEffect(() => {
+    for (const column of debouncedSearchableColumnFilters) {
+      if (typeof column.value === 'string') {
+        router.push(
+          `${pathname}?${createQueryString({
+            page: 1,
+            [column.id]: typeof column.value === 'string' ? column.value : null,
+          })}`
+        );
+      }
+    }
+
+    for (const key of searchParams.keys()) {
+      if (
+        searchableColumns.find((column) => column.id === key) &&
+        !debouncedSearchableColumnFilters.find((column) => column.id === key)
+      ) {
+        router.push(
+          `${pathname}?${createQueryString({
+            page: 1,
+            [key]: null,
+          })}`
+        );
+      }
+      searchableColumns.map((column) => {
+        queryClient.invalidateQueries(column.title);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(debouncedSearchableColumnFilters)]);
+
   const table = useReactTable({
     data,
     columns,
@@ -137,13 +190,14 @@ export function DataTable({
     onSortingChange: setSorting,
     onPaginationChange: setPagination,
     onColumnFiltersChange: setColumnFilters,
+    onColumnVisibilityChange: setColumnVisibility,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
     manualPagination: true,
+    manualFiltering: true,
     state: {
       sorting,
       columnFilters,
@@ -156,14 +210,28 @@ export function DataTable({
   return (
     <div className='w-full'>
       <div className='flex items-center py-4'>
-        <Input
-          placeholder='Filter ID...'
-          value={(table.getColumn('id')?.getFilterValue() as string) ?? ''}
-          onChange={(event) =>
-            table.getColumn('id')?.setFilterValue(event.target.value)
-          }
-          className='max-w-sm'
-        />
+        {searchableColumns.length > 0 &&
+          searchableColumns.map(
+            (column) =>
+              table.getColumn(column.id ? String(column.id) : '') && (
+                <Input
+                  key={String(column.id)}
+                  placeholder={`Filter ${column.title}...`}
+                  value={
+                    (table
+                      .getColumn(String(column.id))
+                      ?.getFilterValue() as string) ?? ''
+                  }
+                  onChange={(event) =>
+                    table
+                      .getColumn(String(column.id))
+                      ?.setFilterValue(event.target.value)
+                  }
+                  className='max-w-sm'
+                />
+              )
+          )}
+
         <div className='ml-auto space-x-2'>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -219,7 +287,16 @@ export function DataTable({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {isFetching ? (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className=' mx-auto h-24 w-full'
+                >
+                  <Loader2 className=' mx-auto h-8 w-8 animate-spin stroke-redish' />
+                </TableCell>
+              </TableRow>
+            ) : table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}

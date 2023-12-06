@@ -12,10 +12,16 @@ interface TableUsersProps {}
 const TableUsers: FC<TableUsersProps> = () => {
   const getParams = useSearchParams();
   const status = getParams.get('status') || '';
+  const searchEmail = getParams.get('email') || '';
+
   const page = getParams.get('page');
-  const { data: UsersData } = useGetUsers({
+  const { data: UsersData, isFetching } = useGetUsers({
     page: page ? parseInt(page) : 1,
     status: status ? status : '',
+    params: {
+      title: 'email',
+      value: searchEmail,
+    },
   });
 
   return (
@@ -24,6 +30,8 @@ const TableUsers: FC<TableUsersProps> = () => {
         data={UsersData?.users}
         columns={columns}
         pageCount={UsersData?.totalPages}
+        searchableColumns={[{ id: 'email', title: 'getUsers' }]}
+        isFetching={isFetching}
       >
         <FilteringButton
           values={['ACTIVE', 'BANNED', 'SUSPENDED']}

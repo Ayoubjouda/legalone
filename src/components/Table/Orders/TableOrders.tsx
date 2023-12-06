@@ -11,10 +11,15 @@ interface TableOrdersProps {}
 const TableOrders: FC<TableOrdersProps> = () => {
   const getParams = useSearchParams();
   const status = getParams.get('status') || '';
+  const searchId = getParams.get('id') || '';
   const page = getParams.get('page');
-  const { data: OrdersData } = useGetOrders({
+  const { data: OrdersData, isFetching } = useGetOrders({
     page: page ? parseInt(page) : 1,
     status: status ? status : '',
+    params: {
+      title: 'id',
+      value: searchId,
+    },
   });
 
   return (
@@ -23,6 +28,8 @@ const TableOrders: FC<TableOrdersProps> = () => {
         data={OrdersData?.orders}
         columns={columns}
         pageCount={OrdersData?.totalPages}
+        searchableColumns={[{ id: 'id', title: 'Orders' }]}
+        isFetching={isFetching}
       >
         <FilteringButton
           values={['PENDING', 'COMPLETED', 'CANCELLED']}

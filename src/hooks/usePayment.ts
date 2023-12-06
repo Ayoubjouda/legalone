@@ -4,6 +4,11 @@ import { toast } from 'sonner';
 interface getPaymentParams {
   page?: number;
   status?: string;
+  params?: {
+    id?: string;
+    title?: string;
+    value?: string;
+  };
 }
 interface PaymentsResponse {
   payments: Payment[];
@@ -13,7 +18,7 @@ const getPayments = async (
   params: getPaymentParams
 ): Promise<PaymentsResponse> => {
   const { data } = await api.get(
-    `payment?page=${params.page}&limit=10&statusFilter=${params.status}`
+    `payment?page=${params.page}&limit=10&statusFilter=${params.status}&${params?.params?.title}=${params.params?.value}}`
   );
   return data;
 };
@@ -133,7 +138,6 @@ const getClientPayments = async (
   const { data } = await api.get(
     `payment/logged?page=${params.page}&limit=10&statusFilter=${params.status}`
   );
-  console.log(data);
   return data;
 };
 

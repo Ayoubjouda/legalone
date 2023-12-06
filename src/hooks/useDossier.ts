@@ -7,13 +7,18 @@ import { toast } from 'sonner';
 interface getFormalityParams {
   page?: number;
   status?: string;
+  params?: {
+    id?: string;
+    title?: string;
+    value?: string;
+  };
 }
 
 const getFormalities = async (
   params: getFormalityParams
 ): Promise<FormalitiesResponse> => {
   const { data } = await api.get(
-    `formalities?page=${params.page}&limit=10&statusFilter=${params.status}`
+    `formalities?page=${params.page}&limit=10&statusFilter=${params.status}&${params?.params?.title}=${params.params?.value}`
   );
   return data;
 };
@@ -49,7 +54,7 @@ const getCurrentUserFormality = async (
   params: getFormalityParams
 ): Promise<FormalitiesResponse> => {
   const { data } = await api.get(
-    `formalities/logged?page=${params.page}&limit=10&statusFilter=${params.status}`
+    `formalities/logged?page=${params.page}&limit=10&statusFilter=${params.status}&${params.params?.title}=${params.params?.value}`
   );
   console.log(data);
   return data;
@@ -69,9 +74,10 @@ export const useGetCurrentUserFormality = (params: getFormalityParams) => {
 const getCurrentUserDoneFormality = async ({
   status,
   page,
+  params,
 }: getFormalityParams): Promise<FormalitiesResponse> => {
   const { data } = await api.get(
-    `formalities/logged?page=${page}&limit=10&statusFilter=${status}`
+    `formalities/logged?page=${page}&limit=10&statusFilter=${status}&${params?.title}=${params?.value}`
   );
   return data;
 };

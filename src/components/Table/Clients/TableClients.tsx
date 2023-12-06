@@ -13,7 +13,7 @@ const TableClients: FC<TableClientsProps> = () => {
   const getParams = useSearchParams();
   const status = getParams.get('status') || '';
   const page = getParams.get('page');
-  const { data: clientsData } = useGetClients({
+  const { data: clientsData, isFetching } = useGetClients({
     page: page ? parseInt(page) : 1,
     status: status ? status : '',
   });
@@ -24,6 +24,8 @@ const TableClients: FC<TableClientsProps> = () => {
         data={clientsData?.users}
         columns={columns}
         pageCount={clientsData?.totalPages}
+        searchableColumns={[{ id: 'email', title: 'getClients' }]}
+        isFetching={isFetching}
       >
         <FilteringButton
           values={['ACTIVE', 'BANNED', 'SUSPENDED']}

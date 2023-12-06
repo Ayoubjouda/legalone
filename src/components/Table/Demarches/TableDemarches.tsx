@@ -13,10 +13,15 @@ interface TableDemarchesProps {}
 const TableDemarches: FC<TableDemarchesProps> = () => {
   const getParams = useSearchParams();
   const status = getParams.get('status') || '';
+  const searchFormality = getParams.get('formalityId') || '';
   const page = getParams.get('page');
-  const { data: DossierData } = useGetCurrentUserFormality({
+  const { data: DossierData, isFetching } = useGetCurrentUserFormality({
     page: page ? parseInt(page) : 1,
     status: status ? status : '',
+    params: {
+      title: 'formalityid',
+      value: searchFormality,
+    },
   });
 
   return (
@@ -25,6 +30,10 @@ const TableDemarches: FC<TableDemarchesProps> = () => {
         data={DossierData?.formalities}
         columns={columns}
         pageCount={DossierData?.totalPages}
+        searchableColumns={[
+          { id: 'formalityId', title: 'currentUserFormalities' },
+        ]}
+        isFetching={isFetching}
       >
         <Link href='/create'>
           <Button

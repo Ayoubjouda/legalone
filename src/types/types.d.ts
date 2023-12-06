@@ -12,6 +12,15 @@ interface Activity {
   iconLink: string;
 }
 
+interface DataTableSearchableColumn<TData> {
+  id: keyof TData;
+  title: string;
+}
+interface DataTableSearchableColumn<TData> {
+  id: keyof TData;
+  title: string;
+}
+
 interface Package {
   id: number;
   name: string;

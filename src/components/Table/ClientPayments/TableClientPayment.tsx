@@ -12,9 +12,14 @@ const TableClientPayment: FC<TablePaymentsProps> = () => {
   const getParams = useSearchParams();
   const status = getParams.get('status') || '';
   const page = getParams.get('page');
-  const { data: PaymentsData } = useGetClientPayments({
+  const searchId = getParams.get('id') || '';
+  const { data: PaymentsData, isFetching } = useGetClientPayments({
     page: page ? parseInt(page) : 1,
     status: status ? status : '',
+    params: {
+      title: 'id',
+      value: searchId,
+    },
   });
 
   return (
@@ -23,6 +28,8 @@ const TableClientPayment: FC<TablePaymentsProps> = () => {
         data={PaymentsData?.payments}
         pageCount={PaymentsData?.totalPages}
         columns={columns}
+        searchableColumns={[{ id: 'id', title: 'currentUserPayment' }]}
+        isFetching={isFetching}
       >
         <FilteringButton
           values={['PENDING', 'COMPLETED', 'CANCELED']}

@@ -7,6 +7,11 @@ import { Order } from '@/types/order';
 interface getOrdersParams {
   page?: number;
   status?: string;
+  params?: {
+    id?: string;
+    title?: string;
+    value?: string;
+  };
 }
 interface getOrdersResponse {
   orders: Order[];
@@ -17,7 +22,7 @@ const getOrders = async (
   params: getOrdersParams
 ): Promise<getOrdersResponse> => {
   const { data } = await api.get(
-    `order?page=${params.page}&limit=10&statusFilter=${params.status}`
+    `order?page=${params.page}&limit=10&statusFilter=${params.status}&${params?.params?.title}=${params.params?.value}`
   );
   return data;
 };

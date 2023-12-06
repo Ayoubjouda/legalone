@@ -7,6 +7,11 @@ import { AxiosError, isAxiosError } from 'axios';
 interface getUsersParams {
   page?: number;
   status?: string;
+  params?: {
+    id?: string;
+    title?: string;
+    value?: string;
+  };
 }
 interface getUserResponse {
   users: User[];
@@ -14,7 +19,7 @@ interface getUserResponse {
 }
 const fetchUsers = async (params: getUsersParams): Promise<getUserResponse> => {
   const { data } = await api.get(
-    `users?page=${params.page}&limit=10&statusFilter=${params.status}`
+    `users?page=${params.page}&limit=10&statusFilter=${params.status}&${params?.params?.title}=${params.params?.value}`
   );
   return data;
 };

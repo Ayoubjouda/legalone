@@ -11,10 +11,16 @@ interface TablePaymentsProps {}
 const TablePayments: FC<TablePaymentsProps> = () => {
   const getParams = useSearchParams();
   const status = getParams.get('status') || '';
+  const searchId = getParams.get('id') || '';
+
   const page = getParams.get('page');
-  const { data: PaymentsData } = useGetPayments({
+  const { data: PaymentsData, isFetching } = useGetPayments({
     page: page ? parseInt(page) : 1,
     status: status ? status : '',
+    params: {
+      title: 'id',
+      value: searchId,
+    },
   });
 
   return (
@@ -23,6 +29,8 @@ const TablePayments: FC<TablePaymentsProps> = () => {
         data={PaymentsData?.payments}
         columns={columns}
         pageCount={PaymentsData?.totalPages}
+        searchableColumns={[{ id: 'id', title: 'payment' }]}
+        isFetching={isFetching}
       >
         <FilteringButton
           values={['PENDING', 'COMPLETED', 'CANCELED']}

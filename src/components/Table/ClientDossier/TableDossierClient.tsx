@@ -11,9 +11,14 @@ const TableDossierClient: FC<TableDossierProps> = () => {
   const getParams = useSearchParams();
   const status = getParams.get('status') || '';
   const page = getParams.get('page');
-  const { data: DossierData } = useGetCurrentUserDoneFormality({
+  const searchId = getParams.get('formalityId') || '';
+  const { data: DossierData, isFetching } = useGetCurrentUserDoneFormality({
     page: page ? parseInt(page) : 1,
     status: status ? status : 'INPROGRESS,DONE,PENDING,CANCELED',
+    params: {
+      title: 'formalityid',
+      value: searchId,
+    },
   });
 
   return (
@@ -22,6 +27,10 @@ const TableDossierClient: FC<TableDossierProps> = () => {
         data={DossierData?.formalities}
         columns={columns}
         pageCount={DossierData?.totalPages}
+        searchableColumns={[
+          { id: 'formalityId', title: 'currentUserDoneFormalities' },
+        ]}
+        isFetching={isFetching}
       >
         <FilteringButton
           values={['PENDING', 'DONE', 'INPROGRESS', 'CANCELED']}
