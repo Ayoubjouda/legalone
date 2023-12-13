@@ -41,7 +41,7 @@ const ServicesSection: FC<ServicesSectionProps> = ({
                     key={item.title}
                     title={item.title}
                     icon={item.icon}
-                    link={`/create?${type}`}
+                    link={`/create?type=${type}`}
                   />
                 ))
               : null}
