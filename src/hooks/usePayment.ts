@@ -18,7 +18,7 @@ const getPayments = async (
   params: getPaymentParams
 ): Promise<PaymentsResponse> => {
   const { data } = await api.get(
-    `payment?page=${params.page}&limit=10&statusFilter=${params.status}&${params?.params?.title}=${params.params?.value}}`
+    `payment?page=${params.page}&limit=10&statusFilter=${params.status}&${params?.params?.title}=${params.params?.value}`
   );
   return data;
 };

@@ -17,6 +17,7 @@ const FinishFlow = ({ goToNext }: FormProps) => {
     handleSubmit,
   } = useFormContext();
   const buttonRef = useRef<HTMLButtonElement>(null);
+
   const router = useRouter();
   const { status } = useSession();
   const { FormalityCreationMutation, isLoading } = useSubmitCreateFormality();

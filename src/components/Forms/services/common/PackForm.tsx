@@ -3,14 +3,16 @@ import { Spinner } from '@chakra-ui/react';
 
 import PricingComponent from '../../../PricingComponent';
 import { useGetPackages } from '@/hooks/useCompany';
+import { notFound, useSearchParams } from 'next/navigation';
 interface FormProps {
   goToNext: () => void;
 }
 
 const PackForm = ({ goToNext }: FormProps) => {
   const { control, setValue, trigger } = useFormContext();
-
-  const { isLoading, data } = useGetPackages();
+  const searchParams = useSearchParams();
+  const packType = (searchParams.get('packType') as string) || notFound();
+  const { isLoading, data } = useGetPackages(packType);
 
   const handleSetValue = (pack: Package) => {
     setValue('pack', pack);

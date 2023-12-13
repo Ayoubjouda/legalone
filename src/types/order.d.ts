@@ -55,6 +55,7 @@ interface Dossier {
   createdAt: string;
   user: User;
   order: Order;
+  files: Files;
 }
 
 type DataType =

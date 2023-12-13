@@ -41,13 +41,16 @@ const ViewDossierModal = ({
               fallback={
                 <div className='flex h-full w-full items-center justify-center '>
                   <Loader2
-                    size={49}
-                    className='animate-spin'
+                    size={24}
+                    className='animate-spin stroke-redish'
                   />
                 </div>
               }
             >
-              <DataCard dossier={dossier.data} />
+              <DataCard
+                formalityId={dossier.formalityId}
+                files={dossier.files}
+              />
             </Suspense>
           </ErrorBoundary>
         </DialogContent>

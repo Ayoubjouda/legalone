@@ -43,11 +43,13 @@ export const useGetManagerType = () => {
   );
 };
 
-const fetchPackages = async (): Promise<Package[]> => {
-  const { data } = await api.get(`package`);
+const fetchPackages = async (packageType: string): Promise<Package[]> => {
+  const { data } = await api.get(`package/${packageType}`);
   return data;
 };
 
-export const useGetPackages = () => {
-  return useQuery<Package[], Error>('package', () => fetchPackages());
+export const useGetPackages = (packageType: string) => {
+  return useQuery<Package[], Error>(['package', packageType], () =>
+    fetchPackages(packageType)
+  );
 };

@@ -8,9 +8,11 @@ import { FC } from 'react';
 interface pageProps {}
 
 const Page: FC<pageProps> = () => {
-  const { isLoading, data } = useGetPackages();
   const searchParams = useSearchParams();
   const formalityId = searchParams.get('formality') as number | null;
+  const packageType = searchParams.get('type') || '';
+  const { isLoading, data } = useGetPackages(packageType);
+
   const router = useRouter();
   const handlePayment = async (orderId: number) => {
     api
@@ -30,7 +32,6 @@ const Page: FC<pageProps> = () => {
         formality: formalityId,
         package: id,
       });
-      console.log(data.data);
       router.push(`/commande?order=${data.data.id}`);
       if (!data.data) throw Error('no data');
       // api

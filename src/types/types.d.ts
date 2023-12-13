@@ -132,3 +132,15 @@ interface RecentSallesResponse {
   userLastName: string;
   userEmail: string;
 }
+
+interface Files {
+  identityDocument: string | null;
+  nonConvictionDeclaration: string | null;
+  filiationAttestation: string | null;
+  managerAppointmentAct: string | null;
+  commercialLease: string | null;
+  proofOfAddress: string | null;
+  companyDomiciliationContract: string | null;
+  rentalManagementContract: string | null;
+  kbis: string | null;
+}

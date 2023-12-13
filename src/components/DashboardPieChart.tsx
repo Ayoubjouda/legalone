@@ -1,60 +1,45 @@
 'use client';
-import React, { FC } from 'react';
-import { PieChart, Pie, ResponsiveContainer, Tooltip, Cell } from 'recharts';
-import { Card } from './ui/card';
+import { Card, DonutChart, Title } from '@tremor/react';
 
-interface PieChartProps {}
+const cities = [
+  {
+    name: 'New York',
+    sales: 9800,
+  },
+  {
+    name: 'London',
+    sales: 4567,
+  },
+  {
+    name: 'Hong Kong',
+    sales: 3908,
+  },
+  {
+    name: 'San Francisco',
+    sales: 2400,
+  },
+  {
+    name: 'Singapore',
+    sales: 1908,
+  },
+  {
+    name: 'Zurich',
+    sales: 1398,
+  },
+];
 
-const DashboardPieChart: FC<PieChartProps> = () => {
-  const data = [
-    { name: 'Group A', value: 400 },
-    { name: 'Group B', value: 300 },
-    { name: 'Group C', value: 300 },
-    { name: 'Group D', value: 200 },
-    { name: 'Group E', value: 278 },
-    { name: 'Group F', value: 189 },
-  ];
+const valueFormatter = (number: number) =>
+  `$ ${new Intl.NumberFormat('us').format(number).toString()}`;
 
-  // Define an array of custom colors for each data point
-  const colors = [
-    '#8884d8',
-    '#83a6ed',
-    '#8dd1e1',
-    '#82ca9d',
-    '#a4de6c',
-    '#d0ed57',
-  ];
-
-  return (
-    <Card className='min-h-[20rem]'>
-      <ResponsiveContainer
-        width='100%'
-        height='100%'
-      >
-        <PieChart
-          width={400}
-          height={400}
-        >
-          <Pie
-            dataKey='value'
-            isAnimationActive={false}
-            data={data}
-            outerRadius={80}
-            label
-          >
-            {data.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={colors[index % colors.length]}
-              />
-            ))}
-          </Pie>
-
-          <Tooltip />
-        </PieChart>
-      </ResponsiveContainer>
-    </Card>
-  );
-};
+const DashboardPieChart = () => (
+  <DonutChart
+    className='mt-6'
+    data={cities}
+    category='sales'
+    index='name'
+    valueFormatter={valueFormatter}
+    colors={['slate', 'violet', 'indigo', 'rose', 'cyan', 'amber']}
+  />
+);
 
 export default DashboardPieChart;

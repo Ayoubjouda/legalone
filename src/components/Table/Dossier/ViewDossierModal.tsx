@@ -41,7 +41,25 @@ const ViewDossierModal = ({
               {isDissolution || isRadiation ? (
                 <FermetureDetail dossier={dossier.data} />
               ) : (
-                <DataCard dossier={dossier.data} />
+                <ErrorBoundary
+                  fallback={<Error text='Failed To Load Dossier' />}
+                >
+                  <Suspense
+                    fallback={
+                      <div className='flex h-full w-full items-center justify-center py-20 '>
+                        <Loader2
+                          size={24}
+                          className='animate-spin stroke-redish'
+                        />
+                      </div>
+                    }
+                  >
+                    <DataCard
+                      formalityId={dossier.formalityId}
+                      files={dossier.files}
+                    />
+                  </Suspense>
+                </ErrorBoundary>
               )}
             </Suspense>
           </ErrorBoundary>

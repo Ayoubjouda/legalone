@@ -7,6 +7,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { NextUIProvider } from '@nextui-org/react';
 import { SessionProvider } from 'next-auth/react';
 import type { Session } from 'next-auth';
+import ErrorPageFallBack from '@/components/sections/ErrorPageFallBack';
 
 interface ProvidersProps {
   children: ReactNode;
@@ -28,7 +29,7 @@ const Providers: FC<ProvidersProps> = ({ children, session }) => {
   return (
     <>
       <SessionProvider session={session}>
-        <ErrorBoundary fallback={<div>Something went wrong</div>}>
+        <ErrorBoundary fallback={<ErrorPageFallBack />}>
           <HydrationZustand>
             <NextUIProvider className='h-full'>
               <QueryClientProvider client={queryClient}>

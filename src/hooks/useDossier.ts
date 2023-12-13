@@ -10,7 +10,7 @@ interface getFormalityParams {
   params?: {
     id?: string;
     title?: string;
-    value?: string;
+    value?: string | number;
   };
 }
 
@@ -143,5 +143,21 @@ export const useGetTotalCancelledFormalities = () => {
   return useQuery<TotalFormalityKPIResponse, Error>(
     'totalCancelledFormalities',
     () => getTotalInCancelledFormalities()
+  );
+};
+
+const getFormalitiesById = async (
+  params: getFormalityParams
+): Promise<FormalitiesResponse> => {
+  const { data } = await api.get(
+    `formalities?page=1&limit=10&statusFilter=&formalityid=${params.params?.value}`
+  );
+  return data;
+};
+
+export const useGetFormalityById = (params: getFormalityParams) => {
+  return useQuery<FormalitiesResponse, Error>(
+    ['GetformalitiesById', params],
+    () => getFormalitiesById(params)
   );
 };

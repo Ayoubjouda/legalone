@@ -19,6 +19,8 @@ const postCreationFormality = async (
 
 export const useSubmitCreateFormality = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const type = searchParams.get('type') || '';
   const {
     mutate: FormalityCreationMutation,
     isLoading,
@@ -34,7 +36,7 @@ export const useSubmitCreateFormality = () => {
       // localStorage.removeItem(data.type);
       const selectedFormalityId = Object(data.formalities)?.formalityId;
 
-      router.push(`/packages?formality=${selectedFormalityId}`);
+      router.push(`/packages?formality=${selectedFormalityId}&type=${type}`);
     },
     onError(err: Error | AxiosError) {
       if (isAxiosError(err)) {

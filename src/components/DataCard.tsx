@@ -1,28 +1,35 @@
+import Error from '@/components/Error';
 import { useGetHeadQuarter, useGetManagerType } from '@/hooks/useCompany';
+import { useGetFormalityById } from '@/hooks/useDossier';
 import { EntrepriseSchemaType } from '@/lib/validators/creation/entreprise';
 import { FC } from 'react';
+import FileUpload from './FileUpload';
 
-interface DossierCreation extends EntrepriseSchemaType {
-  companyId: number;
-}
 interface EditEntrepriseFormProps {
-  dossier: DossierCreation;
+  formalityId: number;
+  files: Files;
 }
 
-const DataCard: FC<EditEntrepriseFormProps> = ({ dossier }) => {
+const DataCard: FC<EditEntrepriseFormProps> = ({ formalityId }) => {
+  const { data: FormalityData, isFetching } = useGetFormalityById({
+    params: { title: 'formalityId', value: formalityId },
+  });
+  const selectedDossier = FormalityData?.formalities[0].data;
+  const selectedFiles = FormalityData?.formalities[0].files;
   const { data } = useGetManagerType();
   const { data: HqData } = useGetHeadQuarter();
-  if (!dossier && !data) return;
-  const managerType = data?.find(
-    (manager) => manager.id === dossier.managerType
-  )?.type;
 
-  const headquarter = HqData?.find((id) => id.id === dossier.headquarter)
-    ?.headquarter;
+  if (!selectedDossier && !data) return;
+  const managerType = data?.find(
+    (manager) => manager.id === selectedDossier.managerType
+  )?.type;
+  const headquarter = HqData?.find(
+    (id) => id.id === selectedDossier.headquarter
+  )?.headquarter;
   const arrayOfInformations = Object.entries({
-    ...dossier,
-    ...(dossier.managerType ? { managerType: managerType } : {}),
-    ...(dossier.headquarter ? { headquarter: headquarter } : {}),
+    ...selectedDossier,
+    ...(selectedDossier.managerType ? { managerType: managerType } : {}),
+    ...(selectedDossier.headquarter ? { headquarter: headquarter } : {}),
   }).slice(1);
   const objectexample: { [key: string]: string | number } = {
     companyId: 34,
@@ -66,6 +73,8 @@ const DataCard: FC<EditEntrepriseFormProps> = ({ dossier }) => {
     associateFirstName: 'Prenom de l associé',
     associateLastName: 'Nom de l associé',
   };
+
+  if (!FormalityData?.formalities[0]) return <Error text='Dossier Not Found' />;
   return (
     <div className=' overflow-hidden bg-white shadow sm:rounded-lg'>
       <div className='px-4 py-5 sm:px-6'>
@@ -73,7 +82,7 @@ const DataCard: FC<EditEntrepriseFormProps> = ({ dossier }) => {
           Dosssier informations
         </h3>
         <p className='mt-1  text-sm text-gray-500'>
-          Details and informations about Dossier {dossier.companyName}.
+          Details and informations about Dossier {selectedDossier.companyName}.
         </p>
       </div>
       <div className='border-t border-gray-200'>
@@ -96,31 +105,20 @@ const DataCard: FC<EditEntrepriseFormProps> = ({ dossier }) => {
               </dd>
             </div>
           ))}
+          {selectedFiles
+            ? Object.keys(selectedFiles).map((key, index) => {
+                const fileKey = key as keyof typeof selectedFiles;
 
-          <div className='bg-white px-4 py-5 even:bg-gray-50 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6'>
-            <dt className='col-span-2 text-sm font-medium text-gray-500'>
-              Upload Document
-            </dt>
-            <dd className='mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
-              <form>
-                <label className='block'>
-                  <span className='sr-only'>Choose profile photo</span>
-                  <input
-                    type='file'
-                    className='block w-full text-sm text-gray-500
-      file:me-4 file:cursor-pointer file:rounded-lg
-      file:border-0 file:bg-black
-      file:px-4 file:py-2 file:text-sm
-      file:font-semibold file:text-white
-      hover:file:bg-black
-      file:disabled:pointer-events-none file:disabled:opacity-50
-      dark:file:bg-black
-    '
+                return (
+                  <FileUpload
+                    key={fileKey}
+                    fileKey={fileKey}
+                    formalityId={formalityId}
+                    downloaded={selectedFiles[fileKey] !== null}
                   />
-                </label>
-              </form>
-            </dd>
-          </div>
+                );
+              })
+            : null}
         </dl>
       </div>
     </div>

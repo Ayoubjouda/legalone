@@ -14,6 +14,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import DashboardPieChart from '@/components/DashboardPieChart';
+import Chart from '@/components/Chart';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -52,7 +53,7 @@ export default function DashboardPage() {
                 <CardTitle>Overview</CardTitle>
               </CardHeader>
               <CardContent className='pl-2'>
-                <Overview />
+                <DashboardPieChart />
               </CardContent>
             </Card>
             <ErrorBoundary FallbackComponent={ErrorCard}>
@@ -74,9 +75,8 @@ export default function DashboardPage() {
               </Suspense>
             </ErrorBoundary>
           </div>
-          <div className='max-w-screen grid w-full grid-cols-2 gap-4 '>
-            <DashboardPieChart />
-          </div>
+          <Chart />
+          <div className='max-w-screen grid w-full grid-cols-2 gap-4 '></div>
         </div>
       </div>
     </div>
