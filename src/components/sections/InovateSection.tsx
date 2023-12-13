@@ -14,7 +14,7 @@ const InovateSection: FC<InovateSectionProps> = () => {
           </div>
           <div className=' flex flex-col items-center justify-start pr-3'>
             <div className='max-w-[350px] text-center  text-3xl font-medium text-stone-900 md:max-w-[650px] md:text-[50px]  md:leading-[59.92px]'>
-              All you need to run your brands effectively
+              Pourquoi nous ?
             </div>
           </div>
         </div>
@@ -32,7 +32,7 @@ const InovateSection: FC<InovateSectionProps> = () => {
               <div className='flex  flex-col items-center justify-center gap-4 self-stretch'>
                 <div className=' flex flex-col items-center justify-start'>
                   <div className="font-['IBM Plex Sans'] text-center text-xl font-semibold leading-[30px] text-stone-900">
-                    Innovative Solutions
+                    Prix les plus bas du marché
                   </div>
                 </div>
                 <div className=' flex max-w-xs flex-col items-center justify-start'>
@@ -57,7 +57,7 @@ const InovateSection: FC<InovateSectionProps> = () => {
               <div className='flex  flex-col items-center justify-center gap-4 self-stretch'>
                 <div className=' flex flex-col items-center justify-start'>
                   <div className="font-['IBM Plex Sans'] text-center text-xl font-semibold leading-[30px] text-stone-900">
-                    Innovative Solutions
+                    Simplicité et rapidité
                   </div>
                 </div>
                 <div className=' flex max-w-xs flex-col items-center justify-start'>
@@ -82,7 +82,7 @@ const InovateSection: FC<InovateSectionProps> = () => {
               <div className='flex  flex-col items-center justify-center gap-4 self-stretch'>
                 <div className=' flex flex-col items-center justify-start'>
                   <div className="font-['IBM Plex Sans'] text-center text-xl font-semibold leading-[30px] text-stone-900">
-                    Innovative Solutions
+                    Laissez-vous guider
                   </div>
                 </div>
                 <div className=' flex max-w-xs flex-col items-center justify-start'>

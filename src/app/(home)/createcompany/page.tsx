@@ -73,24 +73,6 @@ export default function CreateCompany() {
             />
           </div>
           <div className='box-border flex w-full max-w-[816px] shrink-0 flex-col flex-wrap gap-[10px] overflow-hidden p-2.5 text-center text-xl text-black md:flex-row md:items-start md:justify-start'>
-            <div className='border-darkgray-100 flex basis-48 cursor-pointer  flex-col flex-wrap items-center justify-center gap-[10px] overflow-hidden rounded-2xl border-[1px] border-solid bg-white px-5 py-[17px] transition-all duration-300 ease-in-out hover:border-orange-500'>
-              <Image
-                className='relative h-10 w-10 object-cover'
-                alt=''
-                src='/icons8company64-2@2x.png'
-                width={0}
-                height={0}
-                sizes='100vw'
-              />
-              <div className='flex flex-col items-center justify-center'>
-                <div className='relative text-base font-semibold'>
-                  Auto-entrepreneur
-                </div>
-                <div className='text-slategray-100 relative max-w-[150px] truncate text-xs leading-[31px]'>
-                  Gestion simplifiée pour lancer un projet
-                </div>
-              </div>
-            </div>
             <div className='border-darkgray-100 flex basis-48 cursor-pointer flex-col items-center justify-center  gap-[11px] overflow-hidden rounded-2xl border-[1px] border-solid bg-white py-[17px] transition-all duration-300 ease-in-out hover:border-orange-500'>
               <Image
                 className='relative h-10 w-10 object-cover'

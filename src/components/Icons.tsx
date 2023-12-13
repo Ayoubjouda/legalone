@@ -43,11 +43,29 @@ import {
   FolderCheck,
   FolderClock,
   FolderKanban,
+  Briefcase,
+  HardHat,
+  Truck,
+  ShoppingBag,
+  HeartPulse,
+  Salad,
+  Store,
+  HelpingHand,
+  MoreHorizontal,
 } from 'lucide-react';
 
 export type Icon = LucideIcon;
 
 export const Icons = {
+  moreHorizontal: MoreHorizontal,
+  helpingHand: HelpingHand,
+  store: Store,
+  salad: Salad,
+  heartPulse: HeartPulse,
+  shoppingBag: ShoppingBag,
+  truck: Truck,
+  hardHat: HardHat,
+  briefcase: Briefcase,
   folderKanban: FolderKanban,
   folderClock: FolderClock,
   folderCheck: FolderCheck,

@@ -31,20 +31,19 @@ const HeroSection: FC<HeroSectionProps> = () => {
           </div>
         </div>
         <div className=' relative inline-block max-w-[300px] font-ibmPlexSans  text-[45px] font-medium leading-[45px] tracking-[-0.02em] sm:max-w-[420px] md:max-w-[869px] lg:text-45xl lg:leading-[80px] '>
-          <p className='m-0'>Une Entreprise sur mesure,</p>
-          <p className='m-0'>
+          <p className='m-0'>Lancer votre notre soutien l'est aussi.</p>
+          {/* <p className='m-0'>
             un soutien
             <span className='text-redish after:absolute after:top-[70%] after:content-excited sm:after:right-8 sm:after:top-16  sm:after:w-2   md:after:right-20 md:after:top-14 md:after:w-2 lg:after:right-24 lg:after:w-8'>
               {' '}
               Inégalé.
             </span>
-          </p>
+          </p> */}
         </div>
         <div className='relative  max-w-[590px] px-8 text-lg leading-6 text-gray-700'>
           <p className='m-0'>
-            Lancez-vous dès aujourd'hui et faites évoluer votre entreprise en un
-            rien de temps ! et faites dès aujourd'hui et faites évoluer votre
-            entreprise enLancez-vous dès aujourd'hui.
+            Dès à présent, créer votre société en un rien de temps en vous
+            laissant guider par notre expertise.
           </p>
         </div>
       </div>

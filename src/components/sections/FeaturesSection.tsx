@@ -8,17 +8,16 @@ const FeaturesSection: FC<FeaturesSectionProps> = () => {
       {/* //section content */}
       <div className='space-y-10'>
         <div className='space-y-5'>
-          <p className='font-ibmPlexSans text-lg font-semibold leading-7 text-orange-600'>
+          {/* <p className='font-ibmPlexSans text-lg font-semibold leading-7 text-orange-600'>
             The best StartUp in town
-          </p>
+          </p> */}
           <h2 className="font-['IBM  Plex Sans'] max-w-[635px] text-3xl font-medium text-stone-900 md:text-[50px] md:leading-[59.92px]">
-            Établissez Votre Entreprise Sans Complications Administratives !
+            Créer votre entreprise facilement, en vous déchargeant de la
+            papareasserie adminitrative
           </h2>
           <p className='max-w-md font-ibmPlexSans text-lg font-normal leading-7 text-stone-900'>
-            Notre application vous permet de créer votre entreprise en un clin
-            d'œil, en vous déchargeant de toutes les formalités administratives
-            fastidieuses. Vous pouvez ainsi vous concentrer sur le cœur de votre
-            entreprise, sans vous soucier des tracas administratifs
+            Vous pourrez ainsi vous concentrer sur votre qctivité sqns vous
+            soucier des tracas adminitratifs
           </p>
         </div>
         <div className='space-y-10'>
