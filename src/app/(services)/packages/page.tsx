@@ -2,7 +2,7 @@
 import PricingComponent from '@/components/PricingComponent';
 import { useGetPackages } from '@/hooks/useCompany';
 import api from '@/lib/axiosConfig';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { notFound, useRouter, useSearchParams } from 'next/navigation';
 import { FC } from 'react';
 
 interface pageProps {}
@@ -10,7 +10,7 @@ interface pageProps {}
 const Page: FC<pageProps> = () => {
   const searchParams = useSearchParams();
   const formalityId = searchParams.get('formality') as number | null;
-  const packageType = searchParams.get('type') || '';
+  const packageType = searchParams.get('type') || notFound();
   const { isLoading, data } = useGetPackages(packageType);
 
   const router = useRouter();
@@ -44,7 +44,7 @@ const Page: FC<pageProps> = () => {
       //     window.location.assign(res.data.payment.stripeIntent.sessionUrl);
       //   });
     } catch (e) {
-      console.log(e);
+      throw Error;
     }
   };
   return (
