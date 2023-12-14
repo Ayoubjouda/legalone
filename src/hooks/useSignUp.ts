@@ -66,7 +66,7 @@ export function useSignUp() {
           router.push(intendedDestination);
           localStorage.removeItem('intendedDestination');
         } else {
-          router.push('/');
+          router.push('/login');
         }
         toast('Sign up successful');
       },

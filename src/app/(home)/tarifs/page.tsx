@@ -17,17 +17,23 @@ interface pageProps {}
 const packs: Package[] = [
   {
     id: 7,
-    name: 'Standard',
-    type: 'Standard',
+    name: 'Normal',
+    type: 'Normal',
     description: 'This is a sample package description.',
-    price: 235,
+    price: 85,
     packageStripeId: 'eee',
     elements: [
       {
-        text: 'Element 1',
+        text: 'Immatriculation de votre société au greffe',
       },
       {
-        text: 'Element 2',
+        text: "Publication de l'annonce légale",
+      },
+      {
+        text: "Vérification de votre dossier d'immatriculation",
+      },
+      {
+        text: 'Les statuts de votre société',
       },
     ],
     extra: [
@@ -66,18 +72,30 @@ const packs: Package[] = [
   },
   {
     id: 8,
-    name: 'Express',
-    type: 'Express',
+    name: '24h Chrono',
+    type: '24h Chrono',
     description: 'This is a sample package description.',
-    price: 535,
+    price: 185,
     packageStripeId: 'eee',
 
     elements: [
       {
-        text: 'Element 1',
+        text: 'Immatriculation de votre société au greffe',
       },
       {
-        text: 'Element 2',
+        text: "Publication de l'annonce légale",
+      },
+      {
+        text: "Vérification de votre dossier d'immatriculation",
+      },
+      {
+        text: 'Les statuts de votre société',
+      },
+      {
+        text: 'Traitement express 24h',
+      },
+      {
+        text: 'Assistance juridique illimitée (téléphone et email)',
       },
     ],
     extra: [
@@ -264,45 +282,24 @@ const servicesCost = {
 };
 
 const services = [
-  { id: 1, valid: true, service: 'Les statuts de votre société' },
+  { id: 1, type: '', service: 'Les statuts de votre société' },
   {
     id: 2,
-    valid: true,
+    type: '',
     service: "Vérification de votre dossier d'immatriculation",
   },
-  { id: 3, valid: true, service: "Publication de l'annonce légale" },
-  { id: 4, valid: true, service: 'Immatriculation de votre société au greffe' },
-  { id: 5, valid: true, service: 'Garantie anti-rejet du greffe' },
-  { id: 6, valid: true, service: 'Traitement express 24h' },
+  { id: 3, type: '', service: "Publication de l'annonce légale" },
+  {
+    id: 4,
+    type: '',
+    service: 'Immatriculation de votre société au greffe',
+  },
+  { id: 6, type: 'chrono', service: 'Traitement express 24h' },
+
   {
     id: 7,
-    valid: true,
-    service: 'Assistance juriste illimitée (téléphone, mail, tchat)',
-  },
-  { id: 8, valid: false, service: 'Expert comptable' },
-  {
-    id: 9,
-    valid: false,
-    service:
-      'Rendez-vous comptable pour choisir la forme juridique optimale et les options fiscales les plus avantageuses',
-  },
-  {
-    id: 10,
-    valid: false,
-    service:
-      'Conformité Annuelle avec déclarations de TVA, bilan, liasse fiscale réalisés par votre comptable',
-  },
-  {
-    id: 11,
-    valid: false,
-    service:
-      'Logiciel comptable simple et intuitif pour vous faire gagner du temps',
-  },
-  {
-    id: 12,
-    valid: false,
-    service:
-      'Votre comptable réactif et accessible par tchat, téléphone, visio et email',
+    type: 'chrono',
+    service: 'Assistance juridique illimitée (téléphone et email)',
   },
 ];
 
@@ -359,11 +356,11 @@ const page: FC<pageProps> = () => {
             <div className='flex  flex-col items-start justify-start self-stretch'>
               <div className='flex  flex-col items-center justify-start self-stretch pl-[100px] pr-[97px]'>
                 <div className="font-['IBM Plex Sans'] text-center text-7xl font-medium leading-[70px] text-stone-900">
-                  Tarifs
+                  Création de société
                 </div>
               </div>
             </div>
-            <div className='flex flex-col items-start justify-start self-stretch'>
+            {/* <div className='flex flex-col items-start justify-start self-stretch'>
               <div className='flex  flex-col items-center justify-start self-stretch pl-[1.10px] pr-[0.90px]'>
                 <div className="font-['IBM Plex Sans'] text-center text-lg font-normal leading-7 text-neutral-700">
                   We consider all the drivers of change gives you the an blocks
@@ -375,7 +372,7 @@ const page: FC<pageProps> = () => {
                   stay focused to it.
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className='flex flex-wrap justify-center gap-4 lg:justify-start'>
@@ -416,14 +413,14 @@ const page: FC<pageProps> = () => {
                   <div className='flex h-6 flex-col items-start justify-start self-stretch'>
                     <div className='flex h-6 flex-col items-start justify-start self-stretch pr-[162.20px]'>
                       <div className="font-['IBM Plex Sans'] text-base font-semibold leading-normal text-zinc-500">
-                        Standard
+                        Normal
                       </div>
                     </div>
                   </div>
                   <div className='flex h-[30px] flex-col items-start justify-start self-stretch'>
                     <div className='flex h-[30px] flex-col items-start justify-start self-stretch pr-[141.20px]'>
                       <div className="font-['IBM Plex Sans'] text-xl font-semibold leading-[30px] text-stone-900">
-                        $99
+                        $85
                       </div>
                     </div>
                   </div>
@@ -434,32 +431,14 @@ const page: FC<pageProps> = () => {
                   <div className='flex h-6 flex-col items-start justify-start self-stretch'>
                     <div className='flex h-6  flex-col items-start justify-start self-stretch'>
                       <div className="font-['IBM Plex Sans'] text-base font-semibold leading-normal text-zinc-500">
-                        Express 24h
+                        24h Chrono
                       </div>
                     </div>
                   </div>
                   <div className='flex h-[30px] flex-col items-start justify-start self-stretch'>
                     <div className='flex h-[30px] flex-col items-start justify-start self-stretch pr-[141.20px]'>
                       <div className="font-['IBM Plex Sans'] text-xl font-semibold leading-[30px] text-stone-900">
-                        $199
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </TableHead>
-              <TableHead className='col-span-2 h-fit'>
-                <div className='  inline-flex flex-col items-center justify-start gap-2.5'>
-                  <div className='flex  flex-col items-start justify-start self-stretch'>
-                    <div className='flex  flex-col items-start justify-start self-stretch'>
-                      <div className="font-['IBM Plex Sans'] w-max text-base font-semibold leading-normal text-zinc-500">
-                        Express + Expert-comptable
-                      </div>
-                    </div>
-                  </div>
-                  <div className='flex flex-col items-start justify-start self-stretch'>
-                    <div className='flex  flex-col items-start justify-start self-stretch pr-[141.20px]'>
-                      <div className="font-['IBM Plex Sans'] text-xl font-semibold leading-[30px] text-stone-900">
-                        $99
+                        $185
                       </div>
                     </div>
                   </div>
@@ -476,7 +455,9 @@ const page: FC<pageProps> = () => {
                 <TableCell className='col-span-5'>{invoice.service}</TableCell>
                 <TableCell className='col-span-2'>
                   <Image
-                    src={invoice.valid ? '/valid.svg' : '/notValid.svg'}
+                    src={
+                      invoice.type === 'chrono' ? '/notValid.svg' : '/Valid.svg'
+                    }
                     alt=''
                     width={20}
                     height={20}
@@ -484,15 +465,7 @@ const page: FC<pageProps> = () => {
                 </TableCell>
                 <TableCell className='col-span-2'>
                   <Image
-                    src={invoice.valid ? '/valid.svg' : '/notValid.svg'}
-                    alt=''
-                    width={20}
-                    height={20}
-                  ></Image>
-                </TableCell>
-                <TableCell className='col-span-2'>
-                  <Image
-                    src={invoice.valid ? '/valid.svg' : '/notValid.svg'}
+                    src={'/valid.svg'}
                     alt=''
                     width={20}
                     height={20}

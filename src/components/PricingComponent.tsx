@@ -17,7 +17,7 @@ const PricingComponent: FC<PricingComponentProps> = ({
       className={cn(
         'flex max-w-[340px] flex-col rounded-lg  border border-slate-200',
         {
-          'border-4 border-redish': type === 'express',
+          'border-4 border-redish': type === '24h Chrono',
         }
       )}
     >
@@ -33,7 +33,7 @@ const PricingComponent: FC<PricingComponentProps> = ({
           <div className='flex h-10 flex-col items-start justify-start self-stretch'>
             <div className='5 flex h-10 flex-col items-start justify-start self-stretch'>
               <div className="font-['IBM Plex Sans'] text-sm font-normal leading-tight text-neutral-700">
-                Déléguez vos démarches de création à nos juristes expérimentés
+                Déléguez vos démarches de création à nos experts juridiques
               </div>
             </div>
           </div>
@@ -85,18 +85,18 @@ const PricingComponent: FC<PricingComponentProps> = ({
         <div className='flex  flex-col items-start justify-start gap-6 self-stretch'>
           <div className='flex h-6 flex-col items-start justify-start self-stretch'>
             <div className="font-['IBM Plex Sans'] text-base font-medium leading-normal text-stone-900">
-              Features Included:
+              Caractéristiques incluses :
             </div>
           </div>
           <div className='flex  flex-col items-center justify-center gap-[18px] self-stretch'>
             {elements.map((item, index) => (
               <div
-                className='flex h-6 flex-col items-start justify-start self-stretch'
+                className='flex  flex-col items-start justify-start  gap-2 self-stretch'
                 key={index}
               >
-                <div className='inline-flex items-center justify-start gap-1.5 self-stretch'>
-                  <div className='flex h-5 w-5 items-center justify-center p-0.5'>
-                    <div className='inline-flex shrink grow basis-0 items-center justify-center self-stretch'>
+                <div className='flex items-start justify-start gap-2 self-stretch'>
+                  <div className='flex h-5 w-5 items-center justify-center '>
+                    <div className='inline-flex items-center justify-center self-stretch'>
                       <div className='relative flex h-4 w-4 flex-col items-start justify-start'>
                         <Image
                           src='/valid.svg'
@@ -108,9 +108,9 @@ const PricingComponent: FC<PricingComponentProps> = ({
                       </div>
                     </div>
                   </div>
-                  <div className='inline-flex shrink grow basis-0 flex-col items-start justify-start'>
-                    <div className='flex h-6  flex-col items-start justify-start self-stretch'>
-                      <div className="font-['IBM Plex Sans'] text-base font-normal leading-normal text-stone-900">
+                  <div className='0 inline-flex flex-col items-start justify-start'>
+                    <div className='flex flex-col items-start justify-start self-stretch'>
+                      <div className='font-ibmPlexSans text-base font-normal leading-5 text-stone-900'>
                         {item.text}
                       </div>
                     </div>

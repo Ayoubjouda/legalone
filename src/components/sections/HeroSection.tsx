@@ -30,15 +30,14 @@ const HeroSection: FC<HeroSectionProps> = () => {
             </div>
           </div>
         </div> */}
-        <div className=' relative inline-block max-w-[300px] font-ibmPlexSans  text-[45px] font-medium leading-[45px] tracking-[-0.02em] sm:max-w-[420px] md:max-w-[869px] lg:text-45xl lg:leading-[80px] '>
-          <p className='m-0'>Lancer votre notre soutien l'est aussi.</p>
-          {/* <p className='m-0'>
-            un soutien
-            <span className='text-redish after:absolute after:top-[70%] after:content-excited sm:after:right-8 sm:after:top-16  sm:after:w-2   md:after:right-20 md:after:top-14 md:after:w-2 lg:after:right-24 lg:after:w-8'>
-              {' '}
-              Inégalé.
+        <div className=' relative inline-block max-w-[300px] font-ibmPlexSans  text-[45px] font-medium leading-[45px] tracking-[-0.02em] sm:max-w-[420px] md:max-w-[869px] lg:text-45xl lg:leading-[60px] '>
+          <p className='m-0'>
+            Envie de créer votre{' '}
+            <span className='text-redish after:absolute after:top-7 after:content-excited sm:after:right-32 sm:after:top-6  sm:after:h-1 sm:after:w-1   md:after:-top-5 md:after:right-16 md:after:w-2 lg:after:-top-10 lg:after:right-4 lg:after:w-8 '>
+              société?
             </span>
-          </p> */}
+          </p>
+          <p className='m-0'>Nous sommes là pour vous assister</p>
         </div>
         <div className='relative  max-w-[590px] px-8 text-lg leading-6 text-gray-700'>
           <p className='m-0'>
