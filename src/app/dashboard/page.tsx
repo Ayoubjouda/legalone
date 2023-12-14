@@ -75,7 +75,24 @@ export default function DashboardPage() {
               </Suspense>
             </ErrorBoundary>
           </div>
-          <Chart />
+          <ErrorBoundary FallbackComponent={ErrorCard}>
+            <Suspense
+              fallback={
+                <Card className='col-span-3'>
+                  <div className=' space-y-2 p-3'>
+                    {Array.from({ length: 18 }).map((_, i) => (
+                      <Skeleton
+                        key={Math.random()}
+                        className='h-3 w-full p-2 '
+                      />
+                    ))}
+                  </div>
+                </Card>
+              }
+            >
+              <Chart />
+            </Suspense>
+          </ErrorBoundary>
           <div className='max-w-screen grid w-full grid-cols-2 gap-4 '></div>
         </div>
       </div>

@@ -54,7 +54,7 @@ const ServiceCard: FC<ServiceCardProps> = ({
           <HoverCardTrigger>
             <div
               className='box-border flex min-w-[256px] cursor-pointer items-center  justify-center gap-4 overflow-hidden rounded-md border-[1px] border-solid bg-white px-4 py-3 hover:border-redish'
-              onClick={() => router.push('/createcompany')}
+              onClick={() => router.push('/createcompany?type=chose')}
             >
               <Icon
                 size={26}

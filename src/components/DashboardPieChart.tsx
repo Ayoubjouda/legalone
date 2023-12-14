@@ -1,4 +1,5 @@
 'use client';
+import { usePieChartMetrics } from '@/hooks/useMetrics';
 import { Card, DonutChart, Title } from '@tremor/react';
 
 const cities = [
@@ -31,15 +32,18 @@ const cities = [
 const valueFormatter = (number: number) =>
   `$ ${new Intl.NumberFormat('us').format(number).toString()}`;
 
-const DashboardPieChart = () => (
-  <DonutChart
-    className='mt-6'
-    data={cities}
-    category='sales'
-    index='name'
-    valueFormatter={valueFormatter}
-    colors={['slate', 'violet', 'indigo', 'rose', 'cyan', 'amber']}
-  />
-);
+const DashboardPieChart = () => {
+  const { data } = usePieChartMetrics();
+  return (
+    <DonutChart
+      className='mt-6'
+      data={data!}
+      category='percentage'
+      index='type'
+      valueFormatter={valueFormatter}
+      colors={['slate', 'violet', 'indigo', 'rose', 'cyan', 'amber']}
+    />
+  );
+};
 
 export default DashboardPieChart;

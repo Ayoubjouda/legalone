@@ -13,7 +13,7 @@ const HeroSection: FC<HeroSectionProps> = () => {
   return (
     <section className=' z-[7] mx-4 mt-8 flex flex-col items-center  justify-start  gap-[45px] self-stretch text-center text-base md:gap-12'>
       <div className='flex flex-col items-center gap-6'>
-        <div className='inline-flex h-[39.40px] items-center justify-start gap-[11.69px] rounded-[50px] border border-black border-opacity-5 bg-white bg-opacity-40 py-1.5 pl-2 pr-3'>
+        {/* <div className='inline-flex h-[39.40px] items-center justify-start gap-[11.69px] rounded-[50px] border border-black border-opacity-5 bg-white bg-opacity-40 py-1.5 pl-2 pr-3'>
           <div className='flex items-center justify-center rounded-2xl bg-orange-500 bg-opacity-10 pb-[4.90px] pl-[11.75px] pr-[11.55px] pt-[3.50px]'>
             <div className='text-center font-ibmPlexSans text-xs font-medium leading-[18.90px] text-redish md:text-sm'>
               Nouveau
@@ -29,7 +29,7 @@ const HeroSection: FC<HeroSectionProps> = () => {
               <ArrowRight color='#D86949' />
             </div>
           </div>
-        </div>
+        </div> */}
         <div className=' relative inline-block max-w-[300px] font-ibmPlexSans  text-[45px] font-medium leading-[45px] tracking-[-0.02em] sm:max-w-[420px] md:max-w-[869px] lg:text-45xl lg:leading-[80px] '>
           <p className='m-0'>Lancer votre notre soutien l'est aussi.</p>
           {/* <p className='m-0'>
@@ -69,7 +69,7 @@ const HeroSection: FC<HeroSectionProps> = () => {
             description='Dissolution, liquidation et radiation'
           />
         </div>
-        <div className='inline-flex h-9 max-w-[290px] items-center justify-center gap-4'>
+        {/* <div className='inline-flex h-9 max-w-[290px] items-center justify-center gap-4'>
           <div className='flex items-center justify-start'>
             <div className='inline-flex w-[25px] flex-col items-start justify-start'>
               <div className='flex h-[35.71px] flex-col items-start justify-start rounded-[99px]'>
@@ -129,7 +129,7 @@ const HeroSection: FC<HeroSectionProps> = () => {
               Trusted already by 1.2k+
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

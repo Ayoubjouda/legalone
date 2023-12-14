@@ -91,6 +91,7 @@ const config = {
         gainsboro: '#dee5ed',
         redish: '#EE5622',
         darkRedish: '#d64d1f',
+        lightRedish: '#fdeee9',
         darkslategray: {
           100: '#3c3c43',
           200: '#223140',

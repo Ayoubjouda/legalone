@@ -1,54 +1,65 @@
 'use client';
-import { AreaChart, Card, Title } from '@tremor/react';
+import { useGetBarChartMetrics } from '@/hooks/useMetrics';
+import { BarChart, Card, Title } from '@tremor/react';
 
-const chartdata = [
+const chartdata2 = [
   {
-    date: 'Jan 22',
-    SemiAnalysis: 2890,
-    'The Pragmatic Engineer': 2338,
+    name: 'Topic 1',
+    'Group A': 890,
+    'Group B': 338,
+    'Group C': 538,
+    'Group D': 396,
+    'Group E': 138,
+    'Group F': 436,
   },
   {
-    date: 'Feb 22',
-    SemiAnalysis: 2756,
-    'The Pragmatic Engineer': 2103,
+    name: 'Topic 2',
+    'Group A': 289,
+    'Group B': 233,
+    'Group C': 253,
+    'Group D': 333,
+    'Group E': 133,
+    'Group F': 533,
   },
   {
-    date: 'Mar 22',
-    SemiAnalysis: 3322,
-    'The Pragmatic Engineer': 2194,
+    name: 'Topic 3',
+    'Group A': 380,
+    'Group B': 535,
+    'Group C': 352,
+    'Group D': 718,
+    'Group E': 539,
+    'Group F': 234,
   },
   {
-    date: 'Apr 22',
-    SemiAnalysis: 3470,
-    'The Pragmatic Engineer': 2108,
-  },
-  {
-    date: 'May 22',
-    SemiAnalysis: 3475,
-    'The Pragmatic Engineer': 1812,
-  },
-  {
-    date: 'Jun 22',
-    SemiAnalysis: 3129,
-    'The Pragmatic Engineer': 1726,
+    name: 'Topic 4',
+    'Group A': 90,
+    'Group B': 98,
+    'Group C': 28,
+    'Group D': 33,
+    'Group E': 61,
+    'Group F': 53,
   },
 ];
 
-const valueFormatter = function (number: number) {
-  return '$ ' + new Intl.NumberFormat('us').format(number).toString();
-};
+const valueFormatter = (number: number) =>
+  `${new Intl.NumberFormat('us').format(number).toString()}`;
 
-const Chart = () => (
-  <Card>
-    <Title>Newsletter revenue over time (USD)</Title>
-    <AreaChart
-      className='mt-4 h-72'
-      data={chartdata}
-      index='date'
-      categories={['SemiAnalysis', 'The Pragmatic Engineer']}
-      colors={['indigo', 'cyan']}
-      valueFormatter={valueFormatter}
-    />
-  </Card>
-);
+const Chart = () => {
+  const { data } = useGetBarChartMetrics();
+
+  return (
+    <Card>
+      <Title>Writing Contest: Entries</Title>
+      <BarChart
+        className='mt-6'
+        data={data!}
+        index='type'
+        categories={['monthly', 'weekly', 'daily']}
+        colors={['blue', 'teal', 'amber', 'rose', 'indigo', 'emerald']}
+        valueFormatter={valueFormatter}
+        yAxisWidth={48}
+      />
+    </Card>
+  );
+};
 export default Chart;

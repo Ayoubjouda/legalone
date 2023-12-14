@@ -15,7 +15,7 @@ export default function Home() {
       <SponsorsSection />
       <InovateSection />
       <FeaturesSection />
-      <DashBoardSection />
+      {/* <DashBoardSection /> */}
       <TestemonialSection />
       <Faq />
       <LancezVous />

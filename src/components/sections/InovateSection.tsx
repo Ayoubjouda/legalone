@@ -8,9 +8,9 @@ const InovateSection: FC<InovateSectionProps> = () => {
       <div className='inline-flex shrink grow basis-0 flex-col items-center justify-start gap-20'>
         <div className='flex flex-col items-center justify-start gap-[27px]'>
           <div className='flex h-7  flex-col items-center justify-start self-stretch'>
-            <div className='text-center text-base font-medium leading-7 text-orange-600  md:text-lg'>
+            {/* <div className='text-center text-base font-medium leading-7 text-orange-600  md:text-lg'>
               Why LegalCenter
-            </div>
+            </div> */}
           </div>
           <div className=' flex flex-col items-center justify-start pr-3'>
             <div className='max-w-[350px] text-center  text-3xl font-medium text-stone-900 md:max-w-[650px] md:text-[50px]  md:leading-[59.92px]'>
@@ -24,7 +24,7 @@ const InovateSection: FC<InovateSectionProps> = () => {
               <Image
                 alt='image'
                 className='relative h-[61px] w-[60px]'
-                src='https://via.placeholder.com/60x61'
+                src='https://img.icons8.com/stickers/100/cash-in-hand.png'
                 width={0}
                 height={0}
                 sizes='100vw'
@@ -49,7 +49,7 @@ const InovateSection: FC<InovateSectionProps> = () => {
               <Image
                 alt='image'
                 className='relative h-[61px] w-[60px]'
-                src='https://via.placeholder.com/60x61'
+                src='https://img.icons8.com/stickers/100/easy.png'
                 width={0}
                 height={0}
                 sizes='100vw'
@@ -74,7 +74,7 @@ const InovateSection: FC<InovateSectionProps> = () => {
               <Image
                 alt='image'
                 className='relative h-[61px] w-[60px]'
-                src='https://via.placeholder.com/60x61'
+                src='https://img.icons8.com/cotton/64/route.png'
                 width={0}
                 height={0}
                 sizes='100vw'

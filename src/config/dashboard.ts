@@ -12,13 +12,13 @@ type routes = {
 
 export const DashboardRoutes: routes[] = [
   {
-    name: 'DashBoard',
+    name: 'Tableau de bord',
     icon: 'home',
     route: '/dashboard',
     routes: [],
   },
   {
-    name: 'Users',
+    name: 'Utilisateurs',
     icon: 'userCog',
     route: '/dashboard/users',
     routes: [],
@@ -36,13 +36,13 @@ export const DashboardRoutes: routes[] = [
     routes: [],
   },
   {
-    name: 'Orders',
+    name: 'Commandes',
     icon: 'shoppingCart',
     route: '/dashboard/orders',
     routes: [],
   },
   {
-    name: 'Payments',
+    name: 'Paiements',
     icon: 'badgeDollarSign',
     route: '/dashboard/payments',
     routes: [],
