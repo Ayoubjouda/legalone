@@ -10,6 +10,7 @@ const PricingComponent: FC<PricingComponentProps> = ({
   type,
   price,
   elements,
+  extra,
   onButtonClick,
 }) => {
   return (
@@ -17,7 +18,7 @@ const PricingComponent: FC<PricingComponentProps> = ({
       className={cn(
         'flex max-w-[340px] flex-col rounded-lg  border border-slate-200',
         {
-          'border-4 border-redish': type === '24h Chrono',
+          'border-4 border-redish': type === '24HChrono',
         }
       )}
     >
@@ -118,6 +119,37 @@ const PricingComponent: FC<PricingComponentProps> = ({
                 </div>
               </div>
             ))}
+            {extra
+              ? extra.map((item, index) => (
+                  <div
+                    className='flex  flex-col items-start justify-start  gap-2 self-stretch'
+                    key={index}
+                  >
+                    <div className='flex items-start justify-start gap-2 self-stretch'>
+                      <div className='flex h-5 w-5 items-center justify-center '>
+                        <div className='inline-flex items-center justify-center self-stretch'>
+                          <div className='relative flex h-4 w-4 flex-col items-start justify-start'>
+                            <Image
+                              src='/valid.svg'
+                              alt=''
+                              width={16}
+                              height={16}
+                              sizes={'100vw'}
+                            ></Image>
+                          </div>
+                        </div>
+                      </div>
+                      <div className='0 inline-flex flex-col items-start justify-start'>
+                        <div className='flex flex-col items-start justify-start self-stretch'>
+                          <div className='font-ibmPlexSans text-base font-normal leading-5 text-stone-900'>
+                            {item.text}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              : null}
           </div>
         </div>
       </div>

@@ -73,7 +73,7 @@ const packs: Package[] = [
   {
     id: 8,
     name: '24h Chrono',
-    type: '24h Chrono',
+    type: '24HChrono',
     description: 'This is a sample package description.',
     price: 185,
     packageStripeId: 'eee',

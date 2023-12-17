@@ -90,12 +90,12 @@ const EditEntrepriseForm: FC<EditEntrepriseFormProps> = ({
                   label='le sexe'
                   values={[
                     {
-                      value: 'Male',
-                      label: 'Male',
+                      value: 'Monsieur',
+                      label: 'Monsieur',
                     },
                     {
-                      value: 'Female',
-                      label: 'Female',
+                      value: 'Madame',
+                      label: 'Madame',
                     },
                   ]}
                 />
@@ -139,11 +139,11 @@ const EditEntrepriseForm: FC<EditEntrepriseFormProps> = ({
               values={[
                 {
                   value: 'one',
-                  label: 'One',
+                  label: 'Un seul',
                 },
                 {
                   value: 'many',
-                  label: 'Many',
+                  label: 'Plusieurs',
                 },
               ]}
             />
