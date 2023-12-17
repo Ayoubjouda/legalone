@@ -8,7 +8,7 @@ const OrdersPending: FC<OrdersPendingProps> = () => {
   const { data: TotalPendingOrders } = useGetTotalPendingOrders();
   return (
     <DashboardCard
-      title='Pending Orders'
+      title='Commandes en attente'
       icon='packagePlus'
       content={TotalPendingOrders?.pendingOrders}
     />

@@ -10,7 +10,7 @@ const TotalRevenueCard: FC<TotalRevenueProps> = () => {
   return (
     <>
       <DashboardCard
-        title='Total Revenue'
+        title='Revenues totaux'
         icon='euro'
         content={totalRevenue?.totalRevenue}
       />

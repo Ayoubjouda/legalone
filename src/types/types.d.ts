@@ -124,6 +124,7 @@ type Payment = {
   amount: number; // You might want to use a Date type here if you parse the string to a Date object
   status: Status; // Status can be null or a string
   order: Order;
+  user: User;
 };
 interface RecentSallesResponse {
   paymentId: number;

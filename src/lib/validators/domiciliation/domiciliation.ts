@@ -11,21 +11,15 @@ export const DomiciliationFormSchema = z.object({
     .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
   phone: z.string().min(2, { message: 'Doit contenir au moins 2 caractères' }),
   email: z.string().email({ message: 'Doit être une adresse e-mail valide' }),
-  nomSociete: z
+  companyName: z
     .string()
-    .min(2, { message: 'Vous devez sélectionner au moins une option' }),
-
-  domiciliationAdress: z
-    .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' })
-    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
+    .min(2, { message: 'Doit contenir au moins 2 caractères' }),
+  companyType: z
+    .number()
+    .min(1, { message: 'Doit contenir au moins 2 caractères' }),
   subscription: z
     .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' })
-    .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
-  expeditionFrequency: z
-    .string()
-    .min(2, { message: 'Doit contenir au moins 2 caractères' })
+    .min(1, { message: 'Doit contenir au moins 2 caractères' })
     .max(15, { message: 'Doit contenir au maximum 15 caractères' }),
 });
 export type DomiciliationFormSchemaType = z.infer<

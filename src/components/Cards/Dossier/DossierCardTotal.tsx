@@ -10,7 +10,7 @@ const DossierCardTotal: FC<OrdersTotalProps> = () => {
   const { data: TotalDossier } = useGetTotalFormalities();
   return (
     <DashboardCard
-      title='Total Dossier'
+      title='Total des commandes'
       icon='folderKanban'
       content={TotalDossier?.total}
     />

@@ -9,7 +9,7 @@ const MonthlyRevenueCard: FC<MonthlyRevenueProps> = () => {
   const { data: monthlyKpiPayment } = useGetMonthlyKpiPayment();
   return (
     <DashboardCard
-      title='Monthly Revenue'
+      title='Revenue mensuel'
       icon='lineChart'
       content={monthlyKpiPayment?.monthlyPayment}
     />

@@ -28,9 +28,18 @@ export const columns: ColumnDef<Payment>[] = [
     },
     cell: ({ row }) => <div className='lowercase'>{row.getValue('id')}</div>,
   },
+
+  {
+    accessorKey: 'user',
+    accessorFn: (user) => user.user.email,
+    header: 'Email',
+    cell: ({ row }) => (
+      <div className='capitalize'>{`${row.getValue('user')} `}</div>
+    ),
+  },
   {
     accessorKey: 'amount',
-    header: 'Amount',
+    header: 'Montant',
     cell: ({ row }) => (
       <div className='capitalize'>{`${row.getValue('amount')} `}</div>
     ),
@@ -69,7 +78,7 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: 'order',
     accessorFn: (payment) => payment.order.id,
-    header: 'Order Id',
+    header: 'Numéro de commande',
     cell: ({ row }) => <p>{row.getValue('order')}</p>,
   },
 
@@ -77,7 +86,7 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: 'createdAt',
     header: 'Date de création',
     cell: ({ row }) => (
-      <p>{format(new Date(row.getValue('createdAt')), 'MM/dd/yyyy')}</p>
+      <p>{format(new Date(row.getValue('createdAt')), 'PPpp')}</p>
     ),
   },
   {

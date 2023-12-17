@@ -98,9 +98,7 @@ export const columns: ColumnDef<Order>[] = [
     accessorKey: 'createdAt',
     header: 'Date de création',
     cell: ({ row }) => (
-      <p className='text-xs'>
-        {format(new Date(row.getValue('createdAt')), 'MM/dd/yyyy')}
-      </p>
+      <p>{format(new Date(row.getValue('createdAt')), 'PPpp')}</p>
     ),
   },
   {

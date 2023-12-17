@@ -8,7 +8,7 @@ const OrdersCancelled: FC<OrdersCancelledProps> = () => {
   const { data: TotalCancelledOrders } = useGetTotalCanceledOrders();
   return (
     <DashboardCard
-      title='Cancelled Orders'
+      title='Commandes annulées'
       icon='packageX'
       content={TotalCancelledOrders?.canceledOrders}
     />

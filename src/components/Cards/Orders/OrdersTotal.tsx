@@ -8,7 +8,7 @@ const OrdersTotal: FC<OrdersTotalProps> = () => {
   const { data: TotalOrders } = useGetTotalOrders();
   return (
     <DashboardCard
-      title='Total Orders'
+      title='Total des commandes'
       icon='boxes'
       content={TotalOrders?.totalOrders}
     />

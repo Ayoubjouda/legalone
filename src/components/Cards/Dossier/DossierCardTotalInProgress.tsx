@@ -9,7 +9,7 @@ const DossierCardTotalInProgress: FC<OrdersTotalProps> = () => {
   const { data: TotalDossier } = useGetTotalDoneFormalities();
   return (
     <DashboardCard
-      title='Total InProgress Dossier'
+      title='Dossier en attente'
       icon='folderClock'
       content={TotalDossier?.total}
     />

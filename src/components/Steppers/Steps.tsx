@@ -1,3 +1,4 @@
+import CompanyNameForm from '../Forms/CompanyNameForm';
 import ActivityForm from '../Forms/services/common/ActivityForm';
 import CompanyDataForm from '../Forms/services/common/CompanyDataForm';
 import ContactForm from '../Forms/services/common/ContactForm';
@@ -15,6 +16,10 @@ import DissolutionAssocierForm from '../Forms/services/dissolution/DissolutionAs
 import DissolutionCompanyDataForm from '../Forms/services/dissolution/DissolutionCompanyDataForm';
 import DissolutionLiquidateurForm from '../Forms/services/dissolution/DissolutionLiquidateurForm';
 import FinishFermetureFlow from '../Forms/services/dissolution/FinishFermetureFlow';
+import DomiciliationBaseForm from '../Forms/services/domiciliation/DomiciliationBaseForm';
+import DomiciliationReexpeditionForm from '../Forms/services/domiciliation/DomiciliationReexpeditionForm';
+import FinishFlowDomiciliation from '../Forms/services/domiciliation/FinishFlowDomiciliation';
+import SubscriptionForm from '../Forms/services/domiciliation/SubscriptionForm';
 import Companyinfo from '../Forms/services/modification/Companyinfo';
 import DeclarationForm from '../Forms/services/modification/DeclarationForm';
 import FinishUpdateFlow from '../Forms/services/modification/FinishUpdateFlow';
@@ -168,21 +173,6 @@ export const autoEntreSteps = [
 ];
 export const domiciliationSteps = [
   {
-    title: 'Dans quel délai souhaitez-vous créer votre société ?',
-    description: '',
-    component: DurationForm,
-  },
-  {
-    title: "Quel est votre domaine d'activité ?",
-    description: '',
-    component: ActivityForm,
-  },
-  {
-    title: 'Où sera fixé le siège social de la Société ?',
-    description: '',
-    component: HeadquarterForm,
-  },
-  {
     title: 'Information personnel',
     description: '',
     component: PersonalForm,
@@ -192,7 +182,28 @@ export const domiciliationSteps = [
     description: '',
     component: ContactForm,
   },
-  { title: 'Traitement Dossier', description: '', component: FinishFlow },
+  {
+    title: 'Informations sur votre société',
+    description: '',
+    component: CompanyNameForm,
+  },
+  {
+    title: 'Forme juridique de la société à domicilier',
+    description: '',
+    component: CompanyTypeForm,
+  },
+
+  {
+    title: 'Rappel de notre offre de domiciliation :',
+    description: '',
+    component: SubscriptionForm,
+  },
+
+  {
+    title: 'Traitement Dossier',
+    description: '',
+    component: FinishFlowDomiciliation,
+  },
 ];
 export const updateStepper = [
   {

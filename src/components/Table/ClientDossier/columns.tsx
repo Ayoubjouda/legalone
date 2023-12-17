@@ -98,15 +98,15 @@ export const columns: ColumnDef<Dossier>[] = [
       ) : null,
   },
 
-  // {
-  //   accessorKey: 'createdAt',
-  //   header: 'Créé le',
-  //   cell: ({ row }) => (
-  //     <div className='text-sm  '>
-  //       {format(new Date(row.getValue('createdAt')), 'PPp')}
-  //     </div>
-  //   ),
-  // },
+  {
+    accessorKey: 'createdAt',
+    header: 'Créé le',
+    cell: ({ row }) => (
+      <div className='text-sm  '>
+        {format(new Date(row.getValue('createdAt')), 'PPpp')}
+      </div>
+    ),
+  },
   {
     id: 'actions',
     enableHiding: false,

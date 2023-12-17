@@ -116,9 +116,6 @@ const DomiciliationReexpeditionForm = ({ goToNext }: FormProps) => {
       </div>
 
       <div className='flex justify-center font-semibold text-red-500'>
-        <p className='max-w-md text-center text-xl font-medium leading-[31px] text-slate-500'>
-          Fréquence de réexpédition
-        </p>
         <ErrorMessage
           errors={errors}
           name='expedition'

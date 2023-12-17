@@ -25,12 +25,12 @@ const ErrorPageFallBack: FC<ErrorPageFallBackProps> = () => {
             >
               Go back
             </button>
-            <a
+            {/* <a
               href='javascript:void(0)'
               className='block rounded-lg border px-4 py-2 font-medium text-gray-700 duration-150 hover:bg-gray-50 active:bg-gray-100'
             >
               Contact support
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

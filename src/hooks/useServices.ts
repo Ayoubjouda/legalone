@@ -179,3 +179,61 @@ export const useSubmitFermetureFormality = () => {
     FormalityData,
   };
 };
+
+const postSubscriptionFormality = async (
+  formalityData: Formality
+): Promise<FormalityCheckout> => {
+  const { data: response } = await api.post(`domiciliation`, formalityData);
+
+  if (!response.formalities) throw new Error('Error Creating Formality');
+  console.log('FormalityId', response.formalities);
+  const { data: order } = await api.post('order', {
+    formality: response.formalities.formalityId,
+
+    subscription: formalityData.subscription,
+  });
+  console.log(order);
+  if (!order) throw new Error('Error Creating Order');
+
+  const { data: payment } = await api.post('payment/handleSubscription', {
+    currency: 'usd',
+    description: 'test payment',
+    order: order.id as number,
+  });
+  window.location.assign(payment.payment.stripeIntent.sessionUrl);
+  return { ...response, type: formalityData.companyType };
+};
+
+export const useCreateSubscriptionFormality = () => {
+  // const router = useRouter();
+  const searchParams = useSearchParams();
+  // const type = searchParams.get('type') || '';
+  const {
+    mutate: FormalityCreationMutation,
+    isLoading,
+    data: FormalityData,
+  } = useMutation<
+    FormalityCheckout,
+    AxiosError,
+    { email: string; password: string },
+    unknown
+  >((postData) => postSubscriptionFormality(postData), {
+    onSuccess(data) {
+      toast('Formality created successfully');
+      // localStorage.removeItem(data.type);
+      // const selectedFormalityId = Object(data.formalities)?.formalityId;
+    },
+    onError(err: Error | AxiosError) {
+      if (isAxiosError(err)) {
+        toast('Invalid Credentials');
+      } else {
+        toast('Something went wrong');
+      }
+    },
+  });
+  return {
+    FormalityCreationMutation,
+    isLoading,
+    FormalityData,
+  };
+};

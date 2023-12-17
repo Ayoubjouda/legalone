@@ -9,7 +9,7 @@ const NewClientsCard: FC<NewClientsCardProps> = () => {
   const { data: weeklyClient } = useGetWeeklyClient();
   return (
     <DashboardCard
-      title='Client This Week'
+      title='Client hebdomadaire'
       icon='users'
       content={weeklyClient?.users}
     />

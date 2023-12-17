@@ -9,7 +9,7 @@ const DailyRevenueCard: FC<DailyRevenueCardProps> = () => {
   const { data: dailyRevenue } = useGetDailyRevenue();
   return (
     <DashboardCard
-      title='Daily Revenue'
+      title='Revenue journalier'
       icon='lineChart'
       content={dailyRevenue?.dailyRevenue}
     />

@@ -53,3 +53,21 @@ export const useGetPackages = (packageType: string) => {
     fetchPackages(packageType)
   );
 };
+interface Subscription {
+  id: number;
+  stripeProductId: string;
+  amount: number;
+  icon: null | string;
+  interval: string;
+  title: string;
+}
+const getSubscriptionsPackages = async (): Promise<Subscription[]> => {
+  const { data } = await api.get(`payment/subscription`);
+  return data;
+};
+
+export const useGetSubscriptionsPackages = () => {
+  return useQuery<Subscription[], Error>(['subscriptions'], () =>
+    getSubscriptionsPackages()
+  );
+};

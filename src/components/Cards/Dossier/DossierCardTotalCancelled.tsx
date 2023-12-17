@@ -10,7 +10,7 @@ const DossierCardTotalCancelled: FC<OrdersTotalProps> = () => {
   const { data: TotalDossier } = useGetTotalCancelledFormalities();
   return (
     <DashboardCard
-      title='Total Cancelled Dossier'
+      title='Dossier annulées'
       icon='folderX'
       content={TotalDossier?.total}
     />

@@ -3,7 +3,10 @@ import { Controller, useFormContext } from 'react-hook-form';
 import IconBox from '../../../IconBox';
 import { cn } from '@/lib/utils';
 import { Spinner } from '@chakra-ui/react';
-import { useGetCompanyType } from '@/hooks/useCompany';
+import {
+  useGetCompanyType,
+  useGetSubscriptionsPackages,
+} from '@/hooks/useCompany';
 interface FormProps {
   goToNext: () => void;
 }
@@ -16,6 +19,7 @@ const SubscriptionForm = ({ goToNext }: FormProps) => {
   } = useFormContext();
 
   const { isLoading, data: CompanyType } = useGetCompanyType();
+  const { data: subscriptions } = useGetSubscriptionsPackages();
 
   const subscription = getValues('subscription');
 
@@ -34,7 +38,7 @@ const SubscriptionForm = ({ goToNext }: FormProps) => {
     );
 
   return (
-    <form className='flex flex-col gap-10 '>
+    <form className='flex flex-col gap-5 '>
       <div className='hidden'>
         <Controller
           name='subscription'
@@ -46,9 +50,6 @@ const SubscriptionForm = ({ goToNext }: FormProps) => {
       </div>
 
       <div className='flex justify-center font-semibold text-red-500'>
-        <p className='max-w-md text-center text-xl font-medium leading-[31px] text-slate-500'>
-          Rappel de notre offre de domiciliation :
-        </p>
         <ErrorMessage
           errors={errors}
           name='subscription'
@@ -69,26 +70,19 @@ const SubscriptionForm = ({ goToNext }: FormProps) => {
       </div>
 
       <div className=' flex flex-col flex-wrap items-center gap-10 md:flex-row'>
-        <IconBox
-          title={'Mensuel 30$/mois'}
-          image={
-            'https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-monthly-medical-ecommerce-flaticons-lineal-color-flat-icons.png'
-          }
-          onClick={() => {
-            handelSubmitValue('30');
-          }}
-          className={cn({ 'border-orange-500': subscription === 'Oui' })}
-        />
-        <IconBox
-          title={'Annuel 25$/mois'}
-          image={
-            'https://img.icons8.com/external-filled-color-icons-papa-vector/78/external-Calendar-lifelong-learning-filled-color-icons-papa-vector.png'
-          }
-          onClick={() => {
-            handelSubmitValue('25');
-          }}
-          className={cn({ 'border-orange-500': subscription === 'Non' })}
-        />
+        {subscriptions?.map((item) => (
+          <IconBox
+            key={item.stripeProductId}
+            title={item.title}
+            image={item.icon || ''}
+            onClick={() => {
+              handelSubmitValue(String(item.id));
+            }}
+            className={cn({
+              'border-orange-500': subscription === String(item.id),
+            })}
+          />
+        ))}
       </div>
       <div className='space-y-2'>
         <p className='font-semibold'>

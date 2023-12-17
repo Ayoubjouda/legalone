@@ -90,6 +90,40 @@ const PersonalForm = ({ goToNext }: FormProps) => {
   return (
     <form className='w-full max-w-[650px]'>
       <div className='my-5 flex flex-col  gap-4'>
+        <FormField
+          name='sex'
+          control={control}
+          defaultValue={''}
+          render={({ field }) => (
+            <FormItem className='flex items-center gap-3 space-y-0 '>
+              <FormLabel className='leading-[20px]'>
+                Sélectionnez votre Civilité :
+              </FormLabel>
+              <FormControl>
+                <RadioGroup
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  className='flex'
+                >
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
+                    <FormControl>
+                      <RadioGroupItem value='Monsieur' />
+                    </FormControl>
+                    <FormLabel className='font-semibold'>Monsieur</FormLabel>
+                  </FormItem>
+                  <FormItem className='flex items-center space-x-3 space-y-0'>
+                    <FormControl>
+                      <RadioGroupItem value='Madame' />
+                    </FormControl>
+                    <FormLabel className='font-semibold'>Madame</FormLabel>
+                  </FormItem>
+                </RadioGroup>
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <div className='flex w-full gap-2 '>
           <FormField
             name='firstName'
@@ -121,41 +155,6 @@ const PersonalForm = ({ goToNext }: FormProps) => {
             )}
           />
         </div>
-
-        <FormField
-          name='sex'
-          control={control}
-          defaultValue={''}
-          render={({ field }) => (
-            <FormItem className='flex items-center gap-3 space-y-0 '>
-              <FormLabel className='leading-[20px]'>
-                Sélectionnez votre sexe :
-              </FormLabel>
-              <FormControl>
-                <RadioGroup
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  className='flex'
-                >
-                  <FormItem className='flex items-center space-x-3 space-y-0'>
-                    <FormControl>
-                      <RadioGroupItem value='Male' />
-                    </FormControl>
-                    <FormLabel className='font-semibold'>Male</FormLabel>
-                  </FormItem>
-                  <FormItem className='flex items-center space-x-3 space-y-0'>
-                    <FormControl>
-                      <RadioGroupItem value='Female' />
-                    </FormControl>
-                    <FormLabel className='font-semibold'>Female</FormLabel>
-                  </FormItem>
-                </RadioGroup>
-              </FormControl>
-
-              <FormMessage />
-            </FormItem>
-          )}
-        />
 
         <Button
           className='self-end bg-black font-semibold hover:bg-black/80 '

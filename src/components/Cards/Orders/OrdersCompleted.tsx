@@ -8,7 +8,7 @@ const OrdersCompleted: FC<OrdersCompletedProps> = () => {
   const { data: TotalCompleted } = useGetTotalCompletedOrders();
   return (
     <DashboardCard
-      title='Completed Orders'
+      title='Commandes terminées'
       icon='packageCheck'
       content={TotalCompleted?.completedOrders}
     />
