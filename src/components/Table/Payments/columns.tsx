@@ -29,6 +29,25 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => <div className='lowercase'>{row.getValue('id')}</div>,
   },
   {
+    accessorKey: 'user',
+    header: 'Client',
+    cell: ({ row }) => {
+      const user = row.original;
+      return (
+        <div className='lowercase'>
+          <div className='flex items-center gap-4'>
+            <div className='font-medium dark:text-white'>
+              <div> {user.user.email}</div>
+              <div className='text-sm text-gray-500 dark:text-gray-400'>
+                {user.user.firstName} {user.user.lastName}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    },
+  },
+  {
     accessorKey: 'amount',
     header: 'Montant',
     cell: ({ row }) => (

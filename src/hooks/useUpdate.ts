@@ -14,7 +14,15 @@ const updateEntreprise = async ({
   dossierId,
   formalities,
 }: updateEntrepriseParams): Promise<void> => {
-  const { user, order, formalityId, ...newObj } = formalities;
+  const {
+    user,
+    order,
+    formalityId,
+    files,
+    createdAt,
+    formalityType,
+    ...newObj
+  } = formalities;
   console.log(newObj);
   const { data } = await api.patch(
     `company/update-company-formality/${companyId}/${dossierId}`,

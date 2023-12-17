@@ -6,7 +6,7 @@ import { useDeleteFormality } from '@/hooks/useDossier';
 import { EntrepriseSchemaType } from '@/lib/validators/creation/entreprise';
 import { Dossier } from '@/types/order';
 interface EditEntrepriseSchemaType extends EntrepriseSchemaType {
-  id: number;
+  companyId: number;
 }
 const EditDossierModal = ({
   setOpen,

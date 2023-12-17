@@ -171,17 +171,7 @@ const Page: FC<pageProps> = () => {
                 </div>
               </div>
             </div>
-            <div className='flex flex-col items-start justify-start gap-1.5 self-stretch'>
-              <div className='inline-flex items-start justify-start gap-2 self-stretch'>
-                <Input
-                  className='inline-flex shrink grow basis-0 flex-col items-start justify-start gap-1.5'
-                  placeholder='Promo code'
-                />
-                <Button className='bg-slate-900 px-4 py-2 font-inter text-sm font-medium leading-normal  text-white hover:bg-slate-900 hover:bg-opacity-90'>
-                  Appliquer
-                </Button>
-              </div>
-            </div>
+
             <Button
               className='  inline-flex w-full cursor-pointer items-center justify-center gap-2 self-stretch rounded-md bg-orange-600 text-base shadow  hover:bg-darkRedish'
               onClick={handlePayment}

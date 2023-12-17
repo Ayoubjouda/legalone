@@ -12,7 +12,7 @@ import EditAssociation from '@/components/Forms/Admin/dossier/creation/EditAssoc
 import EditAutoEntreForm from '@/components/Forms/Admin/dossier/creation/EditAutoEntreForm';
 import EditModificationForm from '@/components/Forms/Admin/dossier/EditModificationForm';
 interface EditEntrepriseSchemaType extends EntrepriseSchemaType {
-  id: number;
+  companyId: number;
 }
 const EditDossierModal = ({
   setOpen,

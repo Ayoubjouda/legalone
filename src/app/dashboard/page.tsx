@@ -15,6 +15,7 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import DashboardPieChart from '@/components/DashboardPieChart';
 import Chart from '@/components/Chart';
+import Error from '@/components/Error';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -52,8 +53,23 @@ export default function DashboardPage() {
               <CardHeader>
                 <CardTitle>Overview</CardTitle>
               </CardHeader>
-              <CardContent className='pl-2'>
-                <DashboardPieChart />
+              <CardContent className='flex h-full items-center justify-center '>
+                <ErrorBoundary fallback={<Error text='Error Loading Data' />}>
+                  <Suspense
+                    fallback={
+                      <div className=' space-y-2 p-3'>
+                        {Array.from({ length: 18 }).map((_, i) => (
+                          <Skeleton
+                            key={Math.random()}
+                            className='h-3 w-full p-2 '
+                          />
+                        ))}
+                      </div>
+                    }
+                  >
+                    <DashboardPieChart />
+                  </Suspense>
+                </ErrorBoundary>
               </CardContent>
             </Card>
             <ErrorBoundary FallbackComponent={ErrorCard}>

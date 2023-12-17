@@ -22,7 +22,7 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 
 interface EditEntrepriseSchemaType extends EntrepriseSchemaType {
-  id: number;
+  companyId: number;
 }
 
 interface EditEntrepriseFormProps {
@@ -47,7 +47,7 @@ const EditEntrepriseForm: FC<EditEntrepriseFormProps> = ({
   console.log(values);
   const onSubmit = (data: EntrepriseSchemaType) => {
     updateEntreprise({
-      companyId: dossier.id,
+      companyId: dossier.companyId,
       dossierId: formalitie.formalityId,
       formalities: { ...formalitie, data: data },
     });
